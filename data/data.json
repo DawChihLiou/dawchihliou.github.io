@@ -1,13 +1,20 @@
-{	
-	"name":"Daw-Chih Liou",
+{
+	"name": "Daw-Chih Liou",
 
 	"landing_pic":{
 		"url": "landing.png"
 	},
-
-	"landing_caption":"Web Designer . Front End Developer",
-
+	"landing_caption": "Web Designer . Front End Developer",
 	"works":[
+				{
+						"name":"bloomon",
+						"url":"bloomon.png",
+						"mockup":"mockup-bloomon.png",
+						"caption":"Front End Developer",
+						"des":"Online bouquet subscription service that devlivers beautiful and fresh flowers",
+						"resposibility":"Developed multi-country, cross-browser, and responsive e-commerce web app",
+						"tech":"AngularJS . Sass . gulp"
+				},
         {
             "name":"DCLiou",
             "url":"dcliou.png",
@@ -73,8 +80,8 @@
     },
 
     "photo_path":{
-        "xb":"img/xb/",
-        "bg":"img/bg/",
+        "xb":"img/md/",
+        "bg":"img/md/",
         "md":"img/md/",
         "sm":"img/sm/"
     },
