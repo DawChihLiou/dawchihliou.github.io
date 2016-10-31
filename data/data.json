@@ -1,0 +1,91 @@
+{	
+	"name":"Daw-Chih Liou",
+
+	"landing_pic":{
+		"url": "landing.png"
+	},
+
+	"landing_caption":"Web Designer . Front End Developer",
+
+	"works":[
+        {
+            "name":"DCLiou",
+            "url":"dcliou.png",
+            "mockup":"mockup_dcliou.png",
+            "caption":"Web Developer . UX Designer",
+            "des":"Personal portfolio showcases professional experience and passion",
+            "resposibility":"Developed UX and cross-browser responsive UI",
+            "tech":"AngularJS . Bootstrap . Photoshop"
+        },
+        {
+            "name":"CollegeZen",
+            "url":"collegezen.png",
+            "mockup":"mockup_collegezen.png",
+            "caption":"Front End Developer",
+            "des":"CollegeZen intro site uncovers charactors and services of the startup company",
+            "resposibility":"Prototyped User Interface and interactions",
+            "tech":"HTML . CSS3 . jQuery"
+        },{
+            "name":"ReCom",
+            "url":"recom.png",
+            "mockup":"mockup_recom.png",
+            "caption":"J2EE . SQL Developer",
+            "des":"Online shopping system provides intriguing recommendations",
+            "resposibility":"Designed and constructed database, UI and server",
+            "tech":"SQL . JSP . CSS . jQuery"
+        },{
+            "name":"Break Free Room",
+            "url":"break.png",
+            "mockup":"mockup_break.png",
+            "caption":"UX Designer",
+            "des":"Social network site helps teenagers go through personal trauma",
+            "resposibility":"Conducted user study and created prototypes",
+            "tech":"Heuristic analysis . Photoshop"
+        },{
+            "name":"PittBridge",
+            "url":"pittbridge.png",
+            "mockup":"mockup_pittbridge.png",
+            "caption":"Android Developer",
+            "des":"Educational Android application introduces bridges in Pittsburgh area",
+            "resposibility":"Designed UX and interactions. Implemented UI",
+            "tech":"Android SDK . Wireframe"
+        },{
+            "name":"Balance Visual Deisgn",
+            "url":"balance.png",
+            "mockup":"mockup_balance.png",
+            "caption":"Visual Deisgner",
+            "des":"Artistic study of asymmetrical balance between objects of various sizes.",
+            "resposibility":"Evaluated Gravities of objects and designed visual flow",
+            "tech":"Balance theory . Sharpie pens . Ruler"
+        },{
+            "name":"Color Scheme Exploration",
+            "url":"colorScheme.png",
+            "mockup":"mockup_colorScheme.png",
+            "caption":"Visual Deisgner",
+            "des":"Color Scheme harmony experiment",
+            "resposibility":"Explored series of color scheme harmony",
+            "tech":"Low cool . Intensity ratio . Area ratio"
+        }
+    ],
+
+    "scene":{
+       "url":"scene.png"
+    },
+
+    "photo_path":{
+        "xb":"img/xb/",
+        "bg":"img/bg/",
+        "md":"img/md/",
+        "sm":"img/sm/"
+    },
+
+    "scroll_text":"Scroll to see my works",
+
+    "aboutMe":"A self-motivated Maker of Web development who love User Experience and User Interface Design, and enjoy every bit of my journey to make life a little easier, a little happier, and a little more wonderful.",
+
+    "linkedIn":"http://www.linkedin.com/pub/daw-chih-liou/a1/662/615/",
+
+    "email":"dawochih.liou@gmail.com",
+
+    "submit_text":"Do it!"
+}
