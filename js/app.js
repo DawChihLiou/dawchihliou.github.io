@@ -12,7 +12,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 
 .controller('defaultController', function ($scope, $http, $window, $timeout, Contents, parallaxHelper) {
     // spinner control
-    $scope.loaded = false;  
+    $scope.loaded = false;
 
     // define parallax scroll speed
     $scope.background = parallaxHelper.createAnimator(-0.3);
@@ -38,9 +38,9 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
     $scope.flip = function (index) {
         if($scope.selected === -1 && $scope.selected !== index) {
             // none of the projects flipped
-            $scope.selected = index; 
+            $scope.selected = index;
         } else if($scope.selected !== -1 && $scope.selected !== index){
-            // selected project is not flipped 
+            // selected project is not flipped
             $scope.selected = -1;
             $timeout(function() {$scope.selected = index;}, 400);
         } else {
@@ -64,7 +64,6 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 
             $http({ method: 'GET', url: url })
             .success(function (data, status, headers, config) {
-                console.log('XHR status: ' + status);
                 alert('Thanks for the message!');
             })
             .error(function(data, status, headers) {
@@ -76,9 +75,6 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 })
 
 .factory('Contents', function ($rootScope, $http, $window) {
-
-    console.log('Screen Width: ' + $window.innerWidth);
-
     // data.json contains all content data.
     var url = 'data/data.json';
 
@@ -98,10 +94,10 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 
         // photo path based on screen size
         if ($window.innerWidth > 2000){
-            // path: img/xb/ 
+            // path: img/xb/
             $rootScope.photoPath = data.photo_path.xb;
         } else if ($window.innerWidth > 1600 && $window.innerWidth <= 2000) {
-            // path: img/bg/ 
+            // path: img/bg/
             $rootScope.photoPath = data.photo_path.bg;
         } else if ($window.innerWidth > 768 && $window.innerWidth <= 1600) {
             // path: img/md/
@@ -109,7 +105,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
         } else {
             // path: img/sm/
             $rootScope.photoPath = data.photo_path.sm;
-        }   
+        }
     })
     .error(function(data, status, headers) {
         alert('Something\'s wrong when retrieving data.');
@@ -118,18 +114,18 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 })
 
 .directive("scrolly", function ($animate, $window) {
-    
-    function offset(elm) { 
-        try {return elm.offset();} catch(e) {} 
-        var rawDom = elm[0]; 
-        var _x = 0; 
-        var _y = 0; 
-        var body = document.documentElement || document.body; 
-        var scrollX = window.pageXOffset || body.scrollLeft; 
-        var scrollY = window.pageYOffset || body.scrollTop; 
-        _x = rawDom.getBoundingClientRect().left + scrollX; 
-        _y = rawDom.getBoundingClientRect().top + scrollY; 
-        return { left: _x, top:_y }; 
+
+    function offset(elm) {
+        try {return elm.offset();} catch(e) {}
+        var rawDom = elm[0];
+        var _x = 0;
+        var _y = 0;
+        var body = document.documentElement || document.body;
+        var scrollX = window.pageXOffset || body.scrollLeft;
+        var scrollY = window.pageYOffset || body.scrollTop;
+        _x = rawDom.getBoundingClientRect().left + scrollX;
+        _y = rawDom.getBoundingClientRect().top + scrollY;
+        return { left: _x, top:_y };
     }
 
     return {
