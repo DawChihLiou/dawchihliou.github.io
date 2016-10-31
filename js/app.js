@@ -23,16 +23,16 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
     // show spinner for a period of time based on screen size
     if ($window.innerWidth > 2000) {
         // 12.5 secs
-        $timeout(function() {$scope.loaded = true;}, 12500);
+        $timeout(function() {$scope.loaded = true;}, 3000);
     } else if ($window.innerWidth > 1600 && $window.innerWidth <= 2000) {
         // 11 secs
-        $timeout(function() {$scope.loaded = true;}, 11000);
+        $timeout(function() {$scope.loaded = true;}, 3000);
     } else if ($window.innerWidth > 768 && $window.innerWidth <= 1600) {
         // 9.5 secs
-        $timeout(function() {$scope.loaded = true;}, 9500);
+        $timeout(function() {$scope.loaded = true;}, 3000);
     } else {
         // 8 secs
-        $timeout(function() {$scope.loaded = true;}, 8000);
+        $timeout(function() {$scope.loaded = true;}, 3000);
     }
 
     $scope.flip = function (index) {

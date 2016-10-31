@@ -1,6 +1,5 @@
 {
 	"name": "Daw-Chih Liou",
-
 	"landing_pic":{
 		"url": "landing.png"
 	},
@@ -74,25 +73,18 @@
             "tech":"Low cool . Intensity ratio . Area ratio"
         }
     ],
-
     "scene":{
        "url":"scene.png"
     },
-
     "photo_path":{
         "xb":"img/md/",
         "bg":"img/md/",
         "md":"img/md/",
         "sm":"img/sm/"
     },
-
     "scroll_text":"Scroll to see my works",
-
     "aboutMe":"A self-motivated Maker of Web development who love User Experience and User Interface Design, and enjoy every bit of my journey to make life a little easier, a little happier, and a little more wonderful.",
-
     "linkedIn":"http://www.linkedin.com/pub/daw-chih-liou/a1/662/615/",
-
     "email":"dawochih.liou@gmail.com",
-
     "submit_text":"Do it!"
 }
