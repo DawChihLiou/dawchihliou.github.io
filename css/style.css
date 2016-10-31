@@ -1,6 +1,6 @@
-/********** 
+/**********
 
- General Style | Bootstrap Override 
+ General Style | Bootstrap Override
 
 **********/
 
@@ -65,15 +65,15 @@ button:hover {
 	margin-left: 0 !important;
 }
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, 
-.col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, 
-.col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, 
-.col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
-.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, 
-.col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, 
-.col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, 
-.col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, 
-.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, 
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2,
+.col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3,
+.col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4,
+.col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7,
+.col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8,
+.col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9,
+.col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12,
 .col-sm-12, .col-md-12, .col-lg-12 {
 	padding-right: 0 !important;
 	padding-left: 0 !important;
@@ -105,17 +105,17 @@ button:hover {
 }
 
 
-/********** 
+/**********
 
- Media Queries 
+ Media Queries
 
 **********/
 
 /* screen size 768 up */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 	#landing h1 {
 		font-size:5em !important;
-		font-weight:500 !important;	
+		font-weight:500 !important;
 	}
 
 	#landing h3 {
@@ -132,7 +132,7 @@ button:hover {
 
 	#works h2 {
 		font-size:4em !important;
-		font-weight:500 !important;	
+		font-weight:500 !important;
 	}
 
 	#works h5 {
@@ -163,7 +163,7 @@ button:hover {
 }
 
 /* screen size 992 up */
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
 	#landing h1 {
 
 		font-size:6em !important;
@@ -193,7 +193,7 @@ button:hover {
 }
 
 /* screen size 1200 up */
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
 	#landing h1 {
 		font-size:8em !important;
 	}
@@ -230,9 +230,9 @@ button:hover {
 }
 
 
-/********** 
+/**********
 
- Keyframes 
+ Keyframes
 
 **********/
 
@@ -281,28 +281,28 @@ button:hover {
 }
 
 /* bouncing effect */
-@-webkit-keyframes bounce { 
-        0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}         
-        40%, 60% {-webkit-transform: translateY(-30px);} 
-} 
-  
-@-moz-keyframes bounce { 
-        0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);} 
-        40%, 60% {-moz-transform: translateY(-30px);} 
-} 
-  
-@-o-keyframes bounce { 
-        0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);} 
-        40%, 60% {-o-transform: translateY(-30px);} 
-} 
-@keyframes bounce { 
-        0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-        40%, 60% {transform: translateY(-30px);} 
+@-webkit-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
+        40%, 60% {-webkit-transform: translateY(-30px);}
 }
 
-/********** 
+@-moz-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+        40%, 60% {-moz-transform: translateY(-30px);}
+}
 
- Footer 
+@-o-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+        40%, 60% {-o-transform: translateY(-30px);}
+}
+@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40%, 60% {transform: translateY(-30px);}
+}
+
+/**********
+
+ Footer
 
 **********/
 
@@ -318,7 +318,7 @@ button:hover {
 }
 
 .footer, .wrap:after {
-  height: 142px; 
+  height: 142px;
 }
 
 .footer {
@@ -356,7 +356,7 @@ button:hover {
 
 /**********
 
- Home Section 
+ Home Section
 
 **********/
 
@@ -389,7 +389,7 @@ button:hover {
 	height:100%;
 }
 
-.fill { 
+.fill {
     min-height: 100%;
     height:104%;
 }
@@ -436,29 +436,29 @@ button:hover {
 	color:#f1c40f;
 	font-size:.9em;
 }
-  
-.bounce { 
-    -webkit-animation-name: bounce; 
-    -moz-animation-name: bounce; 
-    -o-animation-name: bounce; 
-    animation-name: bounce; 
 
-    -webkit-animation-fill-mode:both; 
-    -moz-animation-fill-mode:both; 
-    -ms-animation-fill-mode:both; 
-    -o-animation-fill-mode:both; 
-    animation-fill-mode:both; 
-    
-    -webkit-animation-iteration-count: infinite; 
-    -moz-animation-iteration-count: infinite; 
-    animation-iteration-count: infinite; 
+.bounce {
+    -webkit-animation-name: bounce;
+    -moz-animation-name: bounce;
+    -o-animation-name: bounce;
+    animation-name: bounce;
 
-    -webkit-animation-duration:2s; 
-    -moz-animation-duration:2s; 
-    -ms-animation-duration:2s; 
-    -o-animation-duration:2s; 
-    animation-duration:2s; 
-} 
+    -webkit-animation-fill-mode:both;
+    -moz-animation-fill-mode:both;
+    -ms-animation-fill-mode:both;
+    -o-animation-fill-mode:both;
+    animation-fill-mode:both;
+
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-duration:2s;
+    -moz-animation-duration:2s;
+    -ms-animation-duration:2s;
+    -o-animation-duration:2s;
+    animation-duration:2s;
+}
 
 #landing .scroll-icon {
 	background-image: url('../img/icon/arror.png');
@@ -517,18 +517,18 @@ button:hover {
 	bottom:0;
 }
 
-.overlay:after { 
-    position:relative; 
-    top:98.8%; 
-    content: ''; 
-    display: block; 
-    margin: 0 auto; 
-    height: 5px; 
-    width: 0px; 
-    opacity:1; 
-    -webkit-transition:width .65s ease, background-color .65s ease; 
-    transition: width .65s ease, background-color .65s ease; 
-} 
+.overlay:after {
+    position:relative;
+    top:98.8%;
+    content: '';
+    display: block;
+    margin: 0 auto;
+    height: 5px;
+    width: 0px;
+    opacity:1;
+    -webkit-transition:width .65s ease, background-color .65s ease;
+    transition: width .65s ease, background-color .65s ease;
+}
 
 .overlay h2 {
     position: absolute;
@@ -590,7 +590,7 @@ button:hover {
 	background: rgba(0,0,0,0.6);
 	content: '';
 	opacity: 0;
-	
+
 	-webkit-transition: opacity 0.35s ease 0s, -webkit-transform 0.35s ease 0s;
 	transition: opacity 0.35s ease 0s, transform 0.35s ease 0s;
 }
@@ -606,10 +606,10 @@ button:hover {
 	transform: translate(0, 0);
 }
 
-.item.he.animate .overlay:after{ 
-    width: 100%; 
-    background: #f1c40f; 
-} 
+.item.he.animate .overlay:after{
+    width: 100%;
+    background: #f1c40f;
+}
 
 .hide-color {
 	-webkit-filter: grayscale(100%);
@@ -731,7 +731,7 @@ button:hover {
 
 .rock {
 	width:100%;
-	height:190%;
+	height:200%;
 	background-color:#aaa;
 }
 
@@ -855,5 +855,3 @@ button:hover {
 #contact p {
 	font-size:80% !important;
 }
-
-
