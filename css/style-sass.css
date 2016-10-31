@@ -34,7 +34,7 @@
   height: 100%;
   z-index: 0;
   background-image: url("../img/icon/logo.png");
-  background-size: 8em;
+  background-size: 6em;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-animation: fadeOutIn 1.5s linear infinite;
