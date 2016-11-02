@@ -55,22 +55,6 @@
             "des":"Educational Android application introduces bridges in Pittsburgh area",
             "resposibility":"Designed UX and interactions. Implemented UI",
             "tech":"Android SDK . Wireframe"
-        },{
-            "name":"Balance Visual Deisgn",
-            "url":"balance.png",
-            "mockup":"mockup_balance.png",
-            "caption":"Visual Deisgner",
-            "des":"Artistic study of asymmetrical balance between objects of various sizes.",
-            "resposibility":"Evaluated Gravities of objects and designed visual flow",
-            "tech":"Balance theory . Sharpie pens . Ruler"
-        },{
-            "name":"Color Scheme Exploration",
-            "url":"colorScheme.png",
-            "mockup":"mockup_colorScheme.png",
-            "caption":"Visual Deisgner",
-            "des":"Color Scheme harmony experiment",
-            "resposibility":"Explored series of color scheme harmony",
-            "tech":"Low cool . Intensity ratio . Area ratio"
         }
     ],
     "scene":{
