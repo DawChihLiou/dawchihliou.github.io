@@ -11,7 +11,35 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 })
 
 .controller('defaultController', function ($scope, $http, $window, $timeout, Contents, parallaxHelper) {
-    // spinner control
+    // loader
+    var dimension    = 150;
+    var offset       = 12;
+    var strokewidth  = 3;
+    var edgeLength   = 100;
+    // var strokeColor  = '#333';
+    var strokeColor  = '#f1c40f';
+    var speed        = 4;
+    var opacity      = 0;
+    var toggleSpeed  = 0.05;
+    var fadeInSpeed  = 50;
+    var compensation = strokewidth / 2;
+    var radius       = edgeLength / 2;
+    var start        = ( dimension - edgeLength ) / 2;
+    var corner       = dimension - offset;
+    var logoParams   = { width: dimension, height: dimension + offset * 2 };
+    var diff         = 0;
+    var side         = 0;
+
+    var logo         = document.getElementById('loader');
+    var two          = new Two(logoParams).appendTo(logo);
+    var arc1         = two.makeArcSegment(start, start + radius, radius, radius, 0, Math.PI);
+    var arc2         = two.makeArcSegment(dimension - start, start + radius, radius, radius, Math.PI, 0);
+    var line         = two.makeLine(start + compensation, start, start + compensation, start + edgeLength / 2);
+    var group        = two.makeGroup(arc1, arc2, line);
+    var bordCur;
+    var bordPre;
+
+    // loader control
     $scope.loaded = false;
 
     // define parallax scroll speed
@@ -19,6 +47,72 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 
     // default selected project index
     $scope.selected = -1;
+
+    // loader
+    two.bind('update', function (frameCount) {
+      // logo fade in
+      if (frameCount <= fadeInSpeed) {
+      	group.opacity = (1 / fadeInSpeed) * frameCount;
+      }
+
+      // remove old border instances
+      group.remove(bordCur, bordPre);
+      two.remove(bordCur, bordPre);
+      bordCur = null;
+      bordPre = null;
+
+      // reset iteration & switch side
+      if (diff > dimension - offset || diff < offset) {
+      	diff = offset;
+      	side++;
+      }
+
+      // reset to 1st side when 4th completes
+      if (side > 3) {
+      	side = 0;
+      }
+
+      // set upper & lower bond of text opacity
+      if (opacity > 1) {
+      	opacity = 1;
+      } else if (opacity < 0) {
+      	opacity = 0;
+      }
+
+      // redraw borders on wanted sides in eatch frame
+      switch(side) {
+      	case 0:
+      		// top & left edge
+      		bordCur = two.makeLine(offset, offset, diff, offset);
+      		bordPre = two.makeLine(offset + compensation, dimension - diff, offset + compensation, offset);
+      		break;
+      	case 1:
+      		// right & top edge
+      		bordCur = two.makeLine(corner - compensation, offset, corner - compensation, diff);
+      		bordPre = two.makeLine(diff, offset, corner, offset);
+      		opacity += toggleSpeed;
+      		break;
+      	case 2:
+      		// bottom & right edge
+      		bordCur = two.makeLine(corner, corner, dimension - diff, corner);
+      		bordPre = two.makeLine(corner - compensation, diff, corner - compensation, corner);
+      		opacity -= toggleSpeed;
+      		break;
+      	case 3:
+      		// left & bottom edge
+      		bordCur = two.makeLine(offset + compensation, corner, offset + compensation, dimension - diff);
+      		bordPre = two.makeLine(dimension - diff, corner, offset, corner);
+      		break;
+      }
+
+      // add borders to group & set group styles
+      group.add(bordCur, bordPre);
+      group.linewidth = strokewidth;
+      group.stroke = strokeColor;
+
+      // udpate next edge length difference
+      diff += speed;
+    }).play();
 
     // show spinner for a period of time based on screen size
     if ($window.innerWidth > 2000) {
