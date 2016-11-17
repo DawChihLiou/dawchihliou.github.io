@@ -5,12 +5,10 @@
 **********/
 .wrap {
   height: 100%;
-  min-height: 100%;
-  margin-bottom: 142px; }
+  min-height: 100%;}
   .wrap:after {
     content: "";
-    display: block;
-    height: 142px; }
+    display: block;}
 
 .footer {
   background: #f1c40f;
@@ -544,7 +542,7 @@ button:hover {
   background-color: #f1c40f !important; }
 
 .container-fluid {
-  height: 106%;
+  height: 100%;
   min-height: 100%;
   padding-right: 0 !important;
   padding-left: 0 !important; }
