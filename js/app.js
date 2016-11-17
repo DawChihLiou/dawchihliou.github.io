@@ -12,7 +12,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
 
 .controller('defaultController', function ($scope, $http, $window, $timeout, Contents, parallaxHelper) {
     // spinner control
-    $scope.loaded = false;
+    $scope.loaded = true;
 
     // define parallax scroll speed
     $scope.background = parallaxHelper.createAnimator(-0.3);
@@ -20,20 +20,20 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
     // default selected project index
     $scope.selected = -1;
 
-    // show spinner for a period of time based on screen size
-    if ($window.innerWidth > 2000) {
-        // 12.5 secs
-        $timeout(function() {$scope.loaded = true;}, 3000);
-    } else if ($window.innerWidth > 1600 && $window.innerWidth <= 2000) {
-        // 11 secs
-        $timeout(function() {$scope.loaded = true;}, 3000);
-    } else if ($window.innerWidth > 768 && $window.innerWidth <= 1600) {
-        // 9.5 secs
-        $timeout(function() {$scope.loaded = true;}, 3000);
-    } else {
-        // 8 secs
-        $timeout(function() {$scope.loaded = true;}, 3000);
-    }
+    // // show spinner for a period of time based on screen size
+    // if ($window.innerWidth > 2000) {
+    //     // 12.5 secs
+    //     $timeout(function() {$scope.loaded = true;}, 3000);
+    // } else if ($window.innerWidth > 1600 && $window.innerWidth <= 2000) {
+    //     // 11 secs
+    //     $timeout(function() {$scope.loaded = true;}, 3000);
+    // } else if ($window.innerWidth > 768 && $window.innerWidth <= 1600) {
+    //     // 9.5 secs
+    //     $timeout(function() {$scope.loaded = true;}, 3000);
+    // } else {
+    //     // 8 secs
+    //     $timeout(function() {$scope.loaded = true;}, 3000);
+    // }
 
     $scope.flip = function (index) {
         if($scope.selected === -1 && $scope.selected !== index) {
@@ -86,6 +86,9 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
         $rootScope.scrollText = data.scroll_text;
         $rootScope.submitText = data.submit_text;
         $rootScope.linkedIn = data.linkedIn;
+        $rootScope.codepen = data.codepen;
+        $rootScope.github = data.github;
+        $rootScope.twitter = data.twitter;
         $rootScope.landingPicture = data.landing_pic;
         $rootScope.portfolioItems = data.works;
         $rootScope.aboutMe = data.aboutMe;

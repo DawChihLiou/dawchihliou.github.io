@@ -365,28 +365,23 @@
   #about-me h5 {
     position: relative;
     top: -70px; }
-  #about-me .linkedin {
+  #about-me .link {
     position: relative;
     top: -4em;
     width: 3em;
     height: 3em;
     border-radius: 50%;
+    color: #333;
     border: 1px solid #333;
+    padding: .43em;
+    margin: .2em;
     -webkit-transition: all 0.35s ease 0s;
     -moz-transition: all 0.35s ease 0s;
     -ms-transition: all 0.35s ease 0s;
     -o-transition: all 0.35s ease 0s;
     transition: all 0.35s ease 0s; }
-    #about-me .linkedin:hover {
+    #about-me .link:hover {
       border-radius: 0; }
-    #about-me .linkedin img {
-      position: relative;
-      top: 0.5em;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      width: 1.7em;
-      height: auto; }
 
 /**********
 
