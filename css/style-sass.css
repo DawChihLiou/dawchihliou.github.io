@@ -60,7 +60,7 @@
 /* landing image */
 #landing {
   width: 100%;
-  background-size: 100%;
+  background-size: 100% auto;
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
@@ -148,7 +148,7 @@
     height: 100%;
     min-height: 50%;
     margin: 0 auto;
-    background-size: 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center center;
     /* for Chrome*/
@@ -336,7 +336,7 @@
   margin: 0;
   background-repeat: no-repeat;
   background-position: center;
-  /*background-size: 100% auto;*/ }
+  background-size: 100% atuo; }
 
 /**********
 
