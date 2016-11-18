@@ -60,6 +60,7 @@
 /* landing image */
 #landing {
   width: 100%;
+  background-size: 100%;
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
@@ -147,6 +148,7 @@
     height: 100%;
     min-height: 50%;
     margin: 0 auto;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
     /* for Chrome*/
