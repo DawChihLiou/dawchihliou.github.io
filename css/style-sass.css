@@ -60,6 +60,7 @@
 /* landing image */
 #landing {
   width: 100%;
+  /*background-size: auto 100%;*/
   background-color: #aaa;
   background-repeat: no-repeat;
   background-position: center;
@@ -147,6 +148,7 @@
     height: 100%;
     min-height: 50%;
     margin: 0 auto;
+   /*background-size: auto 100%;*/
     background-repeat: no-repeat;
     background-position: center center;
     /* for Chrome*/
@@ -334,7 +336,7 @@
   margin: 0;
   background-repeat: no-repeat;
   background-position: center;
-  /*background-size: 100% auto;*/ }
+  /* background-size: auto 100%; */ }
 
 /**********
 
@@ -471,6 +473,8 @@
     font-size: 1.1em; } }
 /* screen size 1200 up */
 @media (min-width: 1200px) {
+  #landing {
+   background-size:100% auto;}
   #landing h1 {
     font-size: 8em !important; }
   #landing h3 {
@@ -479,13 +483,18 @@
     width: 120px !important;
     height: 100px !important;
     font-size: 20px !important; }
-
+  
+  #works .item {
+   background-size:100% auto;}
   #works h2 {
     font-size: 5em !important; }
   #works h5 {
     font-size: 1.4em; }
   #works h6 {
     font-size: 1.2em; }
+ 
+ .scene {
+  background-size: 100%;}
 
   #about-me {
     height: 385px; }
