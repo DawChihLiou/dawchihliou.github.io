@@ -1,19 +1,19 @@
 {
-	"name": "Daw-Chih Liou",
-	"landing_pic":{
-		"url": "landing.png"
+  "name": "Daw-Chih Liou",
+  "landing_pic": {
+	     "url": "landing.png"
+  },
+  "landing_caption": "Web Developer . Web Designer",
+  "works": [
+	{
+	     "name":"bloomon",
+	     "url":"bloomon.png",
+	     "mockup":"mockup-bloomon.png",
+	     "caption":"Front End Developer",
+	     "des":"Online bouquet subscription service that devlivers beautiful and fresh flowers",
+	     "resposibility":"Developed multi-country, cross-browser, and responsive e-commerce web app",
+	     "tech":"AngularJS . Sass . gulp"
 	},
-	"landing_caption": "Web Developer . Web Designer",
-	"works":[
-				{
-						"name":"bloomon",
-						"url":"bloomon.png",
-						"mockup":"mockup-bloomon.png",
-						"caption":"Front End Developer",
-						"des":"Online bouquet subscription service that devlivers beautiful and fresh flowers",
-						"resposibility":"Developed multi-country, cross-browser, and responsive e-commerce web app",
-						"tech":"AngularJS . Sass . gulp"
-				},
         {
             "name":"DCLiou",
             "url":"dcliou.png",
@@ -69,9 +69,10 @@
     "scroll_text":"Scroll to see my works",
     "aboutMe":"A passionate self-motivated front end web developer with User Experience research and User Interface design skills who dedicate to deliver thoughtful user experience and quality code.",
     "linkedIn":"http://www.linkedin.com/in/dawchihliou",
-		"codepen":"http://codepen.io/DawChihLiou/",
-		"github":"https://github.com/DawChihLiou",
-		"twitter":"https://twitter.com/dawchihliou",
+    "codepen":"http://codepen.io/DawChihLiou/",
+    "github":"https://github.com/DawChihLiou",
+    "twitter":"https://twitter.com/dawchihliou",
+    "medium":"https://medium.com/@MimiLiou77",
     "email":"dawochih.liou@gmail.com",
     "submit_text":"Do it!"
 }

@@ -183,6 +183,7 @@ angular.module('app', ['ngRoute', 'ngAnimate', 'duParallax'])
         $rootScope.codepen = data.codepen;
         $rootScope.github = data.github;
         $rootScope.twitter = data.twitter;
+	$rootScope.medium = data.medium;
         $rootScope.landingPicture = data.landing_pic;
         $rootScope.portfolioItems = data.works;
         $rootScope.aboutMe = data.aboutMe;
