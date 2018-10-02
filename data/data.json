@@ -1,78 +1,90 @@
 {
   "name": "Daw-Chih Liou",
   "landing_pic": {
-	     "url": "landing.png"
+    "url": "landing.png"
   },
   "landing_caption": "Web Developer . Web Designer",
   "works": [
-	{
-	     "name":"bloomon",
-	     "url":"bloomon.png",
-	     "mockup":"mockup-bloomon.png",
-	     "caption":"Front End Developer",
-	     "des":"Online bouquet subscription service that devlivers beautiful and fresh flowers",
-	     "resposibility":"Developed multi-country, cross-browser, and responsive e-commerce web app",
-	     "tech":"AngularJS . Sass . gulp"
-	},
-        {
-            "name":"DCLiou",
-            "url":"dcliou.png",
-            "mockup":"mockup_dcliou.png",
-            "caption":"Web Developer . UX Designer",
-            "des":"Personal portfolio showcases professional experience and passion",
-            "resposibility":"Developed UX and cross-browser responsive UI",
-            "tech":"AngularJS . Bootstrap . Photoshop"
-        },
-        {
-            "name":"CollegeZen",
-            "url":"collegezen.png",
-            "mockup":"mockup_collegezen.png",
-            "caption":"Front End Developer",
-            "des":"CollegeZen intro site uncovers charactors and services of the startup company",
-            "resposibility":"Prototyped User Interface and interactions",
-            "tech":"HTML . CSS3 . jQuery"
-        },{
-            "name":"ReCom",
-            "url":"recom.png",
-            "mockup":"mockup_recom.png",
-            "caption":"J2EE . SQL Developer",
-            "des":"Online shopping system provides intriguing recommendations",
-            "resposibility":"Designed and constructed database, UI and server",
-            "tech":"SQL . JSP . CSS . jQuery"
-        },{
-            "name":"Break Free Room",
-            "url":"break.png",
-            "mockup":"mockup_break.png",
-            "caption":"UX Designer",
-            "des":"Social network site helps teenagers go through personal trauma",
-            "resposibility":"Conducted user study and created prototypes",
-            "tech":"Heuristic analysis . Photoshop"
-        },{
-            "name":"PittBridge",
-            "url":"pittbridge.png",
-            "mockup":"mockup_pittbridge.png",
-            "caption":"Android Developer",
-            "des":"Educational Android application introduces bridges in Pittsburgh area",
-            "resposibility":"Designed UX and interactions. Implemented UI",
-            "tech":"Android SDK . Wireframe"
-        }
-    ],
-    "scene":{
-       "url":"scene.png"
+    {
+      "name": "Spes",
+      "url": "spes.png",
+      "mockup": "mockup-spes.png",
+      "caption": "Founder",
+      "des": "Every month, I'm recommending an amazing book that impacted my life. Hopefully you'll be inspired too!",
+      "resposibility": "Building web app and offering book list with simplicity",
+      "tech": "React . Redux . JSS"
     },
-    "photo_path":{
-        "xb":"img/md/",
-        "bg":"img/md/",
-        "md":"img/md/",
-        "sm":"img/sm/"
+    {
+      "name": "bloomon",
+      "url": "bloomon.png",
+      "mockup": "mockup-bloomon.png",
+      "caption": "Front End Developer",
+      "des": "Online bouquet subscription service that devlivers beautiful and fresh flowers",
+      "resposibility": "Developed multi-country, cross-browser, and responsive e-commerce web app",
+      "tech": "AngularJS . Sass . gulp"
     },
-    "scroll_text":"Scroll to see my works",
-    "aboutMe":"A passionate self-motivated front end web developer with User Experience research and User Interface design skills who dedicate to deliver thoughtful user experience and quality code.",
-    "linkedIn":"http://www.linkedin.com/in/dawchihliou",
-    "codepen":"http://codepen.io/DawChihLiou/",
-    "github":"https://github.com/DawChihLiou",
-    "twitter":"https://twitter.com/dawchihliou",
-    "medium":"https://medium.com/@MimiLiou77",
-    "email":"dawochih.liou@gmail.com",
-    "submit_text":"Do it!"
+    {
+      "name": "DCLiou",
+      "url": "dcliou.png",
+      "mockup": "mockup_dcliou.png",
+      "caption": "Web Developer . UX Designer",
+      "des": "Personal portfolio showcases professional experience and passion",
+      "resposibility": "Developed UX and cross-browser responsive UI",
+      "tech": "AngularJS . Bootstrap . Photoshop"
+    },
+    {
+      "name": "CollegeZen",
+      "url": "collegezen.png",
+      "mockup": "mockup_collegezen.png",
+      "caption": "Front End Developer",
+      "des": "CollegeZen intro site uncovers charactors and services of the startup company",
+      "resposibility": "Prototyped User Interface and interactions",
+      "tech": "HTML . CSS3 . jQuery"
+    },
+    {
+      "name": "ReCom",
+      "url": "recom.png",
+      "mockup": "mockup_recom.png",
+      "caption": "J2EE . SQL Developer",
+      "des": "Online shopping system provides intriguing recommendations",
+      "resposibility": "Designed and constructed database, UI and server",
+      "tech": "SQL . JSP . CSS . jQuery"
+    },
+    {
+      "name": "Break Free Room",
+      "url": "break.png",
+      "mockup": "mockup_break.png",
+      "caption": "UX Designer",
+      "des": "Social network site helps teenagers go through personal trauma",
+      "resposibility": "Conducted user study and created prototypes",
+      "tech": "Heuristic analysis . Photoshop"
+    },
+    {
+      "name": "PittBridge",
+      "url": "pittbridge.png",
+      "mockup": "mockup_pittbridge.png",
+      "caption": "Android Developer",
+      "des": "Educational Android application introduces bridges in Pittsburgh area",
+      "resposibility": "Designed UX and interactions. Implemented UI",
+      "tech": "Android SDK . Wireframe"
+    }
+  ],
+  "scene": {
+    "url": "scene.png"
+  },
+  "photo_path": {
+    "xb": "img/md/",
+    "bg": "img/md/",
+    "md": "img/md/",
+    "sm": "img/sm/"
+  },
+  "scroll_text": "Scroll to see my works",
+  "aboutMe": "A passionate self-motivated front end web developer with User Experience research and User Interface design skills who dedicate to deliver thoughtful user experience and quality code.",
+  "linkedIn": "http://www.linkedin.com/in/dawchihliou",
+  "codepen": "http://codepen.io/DawChihLiou/",
+  "github": "https://github.com/DawChihLiou",
+  "twitter": "https://twitter.com/dawchihliou",
+  "medium": "https://medium.com/@MimiLiou77",
+  "email": "dawochih.liou@gmail.com",
+  "submit_text": "Do it!"
 }
