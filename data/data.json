@@ -3,7 +3,7 @@
   "landing_pic": {
     "url": "landing.png"
   },
-  "landing_caption": "Web Developer . Web Designer",
+  "landing_caption": "Web Engineer . Web Designer",
   "works": [
     {
       "name": "Spes",
@@ -79,7 +79,7 @@
     "sm": "img/sm/"
   },
   "scroll_text": "Scroll to see my works",
-  "aboutMe": "A passionate self-motivated front end web developer with User Experience research and User Interface design skills who dedicate to deliver thoughtful user experience and quality code.",
+  "aboutMe": "Daw-Chih is a software engineer who is dedicated to Front End engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
   "linkedIn": "http://www.linkedin.com/in/dawchihliou",
   "codepen": "http://codepen.io/DawChihLiou/",
   "github": "https://github.com/DawChihLiou",
