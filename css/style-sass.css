@@ -347,7 +347,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 450px;
+  height: 560px;
   background-color: #f1c40f; }
   #about-me img {
     position: relative;
@@ -497,7 +497,7 @@
   background-size: 100%;}
 
   #about-me {
-    height: 385px; }
+    height: 500px; }
     #about-me h5 {
       font-size: 1.1em; } }
 /**********
