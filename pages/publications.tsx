@@ -6,7 +6,7 @@ export default function Publications() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Daw-Chih liou</title>
+        <title>Publications</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

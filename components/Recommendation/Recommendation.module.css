@@ -10,6 +10,11 @@
   line-height: 1.15;
 }
 
+.smallerWrap {
+  width: 100%;
+  max-width: 720px;
+}
+
 .grid {
   width: 100%;
   max-width: 1600px;

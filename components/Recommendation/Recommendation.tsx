@@ -9,8 +9,9 @@ import styles from './Recommendation.module.css'
 export default function Recommendation() {
   return (
     <div className={styles.wrap} title="recommendation from others">
-      <h1>See what people say about me</h1>
-
+      <div className={styles.smallerWrap}>
+        <h1>See what people say about me</h1>
+      </div>
       <div className={styles.grid} title="what people say about me">
         {content.map((recommendation, key) => (
           <div className={styles.card} key={recommendation.title}>

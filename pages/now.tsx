@@ -6,7 +6,7 @@ export default function Now() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Daw-Chih liou</title>
+        <title>Now</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
