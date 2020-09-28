@@ -10,7 +10,7 @@ export default function Project() {
       title="my open source and none-profit projects"
     >
       <div className={styles.description}>
-        <h1>Some of my Open Source Projects</h1>
+        <h1>Some of my Open Source projects</h1>
         <p>
           I've spent over 8 years woking on Web engineering, mostly building
           features and taking care of architectures for client facing products
@@ -24,8 +24,8 @@ export default function Project() {
         <p>
           I enjoy building tooling around testing, documentation, and CI/CD to
           improve developer experience. On top of solid coding and automation,
-          nothing makes me happier than creating a thoughtful product with great
-          user experience and performance.
+          nothing makes me happier than creating a meaningful product with
+          thoughtful user experience and great performance.
         </p>
       </div>
       <div className={styles.list}>
