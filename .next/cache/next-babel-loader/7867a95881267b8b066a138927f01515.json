@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default {\n  nextjs: 'https://nextjs.org/',\n  cssModule: 'https://github.com/css-modules/css-modules',\n  reactIcons: 'https://react-icons.github.io/react-icons/',\n  reactMarkdown: 'https://github.com/rexxars/react-markdown'\n};","map":null,"metadata":{},"sourceType":"module"}
