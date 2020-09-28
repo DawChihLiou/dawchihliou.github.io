@@ -8,3 +8,8 @@
   line-height: 1.15;
   text-align: center;
 }
+
+.wrap img {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
