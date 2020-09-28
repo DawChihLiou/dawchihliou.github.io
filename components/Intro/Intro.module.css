@@ -1,0 +1,35 @@
+.wrap {
+  max-width: 720px;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portrait {
+  vertical-align: middle;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.socials {
+  width: 100%;
+}
+
+.socials a {
+  color: rgba(0, 0, 0, 1);
+  transition: color 0.15s ease;
+  margin-right: 2rem;
+}
+
+.socials a:last-child {
+  margin-right: 0;
+}
+
+.socials a:active,
+.socials a:hover {
+  color: rgba(0, 124, 240, 1);
+}
