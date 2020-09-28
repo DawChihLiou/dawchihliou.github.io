@@ -20,10 +20,14 @@
     ]
   },
   "dependencies": {
+    "@types/react-icons": "^3.0.0",
+    "clsx": "^1.1.1",
     "next": "9.5.3",
     "normalize.css": "^8.0.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-icons": "^3.11.0",
+    "react-markdown": "^4.3.1"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
@@ -40,6 +44,7 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
+    "raw-loader": "^4.0.1",
     "typescript": "^4.0.3"
   },
   "config": {

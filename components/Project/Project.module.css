@@ -1,0 +1,81 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.description {
+  max-width: 720px;
+}
+
+.description h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.list {
+  max-width: 720px;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .list {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.itemImage {
+  margin-right: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.itemImage img {
+  width: 48px;
+}
+
+.itemDescription {
+  flex-grow: 1;
+  flex-basis: 60%;
+}
+
+.itemDescription h2 {
+  margin: 0;
+}
+
+.itemDescription p {
+  margin: 0.5rem 0;
+}
+
+.link {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .itemImage {
+    margin-right: 0;
+  }
+
+  .itemImage img {
+    width: 78px;
+  }
+
+  .itemDescription {
+    flex-basis: 100%;
+  }
+}

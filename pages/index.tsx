@@ -1,24 +1,30 @@
 import React from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Hero from '../components/Hero'
+import Intro from '../components/Intro'
+import Recommendation from '../components/Recommendation'
+import Project from '../components/Project'
+import SkillSet from '../components/SkillSet'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Daw-Chih liou</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Daw-Chih Liou</h1>
-
-        <p className={styles.description}>Software Engineer</p>
-
-        <div className={styles.grid}></div>
+        <Hero />
+        <Intro />
+        <Recommendation />
+        <Project />
+        <SkillSet />
       </main>
 
-      <footer className={styles.footer}></footer>
+      <Footer />
     </div>
   )
 }
