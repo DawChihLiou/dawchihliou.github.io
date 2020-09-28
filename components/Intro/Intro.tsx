@@ -24,16 +24,16 @@ export default function Intro() {
 
       <div className={styles.socials}>
         <a href={socials.linkedin} target="_blank" rel="noreferrer">
-          <GrLinkedin size="1.25rem" />
+          <GrLinkedin size="1.25em" />
         </a>
         <a href={socials.github} target="_blank" rel="noreferrer">
-          <GrGithub size="1.25rem" />
+          <GrGithub size="1.25em" />
         </a>
         <a href={socials.medium} target="_blank" rel="noreferrer">
-          <GrMedium size="1.25rem" />
+          <GrMedium size="1.25em" />
         </a>
         <a href={socials.twitter} target="_blank" rel="noreferrer">
-          <GrTwitter size="1.25rem" />
+          <GrTwitter size="1.25em" />
         </a>
       </div>
     </div>
