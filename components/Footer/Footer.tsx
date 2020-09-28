@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import styles from './Footer.module.css'
 import socials from '../../utils/socials'
 import resources from '../../utils/resources'
@@ -7,6 +8,38 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.wrap}>
+        <div className={styles.resources}>
+          <p>
+            <span
+              role="img"
+              aria-label="build with love"
+              className={styles.emoji}
+            >
+              💚
+            </span>
+            This site is built with
+          </p>
+          <p>
+            <a href={resources.nextjs} target="_blank" rel="noreferrer">
+              Next.js
+            </a>
+          </p>
+          <p>
+            <a href={resources.cssModule} target="_blank" rel="noreferrer">
+              CSS Modules
+            </a>
+          </p>
+          <p>
+            <a href={resources.reactIcons} target="_blank" rel="noreferrer">
+              React Icons
+            </a>
+          </p>
+          <p>
+            <a href={resources.reactMarkdown} target="_blank" rel="noreferrer">
+              react-markdown
+            </a>
+          </p>
+        </div>
         <div className={styles.contact}>
           <p>
             <span
@@ -39,37 +72,20 @@ export default function Footer() {
             </a>
           </p>
         </div>
-        <div className={styles.resources}>
+        <div className={styles.sitemap}>
           <p>
             <span
               role="img"
               aria-label="build with love"
               className={styles.emoji}
             >
-              💚
+              🗺
             </span>
-            This site is built with
+            Sitemap
           </p>
-          <p>
-            <a href={resources.nextjs} target="_blank" rel="noreferrer">
-              Next.js
-            </a>
-          </p>
-          <p>
-            <a href={resources.cssModule} target="_blank" rel="noreferrer">
-              CSS Modules
-            </a>
-          </p>
-          <p>
-            <a href={resources.reactIcons} target="_blank" rel="noreferrer">
-              React Icons
-            </a>
-          </p>
-          <p>
-            <a href={resources.reactMarkdown} target="_blank" rel="noreferrer">
-              react-markdown
-            </a>
-          </p>
+          <Link href="/">Home</Link>
+          <Link href="/now">Now</Link>
+          <Link href="/publications">Publications</Link>
         </div>
       </div>
       <div className={styles.copyright}>

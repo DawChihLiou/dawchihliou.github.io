@@ -6,7 +6,6 @@ import Intro from '../components/Intro'
 import Recommendation from '../components/Recommendation'
 import Project from '../components/Project'
 import SkillSet from '../components/SkillSet'
-import Footer from '../components/Footer'
 
 export default function Home() {
   return (
@@ -23,8 +22,6 @@ export default function Home() {
         <Project />
         <SkillSet />
       </main>
-
-      <Footer />
     </div>
   )
 }

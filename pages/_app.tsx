@@ -1,7 +1,10 @@
 import React from 'react'
 import 'normalize.css'
+import '../styles/menu.css'
 import '../styles/globals.css'
 import Head from 'next/head'
+import Footer from '../components/Footer'
+import Nav from '../components/Nav'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -29,7 +32,14 @@ function MyApp({ Component, pageProps }) {
         <meta name="msapplication-TileColor" content="#007cf0" />
         <meta name="theme-color" content="#ffff" />
       </Head>
-      <Component {...pageProps} />
+
+      <div id="outer-container">
+        <Nav />
+        <div id="page-wrap">
+          <Component {...pageProps} />
+          <Footer />
+        </div>
+      </div>
     </>
   )
 }
