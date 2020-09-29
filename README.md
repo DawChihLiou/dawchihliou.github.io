@@ -3,15 +3,14 @@
 This site is built with
 
 - [Next.js](https://nextjs.org/) 
-- [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [MDX](https://mdxjs.com/)
-- [`@mapbox/rehype-prism`](https://github.com/mapbox/rehype-prism)
 - [Prism themes](https://github.com/PrismJS/prism-themes)
+- [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+- [`@mapbox/rehype-prism`](https://github.com/mapbox/rehype-prism)
 
-
-
+The Hero design is inspired by [Vercel](https://vercel.com/).
 
 ## Getting Started
 
