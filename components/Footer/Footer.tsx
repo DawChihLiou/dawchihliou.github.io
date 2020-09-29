@@ -87,7 +87,7 @@ export default function Footer() {
           <Link href="/">Home</Link>
           <Link href="/now">Now</Link>
           <Link href="/articles">Articles</Link>
-          <Link href="/api/rss">
+          <Link href="/rss.xml">
             <a href="/#">
               RSS Feed to The Articles <FiRss />
             </a>

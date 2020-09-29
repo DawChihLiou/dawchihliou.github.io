@@ -17,7 +17,7 @@ export default function Articles() {
         <div className={styles.banner}>
           <p>
             If you enjoy the articles, please do{' '}
-            <a href="/api/rss">
+            <a href="/rss.xml">
               subscribe to the RSS feed <FiRss />
             </a>
           </p>
