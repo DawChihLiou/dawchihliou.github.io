@@ -19,7 +19,7 @@
 }
 
 .banner {
-  background-color: var(--background-paper-color);
+  background-color: var(--text-primary-color);
   color: var(--text-invert-color);
   padding-left: 1rem;
   padding-right: 1rem;
