@@ -24,3 +24,7 @@ a {
 ::before {
   box-sizing: border-box;
 }
+
+pre {
+  border-radius: 0.25rem;
+}
