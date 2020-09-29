@@ -28,8 +28,8 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: var(--text-primary-color);
-  color: var(--background-default-color);
+  background: var(--background-paper-color);
+  color: var(--text-primary-color);
   right: 2rem;
   top: 2rem;
 }
@@ -45,19 +45,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--text-primary-color);
+  background: var(--background-paper-color);
   padding: 4em 1.5em 0;
   font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: var(--text-primary-color);
+  fill: var(--background-paper-color);
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: var(--background-default-color);
+  color: var(--text-primary-color);
 }
 
 .bm-item-list a {
