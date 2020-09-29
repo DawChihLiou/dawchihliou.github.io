@@ -1,14 +1,15 @@
 export default [
   {
     title: 'react-use-pip',
-    description: 'React Hook for Picture in Picture.',
+    description:
+      'reat-use-pip is React hook library for Picture in Picture. It seamlessly detects browser support and provides flexible APIs for developers to have full control over Picture in Picture feature.',
     image: '/logo-react-use-pip.svg',
     link: 'https://dawchihliou.github.io/react-use-pip/',
   },
   {
     title: 'cz-conventional-changelog-with-jiraid-detection',
     description:
-      'Prompts for conventional changelog standard with an Jira ID auto-detection',
+      'A Commitizen prompts for conventional changelog standard with Jira ID auto-detection. It introduces an additional step for developers to enter Jira ID. The library detects your Jira ID from the branch name.',
     image: '/logo-npm.png',
     link:
       'https://github.com/DawChihLiou/cz-conventional-changelog-with-jiraid-detection',
