@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="600px" viewBox="0 0 600 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        path {
+            stroke: #000000;
+        }
+        @media (prefers-color-scheme: dark) {
+            path {
+                stroke: #ffffff;
+            }
+        }
+    </style>
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>light-favicon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="favicon">
+            <rect id="background" stroke-opacity="0.01" stroke="#FFFFFF" fill-opacity="0" fill="#AAAAAA" x="0.5" y="0.5" width="599" height="599" rx="18"></rect>
+            <path d="M118,299.66328 L118,100 C118.331484,100.000816 118.66316,100 118.995025,100 C228.902438,100 318,189.54305 318,300 C318,410.45695 228.902438,500 118.995025,500 C118.66316,500 118.331484,499.999184 118,500" id="Combined-Shape" stroke-width="48"></path>
+            <path d="M518,500 C517.668516,499.999184 517.33684,500 517.004975,500 C407.097562,500 318,410.45695 318,300 C318,189.54305 407.097562,100 517.004975,100 C517.33684,100 517.668516,100.000816 518,100 L518,100" id="Combined-Shape" stroke-width="48"></path>
+        </g>
+    </g>
+</svg>

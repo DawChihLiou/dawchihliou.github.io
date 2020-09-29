@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="548px" height="672px" viewBox="0 0 548 672" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        text {
+            fill: #000000;
+        }
+        rect {
+            stroke: #000000;
+        }
+        @media (prefers-color-scheme: dark) {
+            text {
+                fill: #ffffff;
+            }
+            rect {
+                stroke: #ffffff;
+            }
+        }
+    </style>
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>logo-react-use-pip</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-react-use-pip" transform="translate(-1.000000, 24.000000)">
+            <g id="image">
+                <text id="react-use-pip" font-family="Helvetica-Bold, Helvetica" font-size="80" font-weight="bold" letter-spacing="3.6363635">
+                    <tspan x="0" y="631">react-use-pip</tspan>
+                </text>
+                <rect id="big" stroke-width="47" x="25" y="0" width="500" height="500" rx="8"></rect>
+                <rect id="small" stroke-width="47" x="340" y="314" width="110" height="110" rx="8"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
