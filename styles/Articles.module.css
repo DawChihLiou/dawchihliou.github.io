@@ -19,8 +19,8 @@
 }
 
 .banner {
-  background-color: #121212;
-  color: #fff;
+  background-color: var(--text-primary-color);
+  color: var(--text-invert-color);
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.25rem;
@@ -52,13 +52,13 @@
 
 .grid .date {
   flex-basis: 30%;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--text-secondary-color);
 }
 
 .grid .description {
   flex-basis: 70%;
   padding-left: 2rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--text-secondary-color);
 }
 
 @media (max-width: 576px) {
@@ -83,7 +83,7 @@
 .description > a {
   font-size: 1.25rem;
   font-weight: 600;
-  color: rgba(0, 0, 0, 1);
+  color: var(--text-primary-color);
 }
 
 .description .avatar {

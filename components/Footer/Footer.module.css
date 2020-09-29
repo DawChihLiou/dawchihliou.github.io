@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background-color: #fafafa;
+  background-color: var(--background-paper-color);
   margin-top: 3rem;
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -16,9 +16,13 @@
   margin: 0 auto;
 }
 
+.footer p {
+  color: var(--text-primary-color);
+}
+
 .footer a {
   transition: color 0.15s ease;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--text-secondary-color);
   text-decoration: none;
 }
 
@@ -68,9 +72,10 @@
   max-width: 720px;
   margin: 0 auto;
   margin-top: 2rem;
+  color: var(--text-primary-color);
 }
 
 .copyright a {
-  color: rgba(0, 0, 0, 1);
+  color: var(--text-primary-color);
   text-decoration: underline;
 }

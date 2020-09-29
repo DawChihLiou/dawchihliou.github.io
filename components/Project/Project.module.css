@@ -63,6 +63,12 @@
 .link {
   width: 100%;
   margin-top: 1rem;
+  transition: color 0.15s ease;
+}
+
+.link:active,
+.link:hover {
+  color: rgba(0, 124, 240, 1);
 }
 
 @media (max-width: 768px) {

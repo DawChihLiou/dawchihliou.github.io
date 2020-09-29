@@ -1,3 +1,48 @@
+:root {
+  /* palette */
+  --text-primary-color: #000000;
+  --text-secondary-color: rgba(0, 0, 0, 0.54);
+  --text-disabled-color: rgba(0, 0, 0, 0.38);
+  --text-invert-color: #ffffff;
+  --text-invert-secondary-color: rgba(255, 255, 255, 0.7);
+  --background-default-color: #ffffff;
+  --background-paper-color: #fafafa;
+  --divider-color: rgba(0, 0, 0, 0.12);
+  --action-active-color: rgba(0, 0, 0, 0.54);
+  --action-hover-color: rgba(0, 0, 0, 0.04);
+  --action-selected-color: rgba(0, 0, 0, 0.08);
+  --action-disabled-color: rgba(0, 0, 0, 0.26);
+  --action-disabledBackground-color: rgba(0, 0, 0, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.12);
+
+  /* viewport */
+  --viewport-sm: 576px;
+  --viewport-md: 768px;
+  --viewport-lg: 992px;
+  --viewport-xl: 1200px;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* palette */
+  :root {
+    --text-primary-color: #ffffff;
+    --text-secondary-color: rgba(255, 255, 255, 0.7);
+    --text-disabled-color: rgba(255, 255, 255, 0.5);
+    --text-invert-color: #000000;
+    --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
+    --background-default-color: #121212;
+    --background-paper-color: #262626;
+    --background-elevated-color: #303030;
+    --divider-color: rgba(255, 255, 255, 0.12);
+    --action-active-color: #fff;
+    --action-hover-color: rgba(255, 255, 255, 0.08);
+    --action-selected-color: rgba(255, 255, 255, 0.16);
+    --action-disabled-color: rgba(255, 255, 255, 0.3);
+    --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
+    --shadow-color: #000000;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -8,6 +53,8 @@ body {
   line-height: 1.5;
   width: 100%;
   overflow-x: hidden;
+  background-color: var(--background-default-color);
+  color: var(--text-primary-color);
 }
 
 a {

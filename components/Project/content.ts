@@ -2,7 +2,7 @@ export default [
   {
     title: 'react-use-pip',
     description: 'React Hook for Picture in Picture.',
-    image: '/logo-react-use-pip.png',
+    image: '/logo-react-use-pip.svg',
     link: 'https://dawchihliou.github.io/react-use-pip/',
   },
   {
