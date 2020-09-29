@@ -20,7 +20,7 @@
 }
 
 .socials a {
-  color: rgba(0, 0, 0, 1);
+  color: var(--text-primary-color);
   transition: color 0.15s ease;
   margin-right: 1.5rem;
 }

@@ -4,17 +4,6 @@
   margin: 1rem 0;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
 .title {
   margin: 0;
   line-height: 1.15;
@@ -39,7 +28,7 @@
   position: absolute;
   display: block;
   width: fit-content;
-  color: rgba(0, 0, 0, 25);
+  color: var(--text-primary-color);
   top: 0;
   bottom: 0;
   left: 0;
@@ -65,7 +54,7 @@
   position: absolute;
   display: block;
   width: fit-content;
-  color: rgba(0, 0, 0, 25);
+  color: var(--text-primary-color);
   top: 0;
   bottom: 0;
   left: 0;
@@ -91,7 +80,7 @@
   position: absolute;
   display: block;
   width: fit-content;
-  color: rgba(0, 0, 0, 25);
+  color: var(--text-primary-color);
   top: 0;
   bottom: 0;
   left: 0;

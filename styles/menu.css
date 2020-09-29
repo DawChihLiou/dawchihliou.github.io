@@ -1,9 +1,3 @@
-:root {
-  --main-color: rgba(0, 0, 0, 1);
-  --main-color-hover: rgba(0, 0, 0, 0.75);
-  --complement-color: #fff;
-  --background-color: #121212;
-}
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -11,16 +5,17 @@
   height: 2rem;
   left: 1rem;
   top: 1rem;
+  color: var(--text-primary-color);
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: var(--main-color);
+  background: var(--text-primary-color);
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: var(--main-color-hover);
+  background: var(--action-hover-color);
 }
 
 /* Position and sizing of clickable cross button */
@@ -33,8 +28,8 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: var(--main-color);
-  color: var(--complement-color);
+  background: var(--text-primary-color);
+  color: var(--background-default-color);
   right: 2rem;
   top: 2rem;
 }
@@ -50,19 +45,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--background-color);
+  background: var(--text-primary-color);
   padding: 4em 1.5em 0;
   font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: var(--background-color);
+  fill: var(--text-primary-color);
 }
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: var(--complement-color);
+  color: var(--background-default-color);
 }
 
 .bm-item-list a {
