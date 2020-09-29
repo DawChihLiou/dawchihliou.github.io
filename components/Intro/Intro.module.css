@@ -22,7 +22,7 @@
 .socials a {
   color: rgba(0, 0, 0, 1);
   transition: color 0.15s ease;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 
 .socials a:last-child {

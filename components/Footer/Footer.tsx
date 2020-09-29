@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from './Footer.module.css'
 import socials from '../../utils/socials'
 import resources from '../../utils/resources'
+import { FiRss } from 'react-icons/fi'
 
 export default function Footer() {
   return (
@@ -86,6 +87,11 @@ export default function Footer() {
           <Link href="/">Home</Link>
           <Link href="/now">Now</Link>
           <Link href="/articles">Articles</Link>
+          <Link href="/api/rss">
+            <a href="/#">
+              RSS Feed to The Articles <FiRss />
+            </a>
+          </Link>
         </div>
       </div>
       <div className={styles.copyright}>

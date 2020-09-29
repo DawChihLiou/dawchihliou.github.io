@@ -53,6 +53,10 @@
   .resources {
     flex-basis: 100%;
   }
+
+  .sitemap {
+    flex-basis: 100%;
+  }
 }
 
 .emoji {

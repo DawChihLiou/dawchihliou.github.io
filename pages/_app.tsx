@@ -14,7 +14,7 @@ const components = {
       style={{
         minHeight: '100vh',
         width: '100%',
-        padding: '4rem 1rem 3rem',
+        padding: '2.5rem 1rem 3rem',
         margin: '0 auto',
       }}
     >
