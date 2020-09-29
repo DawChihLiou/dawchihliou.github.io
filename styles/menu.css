@@ -2,6 +2,7 @@
   --main-color: rgba(0, 0, 0, 1);
   --main-color-hover: rgba(0, 0, 0, 0.75);
   --complement-color: #fff;
+  --background-color: #121212;
 }
 /* Position and sizing of burger button */
 .bm-burger-button {
@@ -49,14 +50,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--main-color);
+  background: var(--background-color);
   padding: 4em 1.5em 0;
   font-size: 1.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: var(--main-color);
+  fill: var(--background-color);
 }
 
 /* Wrapper for item list */

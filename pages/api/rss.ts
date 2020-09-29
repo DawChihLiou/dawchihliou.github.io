@@ -9,9 +9,10 @@ import articles from '../../data/articles'
  * To add new articles in the feed, add the article metadata in `/data/articles.ts`.
  */
 export default function (req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
+  if (req.method !== 'GET') {
     res.statusCode = 400
     res.end('Bad Request')
+    return
   }
 
   const feed = new RSS({

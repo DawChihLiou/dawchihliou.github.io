@@ -3,6 +3,7 @@ import Head from 'next/head'
 import articles from '../../data/articles'
 import styles from '../../styles/Articles.module.css'
 import Link from 'next/link'
+import { FiRss } from 'react-icons/fi'
 
 export default function Articles() {
   return (
@@ -13,6 +14,15 @@ export default function Articles() {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.banner}>
+          <p>
+            If you enjoy the articles, please do{' '}
+            <a href="/api/rss">
+              subscribe to the RSS feed <FiRss />
+            </a>
+          </p>
+        </div>
+
         {articles.map((article) => (
           <div className={styles.grid} key={article.url}>
             <div className={styles.date}>
