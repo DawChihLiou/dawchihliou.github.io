@@ -35,8 +35,8 @@ export default function Footer() {
             </a>
           </p>
           <p>
-            <a href={resources.reactMarkdown} target="_blank" rel="noreferrer">
-              react-markdown
+            <a href={resources.mdx} target="_blank" rel="noreferrer">
+              MDX
             </a>
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function Footer() {
           </p>
           <Link href="/">Home</Link>
           <Link href="/now">Now</Link>
-          <Link href="/publications">Publications</Link>
+          <Link href="/articles">Articles</Link>
         </div>
       </div>
       <div className={styles.copyright}>

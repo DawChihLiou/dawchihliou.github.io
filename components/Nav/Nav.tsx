@@ -1,6 +1,5 @@
 import React from 'react'
 import { push as Menu } from 'react-burger-menu'
-import Link from 'next/link'
 import { FiMenu, FiX } from 'react-icons/fi'
 import styles from './Nav.module.css'
 
@@ -12,10 +11,11 @@ export default function Nav() {
         outerContainerId={'outer-container'}
         customBurgerIcon={<FiMenu />}
         customCrossIcon={<FiX />}
+        disableAutoFocus
       >
-        <Link href="/">Home</Link>
-        <Link href="/now">Now</Link>
-        <Link href="/publications">Publications</Link>
+        <a href="/">Home</a>
+        <a href="/now">Now</a>
+        <a href="/articles">Articles</a>
       </Menu>
     </header>
   )
