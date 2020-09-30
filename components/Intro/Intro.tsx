@@ -6,7 +6,12 @@ import socials from '../../utils/socials'
 export default function Intro() {
   return (
     <div className={styles.wrap} title="about me">
-      <img src="portrait.png" alt="Portait" className={styles.portrait} />
+      <img
+        src="portrait.png"
+        alt="Portait"
+        className={styles.portrait}
+        loading="lazy"
+      />
 
       <p>
         Hi there

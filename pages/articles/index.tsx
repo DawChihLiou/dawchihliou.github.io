@@ -37,6 +37,7 @@ export default function Articles() {
                   src={article.avatar}
                   alt={article.author}
                   className={styles.avatar}
+                  loading="lazy"
                 />
                 <a href={article.social} className={styles.author}>
                   <span>{article.author}</span>

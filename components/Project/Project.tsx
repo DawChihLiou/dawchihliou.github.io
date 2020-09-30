@@ -32,7 +32,17 @@ export default function Project() {
         {content.map((project) => (
           <div key={project.title} className={styles.item}>
             <div className={styles.itemImage}>
-              <img src={project.image} alt={project.description} />
+              <picture>
+                <source
+                  srcSet={project.darkmodeImage}
+                  media="(prefers-color-scheme: dark)"
+                />
+                <source
+                  srcSet={project.image}
+                  media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+                />
+                <img src={project.image} alt={project.title} loading="lazy" />
+              </picture>
             </div>
             <div className={styles.itemDescription}>
               <h2>

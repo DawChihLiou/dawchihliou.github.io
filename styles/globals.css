@@ -75,3 +75,19 @@ a {
 pre {
   border-radius: 0.25rem;
 }
+
+svg text {
+  fill: #000000;
+}
+svg rect {
+  stroke: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  svg text {
+    fill: #ffffff;
+  }
+  svg rect {
+    stroke: #ffffff;
+  }
+}
