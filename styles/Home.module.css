@@ -15,3 +15,9 @@
   align-items: center;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 4rem;
+  }
+}
