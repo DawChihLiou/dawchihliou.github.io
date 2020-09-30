@@ -72,7 +72,7 @@
 @media (max-width: 768px) {
   .card {
     margin-right: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   .card:last-child {
     margin-bottom: 0;
@@ -129,11 +129,4 @@
 
 .card:hover .footer {
   color: rgba(0, 124, 240, 1);
-}
-
-@media (max-width: 600px) {
-  .card {
-    margin: 0;
-    margin: 0 0 0.5rem 0;
-  }
 }
