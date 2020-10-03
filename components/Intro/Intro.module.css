@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+.greeting {
+  width: 100%;
+  margin-bottom: 0;
+}
+
 .portrait {
   vertical-align: middle;
   width: 8rem;

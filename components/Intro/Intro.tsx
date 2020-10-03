@@ -12,13 +12,13 @@ export default function Intro() {
         className={styles.portrait}
         loading="lazy"
       />
-
-      <p>
+      <p className={styles.greeting}>
         Hi there
         <span role="img" aria-label="waving emoji">
           👋
         </span>
-        <br />
+      </p>
+      <p>
         My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor
         who is dedicated to Web engineering. My background in Human Centered
         Computing has led me to work with startups and public companies across
