@@ -330,14 +330,17 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           }),
           b(
             'p',
-            null,
+            { className: g.a.greeting },
             'Hi there',
             b(
               'span',
               { role: 'img', 'aria-label': 'waving emoji' },
               '\ud83d\udc4b'
-            ),
-            b('br', null),
+            )
+          ),
+          b(
+            'p',
+            null,
             "My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience."
           ),
           b(
@@ -1803,6 +1806,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
     L7av: function (e, t, n) {
       e.exports = {
         wrap: 'Intro_wrap__3FL8Y',
+        greeting: 'Intro_greeting__3B0GS',
         portrait: 'Intro_portrait__2lmQ3',
         socials: 'Intro_socials__2yu0Q',
       }
@@ -2936,14 +2940,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             Z = e.length,
             W = 0,
             Y = -1,
-            V = J.column || 1,
-            X = J.line || 1,
-            G = '',
+            G = J.column || 1,
+            V = J.line || 1,
+            X = '',
             Q = []
           'string' === typeof B && (B = B.charCodeAt(0))
           ;(N = K()), (C = q ? ee : f), W--, Z++
           for (; ++W < Z; )
-            if ((10 === w && (V = $[Y] || 1), 38 === (w = e.charCodeAt(W)))) {
+            if ((10 === w && (G = $[Y] || 1), 38 === (w = e.charCodeAt(W)))) {
               if (
                 9 === (x = e.charCodeAt(W + 1)) ||
                 10 === x ||
@@ -2954,7 +2958,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 x !== x ||
                 (B && x === B)
               ) {
-                ;(G += u(w)), V++
+                ;(X += u(w)), G++
                 continue
               }
               for (
@@ -3011,29 +3015,29 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                   ? (te(),
                     (N = K()),
                     (W = L - 1),
-                    (V += L - I + 1),
+                    (G += L - I + 1),
                     Q.push(A),
                     (S = K()).offset++,
                     F && F.call(U, A, { start: N, end: S }, e.slice(I - 1, L)),
                     (N = S))
                   : ((h = e.slice(I - 1, L)),
-                    (G += h),
-                    (V += h.length),
+                    (X += h),
+                    (G += h.length),
                     (W = L - 1))
             } else
-              10 === w && (X++, Y++, (V = 0)),
-                w === w ? ((G += u(w)), V++) : te()
+              10 === w && (V++, Y++, (G = 0)),
+                w === w ? ((X += u(w)), G++) : te()
           return Q.join('')
           function K() {
-            return { line: X, column: V, offset: W + (J.offset || 0) }
+            return { line: V, column: G, offset: W + (J.offset || 0) }
           }
           function ee(e, t) {
             var n = K()
             ;(n.column += t), (n.offset += t), q.call(M, y[e], n, e)
           }
           function te() {
-            G &&
-              (Q.push(G), z && z.call(D, G, { start: N, end: K() }), (G = ''))
+            X &&
+              (Q.push(X), z && z.call(D, X, { start: N, end: K() }), (X = ''))
           }
         })(e, a)
       }
