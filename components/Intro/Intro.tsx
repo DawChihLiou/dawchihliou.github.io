@@ -5,7 +5,18 @@ import socials from '../../utils/socials'
 
 export default function Intro() {
   return (
-    <section className={styles.wrap} title="about me">
+    <section
+      className={styles.wrap}
+      title="My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor
+    who is dedicated to Web engineering. My background in Human Centered
+    Computing has led me to work with startups and public companies across
+    North America, Asia, and Europe. I'm passionate about meeting business
+    trajectory with user journey and utilizing engineering architecture and
+    performance monitoring to provide optimal user experience."
+    >
+      <h1 hidden aria-label="About me">
+        About me
+      </h1>
       <img
         src="portrait.png"
         alt="Portait"
