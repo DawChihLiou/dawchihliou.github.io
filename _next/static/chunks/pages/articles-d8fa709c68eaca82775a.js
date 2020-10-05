@@ -74,11 +74,11 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             ),
             c.map(function (e) {
               return d(
-                'div',
+                'section',
                 { className: s.a.grid, key: e.url },
                 d('div', { className: s.a.date }, d('p', null, e.date)),
                 d(
-                  'div',
+                  'article',
                   { className: s.a.description },
                   d('p', { className: s.a.category }, e.category),
                   d(f.a, { href: e.url }, e.title),
