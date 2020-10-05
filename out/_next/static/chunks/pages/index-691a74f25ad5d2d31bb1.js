@@ -275,7 +275,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         p = o.a.createElement
       function d() {
         return p(
-          'div',
+          'section',
           {
             className: u.a.hero,
             title: 'Daw-Chih is a software engineer, ux designer, and mentor.',
@@ -320,7 +320,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         b = o.a.createElement
       function k() {
         return b(
-          'div',
+          'section',
           { className: g.a.wrap, title: 'about me' },
           b('img', {
             src: 'portrait.png',
@@ -431,7 +431,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         T = o.a.createElement
       function O() {
         return T(
-          'div',
+          'section',
           { className: _.a.wrap, title: 'recommendation from others' },
           T(
             'div',
@@ -444,7 +444,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             x.map(function (e, t) {
               var n
               return T(
-                'div',
+                'article',
                 { className: _.a.card, key: e.title },
                 T(
                   'a',
@@ -514,13 +514,13 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         P = o.a.createElement
       function E() {
         return P(
-          'div',
+          'section',
           {
             className: I.a.wrap,
             title: 'my open source and none-profit projects',
           },
           P(
-            'div',
+            'article',
             { className: I.a.description },
             P('h1', null, 'Some of my Open Source projects'),
             P(
@@ -540,11 +540,11 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             )
           ),
           P(
-            'div',
+            'article',
             { className: I.a.list },
             j.map(function (e) {
               return P(
-                'div',
+                'article',
                 { key: e.title, className: I.a.item },
                 P(
                   'div',
@@ -600,7 +600,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         B = o.a.createElement
       function z() {
         return B(
-          'div',
+          'section',
           { className: R.a.wrap },
           B('h1', null, 'Tech that I love'),
           B(L.a, {
