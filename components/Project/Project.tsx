@@ -5,11 +5,11 @@ import socials from '../../utils/socials'
 
 export default function Project() {
   return (
-    <div
+    <section
       className={styles.wrap}
       title="my open source and none-profit projects"
     >
-      <div className={styles.description}>
+      <article className={styles.description}>
         <h1>Some of my Open Source projects</h1>
         <p>
           I've spent over 8 years woking on Web engineering, mostly building
@@ -27,10 +27,10 @@ export default function Project() {
           nothing makes me happier than creating a meaningful product with
           thoughtful user experience and great performance.
         </p>
-      </div>
-      <div className={styles.list}>
+      </article>
+      <article className={styles.list}>
         {content.map((project) => (
-          <div key={project.title} className={styles.item}>
+          <article key={project.title} className={styles.item}>
             <div className={styles.itemImage}>
               <picture>
                 <source
@@ -52,9 +52,9 @@ export default function Project() {
               </h2>
               <p>{project.description}</p>
             </div>
-          </div>
+          </article>
         ))}
-      </div>
+      </article>
       <a
         href={socials.github}
         target="_blank"
@@ -63,6 +63,6 @@ export default function Project() {
       >
         See more on GitHub
       </a>
-    </div>
+    </section>
   )
 }

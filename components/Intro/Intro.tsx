@@ -5,7 +5,7 @@ import socials from '../../utils/socials'
 
 export default function Intro() {
   return (
-    <div className={styles.wrap} title="about me">
+    <section className={styles.wrap} title="about me">
       <img
         src="portrait.png"
         alt="Portait"
@@ -67,6 +67,6 @@ export default function Intro() {
           <span hidden>Link to Daw-Chih's Twitter</span>
         </a>
       </div>
-    </div>
+    </section>
   )
 }

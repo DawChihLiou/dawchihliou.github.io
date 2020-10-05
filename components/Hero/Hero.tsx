@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 export default function Hero() {
   return (
-    <div
+    <section
       className={styles.hero}
       title="Daw-Chih is a software engineer, ux designer, and mentor."
     >
@@ -31,6 +31,6 @@ export default function Hero() {
           </span>
         </span>
       </h1>
-    </div>
+    </section>
   )
 }

@@ -24,11 +24,11 @@ export default function Articles() {
         </div>
 
         {articles.map((article) => (
-          <div className={styles.grid} key={article.url}>
+          <section className={styles.grid} key={article.url}>
             <div className={styles.date}>
               <p>{article.date}</p>
             </div>
-            <div className={styles.description}>
+            <article className={styles.description}>
               <p className={styles.category}>{article.category}</p>
               <Link href={article.url}>{article.title}</Link>
               <p>{article.description}</p>
@@ -43,8 +43,8 @@ export default function Articles() {
                   <span>{article.author}</span>
                 </a>
               </div>
-            </div>
-          </div>
+            </article>
+          </section>
         ))}
       </main>
     </div>

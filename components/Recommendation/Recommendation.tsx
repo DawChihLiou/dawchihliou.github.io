@@ -8,13 +8,13 @@ import styles from './Recommendation.module.css'
 
 export default function Recommendation() {
   return (
-    <div className={styles.wrap} title="recommendation from others">
+    <section className={styles.wrap} title="recommendation from others">
       <div className={styles.smallerWrap}>
         <h1>See what people say about me</h1>
       </div>
       <div className={styles.grid} title="what people say about me">
         {content.map((recommendation, key) => (
-          <div className={styles.card} key={recommendation.title}>
+          <article className={styles.card} key={recommendation.title}>
             <a href={socials.linkedin} target="_blank" rel="noreferrer">
               <p>" {recommendation.quote} "</p>
               <div className={styles.cardAction}>
@@ -37,9 +37,9 @@ export default function Recommendation() {
                 <span>See more on Linkedin</span>
               </div>
             </a>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

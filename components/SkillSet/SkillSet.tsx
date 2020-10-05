@@ -5,9 +5,9 @@ import content from './content.md'
 
 export default function SkillSet() {
   return (
-    <div className={styles.wrap}>
+    <section className={styles.wrap}>
       <h1>Tech that I love</h1>
       <ReactMarkdown source={content} />
-    </div>
+    </section>
   )
 }
