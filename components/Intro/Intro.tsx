@@ -11,6 +11,8 @@ export default function Intro() {
         alt="Portait"
         className={styles.portrait}
         loading="lazy"
+        width="8rem"
+        height="8rem"
       />
       <p className={styles.greeting}>
         Hi there
@@ -28,17 +30,41 @@ export default function Intro() {
       </p>
 
       <div className={styles.socials}>
-        <a href={socials.linkedin} target="_blank" rel="noreferrer">
+        <a
+          href={socials.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Link to Daw-Chih's Linkedin profile"
+        >
           <GrLinkedin size="1.25em" />
+          <span hidden>Link to Daw-Chih's Linkedin profile</span>
         </a>
-        <a href={socials.github} target="_blank" rel="noreferrer">
+        <a
+          href={socials.github}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Link to Daw-Chih's GitHub profile"
+        >
           <GrGithub size="1.25em" />
+          <span hidden>Link to Daw-Chih's GitHub profile</span>
         </a>
-        <a href={socials.medium} target="_blank" rel="noreferrer">
+        <a
+          href={socials.medium}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Link to Daw-Chih's Medium profile"
+        >
           <GrMedium size="1.25em" />
+          <span hidden>Link to Daw-Chih's Medium profile</span>
         </a>
-        <a href={socials.twitter} target="_blank" rel="noreferrer">
+        <a
+          href={socials.twitter}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Link to Daw-Chih's Twitter"
+        >
           <GrTwitter size="1.25em" />
+          <span hidden>Link to Daw-Chih's Twitter</span>
         </a>
       </div>
     </div>

@@ -46,6 +46,15 @@ function MyApp({ Component, pageProps }) {
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#007cf0" />
         <meta name="theme-color" content="#ffff" />
+        <meta
+          name="description"
+          content="Daw-Chih Liou's portfolio. Daw-Chih is a software engineer, UX advocate, and mentor
+        who is dedicated to Web engineering. His background in Human Centered
+        Computing has led him to work with startups and public companies across
+        North America, Asia, and Europe. He is passionate about meeting business
+        trajectory with user journey and utilizing engineering architecture and
+        performance monitoring to provide optimal user experience."
+        ></meta>
       </Head>
 
       <div id="outer-container">
