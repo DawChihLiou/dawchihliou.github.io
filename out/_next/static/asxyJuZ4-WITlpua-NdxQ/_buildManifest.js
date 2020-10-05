@@ -3,7 +3,7 @@ self.__BUILD_MANIFEST = {
   '/': [
     'static\u002Fchunks\u002F6728d85a.b71f61e611268a48c525.js',
     'static\u002Fcss\u002F8c006176896a78f566bb.css',
-    'static\u002Fchunks\u002Fpages\u002Findex-691a74f25ad5d2d31bb1.js',
+    'static\u002Fchunks\u002Fpages\u002Findex-b33d49b7e5906f65e8f6.js',
   ],
   '/_error': [
     'static\u002Fchunks\u002Fpages\u002F_error-b52f8b678ce4b85a362a.js',

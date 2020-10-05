@@ -321,7 +321,12 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
       function k() {
         return b(
           'section',
-          { className: g.a.wrap, title: 'about me' },
+          {
+            className: g.a.wrap,
+            title:
+              "My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
+          },
+          b('h1', { hidden: !0, 'aria-label': 'About me' }, 'About me'),
           b('img', {
             src: 'portrait.png',
             alt: 'Portait',
@@ -509,19 +514,19 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             link: 'https://spes.me/',
           },
         ],
-        S = n('j9mF'),
-        I = n.n(S),
+        I = n('j9mF'),
+        S = n.n(I),
         P = o.a.createElement
       function E() {
         return P(
           'section',
           {
-            className: I.a.wrap,
+            className: S.a.wrap,
             title: 'my open source and none-profit projects',
           },
           P(
             'article',
-            { className: I.a.description },
+            { className: S.a.description },
             P('h1', null, 'Some of my Open Source projects'),
             P(
               'p',
@@ -541,14 +546,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           ),
           P(
             'article',
-            { className: I.a.list },
+            { className: S.a.list },
             j.map(function (e) {
               return P(
                 'article',
-                { key: e.title, className: I.a.item },
+                { key: e.title, className: S.a.item },
                 P(
                   'div',
-                  { className: I.a.itemImage },
+                  { className: S.a.itemImage },
                   P(
                     'picture',
                     null,
@@ -566,7 +571,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 ),
                 P(
                   'div',
-                  { className: I.a.itemDescription },
+                  { className: S.a.itemDescription },
                   P(
                     'h2',
                     null,
@@ -587,7 +592,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               href: y.a.github,
               target: '_blank',
               rel: 'noreferrer',
-              className: I.a.link,
+              className: S.a.link,
             },
             'See more on GitHub'
           )
@@ -1868,8 +1873,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           T = '',
           O = 0,
           j = t.charAt(0),
-          S = this.options.pedantic,
-          I = this.options.commonmark,
+          I = this.options.pedantic,
+          S = this.options.commonmark,
           P = this.options.gfm
         if (
           ('!' === j && ((m = !0), (T = j), (j = t.charAt(++O))),
@@ -1893,7 +1898,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             else if ((c && !P) || '[' !== j) {
               if ((!c || P) && ']' === j) {
                 if (!k) {
-                  if (!S)
+                  if (!I)
                     for (; O < y && ((j = t.charAt(O + 1)), r(j)); )
                       (h += j), O++
                   if ('(' !== t.charAt(O + 1)) return
@@ -1909,10 +1914,10 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             for (g = w, T += w + h, O++; O < y && ((j = t.charAt(O)), r(j)); )
               (T += j), O++
             if (
-              ((j = t.charAt(O)), (d = I ? l : a), (w = ''), (u = T), '<' === j)
+              ((j = t.charAt(O)), (d = S ? l : a), (w = ''), (u = T), '<' === j)
             ) {
               for (O++, u += '<'; O < y && '>' !== (j = t.charAt(O)); ) {
-                if (I && '\n' === j) return
+                if (S && '\n' === j) return
                 ;(w += j), O++
               }
               if ('>' !== t.charAt(O)) return
@@ -1924,7 +1929,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 
               ) {
                 if (r(j)) {
-                  if (!S) break
+                  if (!I) break
                   h += j
                 } else {
                   if ('(' === j) k++
@@ -1943,7 +1948,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             }
             for (w = ''; O < y && ((j = t.charAt(O)), r(j)); ) (w += j), O++
             if (((j = t.charAt(O)), (T += w), w && i.call(d, j)))
-              if ((O++, (T += j), (w = ''), (v = d[j]), (f = T), I)) {
+              if ((O++, (T += j), (w = ''), (v = d[j]), (f = T), S)) {
                 for (; O < y && (j = t.charAt(O)) !== v; )
                   '\\' === j && ((w += '\\'), (j = t.charAt(++O))),
                     O++,
@@ -2152,8 +2157,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           T,
           O,
           j,
-          S,
           I,
+          S,
           P,
           E,
           N,
@@ -2258,7 +2263,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           }
           z = f + 1
         }
-        ;(I = e(C.join('\n')).reset({
+        ;(S = e(C.join('\n')).reset({
           type: 'list',
           ordered: l,
           start: F,
@@ -2267,17 +2272,17 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         })),
           (O = this.enterList()),
           (j = this.enterBlock()),
-          (S = !1),
+          (I = !1),
           (z = -1),
           (D = x.length)
         for (; ++z < D; )
           (T = x[z].value.join('\n')),
             (P = e.now()),
-            (T = e(T)(v(this, T, P), I)).loose && (S = !0),
+            (T = e(T)(v(this, T, P), S)).loose && (I = !0),
             (T = x[z].trail.join('\n')),
             z !== D - 1 && (T += '\n'),
             e(T)
-        return O(), j(), (I.loose = S), I
+        return O(), j(), (S.loose = I), S
       }
       var c = /\n\n(?!\s*$)/,
         u = /^\[([ \t]|x|X)][ \t]/,
@@ -2946,8 +2951,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             T,
             O,
             j,
-            S,
             I,
+            S,
             P,
             E,
             N,
@@ -2964,18 +2969,18 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             J = t.position,
             $ = t.indent || [],
             G = e.length,
-            Z = 0,
-            W = -1,
+            W = 0,
+            Z = -1,
             V = J.column || 1,
             X = J.line || 1,
             Y = '',
             Q = []
           'string' === typeof R && (R = R.charCodeAt(0))
-          ;(E = K()), (C = F ? ee : f), Z--, G++
-          for (; ++Z < G; )
-            if ((10 === w && (V = $[W] || 1), 38 === (w = e.charCodeAt(Z)))) {
+          ;(E = K()), (C = F ? ee : f), W--, G++
+          for (; ++W < G; )
+            if ((10 === w && (V = $[Z] || 1), 38 === (w = e.charCodeAt(W)))) {
               if (
-                9 === (x = e.charCodeAt(Z + 1)) ||
+                9 === (x = e.charCodeAt(W + 1)) ||
                 10 === x ||
                 12 === x ||
                 32 === x ||
@@ -2988,29 +2993,29 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 continue
               }
               for (
-                j = S = Z + 1,
-                  H = S,
+                j = I = W + 1,
+                  H = I,
                   35 === x
                     ? ((H = ++j),
                       88 === (x = e.charCodeAt(H)) || 120 === x
-                        ? ((I = d), (H = ++j))
-                        : (I = m))
-                    : (I = p),
+                        ? ((S = d), (H = ++j))
+                        : (S = m))
+                    : (S = p),
                   n = '',
                   O = '',
                   h = '',
-                  P = v[I],
+                  P = v[S],
                   H--;
                 ++H < G && P((x = e.charCodeAt(H)));
 
               )
-                (h += u(x)), I === p && c.call(r, h) && ((n = h), (O = r[h]))
+                (h += u(x)), S === p && c.call(r, h) && ((n = h), (O = r[h]))
               ;(a = 59 === e.charCodeAt(H)) &&
-                (H++, (i = I === p && s(h)) && ((n = h), (O = i))),
-                (L = 1 + H - S),
+                (H++, (i = S === p && s(h)) && ((n = h), (O = i))),
+                (L = 1 + H - I),
                 (a || B) &&
                   (h
-                    ? I === p
+                    ? S === p
                       ? (a && !O
                           ? C(5, 1)
                           : (n !== h &&
@@ -3026,7 +3031,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                                 : C(_, L))),
                         (A = O))
                       : (a || C(2, L),
-                        b((A = parseInt(h, g[I])))
+                        b((A = parseInt(h, g[S])))
                           ? (C(7, L), (A = u(65533)))
                           : A in o
                           ? (C(6, L), (A = o[A]))
@@ -3036,26 +3041,26 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                               ((T += u(((A -= 65536) >>> 10) | 55296)),
                               (A = 56320 | (1023 & A))),
                             (A = T + u(A))))
-                    : I !== p && C(4, L)),
+                    : S !== p && C(4, L)),
                 A
                   ? (te(),
                     (E = K()),
-                    (Z = H - 1),
-                    (V += H - S + 1),
+                    (W = H - 1),
+                    (V += H - I + 1),
                     Q.push(A),
                     (N = K()).offset++,
-                    D && D.call(M, A, { start: E, end: N }, e.slice(S - 1, H)),
+                    D && D.call(M, A, { start: E, end: N }, e.slice(I - 1, H)),
                     (E = N))
-                  : ((h = e.slice(S - 1, H)),
+                  : ((h = e.slice(I - 1, H)),
                     (Y += h),
                     (V += h.length),
-                    (Z = H - 1))
+                    (W = H - 1))
             } else
-              10 === w && (X++, W++, (V = 0)),
+              10 === w && (X++, Z++, (V = 0)),
                 w === w ? ((Y += u(w)), V++) : te()
           return Q.join('')
           function K() {
-            return { line: X, column: V, offset: Z + (J.offset || 0) }
+            return { line: X, column: V, offset: W + (J.offset || 0) }
           }
           function ee(e, t) {
             var n = K()
