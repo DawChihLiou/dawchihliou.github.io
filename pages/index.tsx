@@ -6,13 +6,22 @@ import Intro from '../components/Intro'
 import Recommendation from '../components/Recommendation'
 import Project from '../components/Project'
 import SkillSet from '../components/SkillSet'
+import socials from '../utils/socials'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Daw-Chih liou</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/*  Open Graph */}
+        <meta property="og:title" content="Daw-Chih Liou's Portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={socials.home} />
+        <meta property="og:description" content={socials.description} />
+        <meta property="og:image" content={socials.heroImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1411" />
+        <meta property="og:image:height" content="682" />
+        <meta property="og:image:alt" content={socials.description} />
       </Head>
 
       <main className={styles.main}>
