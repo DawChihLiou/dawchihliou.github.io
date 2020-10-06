@@ -215,7 +215,7 @@ const imageminSvgo = require('imagemin-svgo')
  * generate optimized svg files
  */
 imagemin(['public/raw/*.svg'], {
-  destination: 'public/optimized',
+  destination: 'optimized',
   plugins: [imageminSvgo({ removeViewBox: false })],
 })
 ```
