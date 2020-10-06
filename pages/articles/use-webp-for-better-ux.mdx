@@ -130,7 +130,7 @@ const imageminWebp = require('imagemin-webp')
 /**
  * generate webp images inside of destination directory
  */
-await imagemin(['raw/*.{jpg,png}'], {
+imagemin(['raw/*.{jpg,png}'], {
   destination: 'optimized',
   plugins: [imageminWebp({ quality: 75 })],
 })
@@ -161,7 +161,7 @@ const imageminPngquant = require('imagemin-pngquant')
 /**
  * generate optimized fallback images
  */
-await imagemin(['raw/*.{jpg,png}'], {
+imagemin(['raw/*.{jpg,png}'], {
   destination: 'optimized',
   plugins: [
     imageminJpegtran(),
@@ -214,7 +214,7 @@ const imageminSvgo = require('imagemin-svgo')
 /**
  * generate optimized svg files
  */
-await imagemin(['public/raw/*.svg'], {
+imagemin(['public/raw/*.svg'], {
   destination: 'public/optimized',
   plugins: [imageminSvgo({ removeViewBox: false })],
 })
