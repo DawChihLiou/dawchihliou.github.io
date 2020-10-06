@@ -17,14 +17,26 @@ export default function Intro() {
       <h1 hidden aria-label="About me">
         About me
       </h1>
-      <img
-        src="portrait.png"
-        alt="Portait"
-        className={styles.portrait}
-        loading="lazy"
-        width="8rem"
-        height="8rem"
-      />
+      <picture>
+        <source
+          srcSet="optimized/portrait.webp"
+          className={styles.portrait}
+          type="image/webp"
+        />
+        <source
+          srcSet="optimized/portrait.png"
+          className={styles.portrait}
+          type="image/webp"
+        />
+        <img
+          src="optimized/portrait.png"
+          alt="Daw-Chih's portait"
+          className={styles.portrait}
+          loading="lazy"
+          width="8rem"
+          height="8rem"
+        />
+      </picture>
       <p className={styles.greeting}>
         Hi there
         <span role="img" aria-label="waving emoji">

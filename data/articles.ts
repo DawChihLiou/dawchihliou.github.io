@@ -14,7 +14,7 @@ export default [
     url: '/articles/helloworld',
     category: category.welcome,
     author: 'Daw-Chih Liou',
-    avatar: '/portrait-sm.png',
+    avatar: '/optimized/portrait-sm.png',
     social: socials.github,
   },
 ]
