@@ -2,9 +2,22 @@ import socials from '../utils/socials'
 
 const category = {
   welcome: 'Welcome',
+  performance: 'Performance',
 }
 
 export default [
+  {
+    date: 'Octobor 6, 2020',
+    publisher: '',
+    title: 'Using WebP for Better User Experience',
+    description:
+      "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
+    url: '/articles/use-webp-for-better-ux',
+    category: category.performance,
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+  },
   {
     date: 'September 29, 2020',
     publisher: '',
