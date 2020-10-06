@@ -6,6 +6,7 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import 'prism-themes/themes/prism-material-oceanic.css'
+import socials from '../utils/socials'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -26,13 +27,18 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#ffff" />
         <meta
           name="description"
-          content="Daw-Chih Liou's portfolio. Daw-Chih is a software engineer, UX advocate, and mentor
-        who is dedicated to Web engineering. His background in Human Centered
-        Computing has led him to work with startups and public companies across
-        North America, Asia, and Europe. He is passionate about meeting business
-        trajectory with user journey and utilizing engineering architecture and
-        performance monitoring to provide optimal user experience."
-        ></meta>
+          content={`Daw-Chih Liou's portfolio. ${socials.description}`}
+        />
+        {/*  Open Graph */}
+        <meta property="og:title" content="Daw-Chih Liou's Portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={socials.home} />
+        <meta property="og:description" content={socials.description} />
+        <meta property="og:image" content={socials.heroImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1411" />
+        <meta property="og:image:height" content="682" />
+        <meta property="og:image:alt" content={socials.description} />
       </Head>
 
       <div id="outer-container">
