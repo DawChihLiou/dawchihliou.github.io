@@ -26,7 +26,7 @@ export default function Intro() {
         <source
           srcSet="optimized/portrait.png"
           className={styles.portrait}
-          type="image/webp"
+          type="image/png"
         />
         <img
           src="optimized/portrait.png"

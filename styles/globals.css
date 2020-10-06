@@ -76,6 +76,30 @@ pre {
   border-radius: 0.25rem;
 }
 
+code {
+  color: var(--text-primary-color);
+  background: var(--divider-color);
+  border-radius: 0.25rem;
+  padding: 0 4px;
+}
+
+blockquote {
+  border-left: 6px solid var(--text-disabled-color);
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+hr {
+  margin: 2rem 0;
+  border-color: var(--divider-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    background: #263238;
+  }
+}
+
 svg text {
   fill: #000000;
 }
