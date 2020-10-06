@@ -1,3 +1,29 @@
+import Article from '../../components/Article'
+
+export const meta = {
+  title: 'Hello World☀️',
+  description:
+    "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
+  url: '/articles/helloworld',
+  cover: '/optimized/portrait.png',
+  category: 'Welcome',
+  coverWidth: '384',
+  coverHeight: '384',
+}
+
+export default ({ children }) => (
+  <Article
+    title={meta.title}
+    description={meta.description}
+    cover={meta.cover}
+    url={meta.url}
+    coverWidth={meta.coverWidth}
+    coverHeight={meta.coverHeight}
+  >
+    {children}
+  </Article>
+)
+
 ## Hello World☀️
 
 Thank you so much for being interested in my articles!
