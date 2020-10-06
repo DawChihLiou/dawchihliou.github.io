@@ -12,7 +12,7 @@ export default function Author() {
         loading="lazy"
       />
       <div>
-        <a href={socials.twitter} className={styles.author}>
+        <a href={socials.home} className={styles.author}>
           <span>Daw-Chih Liou</span>
         </a>
         <p>

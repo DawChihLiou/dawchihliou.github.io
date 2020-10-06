@@ -1,4 +1,28 @@
-import Author from '../../components/Author'
+import Article from '../../components/Article'
+
+export const meta = {
+  title: 'Using WebP for Better User Experience',
+  description:
+    "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
+  url: '/articles/use-webp-for-better-ux',
+  cover: 'optimized/portfolio-snapshot.png',
+  category: 'Performance',
+  coverWidth: '1411',
+  coverHeight: '682',
+}
+
+export default ({ children }) => (
+  <Article
+    title={meta.title}
+    description={meta.description}
+    cover={meta.cover}
+    url={meta.url}
+    coverWidth={meta.coverWidth}
+    coverHeight={meta.converHeight}
+  >
+    {children}
+  </Article>
+)
 
 # Using WebP for Better User Experience
 
@@ -97,7 +121,7 @@ What we are looking for is to host all the images in `/raw` directory and output
 Luckly I found something cool. [`imagemin`](https://github.com/imagemin/imagemin) is a npm library that minifies images.
 It offers a handy [WebP imagemin plugin](https://www.npmjs.com/package/imagemin-webp) and all we need to do is to create a JavaScript file,
 
-```js
+```ts
 // lib/webp.js
 
 const imagemin = require('imagemin')
@@ -122,13 +146,13 @@ to take all the raw images and generate WebP images in `/optimized`.
 
 ## Not All Browsers Support WebP Format
 
-So we need fallback images to support wider range of browsers. Let's first optimize our raw images with their formats.
+So we need fallback images to support wider range of browsers. Let's first optimize our raw images with their original formats.
 There are two `imagemin plugins` we can use:
 
 - [`imagemin-pngquant`](https://www.npmjs.com/package/imagemin-pngquant): for PNG images
 - [`imagemin-jpegtran`](https://github.com/imagemin/imagemin-jpegtran): for JPEG images
 
-```js
+```ts
 // lib/webp.js
 
 const imageminJpegtran = require('imagemin-jpegtran')
@@ -182,7 +206,7 @@ At this point, we can really compare all image qualities.
 
 If you are looking for optimizing SVG files, you can achieve it with [`imagemin-svgo`](https://www.npmjs.com/package/imagemin-svgo).
 
-```js
+```ts
 // lib/webp.js
 
 const imageminSvgo = require('imagemin-svgo')
@@ -200,14 +224,14 @@ await imagemin(['public/raw/*.svg'], {
 
 In our `package.json`, add the following scripts.
 
-```js
+```ts
 "scripts": {
   "image": "node lib/webp.js",
   "prepare": "yarn image",
 }
 ```
 
-The `prepare` script will execute after installation. This will allow us to build our image assets in workflows of our choice.
+The `prepare` script will execute after installation. This will allow us to build our image assets in the workflows of our choice.
 
 ## To Sum up
 
@@ -238,5 +262,3 @@ If you’re a fan of functional programming, check out [this article that I wrot
 It’s a step by step reasoning on writing a transducer and it touches on key ideas about functional programming.
 
 Happy coding!
-
-<Author />

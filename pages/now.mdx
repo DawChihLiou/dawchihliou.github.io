@@ -1,3 +1,17 @@
+import Article from '../components/Article'
+
+export const meta = {
+  title: 'Now',
+  description:
+    'Now is inspired by nownownow.com. This page is all about what I am up to now.',
+}
+
+export default ({ children }) => (
+  <Article title={meta.title} description={meta.description} hideAuthor>
+    {children}
+  </Article>
+)
+
 # Now
 
 It's inspired by [nownownow.com](https://nownownow.com/about). `/now` page is all about what I'm up to **now**.
