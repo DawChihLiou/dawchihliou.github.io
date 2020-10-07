@@ -1,8 +1,10 @@
 # Daw-Chih's Portfolio
 
+![ci](https://github.com/DawChihLiou/workflows/ci/badge.svg)
+
 This site is built with
 
-- [Next.js](https://nextjs.org/) 
+- [Next.js](https://nextjs.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [MDX](https://mdxjs.com/)
@@ -42,7 +44,6 @@ to start production server
 
 to generate production build. The built assets will be in under `/.next` directory.
 
-
 #### `yarn export`
 
 to export the app to static HTML, which can be run standalone without the need of a Node.js server.
@@ -59,4 +60,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
