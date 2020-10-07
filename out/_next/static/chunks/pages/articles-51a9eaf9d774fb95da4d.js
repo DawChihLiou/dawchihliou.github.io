@@ -17,101 +17,72 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
       'use strict'
       r.r(t),
         r.d(t, 'default', function () {
-          return v
+          return h
         })
       var a = r('q1tI'),
         n = r.n(a),
         o = r('8Kt/'),
         i = r.n(o),
-        c = r('PZRn'),
-        l = 'Welcome',
-        s = [
-          {
-            date: 'Octobor 6, 2020',
-            publisher: '',
-            title: 'Using WebP for Better User Experience',
-            description:
-              "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
-            url: '/articles/use-webp-for-better-ux',
-            cover: 'optimized/portfolio-snapshot.png',
-            category: 'Performance',
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: c.a.github,
-          },
-          {
-            date: 'September 29, 2020',
-            publisher: '',
-            title: 'Hello World\u2600\ufe0f',
-            description:
-              "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
-            url: '/articles/helloworld',
-            cover: '/optimized/portrait.png',
-            category: l,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: c.a.github,
-          },
-        ],
-        u = r('KJ3Z'),
+        c = r('ywx8'),
+        s = r('KJ3Z'),
+        l = r.n(s),
+        u = r('YFqc'),
         f = r.n(u),
-        p = r('YFqc'),
-        d = r.n(p),
-        h = r('Tgqd'),
-        m = n.a.createElement
-      function v() {
-        return m(
+        p = r('Tgqd'),
+        d = n.a.createElement
+      function h() {
+        return d(
           'div',
-          { className: f.a.container },
-          m(
+          { className: l.a.container },
+          d(
             i.a,
             null,
-            m('title', null, 'Articles'),
-            m('link', { rel: 'icon', href: '/favicon.ico' })
+            d('title', null, 'Articles'),
+            d('link', { rel: 'icon', href: '/favicon.ico' })
           ),
-          m(
+          d(
             'main',
-            { className: f.a.main },
-            m(
+            { className: l.a.main },
+            d(
               'div',
-              { className: f.a.banner },
-              m(
+              { className: l.a.banner },
+              d(
                 'p',
                 null,
                 'If you enjoy the articles, please do',
                 ' ',
-                m(
+                d(
                   'a',
                   { href: '/rss.xml' },
                   'subscribe to the RSS feed ',
-                  m(h.d, null)
+                  d(p.d, null)
                 )
               )
             ),
-            s.map(function (e) {
-              return m(
+            c.a.map(function (e) {
+              return d(
                 'section',
-                { className: f.a.grid, key: e.url },
-                m('div', { className: f.a.date }, m('p', null, e.date)),
-                m(
+                { className: l.a.grid, key: e.url },
+                d('div', { className: l.a.date }, d('p', null, e.date)),
+                d(
                   'article',
-                  { className: f.a.description },
-                  m('p', { className: f.a.category }, e.category),
-                  m(d.a, { href: e.url }, e.title),
-                  m('p', null, e.description),
-                  m(
+                  { className: l.a.description },
+                  d('p', { className: l.a.category }, e.category),
+                  d(f.a, { href: e.url }, e.title),
+                  d('p', null, e.description),
+                  d(
                     'div',
                     null,
-                    m('img', {
+                    d('img', {
                       src: e.avatar,
                       alt: e.author,
-                      className: f.a.avatar,
+                      className: l.a.avatar,
                       loading: 'lazy',
                     }),
-                    m(
+                    d(
                       'a',
-                      { href: e.social, className: f.a.author },
-                      m('span', null, e.author)
+                      { href: e.social, className: l.a.author },
+                      d('span', null, e.author)
                     )
                   )
                 )
@@ -132,8 +103,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
       var o,
         i = n(r('q1tI')),
         c = r('elyg'),
-        l = r('nOHt'),
-        s = new Map(),
+        s = r('nOHt'),
+        l = new Map(),
         u = window.IntersectionObserver,
         f = {}
       var p = function (e, t) {
@@ -143,10 +114,10 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             ? (o = new u(
                 function (e) {
                   e.forEach(function (e) {
-                    if (s.has(e.target)) {
-                      var t = s.get(e.target)
+                    if (l.has(e.target)) {
+                      var t = l.get(e.target)
                       ;(e.isIntersecting || e.intersectionRatio > 0) &&
-                        (o.unobserve(e.target), s.delete(e.target), t())
+                        (o.unobserve(e.target), l.delete(e.target), t())
                     }
                   })
                 },
@@ -155,14 +126,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             : void 0)
         return r
           ? (r.observe(e),
-            s.set(e, t),
+            l.set(e, t),
             function () {
               try {
                 r.unobserve(e)
               } catch (t) {
                 console.error(t)
               }
-              s.delete(e)
+              l.delete(e)
             })
           : function () {}
       }
@@ -178,18 +149,18 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           r = i.default.useState(),
           n = a(r, 2),
           o = n[0],
-          s = n[1],
-          h = (0, l.useRouter)(),
-          m = (h && h.pathname) || '/',
-          v = i.default.useMemo(
+          l = n[1],
+          h = (0, s.useRouter)(),
+          v = (h && h.pathname) || '/',
+          m = i.default.useMemo(
             function () {
-              var t = (0, c.resolveHref)(m, e.href)
-              return { href: t, as: e.as ? (0, c.resolveHref)(m, e.as) : t }
+              var t = (0, c.resolveHref)(v, e.href)
+              return { href: t, as: e.as ? (0, c.resolveHref)(v, e.as) : t }
             },
-            [m, e.href, e.as]
+            [v, e.href, e.as]
           ),
-          g = v.href,
-          _ = v.as
+          g = m.href,
+          _ = m.as
         i.default.useEffect(
           function () {
             if (
@@ -207,14 +178,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           [t, o, g, _, h]
         )
         var y = e.children,
-          b = e.replace,
-          w = e.shallow,
+          w = e.replace,
+          b = e.shallow,
           E = e.scroll
         'string' === typeof y && (y = i.default.createElement('a', null, y))
         var N = i.Children.only(y),
           L = {
             ref: function (e) {
-              e && s(e),
+              e && l(e),
                 N &&
                   'object' === typeof N &&
                   N.ref &&
@@ -250,7 +221,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                             (window.scrollTo(0, 0), document.body.focus())
                         }
                       ))
-                  })(e, h, g, _, b, w, E)
+                  })(e, h, g, _, w, b, E)
             },
           }
         return (
@@ -276,6 +247,40 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           return r('QVEA')
         },
       ])
+    },
+    ywx8: function (e, t, r) {
+      'use strict'
+      var a = r('PZRn'),
+        n = 'Welcome',
+        o = 'Performance'
+      t.a = [
+        {
+          date: 'Octobor 6, 2020',
+          publisher: '',
+          title: 'Using WebP for Better User Experience',
+          description:
+            "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
+          url: '/articles/use-webp-for-better-ux',
+          cover: 'optimized/portfolio-snapshot.png',
+          category: o,
+          author: 'Daw-Chih Liou',
+          avatar: '/optimized/portrait-sm.png',
+          social: a.a.github,
+        },
+        {
+          date: 'September 29, 2020',
+          publisher: '',
+          title: 'Hello World\u2600\ufe0f',
+          description:
+            "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
+          url: '/articles/helloworld',
+          cover: '/optimized/portrait.png',
+          category: n,
+          author: 'Daw-Chih Liou',
+          avatar: '/optimized/portrait-sm.png',
+          social: a.a.github,
+        },
+      ]
     },
   },
   [['pLg2', 0, 1, 2, 4]],

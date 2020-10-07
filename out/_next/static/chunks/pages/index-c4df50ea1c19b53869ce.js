@@ -147,10 +147,10 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             var e = { line: m, column: g }
             return (e.offset = u.toOffset(e)), e
           }
-          function k(e) {
+          function w(e) {
             ;(this.start = e), (this.end = b())
           }
-          function w(e) {
+          function k(e) {
             t.substring(0, e.length) !== e &&
               u.file.fail(
                 new Error(
@@ -168,7 +168,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 i = [],
                 a = r && r.end.line,
                 l = e.line
-              if (((t.position = new k(o)), r && n && r.indent)) {
+              if (((t.position = new w(o)), r && n && r.indent)) {
                 if (((i = r.indent), a < l)) {
                   for (; ++a < l; ) i.push((f[a] || 0) + 1)
                   i.push(e.column)
@@ -198,7 +198,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               r = A(),
               o = b()
             return (
-              w(e),
+              k(e),
               (i.reset = a),
               (a.test = l),
               (i.test = l),
@@ -245,7 +245,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
       'use strict'
       n.r(t),
         n.d(t, 'default', function () {
-          return F
+          return X
         })
       var r = n('q1tI'),
         o = n.n(r),
@@ -318,7 +318,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         y = n('iNdW'),
         v = n('PZRn'),
         b = o.a.createElement
-      function k() {
+      function w() {
         return b(
           'section',
           {
@@ -414,7 +414,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           )
         )
       }
-      function w(e, t, n) {
+      function k(e, t, n) {
         return (
           t in e
             ? Object.defineProperty(e, t, {
@@ -448,7 +448,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         C = n('O5o4'),
         _ = n.n(C),
         T = o.a.createElement
-      function O() {
+      function j() {
         return T(
           'section',
           { className: _.a.wrap, title: 'recommendation from others' },
@@ -478,9 +478,9 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                         className: h(
                           _.a.avatar,
                           ((n = {}),
-                          w(n, _.a.avatarColorBlue, 0 === t),
-                          w(n, _.a.avatarColorRed, 1 === t),
-                          w(n, _.a.avatarColorYellow, 2 === t),
+                          k(n, _.a.avatarColorBlue, 0 === t),
+                          k(n, _.a.avatarColorRed, 1 === t),
+                          k(n, _.a.avatarColorYellow, 2 === t),
                           n)
                         ),
                       },
@@ -501,7 +501,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           )
         )
       }
-      var j = [
+      var O = [
           {
             title: 'react-use-pip',
             description:
@@ -530,77 +530,77 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         ],
         I = n('j9mF'),
         S = n.n(I),
-        N = o.a.createElement
-      function P() {
-        return N(
+        P = o.a.createElement
+      function N() {
+        return P(
           'section',
           {
             className: S.a.wrap,
             title: 'my open source and none-profit projects',
           },
-          N(
+          P(
             'article',
             { className: S.a.description },
-            N('h1', null, 'Some of my Open Source projects'),
-            N(
+            P('h1', null, 'Some of my Open Source projects'),
+            P(
               'p',
               null,
               "I've spent over 8 years woking on Web engineering, mostly building features and taking care of architectures for client facing products and enterprise software for public tech companies and Fortune 500 enterprises."
             ),
-            N(
+            P(
               'p',
               null,
               "I've been working on open source and non-profit projects too! It brings me so much joy contributing back to the community."
             ),
-            N(
+            P(
               'p',
               null,
               'I enjoy building tooling around testing, documentation, and CI/CD to improve developer experience. On top of solid coding and automation, nothing makes me happier than creating a meaningful product with thoughtful user experience and great performance.'
             )
           ),
-          N(
+          P(
             'article',
             { className: S.a.list },
-            j.map(function (e) {
-              return N(
+            O.map(function (e) {
+              return P(
                 'article',
                 { key: e.title, className: S.a.item },
-                N(
+                P(
                   'div',
                   { className: S.a.itemImage },
-                  N(
+                  P(
                     'picture',
                     null,
-                    N('source', {
+                    P('source', {
                       srcSet: e.darkmodeImage,
                       media: '(prefers-color-scheme: dark)',
                     }),
-                    N('source', {
+                    P('source', {
                       srcSet: e.image,
                       media:
                         '(prefers-color-scheme: light), (prefers-color-scheme: no-preference)',
                     }),
-                    N('img', { src: e.image, alt: e.title, loading: 'lazy' })
+                    P('img', { src: e.image, alt: e.title, loading: 'lazy' })
                   )
                 ),
-                N(
+                P(
                   'div',
                   { className: S.a.itemDescription },
-                  N(
+                  P(
                     'h2',
                     null,
-                    N(
+                    P(
                       'a',
                       { href: e.link, target: '_blank', rel: 'noreferrer' },
                       e.title
                     )
                   ),
-                  N('p', null, e.description)
+                  P('p', null, e.description)
                 )
               )
             })
           ),
-          N(
+          P(
             'a',
             {
               href: v.a.github,
@@ -616,47 +616,188 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         L = n.n(E),
         H = n('psyO'),
         z = n.n(H),
-        R = o.a.createElement
-      function B() {
-        return R(
+        B = o.a.createElement
+      function R() {
+        return B(
           'section',
           { className: z.a.wrap },
-          R('h1', null, 'Tech that I love'),
-          R(L.a, {
+          B('h1', null, 'Tech that I love'),
+          B(L.a, {
             source:
               '![TypeScript](https://img.shields.io/badge/Code-TypeScript-informational?style=flat&logo=typescript&logoColor=white&labelColor=121212&color=007ACC)\n![JavaScript](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&labelColor=121212&color=F7DF1E)\n![Java](https://img.shields.io/badge/Code-Java-informational?style=flat&logo=java&logoColor=white&labelColor=121212&color=007396)\n![React](https://img.shields.io/badge/Code-React-informational?style=flat&logo=react&logoColor=white&labelColor=121212&color=61DAFB)\n![ReactiveX](https://img.shields.io/badge/Code-ReactiveX-informational?style=flat&logo=reactivex&logoColor=white&labelColor=121212&color=B7178C)\n![Redux](https://img.shields.io/badge/Code-Redux-informational?style=flat&logo=redux&logoColor=white&labelColor=121212&color=764ABC)\n![Node.js](https://img.shields.io/badge/Code-Node.js-informational?style=flat&logo=node.js&logoColor=white&labelColor=121212&color=339933)\n![GraphQL](https://img.shields.io/badge/Code-GraphQL-informational?style=flat&logo=graphql&logoColor=white&labelColor=121212&color=E10098)\n![TypeORM](https://img.shields.io/badge/Code-TypeORM-informational?style=flat&logo=typeorm&logoColor=white&labelColor=121212&color=DD1100)\n![CSS3](https://img.shields.io/badge/Code-CSS3-informational?style=flat&logo=css3&logoColor=white&labelColor=121212&color=1572B6)\n![Sass](https://img.shields.io/badge/Code-Sass-informational?style=flat&logo=sass&logoColor=white&labelColor=121212&color=CC6699)\n![HTML5](https://img.shields.io/badge/Code-HTML5-informational?style=flat&logo=html5&logoColor=white&labelColor=121212&color=E34F26)\n![Vue](https://img.shields.io/badge/Code-Vue.js-informational?style=flat&logo=vue.js&logoColor=white&labelColor=121212&color=4FC08D)\n![MDX](https://img.shields.io/badge/Code-MDX-informational?style=flat&logo=mdx&logoColor=white&labelColor=121212&color=F29400)\n![AuthO](https://img.shields.io/badge/Code-AuthO-informational?style=flat&logo=autho&logoColor=white&labelColor=121212&color=EB5424)\n![SVG](https://img.shields.io/badge/Code-SVG-informational?style=flat&logo=svg&logoColor=white&labelColor=121212&color=FFB13B)\n![Webpack](https://img.shields.io/badge/Tool-Webpack-informational?style=flat&logo=webpack&logoColor=white&labelColor=121212&color=8DD6F9)\n![Babel](https://img.shields.io/badge/Tool-Babel-informational?style=flat&logo=babel&logoColor=white&labelColor=121212&color=F9DC3E)\n![Jest](https://img.shields.io/badge/Tool-Jest-informational?style=flat&logo=jest&logoColor=white&labelColor=121212&color=C21325)\n![Cypress](https://img.shields.io/badge/Tool-Cypress-informational?style=flat&logo=cypress&logoColor=white&labelColor=121212&color=17202C)\n![Next.js](https://img.shields.io/badge/Tool-Next.js-informational?style=flat&logo=next.js&logoColor=white&labelColor=121212&color=000000)\n![Vercel](https://img.shields.io/badge/Tool-Vercel-informational?style=flat&logo=vercel&logoColor=white&labelColor=121212&color=000000)\n![PostgreSQL](https://img.shields.io/badge/Tool-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&labelColor=121212&color=336791)\n![Docker](https://img.shields.io/badge/Tool-Docker-informational?style=flat&logo=docker&logoColor=white&labelColor=121212&color=2496ED)\n![GitHub](https://img.shields.io/badge/Tool-GitHub-informational?style=flat&logo=github&logoColor=white&labelColor=121212&color=181717)\n![GitHub_Actions](https://img.shields.io/badge/Tool-GitHub_Actions-informational?style=flat&logo=github-actions&logoColor=white&labelColor=121212&color=2088FF)\n![Storybook](https://img.shields.io/badge/Tool-Storybook-informational?style=flat&logo=storybook&logoColor=white&labelColor=121212&color=FF4785)\n![JFrog](https://img.shields.io/badge/Tool-JFrog-informational?style=flat&logo=jfrog&logoColor=white&labelColor=121212&color=41BF47)\n![npm](https://img.shields.io/badge/Tool-npm-informational?style=flat&logo=npm&logoColor=white&labelColor=121212&color=CB3837)\n![yarn](https://img.shields.io/badge/Tool-yarn-informational?style=flat&logo=yarn&logoColor=white&labelColor=121212&color=2C8EBB)\n![Postman](https://img.shields.io/badge/Tool-Postman-informational?style=flat&logo=postman&logoColor=white&labelColor=121212&color=FF6C37)\n![RSS](https://img.shields.io/badge/Tool-RSS-informational?style=flat&logo=rss&logoColor=white&labelColor=121212&color=FFA500)\n![Sketch](https://img.shields.io/badge/Tool-Sketch-informational?style=flat&logo=sketch&logoColor=white&labelColor=121212&color=F7B500)\n![Amazon_AWS](https://img.shields.io/badge/Cloud-Amazon_AWS-informational?style=flat&logo=amazon-aws&logoColor=white&labelColor=121212&color=232F3E)\n![Google_Cloud](https://img.shields.io/badge/Cloud-Google_Cloud-informational?style=flat&logo=google-cloud&logoColor=white&labelColor=121212&color=4285F4)\n![Akamai](https://img.shields.io/badge/CDN-Akamai-informational?style=flat&logo=akamai&logoColor=white&labelColor=121212&color=1293D8)\n',
           })
         )
       }
-      var D = o.a.createElement
-      function F() {
-        return D(
+      function D(e, t) {
+        ;(null == t || t > e.length) && (t = e.length)
+        for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n]
+        return r
+      }
+      function F(e) {
+        return (
+          (function (e) {
+            if (Array.isArray(e)) return D(e)
+          })(e) ||
+          (function (e) {
+            if ('undefined' !== typeof Symbol && Symbol.iterator in Object(e))
+              return Array.from(e)
+          })(e) ||
+          (function (e, t) {
+            if (e) {
+              if ('string' === typeof e) return D(e, t)
+              var n = Object.prototype.toString.call(e).slice(8, -1)
+              return (
+                'Object' === n && e.constructor && (n = e.constructor.name),
+                'Map' === n || 'Set' === n
+                  ? Array.from(e)
+                  : 'Arguments' === n ||
+                    /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
+                  ? D(e, t)
+                  : void 0
+              )
+            }
+          })(e) ||
+          (function () {
+            throw new TypeError(
+              'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+            )
+          })()
+        )
+      }
+      var q = n('puBm'),
+        M = n.n(q),
+        U = n('ywx8'),
+        J = [
+          {
+            date: 'March 18, 2020',
+            publisher: '',
+            title: '3 Principles to Triumph Your Software Project',
+            description:
+              'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
+            url:
+              'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
+            cover: '',
+            category: '',
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: v.a.medium,
+          },
+          {
+            date: 'November 6, 2019',
+            publisher: 'ITNEXT',
+            title:
+              'Writing Better Marble Tests for Redux Observable and TypeScript',
+            description:
+              'Marble testing is a brilliant way to test observables. It focuses on the behaviors of observables over time. The combination of test assertion and marble diagram let us visualize the progression of emitted values over time.',
+            url: 'https://itnext.io/better-marble-test-70c7676a1e2',
+            cover: '',
+            category: '',
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: v.a.medium,
+          },
+          {
+            date: 'September 25, 2018',
+            publisher: '',
+            title: 'Intuitive Transducer in JavaScript',
+            description:
+              'What is transducing? Simply put, it\u2019s a data transformation process without creating intermediate products. It\u2019s like a pipeline. It\u2019s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
+            url:
+              'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
+            cover: '',
+            category: '',
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: v.a.medium,
+          },
+        ],
+        $ = o.a.createElement,
+        W = [].concat(
+          F(
+            U.a.filter(function (e) {
+              return '/articles/helloworld' !== e.url
+            })
+          ),
+          F(J)
+        )
+      function G() {
+        return $(
+          'section',
+          {
+            className: M.a.wrap,
+            title: 'my open source and none-profit projects',
+          },
+          $(
+            'article',
+            { className: M.a.description },
+            $('h1', null, 'I love writing'),
+            $(
+              'p',
+              null,
+              'I enjoy writing about software development. Especially the things that can unblock our daily work and gives people inspirations to strive for engineering excellence.'
+            )
+          ),
+          $(
+            'article',
+            { className: M.a.list },
+            W.map(function (e) {
+              return $(
+                'article',
+                { key: e.title, className: M.a.item },
+                $(
+                  'div',
+                  { className: M.a.itemDescription },
+                  $(
+                    'h2',
+                    null,
+                    $(
+                      'a',
+                      { href: e.url, target: '_blank', rel: 'noreferrer' },
+                      e.title
+                    )
+                  ),
+                  $('p', null, e.description)
+                )
+              )
+            })
+          ),
+          $(
+            'a',
+            { href: '/articles', className: M.a.link },
+            'See more articles'
+          )
+        )
+      }
+      var Z = o.a.createElement
+      function X() {
+        return Z(
           'div',
           { className: s.a.container },
-          D(
+          Z(
             a.a,
             null,
-            D('meta', {
+            Z('meta', {
               property: 'og:title',
               content: "Daw-Chih Liou's Portfolio",
             }),
-            D('meta', { property: 'og:type', content: 'website' }),
-            D('meta', { property: 'og:url', content: v.a.home }),
-            D('meta', { property: 'og:description', content: v.a.description }),
-            D('meta', { property: 'og:image', content: v.a.heroImage }),
-            D('meta', { property: 'og:image:type', content: 'image/png' }),
-            D('meta', { property: 'og:image:width', content: '1411' }),
-            D('meta', { property: 'og:image:height', content: '682' }),
-            D('meta', { property: 'og:image:alt', content: v.a.description })
+            Z('meta', { property: 'og:type', content: 'website' }),
+            Z('meta', { property: 'og:url', content: v.a.home }),
+            Z('meta', { property: 'og:description', content: v.a.description }),
+            Z('meta', { property: 'og:image', content: v.a.heroImage }),
+            Z('meta', { property: 'og:image:type', content: 'image/png' }),
+            Z('meta', { property: 'og:image:width', content: '1411' }),
+            Z('meta', { property: 'og:image:height', content: '682' }),
+            Z('meta', { property: 'og:image:alt', content: v.a.description })
           ),
-          D(
+          Z(
             'main',
             { className: s.a.main },
-            D(d, null),
-            D(k, null),
-            D(O, null),
-            D(P, null),
-            D(B, null)
+            Z(d, null),
+            Z(w, null),
+            Z(j, null),
+            Z(N, null),
+            Z(G, null),
+            Z(R, null)
           )
         )
       }
@@ -681,16 +822,16 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           y,
           v,
           b,
-          k,
           w,
+          k,
           A,
           x,
           C,
           _,
           T,
-          O
+          j
         if (!this.options.gfm) return
-        ;(o = 0), (w = 0), (c = t.length + 1), (u = [])
+        ;(o = 0), (k = 0), (c = t.length + 1), (u = [])
         for (; o < c; ) {
           if (
             ((_ = t.indexOf('\n', o)),
@@ -698,24 +839,24 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             -1 === _ && (_ = t.length),
             -1 === T || T > _)
           ) {
-            if (w < 2) return
+            if (k < 2) return
             break
           }
-          u.push(t.slice(o, _)), w++, (o = _ + 1)
+          u.push(t.slice(o, _)), k++, (o = _ + 1)
         }
         ;(l = u.join('\n')),
           (i = u.splice(1, 1)[0] || []),
           (o = 0),
           (c = i.length),
-          w--,
+          k--,
           (a = !1),
           (d = [])
         for (; o < c; ) {
           if ('|' === (h = i.charAt(o))) {
             if (((p = null), !1 === a)) {
-              if (!1 === O) return
+              if (!1 === j) return
             } else d.push(a), (a = !1)
-            O = !1
+            j = !1
           } else if ('-' === h) (p = !0), (a = a || null)
           else if (':' === h)
             a = 'left' === a ? 'center' : p && null === a ? 'right' : 'left'
@@ -725,14 +866,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         !1 !== a && d.push(a)
         if (d.length < 1) return
         if (n) return !0
-        ;(k = -1),
+        ;(w = -1),
           (x = []),
           (C = e(l).reset({ type: 'table', align: d, children: x }))
-        for (; ++k < w; ) {
+        for (; ++w < k; ) {
           for (
-            A = u[k],
+            A = u[w],
               s = { type: 'tableRow', children: [] },
-              k && e('\n'),
+              w && e('\n'),
               e(A).reset(s, C),
               c = A.length + 1,
               o = 0,
@@ -783,7 +924,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               }
               ;(g = !1), o++
             } else m ? (f += h) : e(h), o++
-          k || e('\n' + i)
+          w || e('\n' + i)
         }
         return C
       }
@@ -1651,7 +1792,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             l = [[a, n]].concat(e.plugins || []).reduce(b, i()),
             d = l.parse(t),
             v = o(e, { renderers: r, definitions: p(d) }),
-            k = (function (e) {
+            w = (function (e) {
               var t = [h, s()],
                 n = e.disallowedTypes
               e.allowedTypes &&
@@ -1668,10 +1809,10 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               o && !i && t.push(c)
               return e.astPlugins ? t.concat(e.astPlugins) : t
             })(e),
-            w = l.runSync(d),
-            A = k.reduce(function (e, t) {
+            k = l.runSync(d),
+            A = w.reduce(function (e, t) {
               return t(e, v)
-            }, w)
+            }, k)
           return f(A, v)
         }
       function b(e, t) {
@@ -1888,116 +2029,116 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           y,
           v,
           b,
-          k,
           w,
+          k,
           A,
           x,
           C,
           _,
           T = '',
-          O = 0,
-          j = t.charAt(0),
+          j = 0,
+          O = t.charAt(0),
           I = this.options.pedantic,
           S = this.options.commonmark,
-          N = this.options.gfm
+          P = this.options.gfm
         if (
-          ('!' === j && ((m = !0), (T = j), (j = t.charAt(++O))),
-          '[' === j && (m || !this.inLink))
+          ('!' === O && ((m = !0), (T = O), (O = t.charAt(++j))),
+          '[' === O && (m || !this.inLink))
         ) {
           for (
-            T += j,
-              w = '',
-              O++,
+            T += O,
+              k = '',
+              j++,
               v = t.length,
-              k = 0,
-              (x = e.now()).column += O,
-              x.offset += O;
-            O < v;
+              w = 0,
+              (x = e.now()).column += j,
+              x.offset += j;
+            j < v;
 
           ) {
-            if (((h = j = t.charAt(O)), '`' === j)) {
-              for (s = 1; '`' === t.charAt(O + 1); ) (h += j), O++, s++
+            if (((h = O = t.charAt(j)), '`' === O)) {
+              for (s = 1; '`' === t.charAt(j + 1); ) (h += O), j++, s++
               c ? s >= c && (c = 0) : (c = s)
-            } else if ('\\' === j) O++, (h += t.charAt(O))
-            else if ((c && !N) || '[' !== j) {
-              if ((!c || N) && ']' === j) {
-                if (!k) {
+            } else if ('\\' === O) j++, (h += t.charAt(j))
+            else if ((c && !P) || '[' !== O) {
+              if ((!c || P) && ']' === O) {
+                if (!w) {
                   if (!I)
-                    for (; O < v && ((j = t.charAt(O + 1)), r(j)); )
-                      (h += j), O++
-                  if ('(' !== t.charAt(O + 1)) return
-                  ;(h += '('), (o = !0), O++
+                    for (; j < v && ((O = t.charAt(j + 1)), r(O)); )
+                      (h += O), j++
+                  if ('(' !== t.charAt(j + 1)) return
+                  ;(h += '('), (o = !0), j++
                   break
                 }
-                k--
+                w--
               }
-            } else k++
-            ;(w += h), (h = ''), O++
+            } else w++
+            ;(k += h), (h = ''), j++
           }
           if (o) {
-            for (g = w, T += w + h, O++; O < v && ((j = t.charAt(O)), r(j)); )
-              (T += j), O++
+            for (g = k, T += k + h, j++; j < v && ((O = t.charAt(j)), r(O)); )
+              (T += O), j++
             if (
-              ((j = t.charAt(O)), (d = S ? l : a), (w = ''), (u = T), '<' === j)
+              ((O = t.charAt(j)), (d = S ? l : a), (k = ''), (u = T), '<' === O)
             ) {
-              for (O++, u += '<'; O < v && '>' !== (j = t.charAt(O)); ) {
-                if (S && '\n' === j) return
-                ;(w += j), O++
+              for (j++, u += '<'; j < v && '>' !== (O = t.charAt(j)); ) {
+                if (S && '\n' === O) return
+                ;(k += O), j++
               }
-              if ('>' !== t.charAt(O)) return
-              ;(T += '<' + w + '>'), (A = w), O++
+              if ('>' !== t.charAt(j)) return
+              ;(T += '<' + k + '>'), (A = k), j++
             } else {
               for (
-                j = null, h = '';
-                O < v && ((j = t.charAt(O)), !h || !i.call(d, j));
+                O = null, h = '';
+                j < v && ((O = t.charAt(j)), !h || !i.call(d, O));
 
               ) {
-                if (r(j)) {
+                if (r(O)) {
                   if (!I) break
-                  h += j
+                  h += O
                 } else {
-                  if ('(' === j) k++
-                  else if (')' === j) {
-                    if (0 === k) break
-                    k--
+                  if ('(' === O) w++
+                  else if (')' === O) {
+                    if (0 === w) break
+                    w--
                   }
-                  ;(w += h),
+                  ;(k += h),
                     (h = ''),
-                    '\\' === j && ((w += '\\'), (j = t.charAt(++O))),
-                    (w += j)
+                    '\\' === O && ((k += '\\'), (O = t.charAt(++j))),
+                    (k += O)
                 }
-                O++
+                j++
               }
-              ;(A = w), (O = (T += w).length)
+              ;(A = k), (j = (T += k).length)
             }
-            for (w = ''; O < v && ((j = t.charAt(O)), r(j)); ) (w += j), O++
-            if (((j = t.charAt(O)), (T += w), w && i.call(d, j)))
-              if ((O++, (T += j), (w = ''), (y = d[j]), (f = T), S)) {
-                for (; O < v && (j = t.charAt(O)) !== y; )
-                  '\\' === j && ((w += '\\'), (j = t.charAt(++O))),
-                    O++,
-                    (w += j)
-                if ((j = t.charAt(O)) !== y) return
+            for (k = ''; j < v && ((O = t.charAt(j)), r(O)); ) (k += O), j++
+            if (((O = t.charAt(j)), (T += k), k && i.call(d, O)))
+              if ((j++, (T += O), (k = ''), (y = d[O]), (f = T), S)) {
+                for (; j < v && (O = t.charAt(j)) !== y; )
+                  '\\' === O && ((k += '\\'), (O = t.charAt(++j))),
+                    j++,
+                    (k += O)
+                if ((O = t.charAt(j)) !== y) return
                 for (
-                  b = w, T += w + j, O++;
-                  O < v && ((j = t.charAt(O)), r(j));
+                  b = k, T += k + O, j++;
+                  j < v && ((O = t.charAt(j)), r(O));
 
                 )
-                  (T += j), O++
+                  (T += O), j++
               } else
-                for (h = ''; O < v; ) {
-                  if ((j = t.charAt(O)) === y)
-                    p && ((w += y + h), (h = '')), (p = !0)
+                for (h = ''; j < v; ) {
+                  if ((O = t.charAt(j)) === y)
+                    p && ((k += y + h), (h = '')), (p = !0)
                   else if (p) {
-                    if (')' === j) {
-                      ;(T += w + y + h), (b = w)
+                    if (')' === O) {
+                      ;(T += k + y + h), (b = k)
                       break
                     }
-                    r(j) ? (h += j) : ((w += y + h + j), (h = ''), (p = !1))
-                  } else w += j
-                  O++
+                    r(O) ? (h += O) : ((k += y + h + O), (h = ''), (p = !1))
+                  } else k += O
+                  j++
                 }
-            if (')' === t.charAt(O))
+            if (')' === t.charAt(j))
               return (
                 !!n ||
                 ((T += ')'),
@@ -2184,85 +2325,85 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           p,
           v,
           b,
-          k,
           w,
+          k,
           A,
           x,
           C,
           _,
           T,
-          O,
           j,
+          O,
           I,
           S,
-          N,
           P,
+          N,
           E,
           L = this.options.commonmark,
           H = this.options.pedantic,
           z = this.blockTokenizers,
-          R = this.interruptList,
-          B = 0,
+          B = this.interruptList,
+          R = 0,
           D = t.length,
           F = null,
           q = 0
-        for (; B < D; ) {
-          if ('\t' === (c = t.charAt(B))) q += 4 - (q % 4)
+        for (; R < D; ) {
+          if ('\t' === (c = t.charAt(R))) q += 4 - (q % 4)
           else {
             if (' ' !== c) break
             q++
           }
-          B++
+          R++
         }
         if (q >= 4) return
-        if (((c = t.charAt(B)), (o = L ? g : m), !0 === d[c])) (u = c), (l = !1)
+        if (((c = t.charAt(R)), (o = L ? g : m), !0 === d[c])) (u = c), (l = !1)
         else {
-          for (l = !0, a = ''; B < D && ((c = t.charAt(B)), i(c)); )
-            (a += c), B++
-          if (((c = t.charAt(B)), !a || !0 !== o[c])) return
+          for (l = !0, a = ''; R < D && ((c = t.charAt(R)), i(c)); )
+            (a += c), R++
+          if (((c = t.charAt(R)), !a || !0 !== o[c])) return
           ;(F = parseInt(a, 10)), (u = c)
         }
-        if (' ' !== (c = t.charAt(++B)) && '\t' !== c) return
+        if (' ' !== (c = t.charAt(++R)) && '\t' !== c) return
         if (n) return !0
-        ;(B = 0), (x = []), (C = []), (_ = [])
-        for (; B < D; ) {
+        ;(R = 0), (x = []), (C = []), (_ = [])
+        for (; R < D; ) {
           for (
-            f = t.indexOf('\n', B),
-              h = B,
+            f = t.indexOf('\n', R),
+              h = R,
               p = !1,
               E = !1,
               -1 === f && (f = D),
-              P = B + 4,
+              N = R + 4,
               q = 0;
-            B < D;
+            R < D;
 
           ) {
-            if ('\t' === (c = t.charAt(B))) q += 4 - (q % 4)
+            if ('\t' === (c = t.charAt(R))) q += 4 - (q % 4)
             else {
               if (' ' !== c) break
               q++
             }
-            B++
+            R++
           }
           if (
             (q >= 4 && (E = !0),
             T && q >= T.indent && (E = !0),
-            (c = t.charAt(B)),
+            (c = t.charAt(R)),
             (v = null),
             !E)
           ) {
-            if (!0 === d[c]) (v = c), B++, q++
+            if (!0 === d[c]) (v = c), R++, q++
             else {
-              for (a = ''; B < D && ((c = t.charAt(B)), i(c)); ) (a += c), B++
-              ;(c = t.charAt(B)),
-                B++,
+              for (a = ''; R < D && ((c = t.charAt(R)), i(c)); ) (a += c), R++
+              ;(c = t.charAt(R)),
+                R++,
                 a && !0 === o[c] && ((v = c), (q += a.length + 1))
             }
             if (v)
-              if ('\t' === (c = t.charAt(B))) (q += 4 - (q % 4)), B++
+              if ('\t' === (c = t.charAt(R))) (q += 4 - (q % 4)), R++
               else if (' ' === c) {
-                for (P = B + 4; B < P && ' ' === t.charAt(B); ) B++, q++
-                B === P && ' ' === t.charAt(B) && ((B -= 3), (q -= 3))
+                for (N = R + 4; R < N && ' ' === t.charAt(R); ) R++, q++
+                R === N && ' ' === t.charAt(R) && ((R -= 3), (q -= 3))
               } else '\n' !== c && '' !== c && (v = null)
           }
           if (v) {
@@ -2273,31 +2414,31 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               ? L && T && (E = q >= T.indent || q > 4)
               : (E = !0),
               (p = !1),
-              (B = h)
+              (R = h)
           if (
-            ((k = t.slice(h, f)),
-            (b = h === B ? k : t.slice(B, f)),
+            ((w = t.slice(h, f)),
+            (b = h === R ? w : t.slice(R, f)),
             ('*' === v || '_' === v || '-' === v) &&
-              z.thematicBreak.call(this, e, k, !0))
+              z.thematicBreak.call(this, e, w, !0))
           )
             break
-          if (((w = A), (A = !r(b).length), E && T))
-            (T.value = T.value.concat(_, k)), (C = C.concat(_, k)), (_ = [])
+          if (((k = A), (A = !r(b).length), E && T))
+            (T.value = T.value.concat(_, w)), (C = C.concat(_, w)), (_ = [])
           else if (p)
             0 !== _.length && (T.value.push(''), (T.trail = _.concat())),
-              (T = { value: [k], indent: q, trail: [] }),
+              (T = { value: [w], indent: q, trail: [] }),
               x.push(T),
-              (C = C.concat(_, k)),
+              (C = C.concat(_, w)),
               (_ = [])
           else if (A) {
-            if (w) break
-            _.push(k)
+            if (k) break
+            _.push(w)
           } else {
-            if (w) break
-            if (s(R, z, this, [e, k, !0])) break
-            ;(T.value = T.value.concat(_, k)), (C = C.concat(_, k)), (_ = [])
+            if (k) break
+            if (s(B, z, this, [e, w, !0])) break
+            ;(T.value = T.value.concat(_, w)), (C = C.concat(_, w)), (_ = [])
           }
-          B = f + 1
+          R = f + 1
         }
         ;(S = e(C.join('\n')).reset({
           type: 'list',
@@ -2306,19 +2447,19 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           loose: null,
           children: [],
         })),
-          (O = this.enterList()),
-          (j = this.enterBlock()),
+          (j = this.enterList()),
+          (O = this.enterBlock()),
           (I = !1),
-          (B = -1),
+          (R = -1),
           (D = x.length)
-        for (; ++B < D; )
-          (T = x[B].value.join('\n')),
-            (N = e.now()),
-            (T = e(T)(y(this, T, N), S)).loose && (I = !0),
-            (T = x[B].trail.join('\n')),
-            B !== D - 1 && (T += '\n'),
+        for (; ++R < D; )
+          (T = x[R].value.join('\n')),
+            (P = e.now()),
+            (T = e(T)(y(this, T, P), S)).loose && (I = !0),
+            (T = x[R].trail.join('\n')),
+            R !== D - 1 && (T += '\n'),
             e(T)
-        return O(), j(), (S.loose = I), S
+        return j(), O(), (S.loose = I), S
       }
       var c = /\n\n(?!\s*$)/,
         u = /^\[([ \t]|x|X)][ \t]/,
@@ -2979,24 +3120,24 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             i,
             a,
             h,
-            w,
+            k,
             A,
             x,
             C,
             _,
             T,
-            O,
             j,
+            O,
             I,
             S,
-            N,
             P,
+            N,
             E,
             L,
             H,
             z = t.additional,
-            R = t.nonTerminated,
-            B = t.text,
+            B = t.nonTerminated,
+            R = t.text,
             D = t.reference,
             F = t.warning,
             q = t.textContext,
@@ -3004,19 +3145,19 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             U = t.warningContext,
             J = t.position,
             $ = t.indent || [],
-            G = e.length,
-            Z = 0,
-            V = -1,
-            W = J.column || 1,
-            X = J.line || 1,
+            W = e.length,
+            G = 0,
+            Z = -1,
+            X = J.column || 1,
+            V = J.line || 1,
             Y = '',
             Q = []
           'string' === typeof z && (z = z.charCodeAt(0))
-          ;(P = K()), (C = F ? ee : f), Z--, G++
-          for (; ++Z < G; )
-            if ((10 === w && (W = $[V] || 1), 38 === (w = e.charCodeAt(Z)))) {
+          ;(N = K()), (C = F ? ee : f), G--, W++
+          for (; ++G < W; )
+            if ((10 === k && (X = $[Z] || 1), 38 === (k = e.charCodeAt(G)))) {
               if (
-                9 === (x = e.charCodeAt(Z + 1)) ||
+                9 === (x = e.charCodeAt(G + 1)) ||
                 10 === x ||
                 12 === x ||
                 32 === x ||
@@ -3025,54 +3166,54 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 x !== x ||
                 (z && x === z)
               ) {
-                ;(Y += u(w)), W++
+                ;(Y += u(k)), X++
                 continue
               }
               for (
-                j = I = Z + 1,
+                O = I = G + 1,
                   H = I,
                   35 === x
-                    ? ((H = ++j),
+                    ? ((H = ++O),
                       88 === (x = e.charCodeAt(H)) || 120 === x
-                        ? ((S = d), (H = ++j))
+                        ? ((S = d), (H = ++O))
                         : (S = m))
                     : (S = p),
                   n = '',
-                  O = '',
+                  j = '',
                   h = '',
-                  N = y[S],
+                  P = y[S],
                   H--;
-                ++H < G && N((x = e.charCodeAt(H)));
+                ++H < W && P((x = e.charCodeAt(H)));
 
               )
-                (h += u(x)), S === p && c.call(r, h) && ((n = h), (O = r[h]))
+                (h += u(x)), S === p && c.call(r, h) && ((n = h), (j = r[h]))
               ;(a = 59 === e.charCodeAt(H)) &&
-                (H++, (i = S === p && s(h)) && ((n = h), (O = i))),
+                (H++, (i = S === p && s(h)) && ((n = h), (j = i))),
                 (L = 1 + H - I),
-                (a || R) &&
+                (a || B) &&
                   (h
                     ? S === p
-                      ? (a && !O
+                      ? (a && !j
                           ? C(5, 1)
                           : (n !== h &&
-                              ((L = 1 + (H = j + n.length) - j), (a = !1)),
+                              ((L = 1 + (H = O + n.length) - O), (a = !1)),
                             a ||
                               ((_ = n ? 1 : 3),
                               t.attribute
                                 ? 61 === (x = e.charCodeAt(H))
-                                  ? (C(_, L), (O = null))
+                                  ? (C(_, L), (j = null))
                                   : l(x)
-                                  ? (O = null)
+                                  ? (j = null)
                                   : C(_, L)
                                 : C(_, L))),
-                        (A = O))
+                        (A = j))
                       : (a || C(2, L),
                         b((A = parseInt(h, g[S])))
                           ? (C(7, L), (A = u(65533)))
                           : A in o
                           ? (C(6, L), (A = o[A]))
                           : ((T = ''),
-                            k(A) && C(6, L),
+                            w(A) && C(6, L),
                             A > 65535 &&
                               ((T += u(((A -= 65536) >>> 10) | 55296)),
                               (A = 56320 | (1023 & A))),
@@ -3080,23 +3221,23 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                     : S !== p && C(4, L)),
                 A
                   ? (te(),
-                    (P = K()),
-                    (Z = H - 1),
-                    (W += H - I + 1),
+                    (N = K()),
+                    (G = H - 1),
+                    (X += H - I + 1),
                     Q.push(A),
                     (E = K()).offset++,
-                    D && D.call(M, A, { start: P, end: E }, e.slice(I - 1, H)),
-                    (P = E))
+                    D && D.call(M, A, { start: N, end: E }, e.slice(I - 1, H)),
+                    (N = E))
                   : ((h = e.slice(I - 1, H)),
                     (Y += h),
-                    (W += h.length),
-                    (Z = H - 1))
+                    (X += h.length),
+                    (G = H - 1))
             } else
-              10 === w && (X++, V++, (W = 0)),
-                w === w ? ((Y += u(w)), W++) : te()
+              10 === k && (V++, Z++, (X = 0)),
+                k === k ? ((Y += u(k)), X++) : te()
           return Q.join('')
           function K() {
-            return { line: X, column: W, offset: Z + (J.offset || 0) }
+            return { line: V, column: X, offset: G + (J.offset || 0) }
           }
           function ee(e, t) {
             var n = K()
@@ -3104,7 +3245,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           }
           function te() {
             Y &&
-              (Q.push(Y), B && B.call(q, Y, { start: P, end: K() }), (Y = ''))
+              (Q.push(Y), R && R.call(q, Y, { start: N, end: K() }), (Y = ''))
           }
         })(e, a)
       }
@@ -3133,7 +3274,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
       function b(e) {
         return (e >= 55296 && e <= 57343) || e > 1114111
       }
-      function k(e) {
+      function w(e) {
         return (
           (e >= 1 && e <= 8) ||
           11 === e ||
@@ -3172,19 +3313,19 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           n = a(),
           v = {},
           b = !1,
-          k = -1
+          w = -1
         return (
-          (w.data = function (e, t) {
+          (k.data = function (e, t) {
             if (l(e))
               return 2 === arguments.length
-                ? (m('data', b), (v[e] = t), w)
+                ? (m('data', b), (v[e] = t), k)
                 : (u.call(v, e) && v[e]) || null
-            if (e) return m('data', b), (v = e), w
+            if (e) return m('data', b), (v = e), k
             return v
           }),
-          (w.freeze = A),
-          (w.attachers = t),
-          (w.use = function (e) {
+          (k.freeze = A),
+          (k.attachers = t),
+          (k.use = function (e) {
             var n
             if ((m('use', b), null === e || void 0 === e));
             else if ('function' === typeof e) l.apply(null, arguments)
@@ -3194,7 +3335,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               'length' in e ? a(e) : o(e)
             }
             n && (v.settings = r(v.settings || {}, n))
-            return w
+            return k
             function o(e) {
               a(e.plugins), e.settings && (n = r(n || {}, e.settings))
             }
@@ -3222,22 +3363,22 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 : t.push(c.call(arguments))
             }
           }),
-          (w.parse = function (e) {
+          (k.parse = function (e) {
             var t,
               n = i(e)
-            if ((A(), p('parse', (t = w.Parser)), h(t)))
+            if ((A(), p('parse', (t = k.Parser)), h(t)))
               return new t(String(n), n).parse()
             return t(String(n), n)
           }),
-          (w.stringify = function (e, t) {
+          (k.stringify = function (e, t) {
             var n,
               r = i(t)
-            if ((A(), d('stringify', (n = w.Compiler)), g(e), h(n)))
+            if ((A(), d('stringify', (n = k.Compiler)), g(e), h(n)))
               return new n(e, r).compile()
             return n(e, r)
           }),
-          (w.run = C),
-          (w.runSync = function (e, t) {
+          (k.run = C),
+          (k.runSync = function (e, t) {
             var n,
               r = !1
             return C(e, t, i), y('runSync', 'run', r), n
@@ -3245,14 +3386,14 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               ;(r = !0), o(e), (n = t)
             }
           }),
-          (w.process = _),
-          (w.processSync = function (e) {
+          (k.process = _),
+          (k.processSync = function (e) {
             var t,
               n = !1
             return (
               A(),
-              p('processSync', w.Parser),
-              d('processSync', w.Compiler),
+              p('processSync', k.Parser),
+              d('processSync', k.Compiler),
               _((t = i(e)), r),
               y('processSync', 'process', n),
               t
@@ -3261,23 +3402,23 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               ;(n = !0), o(e)
             }
           }),
-          w
+          k
         )
-        function w() {
+        function k() {
           for (var n = e(), o = t.length, i = -1; ++i < o; )
             n.use.apply(null, t[i])
           return n.data(r(!0, {}, v)), n
         }
         function A() {
           var e, r, o, i
-          if (b) return w
-          for (; ++k < t.length; )
-            (r = (e = t[k])[0]),
+          if (b) return k
+          for (; ++w < t.length; )
+            (r = (e = t[w])[0]),
               null,
               !1 !== (o = e[1]) &&
                 (!0 === o && (e[1] = void 0),
-                'function' === typeof (i = r.apply(w, e.slice(1))) && n.use(i))
-          return (b = !0), (k = 1 / 0), w
+                'function' === typeof (i = r.apply(k, e.slice(1))) && n.use(i))
+          return (b = !0), (w = 1 / 0), k
         }
         function x(e) {
           for (var n, r = t.length, o = -1; ++o < r; )
@@ -3299,11 +3440,11 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           o(null, r)
         }
         function _(e, t) {
-          if ((A(), p('process', w.Parser), d('process', w.Compiler), !t))
+          if ((A(), p('process', k.Parser), d('process', k.Compiler), !t))
             return new Promise(n)
           function n(n, r) {
             var o = i(e)
-            f.run(w, { file: o }, function (e) {
+            f.run(k, { file: o }, function (e) {
               e ? r(e) : n ? n(o) : t(null, o)
             })
           }
@@ -4010,6 +4151,16 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
     psyO: function (e, t, n) {
       e.exports = { wrap: 'SkillSet_wrap__3eBOh' }
     },
+    puBm: function (e, t, n) {
+      e.exports = {
+        wrap: 'Publication_wrap__3YgIy',
+        description: 'Publication_description__dNt-m',
+        list: 'Publication_list__1zB8q',
+        item: 'Publication_item__9WpXT',
+        itemDescription: 'Publication_itemDescription__31JbC',
+        link: 'Publication_link__152qf',
+      }
+    },
     qPMR: function (e, t, n) {
       'use strict'
       var r = n('RsFJ'),
@@ -4079,8 +4230,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         y = r ? Symbol.for('react.lazy') : 60116,
         v = r ? Symbol.for('react.block') : 60121,
         b = r ? Symbol.for('react.fundamental') : 60117,
-        k = r ? Symbol.for('react.responder') : 60118,
-        w = r ? Symbol.for('react.scope') : 60119
+        w = r ? Symbol.for('react.responder') : 60118,
+        k = r ? Symbol.for('react.scope') : 60119
       function A(e) {
         if ('object' === typeof e && null !== e) {
           var t = e.$$typeof
@@ -4182,8 +4333,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
                 e.$$typeof === u ||
                 e.$$typeof === p ||
                 e.$$typeof === b ||
-                e.$$typeof === k ||
                 e.$$typeof === w ||
+                e.$$typeof === k ||
                 e.$$typeof === v))
           )
         }),
@@ -4262,8 +4413,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           y = e.now(),
           v = y.line,
           b = t.length,
-          k = [],
           w = [],
+          k = [],
           A = [],
           x = 0
         for (; x < b && (' ' === (a = t.charAt(x)) || '\t' === a); ) x++
@@ -4290,17 +4441,17 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           if (!h && ((l = t.slice(x)), o(g, m, this, [e, l, !0]))) break
           ;(u = f === x ? c : t.slice(f, s)),
             A.push(x - f),
-            k.push(u),
-            w.push(c),
+            w.push(u),
+            k.push(c),
             (x = s + 1)
         }
-        ;(x = -1), (b = A.length), (i = e(k.join('\n')))
+        ;(x = -1), (b = A.length), (i = e(w.join('\n')))
         for (; ++x < b; ) (d[v] = (d[v] || 0) + A[x]), v++
         return (
           (p = this.enterBlock()),
-          (w = this.tokenizeBlock(w.join('\n'), y)),
+          (k = this.tokenizeBlock(k.join('\n'), y)),
           p(),
-          i({ type: 'blockquote', children: w })
+          i({ type: 'blockquote', children: k })
         )
       }
     },
@@ -4886,6 +5037,40 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           }
         return t
       }
+    },
+    ywx8: function (e, t, n) {
+      'use strict'
+      var r = n('PZRn'),
+        o = 'Welcome',
+        i = 'Performance'
+      t.a = [
+        {
+          date: 'Octobor 6, 2020',
+          publisher: '',
+          title: 'Using WebP for Better User Experience',
+          description:
+            "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
+          url: '/articles/use-webp-for-better-ux',
+          cover: 'optimized/portfolio-snapshot.png',
+          category: i,
+          author: 'Daw-Chih Liou',
+          avatar: '/optimized/portrait-sm.png',
+          social: r.a.github,
+        },
+        {
+          date: 'September 29, 2020',
+          publisher: '',
+          title: 'Hello World\u2600\ufe0f',
+          description:
+            "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
+          url: '/articles/helloworld',
+          cover: '/optimized/portrait.png',
+          category: o,
+          author: 'Daw-Chih Liou',
+          avatar: '/optimized/portrait-sm.png',
+          social: r.a.github,
+        },
+      ]
     },
   },
   [['/EDR', 0, 1, 5, 2]],

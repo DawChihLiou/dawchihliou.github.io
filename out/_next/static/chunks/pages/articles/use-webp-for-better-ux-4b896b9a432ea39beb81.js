@@ -2205,7 +2205,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
           Object(p.a)(
             'p',
             null,
-            'For example, to deploy my portfolio with GitHub Actions to GitHub Pages as a static site. The workflow looks like this.'
+            'For example, to deploy my portfolio with GitHub Actions to GitHub Pages as a static site, a workflow looks like this.'
           ),
           Object(p.a)(
             'pre',
