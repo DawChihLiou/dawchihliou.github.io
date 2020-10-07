@@ -3,15 +3,15 @@ self.__BUILD_MANIFEST = (function (a, b) {
     __rewrites: [],
     '/': [
       'static\u002Fchunks\u002F6728d85a.9e304be1e48fe7115321.js',
-      'static\u002Fcss\u002F06e0d7d1cfa0cf24d3d1.css',
-      'static\u002Fchunks\u002Fpages\u002Findex-bb1be823a2e8a21a99c9.js',
+      'static\u002Fcss\u002F02a6df7acccc8b1552b6.css',
+      'static\u002Fchunks\u002Fpages\u002Findex-c4df50ea1c19b53869ce.js',
     ],
     '/_error': [
       'static\u002Fchunks\u002Fpages\u002F_error-912df90ed040036b79b4.js',
     ],
     '/articles': [
       'static\u002Fcss\u002Fccf55d687cc93eb606aa.css',
-      'static\u002Fchunks\u002Fpages\u002Farticles-7588277edf4eeebb34d0.js',
+      'static\u002Fchunks\u002Fpages\u002Farticles-51a9eaf9d774fb95da4d.js',
     ],
     '/articles/helloworld': [
       a,
@@ -21,7 +21,7 @@ self.__BUILD_MANIFEST = (function (a, b) {
     '/articles/use-webp-for-better-ux': [
       a,
       b,
-      'static\u002Fchunks\u002Fpages\u002Farticles\u002Fuse-webp-for-better-ux-3dbd73ac89da6b15aa5e.js',
+      'static\u002Fchunks\u002Fpages\u002Farticles\u002Fuse-webp-for-better-ux-4b896b9a432ea39beb81.js',
     ],
     '/now': [
       a,
