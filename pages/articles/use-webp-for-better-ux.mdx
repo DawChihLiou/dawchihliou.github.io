@@ -48,16 +48,16 @@ export default ({ children }) => (
 
 As I'm re-making [my portfolio](https://dawchihliou.github.io/), there is something nagging that bothers me.
 I have a `128x128` portait photo displayed on the top of my portfolio that is `251.35KB`.
-It's way too big and takes too long to download and that has a direct impact on my Lighthouse report.
+It's way too big for its size and takes too long to download and that has a direct impact on my Lighthouse report.
 
-It might seem like not a big deal. Afterall, a lot of people are enjoying high-speed WIFI and modern browsers.
+It might not seem like a big deal. Afterall, a lot of people are enjoying high-speed WIFI and modern browsers.
 But I want my portfolio to be [**mobile-first**](https://www.uxpin.com/studio/blog/a-hands-on-guide-to-mobile-first-design/).
 It's important to me that my content can reach to audience that are using cellular data and mobile devices with ease.
 
 ## next-gen Image Format
 
 There are many ways to tackle image delivery and optimization such as using services like [Cloudinary](https://cloudinary.com/).
-What I'm looking for is to serve static assets myself to reduce complexity of the project and a process that would work with release workflow.
+What I'm looking for is a way to serve self-hosted static assets to reduce complexity of the project and a process that would work with release workflow.
 
 > So I want to generate optimized images in [next-gen format](https://web.dev/uses-webp-images/) during build time.
 

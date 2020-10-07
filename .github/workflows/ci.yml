@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies 🐥
+        run: yarn install
+
+      - name: Build package 📦
+        run: yarn build
+
+      - name: Export Static Assets 💵
+        run: yarn export
+
+        # https://github.com/marketplace/actions/deploy-to-github-pages
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: out
+          CLEAN: true
