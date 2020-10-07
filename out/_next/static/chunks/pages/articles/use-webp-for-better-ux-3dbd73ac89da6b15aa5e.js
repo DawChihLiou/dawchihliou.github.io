@@ -36,8 +36,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             coverWidth: '1411',
             coverHeight: '682',
           }),
-        i = { meta: r },
-        b = function (e) {
+        b = { meta: r },
+        i = function (e) {
           var a = e.children
           return Object(p.a)(
             m.a,
@@ -56,8 +56,8 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
         var a = e.components,
           t = Object(c.a)(e, ['components'])
         return Object(p.a)(
-          b,
-          Object(n.a)({}, i, t, { components: a, mdxType: 'MDXLayout' }),
+          i,
+          Object(n.a)({}, b, t, { components: a, mdxType: 'MDXLayout' }),
           Object(p.a)(
             'h1',
             { id: 'using-webp-for-better-user-experience' },
@@ -2201,6 +2201,414 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             'The ',
             Object(p.a)('inlineCode', { parentName: 'p' }, 'prepare'),
             ' script will execute after installation. This will allow us to build our image assets in the workflows of our choice.'
+          ),
+          Object(p.a)(
+            'p',
+            null,
+            'For example, to deploy my portfolio with GitHub Actions to GitHub Pages as a static site. The workflow looks like this.'
+          ),
+          Object(p.a)(
+            'pre',
+            { className: 'language-yml' },
+            Object(p.a)(
+              'code',
+              Object(n.a)({ parentName: 'pre' }, { className: 'language-yml' }),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'jobs'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              '\n  ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'deploy'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              '\n    ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'runs-on'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' ubuntu',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              'latest\n    ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'steps'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              '\n      ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              ' ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'uses'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' actions/checkout@v2\n\n      ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              ' ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'name'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' Install dependencies \ud83d\udc25\n        ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'run'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' yarn install\n\n      ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              ' ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'name'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' Export static assets \ud83d\udce6\n        ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'run'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' yarn build ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token important' }
+                ),
+                '&&'
+              ),
+              ' yarn export\n\n      ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              ' ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'name'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' Deploy to GitHub Pages \ud83d\ude80\n        ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'uses'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' JamesIves/github',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              'pages',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              'deploy',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              'action@3.6.2\n        ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'with'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              '\n          ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'GITHUB_TOKEN'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' $',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '{'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '{'
+              ),
+              ' secrets.GITHUB_TOKEN ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '}'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '}'
+              ),
+              '\n          ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'BRANCH'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' gh',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '-'
+              ),
+              'pages\n          ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token key atrule' }
+                ),
+                'FOLDER'
+              ),
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' out ',
+              Object(p.a)(
+                'span',
+                Object(n.a)(
+                  { parentName: 'code' },
+                  { className: 'token comment' }
+                ),
+                '# contains all static assets'
+              ),
+              '\n'
+            )
+          ),
+          Object(p.a)(
+            'p',
+            null,
+            'In the "Install dependencies" step, the job installs the dependencies, and then generate the optimized images.\nThe images will be deployed alongside with the other assets in ',
+            Object(p.a)('inlineCode', { parentName: 'p' }, '/out'),
+            ' directory.'
           ),
           Object(p.a)('h2', { id: 'to-sum-up' }, 'To Sum up'),
           Object(p.a)(

@@ -21,7 +21,7 @@ self.__BUILD_MANIFEST = (function (a, b) {
     '/articles/use-webp-for-better-ux': [
       a,
       b,
-      'static\u002Fchunks\u002Fpages\u002Farticles\u002Fuse-webp-for-better-ux-09f7f29cb9c487bdd4a3.js',
+      'static\u002Fchunks\u002Fpages\u002Farticles\u002Fuse-webp-for-better-ux-3dbd73ac89da6b15aa5e.js',
     ],
     '/now': [
       a,
