@@ -233,6 +233,32 @@ In our `package.json`, add the following scripts.
 
 The `prepare` script will execute after installation. This will allow us to build our image assets in the workflows of our choice.
 
+For example, to deploy my portfolio with GitHub Actions to GitHub Pages as a static site. The workflow looks like this.
+
+```yml
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies 🐥
+        run: yarn install
+
+      - name: Export static assets 📦
+        run: yarn build && yarn export
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: out # contains all static assets
+```
+
+In the "Install dependencies" step, the job installs the dependencies, and then generate the optimized images.
+The images will be deployed alongside with the other assets in `/out` directory.
+
 ## To Sum up
 
 WebP is designed for web. The image quality and size is very desirable especially for mobile users.
