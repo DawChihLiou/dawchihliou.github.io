@@ -155,12 +155,12 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
             Object(p.a)('inlineCode', { parentName: 'p' }, '128x128'),
             ' portait photo displayed on the top of my portfolio that is ',
             Object(p.a)('inlineCode', { parentName: 'p' }, '251.35KB'),
-            ".\nIt's way too big and takes too long to download and that has a direct impact on my Lighthouse report."
+            ".\nIt's way too big for its size and takes too long to download and that has a direct impact on my Lighthouse report."
           ),
           Object(p.a)(
             'p',
             null,
-            'It might seem like not a big deal. Afterall, a lot of people are enjoying high-speed WIFI and modern browsers.\nBut I want my portfolio to be ',
+            'It might not seem like a big deal. Afterall, a lot of people are enjoying high-speed WIFI and modern browsers.\nBut I want my portfolio to be ',
             Object(p.a)(
               'a',
               Object(n.a)(
@@ -191,7 +191,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
               ),
               'Cloudinary'
             ),
-            ".\nWhat I'm looking for is to serve static assets myself to reduce complexity of the project and a process that would work with release workflow."
+            ".\nWhat I'm looking for is a way to serve self-hosted static assets to reduce complexity of the project and a process that would work with release workflow."
           ),
           Object(p.a)(
             'blockquote',
