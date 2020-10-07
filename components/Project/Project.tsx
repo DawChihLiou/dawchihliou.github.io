@@ -31,27 +31,31 @@ export default function Project() {
       <article className={styles.list}>
         {content.map((project) => (
           <article key={project.title} className={styles.item}>
-            <div className={styles.itemImage}>
-              <picture>
-                <source
-                  srcSet={project.darkmodeImage}
-                  media="(prefers-color-scheme: dark)"
-                />
-                <source
-                  srcSet={project.image}
-                  media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
-                />
-                <img src={project.image} alt={project.title} loading="lazy" />
-              </picture>
-            </div>
-            <div className={styles.itemDescription}>
-              <h2>
-                <a href={project.link} target="_blank" rel="noreferrer">
-                  {project.title}
-                </a>
-              </h2>
-              <p>{project.description}</p>
-            </div>
+            <a href={project.link} target="_blank" rel="noreferrer">
+              <div className={styles.grid}>
+                <div className={styles.itemImage}>
+                  <picture>
+                    <source
+                      srcSet={project.darkmodeImage}
+                      media="(prefers-color-scheme: dark)"
+                    />
+                    <source
+                      srcSet={project.image}
+                      media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+                    />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+                <div className={styles.itemDescription}>
+                  <h2>{project.title}</h2>
+                  <p>{project.description}</p>
+                </div>
+              </div>
+            </a>
           </article>
         ))}
       </article>

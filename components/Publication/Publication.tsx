@@ -25,14 +25,12 @@ export default function Publication() {
       <article className={styles.list}>
         {publication.map((article) => (
           <article key={article.title} className={styles.item}>
-            <div className={styles.itemDescription}>
-              <h2>
-                <a href={article.url} target="_blank" rel="noreferrer">
-                  {article.title}
-                </a>
-              </h2>
-              <p>{article.description}</p>
-            </div>
+            <a href={article.url} target="_blank" rel="noreferrer">
+              <div className={styles.itemDescription}>
+                <h2>{article.title}</h2>
+                <p>{article.description}</p>
+              </div>
+            </a>
           </article>
         ))}
       </article>
