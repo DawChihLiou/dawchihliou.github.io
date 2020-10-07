@@ -7,6 +7,7 @@ import Recommendation from '../components/Recommendation'
 import Project from '../components/Project'
 import SkillSet from '../components/SkillSet'
 import socials from '../utils/socials'
+import Publication from '../components/Publication'
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
         <Intro />
         <Recommendation />
         <Project />
+        <Publication />
         <SkillSet />
       </main>
     </div>

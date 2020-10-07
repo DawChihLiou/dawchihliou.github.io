@@ -17,7 +17,7 @@
 
 .list {
   max-width: 720px;
-  margin-top: 3rem;
+  margin-top: 0rem;
 }
 
 @media (max-width: 768px) {
@@ -36,15 +36,6 @@
 
 .item:not(:last-child) {
   margin-bottom: 1.5rem;
-}
-
-.itemImage {
-  margin-right: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.itemImage img {
-  width: 48px;
 }
 
 .itemDescription {
@@ -78,14 +69,6 @@
 }
 
 @media (max-width: 768px) {
-  .itemImage {
-    margin-right: 0;
-  }
-
-  .itemImage img {
-    width: 78px;
-  }
-
   .itemDescription {
     flex-basis: 100%;
   }
