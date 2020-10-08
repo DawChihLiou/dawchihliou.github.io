@@ -5,7 +5,7 @@ import '../styles/globals.css'
 import Head from 'next/head'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
-import 'prism-themes/themes/prism-material-oceanic.css'
+import 'prism-themes/themes/prism-vsc-dark-plus.css'
 import socials from '../utils/socials'
 
 function MyApp({ Component, pageProps }) {
