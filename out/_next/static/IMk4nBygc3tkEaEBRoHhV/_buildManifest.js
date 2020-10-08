@@ -3,8 +3,8 @@ self.__BUILD_MANIFEST = (function (a, b) {
     __rewrites: [],
     '/': [
       'static\u002Fchunks\u002F6728d85a.9e304be1e48fe7115321.js',
-      'static\u002Fcss\u002Fe6c284a68958c125de3e.css',
-      'static\u002Fchunks\u002Fpages\u002Findex-fd7049510d6a54187b03.js',
+      'static\u002Fcss\u002F4b8c591079892c45e919.css',
+      'static\u002Fchunks\u002Fpages\u002Findex-a7dd8dbcbc0c4430eeeb.js',
     ],
     '/_error': [
       'static\u002Fchunks\u002Fpages\u002F_error-912df90ed040036b79b4.js',
