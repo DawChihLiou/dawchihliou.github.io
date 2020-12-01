@@ -76,11 +76,17 @@ pre {
   border-radius: 0.25rem;
 }
 
-code {
+:not(pre) > code {
   color: var(--text-primary-color);
-  background: var(--divider-color);
+  background: #f1f1f1;
   border-radius: 0.25rem;
   padding: 0 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(pre) > code {
+    background: #1e1e1e;
+  }
 }
 
 blockquote {
@@ -92,12 +98,6 @@ blockquote {
 hr {
   margin: 2rem 0;
   border-color: var(--divider-color);
-}
-
-@media (prefers-color-scheme: dark) {
-  code {
-    background: #1e1e1e;
-  }
 }
 
 svg text {

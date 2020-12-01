@@ -10,3 +10,15 @@
   max-width: 720px;
   margin: 0 auto;
 }
+
+.wrap > h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+
+@media (max-width: 576px) {
+  .wrap > h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
