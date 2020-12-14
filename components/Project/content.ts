@@ -4,7 +4,7 @@ export default [
     description:
       'reat-use-pip is React hook library for Picture in Picture. It seamlessly detects browser support and provides flexible APIs for developers to have full control over Picture in Picture feature.',
     image: '/optimized/logo-react-use-pip.svg',
-    darkmodeImage: '/optimized/logo-react-use-pip-dark.svg',
+    darkmodeImage: '/optimized/logo-react-use-pip.svg',
     link: 'https://dawchihliou.github.io/react-use-pip/',
   },
   {

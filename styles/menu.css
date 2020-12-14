@@ -58,6 +58,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Wrapper for item list */
 .bm-item-list {
   color: var(--text-primary-color);
+  display: flex;
+  flex-direction: column;
 }
 
 .bm-item-list a {
@@ -67,6 +69,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
+}
+
+.bm-item:first-of-type {
+  flex-grow: 1;
 }
 
 /* Styling of overlay */

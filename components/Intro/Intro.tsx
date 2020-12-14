@@ -59,7 +59,7 @@ export default function Intro() {
           rel="noreferrer"
           aria-label="Link to Daw-Chih's Linkedin profile"
         >
-          <GrLinkedin size="1.25em" />
+          <GrLinkedin size="1.5em" />
           <span hidden>Link to Daw-Chih's Linkedin profile</span>
         </a>
         <a
@@ -68,7 +68,7 @@ export default function Intro() {
           rel="noreferrer"
           aria-label="Link to Daw-Chih's GitHub profile"
         >
-          <GrGithub size="1.25em" />
+          <GrGithub size="1.5em" />
           <span hidden>Link to Daw-Chih's GitHub profile</span>
         </a>
         <a
@@ -77,7 +77,7 @@ export default function Intro() {
           rel="noreferrer"
           aria-label="Link to Daw-Chih's Medium profile"
         >
-          <GrMedium size="1.25em" />
+          <GrMedium size="1.5em" />
           <span hidden>Link to Daw-Chih's Medium profile</span>
         </a>
         <a
@@ -86,7 +86,7 @@ export default function Intro() {
           rel="noreferrer"
           aria-label="Link to Daw-Chih's Twitter"
         >
-          <GrTwitter size="1.25em" />
+          <GrTwitter size="1.5em" />
           <span hidden>Link to Daw-Chih's Twitter</span>
         </a>
       </div>

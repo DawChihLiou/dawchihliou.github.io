@@ -2,3 +2,20 @@
   display: block;
   margin-bottom: 1rem;
 }
+
+.iconLink > * {
+  vertical-align: middle;
+}
+
+.iconLink > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.profile {
+  display: flex;
+}
+
+.profile > *:not(:last-child) {
+  margin-right: 1rem;
+}
