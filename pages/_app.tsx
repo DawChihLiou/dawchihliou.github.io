@@ -8,6 +8,7 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import socials from '../utils/socials'
+import Menubar from '../components/Menubar'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -35,6 +36,7 @@ function MyApp({ Component, pageProps }) {
 
       <div id="outer-container">
         <Nav />
+        <Menubar />
         <div id="page-wrap">
           <Component {...pageProps} />
           <Footer />

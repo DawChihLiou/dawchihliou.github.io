@@ -22,30 +22,31 @@ export default function Articles() {
             </a>
           </p>
         </div>
-
-        {articles.map((article) => (
-          <section className={styles.grid} key={article.url}>
-            <div className={styles.date}>
-              <p>{article.date}</p>
-            </div>
-            <article className={styles.description}>
-              <p className={styles.category}>{article.category}</p>
-              <Link href={article.url}>{article.title}</Link>
-              <p>{article.description}</p>
-              <div>
-                <img
-                  src={article.avatar}
-                  alt={article.author}
-                  className={styles.avatar}
-                  loading="lazy"
-                />
-                <a href={article.social} className={styles.author}>
-                  <span>{article.author}</span>
-                </a>
+        <div className={styles.articles}>
+          {articles.map((article) => (
+            <section className={styles.grid} key={article.url}>
+              <div className={styles.date}>
+                <p>{article.date}</p>
               </div>
-            </article>
-          </section>
-        ))}
+              <article className={styles.description}>
+                <p className={styles.category}>{article.category}</p>
+                <Link href={article.url}>{article.title}</Link>
+                <p>{article.description}</p>
+                <div>
+                  <img
+                    src={article.avatar}
+                    alt={article.author}
+                    className={styles.avatar}
+                    loading="lazy"
+                  />
+                  <a href={article.social} className={styles.author}>
+                    <span>{article.author}</span>
+                  </a>
+                </div>
+              </article>
+            </section>
+          ))}
+        </div>
       </main>
     </div>
   )
