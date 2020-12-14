@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { FiMoon, FiSun, FiToggleLeft } from 'react-icons/fi'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import styles from './DarkmodeSwitch.module.css'
 
 type ColorScheme = 'auto' | 'light' | 'dark' | null
 
@@ -88,17 +90,55 @@ const DarkmodeSwitch: React.FC = () => {
   }, [])
 
   return (
-    <>
-      {scheme === 'auto' && (
-        <FiToggleLeft size="1.5em" onClick={setColorScheme('light')} />
-      )}
-      {scheme === 'light' && (
-        <FiSun size="1.5em" onClick={setColorScheme('dark')} />
-      )}
-      {scheme === 'dark' && (
-        <FiMoon size="1.5em" onClick={setColorScheme('auto')} />
-      )}
-    </>
+    <div className={styles.wrap}>
+      <TransitionGroup component={null}>
+        {scheme === 'auto' && (
+          <CSSTransition
+            timeout={250}
+            classNames={{
+              enter: styles['button-enter'],
+              enterActive: styles['button-enter-active'],
+              exit: styles['button-exit'],
+              exitActive: styles['button-exit-active'],
+            }}
+          >
+            <FiToggleLeft
+              onClick={setColorScheme('light')}
+              className={styles.button}
+            />
+          </CSSTransition>
+        )}
+        {scheme === 'light' && (
+          <CSSTransition
+            timeout={250}
+            classNames={{
+              enter: styles['button-enter'],
+              enterActive: styles['button-enter-active'],
+              exit: styles['button-exit'],
+              exitActive: styles['button-exit-active'],
+            }}
+          >
+            <FiSun onClick={setColorScheme('dark')} className={styles.button} />
+          </CSSTransition>
+        )}
+        {scheme === 'dark' && (
+          <CSSTransition
+            timeout={250}
+            classNames={{
+              enter: styles['button-enter'],
+              enterActive: styles['button-enter-active'],
+              exit: styles['button-exit'],
+              exitActive: styles['button-exit-active'],
+            }}
+          >
+            <FiMoon
+              onClick={setColorScheme('auto')}
+              className={styles.button}
+            />
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+    </div>
   )
 }
 

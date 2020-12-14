@@ -48,17 +48,15 @@
   box-shadow: 0px 4px 8px var(--shadow-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  .card {
-    background-color: var(--background-paper-color);
-    transition: background-color 0.15s ease, box-shadow 0.15s ease;
-  }
+body.dark .card {
+  background-color: var(--background-paper-color);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
 
-  .card:hover,
-  .card:focus,
-  .card:active {
-    background-color: var(--background-elevated-color);
-  }
+.card:hover,
+.card:focus,
+.card:active {
+  background-color: var(--background-elevated-color);
 }
 
 .card:last-child {
