@@ -9,7 +9,7 @@
 .main {
   width: 100%;
   max-width: 720px;
-  padding: 2rem 1rem 1rem;
+  padding: 1rem 1rem;
   margin: 0 auto;
   flex: 1;
   display: flex;
@@ -24,15 +24,20 @@
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.25rem;
-  transform: translateY(-1rem);
+  transform: translateY(-4rem);
 }
 
-@media (max-width: 576px) {
-  .main {
-    padding: 3.5rem 1rem 1rem;
+.articles {
+  transform: translateY(-2rem);
+}
+
+@media (max-width: 768px) {
+  .banner {
+    transform: translateY(0);
+    margin-bottom: 1rem;
   }
 
-  .banner {
+  .articles {
     transform: translateY(0);
   }
 }

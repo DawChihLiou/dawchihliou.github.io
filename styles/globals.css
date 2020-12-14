@@ -1,4 +1,4 @@
-:root {
+body {
   /* palette */
   --text-primary-color: #000000;
   --text-secondary-color: rgba(0, 0, 0, 0.54);
@@ -22,25 +22,23 @@
   --viewport-xl: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
+body.dark {
   /* palette */
-  :root {
-    --text-primary-color: #ffffff;
-    --text-secondary-color: rgba(255, 255, 255, 0.7);
-    --text-disabled-color: rgba(255, 255, 255, 0.5);
-    --text-invert-color: #000000;
-    --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
-    --background-default-color: #121212;
-    --background-paper-color: #262626;
-    --background-elevated-color: #303030;
-    --divider-color: rgba(255, 255, 255, 0.12);
-    --action-active-color: #fff;
-    --action-hover-color: rgba(255, 255, 255, 0.08);
-    --action-selected-color: rgba(255, 255, 255, 0.16);
-    --action-disabled-color: rgba(255, 255, 255, 0.3);
-    --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
-    --shadow-color: #000000;
-  }
+  --text-primary-color: #ffffff;
+  --text-secondary-color: rgba(255, 255, 255, 0.7);
+  --text-disabled-color: rgba(255, 255, 255, 0.5);
+  --text-invert-color: #000000;
+  --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
+  --background-default-color: #121212;
+  --background-paper-color: #262626;
+  --background-elevated-color: #303030;
+  --divider-color: rgba(255, 255, 255, 0.12);
+  --action-active-color: #fff;
+  --action-hover-color: rgba(255, 255, 255, 0.08);
+  --action-selected-color: rgba(255, 255, 255, 0.16);
+  --action-disabled-color: rgba(255, 255, 255, 0.3);
+  --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
+  --shadow-color: #000000;
 }
 
 html,
@@ -83,10 +81,8 @@ pre {
   padding: 0 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :not(pre) > code {
-    background: #1e1e1e;
-  }
+body.dark :not(pre) > code {
+  background: #1e1e1e;
 }
 
 blockquote {
@@ -107,11 +103,9 @@ svg rect {
   stroke: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  svg text {
-    fill: #ffffff;
-  }
-  svg rect {
-    stroke: #ffffff;
-  }
+body.dark svg text {
+  fill: #ffffff;
+}
+body.dark svg rect {
+  stroke: #ffffff;
 }

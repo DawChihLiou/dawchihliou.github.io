@@ -7,7 +7,7 @@
 }
 
 .main {
-  padding: 5rem 1rem 1rem;
+  padding: 1rem 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,6 @@
 
 @media (max-width: 768px) {
   .main {
-    padding-top: 4rem;
+    padding-top: 0rem;
   }
 }
