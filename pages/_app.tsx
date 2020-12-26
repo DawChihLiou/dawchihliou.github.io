@@ -9,10 +9,11 @@ import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import socials from '../utils/socials'
 import Menubar from '../components/Menubar'
+import SchemeProvider from '../components/SchemeProvider'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <SchemeProvider>
       <Head>
         <link
           rel="apple-touch-icon"
@@ -42,7 +43,7 @@ function MyApp({ Component, pageProps }) {
           <Footer />
         </div>
       </div>
-    </>
+    </SchemeProvider>
   )
 }
 
