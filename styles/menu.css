@@ -46,7 +46,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   background: var(--background-paper-color);
-  padding: 4em 1.5em 0;
+  padding: 4rem 1.5rem 2rem;
   font-size: 1.15em;
 }
 

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { push as Menu } from 'react-burger-menu'
 import { FiMenu, FiX } from 'react-icons/fi'
 import styles from './Nav.module.css'
 import socials from '../../utils/socials'
 import { GrLinkedin, GrGithub, GrMedium, GrTwitter } from 'react-icons/gr'
+import DarkmodeSwitch from '../DarkmodeSwitch'
+import Link from 'next/link'
 
 export default function Nav() {
+  const [isMenuOpen, openMenu] = useState(false)
+  const closeMenu = () => openMenu(false)
+  const onMenuStateChange = ({ isOpen }) => openMenu(isOpen)
+
   return (
     <header className={styles.header}>
       <Menu
@@ -14,11 +20,21 @@ export default function Nav() {
         customBurgerIcon={<FiMenu />}
         customCrossIcon={<FiX />}
         disableAutoFocus
+        isOpen={isMenuOpen}
+        onStateChange={onMenuStateChange}
       >
         <section>
-          <a href="/">Home</a>
-          <a href="/now">Now</a>
-          <a href="/articles">Articles</a>
+          <div className={styles.links}>
+            <Link href="/">
+              <span onClick={closeMenu}>Home</span>
+            </Link>
+            <Link href="/now">
+              <span onClick={closeMenu}>Now</span>
+            </Link>
+            <Link href="/articles">
+              <span onClick={closeMenu}>Articles</span>
+            </Link>
+          </div>
         </section>
         <section>
           <div className={styles.profile}>
@@ -58,6 +74,11 @@ export default function Nav() {
             >
               <GrTwitter />
             </a>
+          </div>
+        </section>
+        <section>
+          <div className={styles.darkmode}>
+            <DarkmodeSwitch showLabel />
           </div>
         </section>
       </Menu>

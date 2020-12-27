@@ -1,3 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.container > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
 .wrap {
   position: relative;
   width: 1.5rem;

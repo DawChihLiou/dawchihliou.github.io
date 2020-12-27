@@ -1,6 +1,8 @@
-.header a {
+.links a,
+.links span {
   display: block;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .iconLink > * {
@@ -14,6 +16,10 @@
 
 .profile {
   display: flex;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px var(--divider-color) solid;
 }
 
 .profile > *:not(:last-child) {
