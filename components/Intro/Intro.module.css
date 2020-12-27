@@ -27,7 +27,7 @@
 .socials a {
   color: var(--text-primary-color);
   transition: color 0.15s ease;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .socials a:last-child {

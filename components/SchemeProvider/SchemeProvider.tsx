@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 
-type ColorScheme = 'auto' | 'light' | 'dark'
+export type ColorScheme = 'auto' | 'light' | 'dark'
 
 type SchemeContextType = {
   scheme: ColorScheme
