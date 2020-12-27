@@ -46,7 +46,7 @@
 .card:focus,
 .card:active {
   box-shadow: 0px 4px 8px var(--shadow-color);
-  background-color: var(--background-paper-color);
+  background-color: var(--background-elevated-color);
 }
 
 .card:last-child {
