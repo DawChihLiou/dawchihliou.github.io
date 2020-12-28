@@ -37,6 +37,7 @@ export default function Nav() {
           </div>
         </section>
         <section>
+          <span className={styles.divider} />
           <div className={styles.profile}>
             <a
               href={socials.linkedin}
@@ -75,11 +76,7 @@ export default function Nav() {
               <GrTwitter />
             </a>
           </div>
-        </section>
-        <section>
-          <div className={styles.darkmode}>
-            <DarkmodeSwitch showLabel />
-          </div>
+          <DarkmodeSwitch showLabel />
         </section>
       </Menu>
     </header>

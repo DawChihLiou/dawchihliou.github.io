@@ -16,10 +16,15 @@
 
 .profile {
   display: flex;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  display: block;
+  height: 1px;
+  background-color: var(--divider-color);
+  margin-top: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 1px var(--divider-color) solid;
 }
 
 .profile > *:not(:last-child) {
