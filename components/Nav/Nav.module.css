@@ -1,8 +1,18 @@
-.links a,
-.links span {
+.link {
   display: block;
   margin-bottom: 1rem;
   cursor: pointer;
+  background-color: initial;
+  border: initial;
+  padding: initial;
+  text-align: initial;
+  font-size: initial;
+  font-family: unset;
+  color: var(--text-primary-color);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .iconLink > * {
@@ -12,6 +22,10 @@
 .iconLink > svg {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.pusher {
+  flex-grow: 1;
 }
 
 .profile {

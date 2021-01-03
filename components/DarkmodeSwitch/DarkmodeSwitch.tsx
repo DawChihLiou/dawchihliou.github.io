@@ -22,9 +22,19 @@ const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({ showLabel }) => {
     const updateScheme = setScheme(preference)
     updateScheme()
   }
+  const keypress: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === 'Enter') {
+      switchScheme()
+    }
+  }
 
   return (
-    <div className={styles.container} onClick={switchScheme}>
+    <div
+      className={styles.container}
+      onClick={switchScheme}
+      onKeyPress={keypress}
+      tabIndex={0}
+    >
       <div className={styles.wrap}>
         <TransitionGroup component={null}>
           {scheme === 'auto' && (

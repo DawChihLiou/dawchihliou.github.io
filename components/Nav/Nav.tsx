@@ -23,61 +23,74 @@ export default function Nav() {
         isOpen={isMenuOpen}
         onStateChange={onMenuStateChange}
       >
-        <section>
-          <div className={styles.links}>
-            <Link href="/">
-              <span onClick={closeMenu}>Home</span>
-            </Link>
-            <Link href="/now">
-              <span onClick={closeMenu}>Now</span>
-            </Link>
-            <Link href="/articles">
-              <span onClick={closeMenu}>Articles</span>
-            </Link>
-          </div>
-        </section>
-        <section>
-          <span className={styles.divider} />
-          <div className={styles.profile}>
-            <a
-              href={socials.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Link to Daw-Chih's Linkedin profile"
-              className={styles.iconLink}
-            >
-              <GrLinkedin />
-            </a>
-            <a
-              href={socials.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Link to Daw-Chih's GitHub profile"
-              className={styles.iconLink}
-            >
-              <GrGithub />
-            </a>
-            <a
-              href={socials.medium}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Link to Daw-Chih's Medium profile"
-              className={styles.iconLink}
-            >
-              <GrMedium />
-            </a>
-            <a
-              href={socials.twitter}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Link to Daw-Chih's Twitter"
-              className={styles.iconLink}
-            >
-              <GrTwitter />
-            </a>
-          </div>
-          <DarkmodeSwitch showLabel />
-        </section>
+        <Link href="/">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Home
+          </button>
+        </Link>
+        <Link href="/now">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Now
+          </button>
+        </Link>
+        <Link href="/articles">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Articles
+          </button>
+        </Link>
+        <span className={styles.pusher} />
+        <span className={styles.divider} />
+        <div className={styles.profile}>
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Daw-Chih's Linkedin profile"
+            className={styles.iconLink}
+          >
+            <GrLinkedin />
+          </a>
+          <a
+            href={socials.github}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Daw-Chih's GitHub profile"
+            className={styles.iconLink}
+          >
+            <GrGithub />
+          </a>
+          <a
+            href={socials.medium}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Daw-Chih's Medium profile"
+            className={styles.iconLink}
+          >
+            <GrMedium />
+          </a>
+          <a
+            href={socials.twitter}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Link to Daw-Chih's Twitter"
+            className={styles.iconLink}
+          >
+            <GrTwitter />
+          </a>
+        </div>
+        <DarkmodeSwitch showLabel />
       </Menu>
     </header>
   )
