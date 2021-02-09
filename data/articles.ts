@@ -7,6 +7,21 @@ const category = {
 
 export default [
   {
+    date: 'February 9, 2021',
+    publisher: 'trivago',
+    title: 'Rethinking the Next-gen Analytics Web App at trivago',
+    description:
+      "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
+    url:
+      'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
+    cover:
+      'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
+    category: '',
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+  },
+  {
     date: 'Octobor 6, 2020',
     publisher: '',
     title: 'Using WebP for Better User Experience',
