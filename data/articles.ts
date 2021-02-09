@@ -20,6 +20,7 @@ export default [
     author: 'Daw-Chih Liou',
     avatar: '/optimized/portrait-sm.png',
     social: socials.github,
+    external: true,
   },
   {
     date: 'Octobor 6, 2020',
@@ -33,6 +34,7 @@ export default [
     author: 'Daw-Chih Liou',
     avatar: '/optimized/portrait-sm.png',
     social: socials.github,
+    external: false,
   },
   {
     date: 'September 29, 2020',
@@ -46,5 +48,6 @@ export default [
     author: 'Daw-Chih Liou',
     avatar: '/optimized/portrait-sm.png',
     social: socials.github,
+    external: false,
   },
 ]

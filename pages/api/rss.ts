@@ -47,7 +47,9 @@ export default function (req: NextApiRequest, res: NextApiResponse) {
   const items = articles.map((article) => ({
     title: article.title,
     description: article.description,
-    url: `https://dawchihliou.github.io${article.url}`, // link to the item
+    url: article.external
+      ? article.url
+      : `https://dawchihliou.github.io${article.url}`, // link to the item
     categories: [article.category], // optional - array of item categories
     author: article.author, // optional - defaults to feed author property
     date: article.date, // any format that js Date can parse.
