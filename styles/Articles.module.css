@@ -67,6 +67,25 @@
   color: var(--text-secondary-color);
 }
 
+.grid .description .caption {
+  font-size: 0.9rem;
+  color: var(--text-secondary-color);
+  margin-top: 1rem;
+  display: block;
+  font-weight: normal;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.grid .description .caption:hover > span,
+.grid .description .caption:active > span {
+  color: rgba(0, 124, 240, 1);
+}
+
+.grid .description .caption > span {
+  text-decoration: underline;
+}
+
 @media (max-width: 576px) {
   .grid {
     flex-direction: column;

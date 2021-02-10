@@ -73,6 +73,23 @@
   text-decoration: none;
 }
 
+.item .caption {
+  font-size: 0.9rem;
+  display: block;
+  color: var(--text-secondary-color);
+  margin-top: 0.5rem;
+  width: fit-content;
+}
+
+.item .caption:active > span,
+.item .caption:hover > span {
+  color: rgba(0, 124, 240, 1);
+}
+
+.item .caption > span {
+  text-decoration: underline;
+}
+
 .link {
   width: 100%;
   margin-top: 1rem;

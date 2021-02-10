@@ -1,12 +1,9 @@
 import React from 'react'
 import styles from './Publication.module.css'
 import articles from '../../data/articles'
-import content from './content'
+import Link from 'next/link'
 
-const publication = [
-  ...articles.filter((a) => a.url !== '/articles/helloworld'),
-  ...content,
-]
+const publication = articles.filter((a) => a.url !== '/articles/helloworld')
 
 export default function Publication() {
   return (
@@ -28,6 +25,17 @@ export default function Publication() {
             <a href={article.url} target="_blank" rel="noreferrer">
               <div className={styles.itemDescription}>
                 <h2>{article.title}</h2>
+                {article.external && (
+                  <a
+                    href={article.publisherUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.caption}
+                  >
+                    {'Published on '}
+                    <span>{article.publisher}</span>
+                  </a>
+                )}
                 <p>{article.description}</p>
               </div>
             </a>

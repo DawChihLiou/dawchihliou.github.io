@@ -30,7 +30,25 @@ export default function Articles() {
               </div>
               <article className={styles.description}>
                 <p className={styles.category}>{article.category}</p>
-                <Link href={article.url}>{article.title}</Link>
+                {article.external && (
+                  <a href={article.url} target="_blank" rel="noreferrer">
+                    {article.title}
+                  </a>
+                )}
+                {!article.external && (
+                  <Link href={article.url}>{article.title}</Link>
+                )}
+                {article.external && (
+                  <a
+                    href={article.publisherUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.caption}
+                  >
+                    {'Published on '}
+                    <span>{article.publisher}</span>
+                  </a>
+                )}
                 <p>{article.description}</p>
                 <div>
                   <img
