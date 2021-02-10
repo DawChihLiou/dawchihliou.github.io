@@ -21,7 +21,7 @@ export default [
       'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
     cover:
       'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
-    category: '',
+    category: category.frontend,
     author: 'Daw-Chih Liou',
     avatar: '/optimized/portrait-sm.png',
     social: socials.github,
