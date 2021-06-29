@@ -32,7 +32,7 @@
     "next": "^10.0.4",
     "normalize.css": "^8.0.1",
     "prism-themes": "^1.4.0",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.24.0",
     "react": "16.13.1",
     "react-burger-menu": "^2.7.1",
     "react-dom": "16.13.1",
