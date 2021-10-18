@@ -24,7 +24,7 @@ export default function Home() {
         <meta property="og:image:height" content="682" />
         <meta property="og:image:alt" content={socials.description} />
         {/* Google Search Console */}
-        <meta name="google-site-verification" content="k5veWTFe8ABdPKe4gkmiY9sTEJdkRtXmS7mL1tfVtVg" />
+        <meta name="google-site-verification" content="XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8" />
       </Head>
 
       <main className={styles.main}>
