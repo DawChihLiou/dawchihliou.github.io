@@ -34,9 +34,9 @@
         i = n.n(a),
         u = n('UKBM'),
         c = n.n(u),
-        s = n('PZRn'),
-        p = n('JRT3'),
-        f = n.n(p),
+        p = n('PZRn'),
+        s = n('JRT3'),
+        f = n.n(s),
         l = o.a.createElement
       function d() {
         return l(
@@ -53,14 +53,10 @@
             null,
             l(
               'a',
-              { href: s.a.home, className: f.a.author },
+              { href: p.a.home, className: f.a.author },
               l('span', null, 'Daw-Chih Liou')
             ),
-            l(
-              'p',
-              null,
-              'Daw-Chih is a software engineer, UX advocate, and mentor who is dedicated to Web engineering. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.'
-            )
+            l('p', null, p.a.description)
           )
         )
       }
@@ -71,8 +67,8 @@
           r = e.description,
           a = e.url,
           u = void 0 === a ? '' : a,
-          p = e.cover,
-          f = void 0 === p ? '' : p,
+          s = e.cover,
+          f = void 0 === s ? '' : s,
           l = e.coverWidth,
           h = void 0 === l ? '' : l,
           y = e.coverHeight,
@@ -92,7 +88,7 @@
             m('meta', { property: 'og:description', content: r }),
             m('meta', {
               property: 'og:image',
-              content: ''.concat(s.a.home).concat(f),
+              content: ''.concat(p.a.home).concat(f),
             }),
             m('meta', { property: 'og:image:type', content: 'image/png' }),
             m('meta', { property: 'og:image:width', content: h }),
@@ -199,9 +195,9 @@
         }
         return o
       }
-      var s = o.a.createContext({}),
-        p = function (e) {
-          var t = o.a.useContext(s),
+      var p = o.a.createContext({}),
+        s = function (e) {
+          var t = o.a.useContext(p),
             n = t
           return e && (n = 'function' === typeof e ? e(t) : u(u({}, t), e)), n
         },
@@ -217,13 +213,13 @@
             r = e.mdxType,
             a = e.originalType,
             i = e.parentName,
-            s = c(e, ['components', 'mdxType', 'originalType', 'parentName']),
-            l = p(n),
+            p = c(e, ['components', 'mdxType', 'originalType', 'parentName']),
+            l = s(n),
             d = r,
             m = l[''.concat(i, '.').concat(d)] || l[d] || f[d] || a
           return n
-            ? o.a.createElement(m, u(u({ ref: t }, s), {}, { components: n }))
-            : o.a.createElement(m, u({ ref: t }, s))
+            ? o.a.createElement(m, u(u({ ref: t }, p), {}, { components: n }))
+            : o.a.createElement(m, u({ ref: t }, p))
         })
       function d(e, t) {
         var n = arguments,
@@ -237,7 +233,7 @@
           ;(u.originalType = e),
             (u.mdxType = 'string' === typeof e ? e : r),
             (i[1] = u)
-          for (var s = 2; s < a; s++) i[s] = n[s]
+          for (var p = 2; p < a; p++) i[p] = n[p]
           return o.a.createElement.apply(null, i)
         }
         return o.a.createElement.apply(null, n)
@@ -247,13 +243,13 @@
     '8Kt/': function (e, t, n) {
       'use strict'
       n('lSNA')
-      ;(t.__esModule = !0), (t.defaultHead = p), (t.default = void 0)
+      ;(t.__esModule = !0), (t.defaultHead = s), (t.default = void 0)
       var r,
         o = (function (e) {
           if (e && e.__esModule) return e
           if (null === e || ('object' !== typeof e && 'function' !== typeof e))
             return { default: e }
-          var t = s()
+          var t = p()
           if (t && t.has(e)) return t.get(e)
           var n = {},
             r = Object.defineProperty && Object.getOwnPropertyDescriptor
@@ -271,17 +267,17 @@
         i = n('lwAK'),
         u = n('FYa8'),
         c = n('/0+H')
-      function s() {
+      function p() {
         if ('function' !== typeof WeakMap) return null
         var e = new WeakMap()
         return (
-          (s = function () {
+          (p = function () {
             return e
           }),
           e
         )
       }
-      function p() {
+      function s() {
         var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
           t = [o.default.createElement('meta', { charSet: 'utf-8' })]
         return (
@@ -321,7 +317,7 @@
           }, [])
           .reduce(f, [])
           .reverse()
-          .concat(p(t.inAmpMode))
+          .concat(s(t.inAmpMode))
           .filter(
             (function () {
               var e = new Set(),
@@ -345,13 +341,13 @@
                     break
                   case 'meta':
                     for (var u = 0, c = l.length; u < c; u++) {
-                      var s = l[u]
-                      if (o.props.hasOwnProperty(s))
-                        if ('charSet' === s) n.has(s) ? (a = !1) : n.add(s)
+                      var p = l[u]
+                      if (o.props.hasOwnProperty(p))
+                        if ('charSet' === p) n.has(p) ? (a = !1) : n.add(p)
                         else {
-                          var p = o.props[s],
-                            f = r[s] || new Set()
-                          f.has(p) ? (a = !1) : (f.add(p), (r[s] = f))
+                          var s = o.props[p],
+                            f = r[p] || new Set()
+                          f.has(s) ? (a = !1) : (f.add(s), (r[p] = f))
                         }
                     }
                 }
@@ -534,7 +530,7 @@
         i = (n('PJYZ'), n('7W2i')),
         u = n('a1gu'),
         c = n('Nsbk')
-      function s(e) {
+      function p(e) {
         var t = (function () {
           if ('undefined' === typeof Reflect || !Reflect.construct) return !1
           if (Reflect.construct.sham) return !1
@@ -561,10 +557,10 @@
         }
       }
       ;(t.__esModule = !0), (t.default = void 0)
-      var p = n('q1tI'),
+      var s = n('q1tI'),
         f = (function (e) {
           i(n, e)
-          var t = s(n)
+          var t = p(n)
           function n(e) {
             var a
             return (
@@ -617,7 +613,7 @@
             ]),
             n
           )
-        })(p.Component)
+        })(s.Component)
       t.default = f
     },
     ZhPi: function (e, t, n) {

@@ -3,7 +3,7 @@ self.__BUILD_MANIFEST = (function (a, b) {
     __rewrites: [],
     '/': [
       'static\u002Fcss\u002Fb4cc1628f83dad092e97.css',
-      'static\u002Fchunks\u002Fpages\u002Findex-6761837abebd598415a4.js',
+      'static\u002Fchunks\u002Fpages\u002Findex-c3d1cdb1a4b6787fc41f.js',
     ],
     '/_error': [
       'static\u002Fchunks\u002Fpages\u002F_error-248d1e501582d3552680.js',
@@ -38,7 +38,7 @@ self.__BUILD_MANIFEST = (function (a, b) {
     ],
   }
 })(
-  'static\u002Fchunks\u002F697f24083cfa071b905bd4b9c5b19f913ba04b05.e34633f5e6be0fa369d1.js',
+  'static\u002Fchunks\u002F697f24083cfa071b905bd4b9c5b19f913ba04b05.164f73fdee6f33a39886.js',
   'static\u002Fcss\u002F59cd598cb5db9239b5a9.css'
 )
 self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
