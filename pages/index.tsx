@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        {/*  Open Graph */}
+        {/* Open Graph */}
         <meta property="og:title" content="Daw-Chih Liou's Portfolio" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={socials.home} />
@@ -23,6 +23,8 @@ export default function Home() {
         <meta property="og:image:width" content="1411" />
         <meta property="og:image:height" content="682" />
         <meta property="og:image:alt" content={socials.description} />
+        {/* Google Search Console */}
+        <meta name="google-site-verification" content="k5veWTFe8ABdPKe4gkmiY9sTEJdkRtXmS7mL1tfVtVg" />
       </Head>
 
       <main className={styles.main}>
