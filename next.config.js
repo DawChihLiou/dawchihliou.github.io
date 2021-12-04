@@ -17,6 +17,9 @@ module.exports = withMDX({
   // for mdx support
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 
+  // opt-in to SWC's JavaScript minification instead of Terser
+  swcMinify: true,
+
   webpack: function (config, options) {
     config.module.rules.push({
       test: /\.md$/,
