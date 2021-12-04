@@ -15,12 +15,7 @@ export default function Author() {
         <a href={socials.home} className={styles.author}>
           <span>Daw-Chih Liou</span>
         </a>
-        <p>
-          Daw-Chih is a software engineer, UX advocate, and mentor who is
-          dedicated to Web engineering. He is passionate about meeting business
-          trajectory with user journey and utilizing engineering architecture
-          and performance monitoring to provide optimal user experience.
-        </p>
+        <p>{socials.description}</p>
       </div>
     </article>
   )
