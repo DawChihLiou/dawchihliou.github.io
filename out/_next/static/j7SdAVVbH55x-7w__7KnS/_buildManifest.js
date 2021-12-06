@@ -4,12 +4,12 @@ var a
   '/': [
     'static/chunks/291-901598fc36df641b.js',
     'static/css/da247c7d8e3ea519.css',
-    'static/chunks/pages/index-44a34e5c92d91918.js',
+    'static/chunks/pages/index-21dfc28336f55bbc.js',
   ],
   '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
   '/articles': [
     'static/css/5be9574e015a7040.css',
-    'static/chunks/pages/articles-f4ef49ada4d47bd7.js',
+    'static/chunks/pages/articles-a703f61bdbd02b12.js',
   ],
   '/articles/helloworld': [
     (a = 'static/css/7787e07ad0df5e53.css'),

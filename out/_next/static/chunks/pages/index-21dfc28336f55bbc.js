@@ -19,7 +19,7 @@
           title: 'Writing Your Own TypeScript CLI',
           description:
             "Writing CLIs feels like a super power💯 You can write one too! I'll show you how to develop a CLI with TypeScript step by step and demonstrate how you can apply your CLI in CD/CI pipelines. We're going to uncover the power of Google Lighthouse and many more amazing npm packages!",
-          url: 'articles/writing-your-own-typescript-cli',
+          url: '/articles/writing-your-own-typescript-cli',
           cover: 'optimized/writing-your-own-cli.png',
           category: 'TypeScript',
           author: 'Daw-Chih Liou',
