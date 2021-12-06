@@ -29,7 +29,7 @@
     "@next/mdx": "^12.0.5",
     "@types/react-transition-group": "^4.4.0",
     "clsx": "^1.1.1",
-    "next": "^12.0.5",
+    "next": "^12.0.7",
     "normalize.css": "^8.0.1",
     "prism-themes": "^1.4.0",
     "prismjs": "^1.25.0",
