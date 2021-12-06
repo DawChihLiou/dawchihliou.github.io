@@ -12,6 +12,21 @@ const category = {
 
 export default [
   {
+    date: 'December 6, 2021',
+    publisher: '',
+    title: 'Writing Your Own TypeScript CLI',
+    description:
+      "Writing CLIs feels like a super power💯 You can write one too! I'll show you how to develop a CLI with TypeScript step by step and demonstrate how you can apply your CLI in CD/CI pipelines. We're going to uncover the power of Google Lighthouse and many more amazing npm packages!",
+    url: 'articles/writing-your-own-typescript-cli',
+    cover: 'optimized/writing-your-own-cli.png',
+    category: category.typescript,
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+    external: false,
+    publisherUrl: '',
+  },
+  {
     date: 'February 9, 2021',
     publisher: 'trivago tech blog',
     title: 'Rethinking the Next-gen Analytics Web App at trivago',
