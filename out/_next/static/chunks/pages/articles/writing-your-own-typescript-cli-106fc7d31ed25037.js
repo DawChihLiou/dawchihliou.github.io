@@ -423,49 +423,6 @@
             null,
             "Feel free to jump to the parts that you're interested in."
           ),
-          (0, d.kt)('hr', null),
-          (0, d.kt)(
-            'p',
-            null,
-            'This article will discuss one of the scripts in 🌈🌈🌈 ',
-            (0, d.kt)(
-              'strong',
-              { parentName: 'p' },
-              (0, d.kt)(
-                'a',
-                Object.assign(
-                  { parentName: 'strong' },
-                  { href: 'https://github.com/DawChihLiou/dx-scripts' }
-                ),
-                (0, d.kt)('inlineCode', { parentName: 'a' }, 'dx-scripts')
-              )
-            ),
-            '🌈🌈🌈'
-          ),
-          (0, d.kt)(
-            'p',
-            null,
-            "It's available on ",
-            (0, d.kt)(
-              'a',
-              Object.assign(
-                { parentName: 'p' },
-                { href: 'https://www.npmjs.com/package/dx-scripts' }
-              ),
-              'npm'
-            ),
-            '.\nI recently wrote the first script in the library and there are more to come!\nFeel free to install it and use it in your development workflow. Please give it a ⭐️ on ',
-            (0, d.kt)(
-              'a',
-              Object.assign(
-                { parentName: 'p' },
-                { href: 'https://github.com/DawChihLiou/dx-scripts' }
-              ),
-              'GitHub'
-            ),
-            ' if the scripts are useful:)'
-          ),
-          (0, d.kt)('hr', null),
           (0, d.kt)(
             'h2',
             Object.assign({}, { id: 'real-world-use-case' }),
@@ -515,7 +472,50 @@
               'Aggregating data and calculating the median scores'
             )
           ),
-          (0, d.kt)('p', null, "I hope you're excited🤩"),
+          (0, d.kt)('p', null, "I hope you're excited!"),
+          (0, d.kt)('hr', null),
+          (0, d.kt)(
+            'p',
+            null,
+            'This article will discuss one of the scripts in 🌈🌈🌈 ',
+            (0, d.kt)(
+              'strong',
+              { parentName: 'p' },
+              (0, d.kt)(
+                'a',
+                Object.assign(
+                  { parentName: 'strong' },
+                  { href: 'https://github.com/DawChihLiou/dx-scripts' }
+                ),
+                (0, d.kt)('inlineCode', { parentName: 'a' }, 'dx-scripts')
+              )
+            ),
+            '🌈🌈🌈'
+          ),
+          (0, d.kt)(
+            'p',
+            null,
+            "It's available on ",
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                { href: 'https://www.npmjs.com/package/dx-scripts' }
+              ),
+              'npm'
+            ),
+            '.\nI recently wrote the first script in the library and there are more to come!\nFeel free to install it and try it in your development workflow. Please give it a ⭐️ on ',
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                { href: 'https://github.com/DawChihLiou/dx-scripts' }
+              ),
+              'GitHub'
+            ),
+            ' if the scripts are useful:)'
+          ),
+          (0, d.kt)('hr', null),
           (0, d.kt)(
             'h2',
             Object.assign({}, { id: 'peaking-the-projects-file-structure' }),
@@ -3255,7 +3255,7 @@
             (0, d.kt)('inlineCode', { parentName: 'p' }, 'src/index.ts'),
             ' and try log something with ',
             (0, d.kt)('inlineCode', { parentName: 'p' }, 'draw()'),
-            ' to see the result🧑‍🎨'
+            ' to see the result.'
           ),
           (0, d.kt)(
             'pre',
@@ -5110,7 +5110,7 @@
               ),
               (0, d.kt)('inlineCode', { parentName: 'a' }, 'computeMedianRun')
             ),
-            ".\nLet's borrow it🙈"
+            ".\nLet's use it"
           ),
           (0, d.kt)(
             'pre',
@@ -6474,13 +6474,13 @@
           (0, d.kt)(
             'p',
             null,
-            "That's it! What a journey🧑‍🚀\nIt's amazing that you followed all the way through."
+            "That's it! What a journey‍.\nIt's amazing that you followed all the way through."
           ),
           (0, d.kt)('h2', Object.assign({}, { id: 'to-sum-up' }), 'To Sum up'),
           (0, d.kt)(
             'p',
             null,
-            "Writing a CLI is not too bad, right?😎\nLet's have a look at all the things we've covered:"
+            "Writing a CLI is not too hard, right?😎\nLet's have a look at all the things we've covered:"
           ),
           (0, d.kt)(
             'ul',
