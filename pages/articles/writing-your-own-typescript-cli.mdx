@@ -56,16 +56,6 @@ This article covers three major topics:
 
 Feel free to jump to the parts that you're interested in.
 
----
-
-This article will discuss one of the scripts in 🌈🌈🌈 **[`dx-scripts`](https://github.com/DawChihLiou/dx-scripts)**🌈🌈🌈
-
-It's available on [npm](https://www.npmjs.com/package/dx-scripts).
-I recently wrote the first script in the library and there are more to come!
-Feel free to install it and use it in your development workflow. Please give it a ⭐️ on [GitHub](https://github.com/DawChihLiou/dx-scripts) if the scripts are useful:)
-
----
-
 ## Real-world Use Case
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/) is one of the most popular dev tools to gain insight to webpage performances.
@@ -80,7 +70,17 @@ We'll be working on a CLI to implement this strategy in this article. The implem
 - Running multiple Lighthouse analyses
 - Aggregating data and calculating the median scores
 
-I hope you're excited🤩
+I hope you're excited!
+
+---
+
+This article will discuss one of the scripts in 🌈🌈🌈 **[`dx-scripts`](https://github.com/DawChihLiou/dx-scripts)**🌈🌈🌈
+
+It's available on [npm](https://www.npmjs.com/package/dx-scripts).
+I recently wrote the first script in the library and there are more to come!
+Feel free to install it and try it in your development workflow. Please give it a ⭐️ on [GitHub](https://github.com/DawChihLiou/dx-scripts) if the scripts are useful:)
+
+---
 
 ## Peaking The Project's File Structure
 
@@ -451,7 +451,7 @@ export function draw(score: number, value: number) {
 }
 ```
 
-Use it in `src/index.ts` and try log something with `draw()` to see the result🧑‍🎨
+Use it in `src/index.ts` and try log something with `draw()` to see the result.
 
 ```ts
 // src/index.ts
@@ -621,7 +621,7 @@ module.exports = {
 
 One strategy is to aggregate the reports by calculating the median.
 Lighthouse provide a internal functionality [`computeMedianRun`](https://github.com/GoogleChrome/lighthouse/blob/master/lighthouse-core/lib/median-run.js).
-Let's borrow it🙈
+Let's use it
 
 ```diff
 // src/index.ts
@@ -785,12 +785,12 @@ In the "Notify PR" step, we wrote a comment with the ouput from the "Run Lightho
   loading="lazy"
 />
 
-That's it! What a journey🧑‍🚀
+That's it! What a journey‍.
 It's amazing that you followed all the way through.
 
 ## To Sum up
 
-Writing a CLI is not too bad, right?😎
+Writing a CLI is not too hard, right?😎
 Let's have a look at all the things we've covered:
 
 - configuring TypeScript
