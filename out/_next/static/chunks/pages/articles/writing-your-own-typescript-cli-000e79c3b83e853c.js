@@ -451,7 +451,7 @@
               ),
               'variability'
             ),
-            ".\nThere're many factors that plays into the Lighthouse variability.\nOne of the recommanded strategies to deal with variance is to run Lighthouse multiple times."
+            ".\nThere're many factors that plays into the Lighthouse variability.\nOne of the recommended strategies to deal with variance is to run Lighthouse multiple times."
           ),
           (0, d.kt)(
             'p',
@@ -673,7 +673,7 @@
                 { parentName: 'p' },
                 { href: 'https://www.typescriptlang.org/' }
               ),
-              'TypeSciript'
+              'TypeScript'
             ),
             ' and the types for ',
             (0, d.kt)(
@@ -1381,7 +1381,7 @@
               { parentName: 'p' },
               '@typescript-eslint/eslint-plugin'
             ),
-            ' plugin to extend the rules.\nFinally we enabled all the recommanded rules form ',
+            ' plugin to extend the rules.\nFinally we enabled all the recommended rules form ',
             (0, d.kt)(
               'inlineCode',
               { parentName: 'p' },
@@ -1702,7 +1702,7 @@
                     'https://github.com/prettier/eslint-plugin-prettier#recommended-configuration',
                 }
               ),
-              'recommened configuration'
+              'recommended configuration'
             ),
             ' from the official doc.'
           ),
@@ -3481,7 +3481,7 @@
           (0, d.kt)(
             'p',
             null,
-            'To make our CLI interative, we need to be able to read user inputs and parse them.\n',
+            'To make our CLI interactive, we need to be able to read user inputs and parse them.\n',
             (0, d.kt)(
               'a',
               Object.assign(
@@ -4447,7 +4447,7 @@
           (0, d.kt)(
             'p',
             null,
-            'The recommandation for running multiple Lighthouse is to run them in ',
+            'The recommendation for running multiple Lighthouse is to run them in ',
             (0, d.kt)(
               'a',
               Object.assign(
@@ -4987,7 +4987,7 @@
             null,
             'In the code, we spawn new processes multiple times based on user input.\nIn each process, we ran Lighthouse performance analysis with headless Chrome and collect the the JSON data.\nThe ',
             (0, d.kt)('inlineCode', { parentName: 'p' }, 'result'),
-            ' variable will hold an array of indipendent performance data in string.\nThe next step is to aggregate the data and calculate the most reliable performance scores.'
+            ' variable will hold an array of independent performance data in string.\nThe next step is to aggregate the data and calculate the most reliable performance scores.'
           ),
           (0, d.kt)(
             'p',
@@ -5552,7 +5552,7 @@
             null,
             'Under the hood, ',
             (0, d.kt)('inlineCode', { parentName: 'p' }, 'computeMedianRun'),
-            " returns the score that's closest to the median of the First Contentful Paint and the median of the Time to Interactive.\nIt's because they represent the earliest and the latest moments in the page initialization lifecycle.\nIt's a more reliable way to determine the median than the naive appoach by finding the median from a single measurement."
+            " returns the score that's closest to the median of the First Contentful Paint and the median of the Time to Interactive.\nIt's because they represent the earliest and the latest moments in the page initialization lifecycle.\nIt's a more reliable way to determine the median than the naive approach by finding the median from a single measurement."
           ),
           (0, d.kt)('p', null, 'Now try the command again and see the result!'),
           (0, d.kt)(
@@ -5617,7 +5617,7 @@
           (0, d.kt)(
             'p',
             null,
-            "Our implementation is done.\nLet's use the CLI in an automated workflow so we can banchmark the performacne in a CD/CI pipeline."
+            "Our implementation is done.\nLet's use the CLI in an automated workflow so we can benchmark the performance in a CD/CI pipeline."
           ),
           (0, d.kt)(
             'p',
@@ -5758,7 +5758,7 @@
           (0, d.kt)(
             'p',
             null,
-            "To focus on the application of our CLI, I'll hardcode the feature branch preview URL in the workflow."
+            "To focus on the application of our CLI, I'll hard-code the feature branch preview URL in the workflow."
           ),
           (0, d.kt)(
             'p',
@@ -5943,7 +5943,7 @@
                   { parentName: 'code' },
                   { className: 'token comment' }
                 ),
-                '# You can subsitude the harcoded preview url with your preview url'
+                '# You can substitute the hardcoded preview url with your preview url'
               ),
               '\n      ',
               (0, d.kt)(
@@ -6447,9 +6447,9 @@
               { parentName: 'p' },
               'dx-script lighthouse'
             ),
-            ' CLI, substiude the special characters in order to print multi-line output, and we set the output in a variable ',
+            ' CLI, substitute the special characters in order to print multi-line output, and we set the output in a variable ',
             (0, d.kt)('inlineCode', { parentName: 'p' }, 'lighthouse_report'),
-            '.\nIn the "Notify PR" step, we wrote a comment with the ouput from the "Run Lighthouse" step and use the ',
+            '.\nIn the "Notify PR" step, we wrote a comment with the output from the "Run Lighthouse" step and use the ',
             (0, d.kt)(
               'a',
               Object.assign(
@@ -6486,7 +6486,7 @@
             'ul',
             null,
             (0, d.kt)('li', { parentName: 'ul' }, 'configuring TypeScript'),
-            (0, d.kt)('li', { parentName: 'ul' }, 'configuring ESLing'),
+            (0, d.kt)('li', { parentName: 'ul' }, 'configuring ESLint'),
             (0, d.kt)('li', { parentName: 'ul' }, 'configuring Prettier'),
             (0, d.kt)(
               'li',
@@ -6566,7 +6566,7 @@
           (0, d.kt)(
             'p',
             null,
-            "If you're wondering how to test Redux Observable, I wrote an ariticle ",
+            "If you're wondering how to test Redux Observable, I wrote an article ",
             (0, d.kt)(
               'a',
               Object.assign(
