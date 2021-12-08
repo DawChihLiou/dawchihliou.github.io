@@ -63,7 +63,7 @@ It offers a CLI and node module so we can run it programmatically.
 However, you'll notice the Lighthouse scores vary if you run it multiple times on the same webpage.
 That's because there's a known [variability](https://developers.google.com/web/tools/lighthouse/variability).
 There're many factors that plays into the Lighthouse variability.
-One of the recommanded strategies to deal with variance is to run Lighthouse multiple times.
+One of the recommended strategies to deal with variance is to run Lighthouse multiple times.
 
 We'll be working on a CLI to implement this strategy in this article. The implementation will cover:
 
@@ -123,7 +123,7 @@ $ yarn init
 
 ### Configuring TypeScript
 
-To install [TypeSciript](https://www.typescriptlang.org/) and the types for [NodeJS](https://nodejs.org/en/), run:
+To install [TypeScript](https://www.typescriptlang.org/) and the types for [NodeJS](https://nodejs.org/en/), run:
 
 ```bash
 $ yarn add --dev typescript @types/node
@@ -220,7 +220,7 @@ module.exports = {
 
 To understand the configuration a little more, we first used `@typescript-eslint/parser` to enable ESLint's ability to understand TypeScript syntax.
 Then we applied `@typescript-eslint/eslint-plugin` plugin to extend the rules.
-Finally we enabled all the recommanded rules form `@typescript-eslint/eslint-plugin`.
+Finally we enabled all the recommended rules form `@typescript-eslint/eslint-plugin`.
 
 If you're interested in learning more about the configuration, you can checkout the [official doc](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin#usage) for more details.
 
@@ -269,7 +269,7 @@ Here's an example:
 ```
 
 Prettier provides handy integration with ESLint.
-We'll follow the [recommened configuration](https://github.com/prettier/eslint-plugin-prettier#recommended-configuration) from the official doc.
+We'll follow the [recommended configuration](https://github.com/prettier/eslint-plugin-prettier#recommended-configuration) from the official doc.
 
 ```bash
 $ yarn add --dev eslint-config-prettier eslint-plugin-prettier
@@ -463,7 +463,7 @@ console.log(`Perf score is ${draw(0.64, 64)}`)
 
 ### Designing A Command with `commander`
 
-To make our CLI interative, we need to be able to read user inputs and parse them.
+To make our CLI interactive, we need to be able to read user inputs and parse them.
 [`commander`](https://github.com/tj/commander.js) is a descriptive way of defining a interface.
 We can implement our interface in a very clean and documentary fashion.
 
@@ -551,7 +551,7 @@ $ my-script --help
 
 We learned how to parse user inputs in the previous section. It's time to dive into the core of the CLI.
 
-The recommandation for running multiple Lighthouse is to run them in [separate processes](https://github.com/GoogleChrome/lighthouse/issues/7187) to remove the risk of interference.
+The recommendation for running multiple Lighthouse is to run them in [separate processes](https://github.com/GoogleChrome/lighthouse/issues/7187) to remove the risk of interference.
 [`cross-spawn`](https://github.com/moxystudio/node-cross-spawn) is a cross platform solution for spawning processes.
 We will use it to synchronously spawn new processes to run Lighthouse.
 
@@ -599,7 +599,7 @@ async function run() {
 
 In the code, we spawn new processes multiple times based on user input.
 In each process, we ran Lighthouse performance analysis with headless Chrome and collect the the JSON data.
-The `result` variable will hold an array of indipendent performance data in string.
+The `result` variable will hold an array of independent performance data in string.
 The next step is to aggregate the data and calculate the most reliable performance scores.
 
 If you implement the code above, you'll see a linting error about `require`.
@@ -659,7 +659,7 @@ async function run() {
 
 Under the hood, `computeMedianRun` returns the score that's closest to the median of the First Contentful Paint and the median of the Time to Interactive.
 It's because they represent the earliest and the latest moments in the page initialization lifecycle.
-It's a more reliable way to determine the median than the naive appoach by finding the median from a single measurement.
+It's a more reliable way to determine the median than the naive approach by finding the median from a single measurement.
 
 Now try the command again and see the result!
 
@@ -679,7 +679,7 @@ Walla🎉
 ## Using the CLI in GitHub Actions
 
 Our implementation is done.
-Let's use the CLI in an automated workflow so we can banchmark the performacne in a CD/CI pipeline.
+Let's use the CLI in an automated workflow so we can benchmark the performance in a CD/CI pipeline.
 
 First, let's publish the package on npm (hypothetically).
 
@@ -716,7 +716,7 @@ Let's discuss the workflow. We want the workflow to:
 
 So after the workflow is successfully completed, you'll see a comment from GitHub Action Bot with your Lighthouse scores.
 
-To focus on the application of our CLI, I'll hardcode the feature branch preview URL in the workflow.
+To focus on the application of our CLI, I'll hard-code the feature branch preview URL in the workflow.
 
 In your application repository, install `dx-scripts`:
 
@@ -737,7 +737,7 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     env:
-      # You can subsitude the harcoded preview url with your preview url
+      # You can substitute the hardcoded preview url with your preview url
       preview_url: https://dawchihliou.github.io/
     steps:
       - uses: actions/checkout@v2
@@ -775,8 +775,8 @@ jobs:
             ```
 ````
 
-In the "Run Lighthouse" step, we ran the `dx-script lighthouse` CLI, substiude the special characters in order to print multi-line output, and we set the output in a variable `lighthouse_report`.
-In the "Notify PR" step, we wrote a comment with the ouput from the "Run Lighthouse" step and use the [`wow-actions/auto-comment` ](https://github.com/marketplace/actions/auto-comment) action to post the comment.
+In the "Run Lighthouse" step, we ran the `dx-script lighthouse` CLI, substitute the special characters in order to print multi-line output, and we set the output in a variable `lighthouse_report`.
+In the "Notify PR" step, we wrote a comment with the output from the "Run Lighthouse" step and use the [`wow-actions/auto-comment` ](https://github.com/marketplace/actions/auto-comment) action to post the comment.
 
 <img
   src="/optimized/pr-comment.webp"
@@ -794,7 +794,7 @@ Writing a CLI is not too hard, right?😎
 Let's have a look at all the things we've covered:
 
 - configuring TypeScript
-- configuring ESLing
+- configuring ESLint
 - configuring Prettier
 - executing your command locally
 - coloring logs with `chalk`
@@ -818,7 +818,7 @@ Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
 If you're interested in reading more about image optimization to boost your performance score, take a look at my previous article ["Using WebP for Better User Experience"](/articles/use-webp-for-better-ux).
 There we discussed one of the modern image formats that greatly reduces the size of your images without sacrificing quality.
 
-If you're wondering how to test Redux Observable, I wrote an ariticle ["Writing Better Marble Tests for Redux Observable and TypeScript"](https://itnext.io/better-marble-test-70c7676a1e2) just for you.
+If you're wondering how to test Redux Observable, I wrote an article ["Writing Better Marble Tests for Redux Observable and TypeScript"](https://itnext.io/better-marble-test-70c7676a1e2) just for you.
 It's a comprehensive guide to walk you through the thought process.
 
 If you’re a fan of functional programming, check out [this article that I wrote about Transducers](https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d).
