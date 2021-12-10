@@ -368,7 +368,8 @@
           },
           {
             title: 'changed-files-action',
-            description: 'GitHub Action to fetch changed filenames',
+            description:
+              'GitHub Action to fetch changed files in pull requests.',
             image: '/optimized/logo-github.webp',
             darkmodeImage: '/optimized/logo-github.webp',
             link: 'https://github.com/marketplace/actions/changed-filenames',

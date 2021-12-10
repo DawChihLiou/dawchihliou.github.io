@@ -4,7 +4,7 @@ var a
   '/': [
     'static/chunks/291-901598fc36df641b.js',
     'static/css/88509ea5dd23397a.css',
-    'static/chunks/pages/index-333d6a0fd87a1315.js',
+    'static/chunks/pages/index-b32ce99a944e67de.js',
   ],
   '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
   '/articles': [
