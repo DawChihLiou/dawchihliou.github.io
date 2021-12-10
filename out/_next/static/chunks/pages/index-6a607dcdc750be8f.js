@@ -503,6 +503,11 @@
                   name: 'google-site-verification',
                   content: 'XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8',
                 }),
+                (0, e.jsx)('script', {
+                  defer: !0,
+                  'data-domain': 'dawchihliou.github.io',
+                  src: 'https://plausible.io/js/plausible.js',
+                }),
               ],
             }),
             (0, e.jsxs)('main', {
