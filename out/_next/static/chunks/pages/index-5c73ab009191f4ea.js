@@ -506,7 +506,7 @@
                 (0, e.jsx)('script', {
                   defer: !0,
                   'data-domain': 'dawchihliou.github.io',
-                  src: 'https://plausible.io/js/plausible.js',
+                  src: 'https://plausible.io/js/plausible.outbound-links.js',
                 }),
               ],
             }),
