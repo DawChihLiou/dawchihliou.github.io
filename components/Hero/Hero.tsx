@@ -27,7 +27,7 @@ export default function Hero() {
           className={clsx(styles.title, styles.heroTitle, styles.heroTitle_3)}
         >
           <span className={clsx(styles.title, styles.animatedTitle_3)}>
-            mentor
+            creator
           </span>
         </span>
       </h1>

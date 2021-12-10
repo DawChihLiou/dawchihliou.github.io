@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './Publication.module.css'
 import articles from '../../data/articles'
-import Link from 'next/link'
 
 const publication = articles.filter((a) => a.url !== '/articles/helloworld')
 
