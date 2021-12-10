@@ -32,7 +32,7 @@ export default function Home() {
         <script
           defer
           data-domain="dawchihliou.github.io"
-          src="https://plausible.io/js/plausible.js"
+          src="https://plausible.io/js/plausible.outbound-links.js"
         ></script>
       </Head>
 
