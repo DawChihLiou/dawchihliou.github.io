@@ -11,7 +11,7 @@ export const SchemeContext = createContext<SchemeContextType>(null)
 
 const SchemeProvider: React.FC = ({ children }) => {
   /**
-   * Register event hander. Update body's class name based on media query
+   * Register event handler. Update body's class name based on media query
    * only when local storage is empty (user select "darkmode: auto").
    */
   useEffect(() => {
