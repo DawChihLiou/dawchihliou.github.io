@@ -24,7 +24,16 @@ export default function Home() {
         <meta property="og:image:height" content="682" />
         <meta property="og:image:alt" content={socials.description} />
         {/* Google Search Console */}
-        <meta name="google-site-verification" content="XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8" />
+        <meta
+          name="google-site-verification"
+          content="XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8"
+        />
+        {/* plausible analytics */}
+        <script
+          defer
+          data-domain="dawchihliou.github.io"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
       </Head>
 
       <main className={styles.main}>
