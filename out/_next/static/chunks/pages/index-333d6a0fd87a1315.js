@@ -166,7 +166,7 @@
                 className: (0, k.Z)(j().title, j().heroTitle, j().heroTitle_3),
                 children: (0, e.jsx)('span', {
                   className: (0, k.Z)(j().title, j().animatedTitle_3),
-                  children: 'mentor',
+                  children: 'creator',
                 }),
               }),
             ],
@@ -353,17 +353,32 @@
             title: 'cz-conventional-changelog-with-jiraid-detection',
             description:
               'A Commitizen prompts for conventional changelog standard with Jira ID auto-detection. It introduces an additional step for developers to enter Jira ID. The library detects your Jira ID from the branch name.',
-            image: '/optimized/logo-npm.png',
-            darkmodeImage: '/optimized/logo-npm.png',
+            image: '/optimized/logo-npm.webp',
+            darkmodeImage: '/optimized/logo-npm.webp',
             link:
               'https://github.com/DawChihLiou/cz-conventional-changelog-with-jiraid-detection',
+          },
+          {
+            title: 'dx-scripts',
+            description:
+              'A collection of utility scripts for developer experience and productivity.',
+            image: '/optimized/logo-npm.webp',
+            darkmodeImage: '/optimized/logo-npm.webp',
+            link: 'https://github.com/DawChihLiou/dx-scripts',
+          },
+          {
+            title: 'changed-files-action',
+            description: 'GitHub Action to fetch changed filenames',
+            image: '/optimized/logo-github.webp',
+            darkmodeImage: '/optimized/logo-github.webp',
+            link: 'https://github.com/marketplace/actions/changed-filenames',
           },
           {
             title: 'Spes',
             description:
               "Reading turned my life around, and I believe it can turn yours too. There're so many books full of wisdom but it's hard to find yourself a book among the overwhelming options. So I'm giving away a book every month to a subscriber and help you find your next book to read. Sign up! Hopefully you'll be inspired too:)",
-            image: '/optimized/logo-spes.png',
-            darmodeImage: '/optimized/logo-spes.png',
+            image: '/optimized/logo-spes.webp',
+            darmodeImage: '/optimized/logo-spes.webp',
             link: 'https://spes.me/',
           },
         ],
