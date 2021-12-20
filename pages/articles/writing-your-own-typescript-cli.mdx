@@ -165,11 +165,22 @@ In `index.ts`, we'll put a simple `console.log` and run the TypeScript compiler 
 console.log('Hello from my-script👋')
 ```
 
+Add a script to compile TypeScript with `tsc`.
+
+```diff
+// package.json
+
++ "scripts": {
++   "tsc": "tsc"
++ }
+
+```
+
 Then run:
 
 ```bash
 # compile `/src`
-$ npx tsc
+$ yarn tsc
 ```
 
 You should see an `index.js` file in the `/bin` directory.
@@ -261,11 +272,10 @@ Here's an example:
 
 ```json
 // .prettierrc.json
-
 {
-  trailingComma: 'all',
-  singleQuote: true,
-};
+  "trailingComma": "all",
+  "singleQuote": true
+}
 ```
 
 Prettier provides handy integration with ESLint.
@@ -334,7 +344,7 @@ So we can call the script directly without specifying `node`.
 Let's compile again,
 
 ```bash
-$ npx tsc
+$ yarn tsc
 ```
 
 There's another thing we need before it all works. We need to assign the executable right to the `bin/index.js`:
@@ -391,7 +401,7 @@ Just to make the development easier, we'll add a couple of scripts in `package.j
 
 {
   "scripts": {
-+    "build": "tsc && yarn chmod",
++    "build": "yarn tsc && yarn chmod",
 +    "chmod": "chmod u+x ./bin/index.js",
   }
 }
@@ -407,8 +417,10 @@ We'll explore a few handy npm packages to help us write the CLI and we'll dive i
 ### Coloring `console.log` with `chalk`
 
 ```bash
-$ yarn add chalk
+$ yarn add chalk@4.1.2
 ```
+
+Make sure you are installing `chalk 4`. [`chalk 5` is pure ESM](https://github.com/chalk/chalk/releases/tag/v5.0.0) and we won't be able to use it with TypeScript [until TypeScript 4.6 is released](https://github.com/microsoft/TypeScript/issues/46452).
 
 [`chalk`](https://github.com/chalk/chalk) gives colors to your `console.log`. For example:
 
@@ -506,7 +518,7 @@ async function run() {
     )
     .parse()
 
-  const url = program.args
+  const [url] = program.args
   const options = program.opts()
 
   console.log(`url: ${url}, iteration: ${options.iteration}`)
@@ -560,6 +572,9 @@ To install `cross-spawn`:
 ```bash
 $ yarn add cross-spawn
 $ yarn add --dev @types/cross-spawn
+
+# Let's install lighthouse too✨
+yarn add lighthouse
 ```
 
 Let's edit `src/index.ts`:
@@ -578,7 +593,7 @@ async function run() {
 +  )
 +  const results = []
 +
-+  for (let i = 0; i < options.iterations; i++) {
++  for (let i = 0; i < options.iteration; i++) {
 +    const { status, stdout } = spawn.sync(
 +      process.execPath, [
 +      lighthouse,
@@ -643,14 +658,16 @@ async function run() {
 +     )}`
 +   )
 
-+   [
++   const primaryMatrices = [
 +     'first-contentful-paint',
 +     'interactive',
 +     'speed-index',
 +     'total-blocking-time',
 +     'largest-contentful-paint',
 +     'cumulative-layout-shift',
-+   ].map((matrix) => {
++   ]
++
++   primaryMatrices.map((matrix) => {
 +     const { title, displayValue, score } = median.audits[matrix]
 +     console.log(`🗼 Median ${title}: ${draw(score, displayValue)}`)
 +   })
