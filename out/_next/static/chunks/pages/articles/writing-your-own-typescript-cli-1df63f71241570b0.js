@@ -975,6 +975,81 @@
               '\n'
             )
           ),
+          (0, d.kt)(
+            'p',
+            null,
+            'Add a script to compile TypeScript with ',
+            (0, d.kt)('inlineCode', { parentName: 'p' }, 'tsc'),
+            '.'
+          ),
+          (0, d.kt)(
+            'pre',
+            Object.assign({}, { className: 'language-diff' }),
+            (0, d.kt)(
+              'code',
+              Object.assign(
+                { parentName: 'pre' },
+                { className: 'language-diff' }
+              ),
+              '// package.json\n\n',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token inserted-sign inserted' }
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token prefix inserted' }
+                  ),
+                  '+'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token line' }
+                  ),
+                  ' "scripts": {\n'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token prefix inserted' }
+                  ),
+                  '+'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token line' }
+                  ),
+                  '   "tsc": "tsc"\n'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token prefix inserted' }
+                  ),
+                  '+'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token line' }
+                  ),
+                  ' }\n'
+                )
+              ),
+              '\n'
+            )
+          ),
           (0, d.kt)('p', null, 'Then run:'),
           (0, d.kt)(
             'pre',
@@ -993,7 +1068,16 @@
                 ),
                 '# compile `/src`'
               ),
-              '\n$ npx tsc\n'
+              '\n$ ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'yarn'
+              ),
+              ' tsc\n'
             )
           ),
           (0, d.kt)(
@@ -1624,7 +1708,7 @@
                 ),
                 '// .prettierrc.json'
               ),
-              '\n\n',
+              '\n',
               (0, d.kt)(
                 'span',
                 Object.assign(
@@ -1633,7 +1717,15 @@
                 ),
                 '{'
               ),
-              '\n  trailingComma',
+              '\n  ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token property' }
+                ),
+                '"trailingComma"'
+              ),
               (0, d.kt)(
                 'span',
                 Object.assign(
@@ -1642,7 +1734,15 @@
                 ),
                 ':'
               ),
-              " 'all'",
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token string' }
+                ),
+                '"all"'
+              ),
               (0, d.kt)(
                 'span',
                 Object.assign(
@@ -1651,7 +1751,15 @@
                 ),
                 ','
               ),
-              '\n  singleQuote',
+              '\n  ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token property' }
+                ),
+                '"singleQuote"'
+              ),
               (0, d.kt)(
                 'span',
                 Object.assign(
@@ -1669,14 +1777,6 @@
                 ),
                 'true'
               ),
-              (0, d.kt)(
-                'span',
-                Object.assign(
-                  { parentName: 'code' },
-                  { className: 'token punctuation' }
-                ),
-                ','
-              ),
               '\n',
               (0, d.kt)(
                 'span',
@@ -1686,7 +1786,7 @@
                 ),
                 '}'
               ),
-              ';\n'
+              '\n'
             )
           ),
           (0, d.kt)(
@@ -2062,7 +2162,16 @@
                 { parentName: 'pre' },
                 { className: 'language-bash' }
               ),
-              '$ npx tsc\n'
+              '$ ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'yarn'
+              ),
+              ' tsc\n'
             )
           ),
           (0, d.kt)(
@@ -2329,7 +2438,7 @@
                     { parentName: 'span' },
                     { className: 'token line' }
                   ),
-                  '    "build": "tsc && yarn chmod",\n'
+                  '    "build": "yarn tsc && yarn chmod",\n'
                 ),
                 (0, d.kt)(
                   'span',
@@ -2426,8 +2535,34 @@
                 ),
                 'add'
               ),
-              ' chalk\n'
+              ' chalk@4.1.2\n'
             )
+          ),
+          (0, d.kt)(
+            'p',
+            null,
+            'Make sure you are installing ',
+            (0, d.kt)('inlineCode', { parentName: 'p' }, 'chalk 4'),
+            '. ',
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                { href: 'https://github.com/chalk/chalk/releases/tag/v5.0.0' }
+              ),
+              (0, d.kt)('inlineCode', { parentName: 'a' }, 'chalk 5'),
+              ' is pure ESM'
+            ),
+            " and we won't be able to use it with TypeScript ",
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                { href: 'https://github.com/microsoft/TypeScript/issues/46452' }
+              ),
+              'until TypeScript 4.6 is released'
+            ),
+            '.'
           ),
           (0, d.kt)(
             'p',
@@ -3978,7 +4113,25 @@
                 ),
                 'const'
               ),
-              ' url ',
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '['
+              ),
+              'url',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ']'
+              ),
+              ' ',
               (0, d.kt)(
                 'span',
                 Object.assign(
@@ -4522,7 +4675,34 @@
                 ),
                 'add'
               ),
-              ' --dev @types/cross-spawn\n'
+              ' --dev @types/cross-spawn\n\n',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token comment' }
+                ),
+                "# Let's install lighthouse too✨"
+              ),
+              '\n',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'yarn'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'add'
+              ),
+              ' lighthouse\n'
             )
           ),
           (0, d.kt)(
@@ -4736,7 +4916,7 @@
                     { parentName: 'span' },
                     { className: 'token line' }
                   ),
-                  '  for (let i = 0; i < options.iterations; i++) {\n'
+                  '  for (let i = 0; i < options.iteration; i++) {\n'
                 ),
                 (0, d.kt)(
                   'span',
@@ -5381,7 +5561,7 @@
                     { parentName: 'span' },
                     { className: 'token line' }
                   ),
-                  '   [\n'
+                  '   const primaryMatrices = [\n'
                 ),
                 (0, d.kt)(
                   'span',
@@ -5493,7 +5673,39 @@
                     { parentName: 'span' },
                     { className: 'token line' }
                   ),
-                  '   ].map((matrix) => {\n'
+                  '   ]\n'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token prefix inserted' }
+                  ),
+                  '+'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token line' }
+                  ),
+                  '\n'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token prefix inserted' }
+                  ),
+                  '+'
+                ),
+                (0, d.kt)(
+                  'span',
+                  Object.assign(
+                    { parentName: 'span' },
+                    { className: 'token line' }
+                  ),
+                  '   primaryMatrices.map((matrix) => {\n'
                 ),
                 (0, d.kt)(
                   'span',

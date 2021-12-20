@@ -21,7 +21,7 @@ var a
   ],
   '/articles/writing-your-own-typescript-cli': [
     a,
-    'static/chunks/pages/articles/writing-your-own-typescript-cli-000e79c3b83e853c.js',
+    'static/chunks/pages/articles/writing-your-own-typescript-cli-1df63f71241570b0.js',
   ],
   '/now': [a, 'static/chunks/pages/now-975bf5ad8f16ea9c.js'],
   sortedPages: [
