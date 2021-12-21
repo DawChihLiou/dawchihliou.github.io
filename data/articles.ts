@@ -12,6 +12,20 @@ const category = {
 
 export default [
   {
+    date: 'December 21, 2021',
+    publisher: '',
+    title: 'Road to Engineering Leadership',
+    description: '',
+    url: '/articles/road-to-engineering-leadership',
+    cover: 'optimized/writing-your-own-cli.png',
+    category: category.leadership,
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+    external: false,
+    publisherUrl: '',
+  },
+  {
     date: 'December 6, 2021',
     publisher: '',
     title: 'Writing Your Own TypeScript CLI',
