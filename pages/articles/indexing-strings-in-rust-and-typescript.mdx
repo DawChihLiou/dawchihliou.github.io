@@ -1,0 +1,261 @@
+import Article from '../../components/Article'
+
+export const meta = {
+  title: 'Indexing Strings in Rust: A Case Study of Rust and TypeScript',
+  description: '',
+  url: '/articles/indexing-strings-in-rust-and-typescript',
+  cover: 'optimized/indexing-strings-in-rust.png',
+  category: 'Rust',
+  coverWidth: '1411',
+  coverHeight: '682',
+}
+
+export default ({ children }) => (
+  <Article
+    title={meta.title}
+    description={meta.description}
+    cover={meta.cover}
+    url={meta.url}
+    coverWidth={meta.coverWidth}
+    coverHeight={meta.coverHeight}
+  >
+    {children}
+  </Article>
+)
+
+# Indexing Strings in Rust: A Case Study of Rust and TypeScript
+
+<img
+  src="/optimized/indexing-strings-in-rust.webp"
+  alt="Portfolio snapshot"
+  width="100%"
+  loading="lazy"
+/>
+
+## TL;DR
+
+- 🧑‍🔬 We'll compare a classic algorithm `is_palindrome` in TypeScript and Rust.
+- 🪢 You'll see what is the primitive String value in JavaScript.
+- 🤖 We'll discuss how JavaScript handles string encoding in detail.
+- 🎸 We'll discuss how Rust think about strings.
+- 🌏 You'll learn more about Unicode in UFT-8
+
+---
+
+## `isPalindrome` in TypeScript
+
+A [palindrome](https://en.wikipedia.org/wiki/Palindrome), in a very general way of explaining it, is a string that reads the same forward and backward.
+"**Ana**" is a palindrome, "**A dog! A panic in a pagoda!**" is a palindrome, or even "**02/02/2020**" is a palindrome.
+
+For the simple purpose of this article, we'll use a more narrowed definition to keep the algorithm simple.
+A palindrome here is defined as a continuous sequence of non-numeric lowercase characters without whitespace and special characters such as `','`, `'!'`, and `'{'`.
+
+A very straightforward approach would be reversing the string and compare the equality.
+
+```ts
+function isPalindrome(str: string): boolean {
+  return str === str.split('').reverse().join('')
+}
+
+isPalindrome('') // true
+isPalindrome('aabbccbbaa') // true
+isPalindrome('aabbccbbab') // false
+```
+
+The time and space complexity:
+
+- O(n) time, where n is the length of the input string
+- O(n) space, where n is the length of the input string
+
+It looks like it's working, but let's look a little closer.
+
+Until now, we have tested the use case for empty strings and strings in [ASCII](https://en.wikipedia.org/wiki/ASCII).
+What about strings in [Unicode](https://en.wikipedia.org/wiki/Unicode)?
+
+```ts
+isPalindrome('mañanamañana') // false, as expected
+```
+
+Let's see the what is the actual reversed string:
+
+```ts
+'mañanamañana'.split('').reverse().join('') // "anãnamanañam"
+```
+
+You can see the [output has "ã" instead of "ñ" at the beginning of the string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split#reversing_a_string_using_split).
+
+Let's assume that Unicode introduce a false-positive edge case in our algorithm because the reversion somehow changed the content of the string.
+We'll circle back and explain why later in the section [JavaScript Strings are UFT-16 encoded](#javascript-strings-are-uft-16-encoded).
+
+### Improving `isPalindrome`
+
+Let's come up with another way that doesn't involve reversing the input string. We can use the two-pointers approach to compare characters in the opposite direction.
+
+```ts
+/*
+ *  lp       rp
+ *  |        |
+ *  v →    ← v
+ * "aabbccbbaa"
+ */
+function isPalindrome(str: string): boolean {
+  let lp = 0
+  let rp = str.length - 1
+
+  while (lp < rp) {
+    if (str[lp] !== str[rp]) {
+      return false
+    }
+    lp += 1
+    rp -= 1
+  }
+  return true
+}
+
+isPalindrome('') // true
+isPalindrome('aabbccbbaa') // true
+isPalindrome('aabbccbbab') // false
+isPalindrome('mañanamañana') // false
+```
+
+It's a more robust algorithm, and a more performing one in theory. The time and space complexity are:
+
+- O(n) time, where n is the length of the string
+- O(1) space. Constant space for the two pointers.
+
+## `is_palindrome` in Rust
+
+Now that we have a better algorithm using pointers, let's try to translate it into Rust.
+
+```rust
+// ❌ It won't compile
+fn is_palindrome(str: String) -> bool {
+    let mut lp = 0;
+    let mut rp = str.len() - 1;
+
+    while lp < rp {
+      if str[lp] != str[rp] {
+      // ^^^^^^^ `String` cannot be indexed by `usize`
+        return false;
+      }
+      lp += 1;
+      rp -= 1;
+    }
+
+    true
+}
+```
+
+It turns out the Rust compiler won't let us access characters by indexing.
+It's a very interesting constraint.
+As we dig a little deeper, there are some string methods like [`chars()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.chars) to access the characters in the string.
+Instead of returning characters, `chars()` returns an iterator over the `char`s of a string slice. So we'll have to iterate through a string slice to access characters by index.
+Like this:
+
+```rust
+let left = str.as_str().chars().nth(lp).unwrap();
+```
+
+Let's assume there must be something about the primitive string value in Rust that let the compilers disallow indexing strings.
+We'll come back and explain why later in the section [Rust strings are UFT-8 encoded](#rust-strings-are-uft-8-encoded).
+
+### Correcting `is_palindrome`
+
+Instead of accessing characters by index, let's use a iterative approach.
+We can iterate over [bytes](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.bytes) and compare the first half of the string with the reversed second half.
+If they are equal, return true because it's a palindrome.
+
+```rust
+// ✅
+fn is_palindrome(str: String) -> bool {
+    let half = str.len() / 2;
+    str.bytes()
+      .take(half)
+      .eq(str.bytes().rev().take(half))
+}
+
+fn main() {
+    assert_eq!(is_palindrome(String::from("")), true);
+    assert_eq!(is_palindrome(String::from("aabbccbbaa")), true);
+    assert_eq!(is_palindrome(String::from("aabbccbbab")), false);
+    assert_eq!(is_palindrome(String::from("mañanamañana")), false);
+}
+```
+
+The time and space complexity:
+
+- O(n) time, where n is the length of the string.
+- O(n) space, where n is the length of the string.
+
+The space complexity is `O(n)` because we created two byte iterators based on the length of the input string.
+
+## Rust strings are UFT-8 encoded
+
+## JavaScript Strings are UFT-16 encoded
+
+```ts
+const s1: string = '\u00E1' // á
+const s2: string = '\u0061\u0301' // á
+```
+
+```ts
+console.log(s1.length) // 1
+console.log(s2.length) // 2
+```
+
+```ts
+console.log(s1[0]) // á
+console.log(s1[1]) // undefined
+
+console.log(s2[0]) // a
+console.log(s2[1]) //  ́
+```
+
+```ts
+const s3: string = 'a\u0301' // á
+```
+
+```ts
+console.log(s3.length === 2) // true
+console.log(s2 === s3) // true
+console.log(s1 === s2) // false
+console.log(s1 === s3) // false
+```
+
+```ts
+console.log(s1.normalize() === s2.normalize()) // true
+console.log(s1.normalize() === s3.normalize()) // true
+```
+
+```ts
+// `escape` is deprecated.
+escape(s1.normalize()) // '%E1'
+escape(s2.normalize()) // '%E1'
+escape(s3.normalize()) // '%E1'
+```
+
+```ts
+const encoder = new TextEncoder()
+const decoder = new TextDecoder()
+
+const buffer = encoder.encode('\u0061\u0301')
+decoder.decode(buffer) // 'á'
+```
+
+---
+
+Here you have it! Thanks for reading through🙌
+
+If you find it useful, please share this article to help more people in their engineering journey.
+
+Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+If you're interested in writing a CLI with TypeScript and implementing a real-world CLI application with Google Lighthouse integration, check out my previous article ["Writing Your Own TypeScript CLI"](/articles/writing-your-own-typescript-cli).
+
+If you're interested in reading more about image optimization to boost your performance score, take a look at ["Using WebP for Better User Experience"](/articles/use-webp-for-better-ux).
+There we discussed one of the modern image formats that greatly reduces the size of your images without sacrificing quality.
+
+If you're wondering how to test Redux Observable, I wrote an article ["Writing Better Marble Tests for Redux Observable and TypeScript"](https://itnext.io/better-marble-test-70c7676a1e2) just for you.
+It's a comprehensive guide to walk you through the thought process.
+
+Happy coding!

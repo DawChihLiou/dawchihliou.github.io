@@ -8,9 +8,24 @@ const category = {
   backend: 'Backend',
   javascript: 'JavaScript',
   typescript: 'TypeScript',
+  rust: 'Rust',
 }
 
 export default [
+  {
+    date: 'December 28, 2021',
+    publisher: '',
+    title: 'Indexing Strings in Rust: A Case Study of Rust and TypeScript',
+    description: '',
+    url: '/articles/indexing-strings-in-rust-and-typescript',
+    cover: 'optimized/indexing-strings-in-rust.png',
+    category: category.rust,
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+    external: false,
+    publisherUrl: '',
+  },
   {
     date: 'December 6, 2021',
     publisher: '',
