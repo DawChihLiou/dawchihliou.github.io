@@ -4,16 +4,20 @@ var a
   '/': [
     'static/chunks/291-901598fc36df641b.js',
     'static/css/88509ea5dd23397a.css',
-    'static/chunks/pages/index-b32ce99a944e67de.js',
+    'static/chunks/pages/index-370425c48f729533.js',
   ],
   '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
   '/articles': [
     'static/css/5be9574e015a7040.css',
-    'static/chunks/pages/articles-a703f61bdbd02b12.js',
+    'static/chunks/pages/articles-aef44832dc38e6a5.js',
   ],
   '/articles/helloworld': [
     (a = 'static/css/7787e07ad0df5e53.css'),
     'static/chunks/pages/articles/helloworld-2788cbcb1df51bac.js',
+  ],
+  '/articles/indexing-strings-in-rust-and-typescript': [
+    a,
+    'static/chunks/pages/articles/indexing-strings-in-rust-and-typescript-55b505285763c36b.js',
   ],
   '/articles/use-webp-for-better-ux': [
     a,
@@ -30,6 +34,7 @@ var a
     '/_error',
     '/articles',
     '/articles/helloworld',
+    '/articles/indexing-strings-in-rust-and-typescript',
     '/articles/use-webp-for-better-ux',
     '/articles/writing-your-own-typescript-cli',
     '/now',
