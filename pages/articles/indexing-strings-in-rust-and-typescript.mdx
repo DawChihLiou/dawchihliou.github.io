@@ -1,0 +1,336 @@
+import Article from '../../components/Article'
+
+export const meta = {
+  title: 'Indexing Strings in Rust and TypeScript: A Case Study of String',
+  description:
+    "Text is essential in programming languages. String is the Rust's and JavaScript's definition to process text in written languages around the world. Through the simple concept of string indexing, we'll discuss how Rust and JavaScript process strings and how they handle the nuances in strings such as grapheme, or even emojis.",
+  url: '/articles/indexing-strings-in-rust-and-typescript',
+  cover: 'optimized/indexing-strings-in-rust.png',
+  category: 'Rust',
+  coverWidth: '1411',
+  coverHeight: '682',
+}
+
+export default ({ children }) => (
+  <Article
+    title={meta.title}
+    description={meta.description}
+    cover={meta.cover}
+    url={meta.url}
+    coverWidth={meta.coverWidth}
+    coverHeight={meta.coverHeight}
+  >
+    {children}
+  </Article>
+)
+
+# Indexing Strings in Rust and TypeScript: A Case Study of String
+
+<img
+  src="/optimized/indexing-strings-in-rust.webp"
+  alt="Portfolio snapshot"
+  width="100%"
+  loading="lazy"
+/>
+
+## TL;DR
+
+- 🪢 Accessing characters in strings with index is not compilable in Rust.
+- 🎸 We'll discuss how Rust think about strings.
+- 🤖 We'll discuss how JavaScript handles strings.
+- 🧑‍🔬 We'll compare a classic algorithm `is_palindrome` in Rust and TypeScript.
+
+---
+
+Text is essential in programming languages.
+String is the Rust's and JavaScript's definition to process text in written languages around the world.
+Through the simple concept of string indexing, we'll discuss how Rust and JavaScript process strings and how they handle the nuances in strings such as grapheme, or even emojis.
+
+Let's use a classic algorithm `is_palindrome` to introduce the concept of string indexing.
+
+## `is_palindrome` in Rust
+
+A [palindrome](https://en.wikipedia.org/wiki/Palindrome), in a very general way of explaining it, is a string that reads the same forward and backward.
+"**Ana**" is a palindrome, "**A dog! A panic in a pagoda!**" is a palindrome, or even "**02/02/2020**" is a palindrome.
+
+For the purpose of this article, we'll use a more narrowed definition to keep the algorithm simple.
+A palindrome here is defined as a "continuous sequence of lowercase ASCII characters without whitespace".
+
+One intuitive approach would be using two pointers.
+One starts from the beginning of the given string moving toward the end, and the other from the end toward the beginning.
+While moving the pointers, compare the pointing characters.
+The given string is a palindrome if all the comparisons are equal. Like this:
+
+```rust
+// ❌ It won't compile
+fn is_palindrome(str: String) -> bool {
+  //        lp       rp
+  //        |        |
+  //        v →    ← v
+  // str = "aabbccbbaa"
+  let mut lp = 0;
+  let mut rp = str.len() - 1;
+
+  while lp < rp {
+    if str[lp] != str[rp] {
+    // ^^^^^^^ `String` cannot be indexed by `usize`
+      return false;
+    }
+    lp += 1;
+    rp -= 1;
+  }
+
+  true
+}
+```
+
+If you try to compile the program, you'll notice that the Rust compiler won't let us access characters by index.
+It's a very interesting constraint because many languages like JavaScript, Go, and Python offer the feature.
+
+As we dig a little deeper, there are some string methods from the standard library like [`chars()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.chars) to access the characters in a string.
+`chars()` returns an iterator over the `char`s of a string slice. So we'll have to iterate through a string slice to access characters by index.
+Like this:
+
+```rust
+let left = str.as_str().chars().nth(lp).unwrap();
+```
+
+The simple task of accessing a character in a string has the time complexity of `O(n)` instead of `O(1)`.
+
+Why is that?
+
+## Rust's Strings Are in Unicode And UTF-8 Encoded
+
+We can find the [internal representaion](https://doc.rust-lang.org/book/ch08-02-strings.html#internal-representation) of Rust's String from the [official Rust book](https://doc.rust-lang.org/book/).
+
+> A String is a wrapper over a Vec<u8\>.
+
+For strings in [ASCII](https://en.wikipedia.org/wiki/ASCII), each character is represented by 1 byte encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
+However, for strings in other written languages, like ["नमस्ते" in the Devanagari script](https://doc.rust-lang.org/book/ch08-02-strings.html#bytes-and-scalar-values-and-grapheme-clusters-oh-my) from the Rust book,
+each character is encoded in UTF-8 with multiple [Unicode](https://en.wikipedia.org/wiki/Unicode) value (code unit).
+
+So in the Rust book, it says:
+
+> Indexing into a string is often a bad idea because it’s not clear what the return type of the string-indexing operation should be: a byte value, a character, a grapheme cluster, or a string slice.
+
+It's one of the reasons why the Rust compiler does not allows the direct access to characters in strings.
+I really recommend you to read more about it in the [Rust book](https://doc.rust-lang.org/book/ch08-02-strings.html).
+It's very easy to read and insightful👏.
+
+### Correcting `is_palindrome`
+
+We can iterate over [bytes](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.bytes) and compare the first half of the string with the reversed second half.
+It's a palindrome if they were equal:
+
+```rust
+// ✅
+fn is_palindrome(str: String) -> bool {
+    let half = str.len() / 2;
+    let forward = str.bytes().take(half);
+    let backward = str.bytes().rev().take(half);
+
+    forward.eq(backward)
+}
+
+fn main() {
+    assert_eq!(is_palindrome(String::from("")), true);
+    assert_eq!(is_palindrome(String::from("aabbccbbaa")), true);
+    assert_eq!(is_palindrome(String::from("aabbccbbab")), false);
+}
+```
+
+The time and space complexity:
+
+- O(n) time, where n is the length of the string.
+- O(n) space, where n is the length of the string.
+
+The space complexity is `O(n)` because we created two byte iterators based on the length of the input string.
+
+## `isPalindrome` in TypeScript
+
+JavaScript allows string index. So we can actually translate the two pointer algorithm that didn't compile in rust.
+
+```ts
+/*
+ *  lp       rp
+ *  |        |
+ *  v →    ← v
+ * "aabbccbbaa"
+ */
+function isPalindrome(str: string): boolean {
+  let lp = 0
+  let rp = str.length - 1
+
+  while (lp < rp) {
+    if (str[lp] !== str[rp]) {
+      return false
+    }
+    lp += 1
+    rp -= 1
+  }
+  return true
+}
+
+isPalindrome('') // true
+isPalindrome('aabbccbbaa') // true
+isPalindrome('aabbccbbab') // false
+```
+
+The time and space complexity are:
+
+- O(n) time, where n is the length of the string
+- O(1) space. Constant space for the two pointers.
+
+Or just compare the string forward and backward:
+
+```ts
+function isPalindrome(str: string): boolean {
+  return str === str.split('').reverse().join('')
+}
+```
+
+The time and space complexity:
+
+- O(n) time, where n is the length of the input string
+- O(n) space, where n is the length of the input string
+
+It's fairly easy in JavaScript. Does it mean that JavaScript treat strings differently than Rust does?
+
+## JavaScript Strings are UTF-16 encoded
+
+We can find the definition of string primitive value in [ECMAScript Standard](https://tc39.es/ecma262/#sec-terms-and-definitions-string-value):
+
+> primitive value that is a finite ordered sequence of zero or more 16-bit unsigned integer values
+
+> A String value is a member of the String type. Each integer value in the sequence usually represents a single 16-bit unit of UTF-16 text.
+
+In other word, each JavaScript character is represented in Unicode with two bytes and it's encoded in UTF-16.
+
+Let's have a look at some examples. We can use one or two code units to create a character:
+
+```ts
+const s1: string = '\u00E1' // á
+const s2: string = '\u0061\u0301' // á
+```
+
+Both `s1` and `s2` makes up a `á`. If we check the length of both strings:
+
+```ts
+console.log(s1.length) // 1
+console.log(s2.length) // 2
+```
+
+The lengths are different even though they both are representing the same character.
+Let's look inside the string with string indexing to find out what are elements in the strings:
+
+```ts
+console.log(s1[0]) // á
+console.log(s1[1]) // undefined
+
+console.log(s2[0]) // a
+console.log(s2[1]) //  ́
+console.log(s2[2]) //  undefined
+```
+
+We can see that `s2` is composed with two independent elements, `a` and ` ́`.
+
+Just by seeing the same character can be represented differently, it's obvious that string indexing in JavaScript is not reliable either.
+
+Let's check for equality:
+
+```ts
+console.log(s1 === s2) // false 🧐
+```
+
+To make it even more interesting, there is another way to compose the character `á`:
+
+```ts
+const s3: string = 'a\u0301' // á
+```
+
+In `s3`, we substitute the code unit `\u0061` with its representing character `a`.
+Let's run some checks:
+
+```ts
+console.log(s3.length === 2) // true
+console.log(s2 === s3) // true 🧐
+console.log(s1 === s3) // false
+```
+
+So far what we see is that there are multiple code unit compositions to represent the same character.
+The equality is defined by the code unit compositions.
+
+It can be highly inconvenient so JavaScript introduced a string method [`normalize()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize) to return the Unicode Normalization Form of a given string.
+Let's try it with `s1`, `s2`, and `s3`:
+
+```ts
+console.log(s1.normalize() === s2.normalize()) // true
+console.log(s1.normalize() === s3.normalize()) // true
+```
+
+Let's peek inside the normalized forms of `á`:
+
+```ts
+// `escape` is deprecated.
+escape(s1.normalize()) // '%E1'
+escape(s2.normalize()) // '%E1'
+escape(s3.normalize()) // '%E1'
+```
+
+Note that [`escape()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape) is been removed from the ECMAScript standard.
+
+Thanks to the normalization, handling strings is more predictable now.
+
+JavaScript actually provides an official [Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API).
+We can use [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) and [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) to handle string encoding and decoding.
+
+```ts
+const encoder = new TextEncoder()
+const decoder = new TextDecoder()
+
+const bytes = encoder.encode('\u0061\u0301')
+decoder.decode(bytes) // 'á'
+```
+
+## To Sum up
+
+String is complicated. Rust offers a robust system to handle strings and a strict complier to encourage us to think about string handling upfront.
+On the other hand, JavaScript provides convenient APIs to handle simple use cases like ASCII.
+Under the hood, they both implement Unicode standard and encoding to support written languages internationally.
+
+## Reference
+
+- [ASCII](https://en.wikipedia.org/wiki/ASCII)
+- [Unicode](https://en.wikipedia.org/wiki/Unicode)
+- [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
+- [UTF-16](https://en.wikipedia.org/wiki/UTF-16)
+- [Palindrome](https://en.wikipedia.org/wiki/Palindrome)
+- [The Rust Programming Language](https://doc.rust-lang.org/book/)
+- [Rust's String Internal Representation](https://doc.rust-lang.org/book/ch08-02-strings.html#internal-representation)
+- [Rust String method `chars()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.chars)
+- [Rust String method `bytes()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.bytes)
+- [ECMAScript 2022 Language Specification](https://tc39.es/ecma262/#sec-terms-and-definitions-string-value)
+- [JavaScript `normalize()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize)
+- [JavaScript `escape()`](https://developer.mozlla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape)
+- [JavaScript Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API)
+- [JavaScript TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder)
+- [JavaScript TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder)
+- [What every JavaScript developer should know about Unicode](https://dmitripavlutin.com/what-every-javascript-developer-should-know-about-unicode/)
+
+---
+
+Here you have it! Thanks for reading through🙌
+
+If you find it useful, please share this article to help more people in their engineering journey.
+
+Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+If you're interested in writing a CLI with TypeScript and implementing a real-world CLI application with Google Lighthouse integration, check out my previous article ["Writing Your Own TypeScript CLI"](/articles/writing-your-own-typescript-cli).
+
+If you're interested in reading more about image optimization to boost your performance score, take a look at ["Using WebP for Better User Experience"](/articles/use-webp-for-better-ux).
+There we discussed one of the modern image formats that greatly reduces the size of your images without sacrificing quality.
+
+If you're wondering how to test Redux Observable, I wrote an article ["Writing Better Marble Tests for Redux Observable and TypeScript"](https://itnext.io/better-marble-test-70c7676a1e2) just for you.
+It's a comprehensive guide to walk you through the thought process.
+
+Happy coding!
