@@ -15,8 +15,9 @@ export default [
   {
     date: 'December 28, 2021',
     publisher: '',
-    title: 'Indexing Strings in Rust: A Case Study of Rust and TypeScript',
-    description: '',
+    title: 'Indexing Strings in Rust and TypeScript: A Case Study of String',
+    description:
+      "Text is essential in programming languages. String is the Rust's and JavaScript's definition to process text in written languages around the world. Through the simple concept of string indexing, we'll discuss how Rust and JavaScript process strings and how they handle the nuances in strings such as grapheme, or even emojis.",
     url: '/articles/indexing-strings-in-rust-and-typescript',
     cover: 'optimized/indexing-strings-in-rust.png',
     category: category.rust,
