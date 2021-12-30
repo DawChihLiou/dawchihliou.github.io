@@ -16,8 +16,8 @@ var a
     'static/chunks/pages/articles/helloworld-2788cbcb1df51bac.js',
   ],
   '/articles/indexing-strings-in-rust-and-typescript': [
-    'static/chunks/pages/articles/indexing-strings-in-rust-and-typescript-afc4db2671df0c58.js',
     a,
+    'static/chunks/pages/articles/indexing-strings-in-rust-and-typescript-e9bcf063b9ebbeda.js',
   ],
   '/articles/use-webp-for-better-ux': [
     a,

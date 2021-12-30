@@ -2635,6 +2635,22 @@
             (0, d.kt)('li', { parentName: 'ul' }, 'O(1) space.')
           ),
           (0, d.kt)(
+            'p',
+            null,
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                {
+                  href:
+                    'https://www.reddit.com/r/programming/comments/rr9dlw/indexing_strings_in_rust_and_typescript_a_case/',
+                }
+              ),
+              'This approach is suggested on Reddit'
+            ),
+            '.\nThanks a lot!'
+          ),
+          (0, d.kt)(
             'h2',
             Object.assign({}, { id: 'ispalindrome-in-typescript' }),
             (0, d.kt)('inlineCode', { parentName: 'h2' }, 'isPalindrome'),
