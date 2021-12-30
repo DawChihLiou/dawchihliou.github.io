@@ -142,9 +142,28 @@ fn main() {
 The time and space complexity:
 
 - O(n) time, where n is the length of the string.
-- O(n) space, where n is the length of the string.
+- O(1) space.
 
-The space complexity is `O(n)` because we created two byte iterators based on the length of the input string.
+The space complexity is `O(1)` because each iterator creates a pointer and a counter.
+
+Another approach would be using the [DoubleEndedIterator](https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html) trait and combining the forward and backward iterators with [`zip()`](https://doc.rust-lang.org/std/iter/fn.zip.html):
+
+```rust
+fn is_palindrome(str: String) -> bool {
+    let mut chars = string.bytes();
+    while let Some((front, back)) = chars.next().zip(chars.next_back()) {
+        if front != back {
+            return false;
+        }
+    }
+    true
+}
+```
+
+The time and space complexity:
+
+- O(n) time, where n is the length of the string.
+- O(1) space.
 
 ## `isPalindrome` in TypeScript
 
@@ -309,6 +328,8 @@ Under the hood, they both implement Unicode standard and encoding to support wri
 - [Rust's String Internal Representation](https://doc.rust-lang.org/book/ch08-02-strings.html#internal-representation)
 - [Rust String method `chars()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.chars)
 - [Rust String method `bytes()`](https://doc.rust-lang.org/stable/std/string/struct.String.html#method.bytes)
+- [Rust String method `zip()`](https://doc.rust-lang.org/std/iter/fn.zip.html)
+- [Rust String Trait `DoubleEndedIterator`](https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html)
 - [ECMAScript 2022 Language Specification](https://tc39.es/ecma262/#sec-terms-and-definitions-string-value)
 - [JavaScript `normalize()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize)
 - [JavaScript `escape()`](https://developer.mozlla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape)
