@@ -2149,18 +2149,490 @@
               { parentName: 'ul' },
               'O(n) time, where n is the length of the string.'
             ),
-            (0, d.kt)(
-              'li',
-              { parentName: 'ul' },
-              'O(n) space, where n is the length of the string.'
-            )
+            (0, d.kt)('li', { parentName: 'ul' }, 'O(1) space.')
           ),
           (0, d.kt)(
             'p',
             null,
             'The space complexity is ',
-            (0, d.kt)('inlineCode', { parentName: 'p' }, 'O(n)'),
-            ' because we created two byte iterators based on the length of the input string.'
+            (0, d.kt)('inlineCode', { parentName: 'p' }, 'O(1)'),
+            ' because each iterator creates a pointer and a counter.'
+          ),
+          (0, d.kt)(
+            'p',
+            null,
+            'Another approach would be using the ',
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                {
+                  href:
+                    'https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html',
+                }
+              ),
+              'DoubleEndedIterator'
+            ),
+            ' trait and combining the forward and backward iterators with ',
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                { href: 'https://doc.rust-lang.org/std/iter/fn.zip.html' }
+              ),
+              (0, d.kt)('inlineCode', { parentName: 'a' }, 'zip()')
+            ),
+            ':'
+          ),
+          (0, d.kt)(
+            'pre',
+            Object.assign({}, { className: 'language-rust' }),
+            (0, d.kt)(
+              'code',
+              Object.assign(
+                { parentName: 'pre' },
+                { className: 'language-rust' }
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'fn'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function-definition function' }
+                ),
+                'is_palindrome'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'str'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ':'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token class-name' }
+                ),
+                'String'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '->'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'bool'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '{'
+              ),
+              '\n    ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'let'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'mut'
+              ),
+              ' chars ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token operator' }
+                ),
+                '='
+              ),
+              ' string',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '.'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'bytes'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ';'
+              ),
+              '\n    ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'while'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'let'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token class-name' }
+                ),
+                'Some'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              'front',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ','
+              ),
+              ' back',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token operator' }
+                ),
+                '='
+              ),
+              ' chars',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '.'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'next'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '.'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'zip'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              'chars',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '.'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token function' }
+                ),
+                'next_back'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '('
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ')'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '{'
+              ),
+              '\n        ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'if'
+              ),
+              ' front ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token operator' }
+                ),
+                '!='
+              ),
+              ' back ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '{'
+              ),
+              '\n            ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token keyword' }
+                ),
+                'return'
+              ),
+              ' ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token boolean' }
+                ),
+                'false'
+              ),
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                ';'
+              ),
+              '\n        ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '}'
+              ),
+              '\n    ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '}'
+              ),
+              '\n    ',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token boolean' }
+                ),
+                'true'
+              ),
+              '\n',
+              (0, d.kt)(
+                'span',
+                Object.assign(
+                  { parentName: 'code' },
+                  { className: 'token punctuation' }
+                ),
+                '}'
+              ),
+              '\n'
+            )
+          ),
+          (0, d.kt)('p', null, 'The time and space complexity:'),
+          (0, d.kt)(
+            'ul',
+            null,
+            (0, d.kt)(
+              'li',
+              { parentName: 'ul' },
+              'O(n) time, where n is the length of the string.'
+            ),
+            (0, d.kt)('li', { parentName: 'ul' }, 'O(1) space.')
           ),
           (0, d.kt)(
             'h2',
@@ -5011,6 +5483,39 @@
                 ),
                 'Rust String method ',
                 (0, d.kt)('inlineCode', { parentName: 'a' }, 'bytes()')
+              )
+            ),
+            (0, d.kt)(
+              'li',
+              { parentName: 'ul' },
+              (0, d.kt)(
+                'a',
+                Object.assign(
+                  { parentName: 'li' },
+                  { href: 'https://doc.rust-lang.org/std/iter/fn.zip.html' }
+                ),
+                'Rust String method ',
+                (0, d.kt)('inlineCode', { parentName: 'a' }, 'zip()')
+              )
+            ),
+            (0, d.kt)(
+              'li',
+              { parentName: 'ul' },
+              (0, d.kt)(
+                'a',
+                Object.assign(
+                  { parentName: 'li' },
+                  {
+                    href:
+                      'https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html',
+                  }
+                ),
+                'Rust String Trait ',
+                (0, d.kt)(
+                  'inlineCode',
+                  { parentName: 'a' },
+                  'DoubleEndedIterator'
+                )
               )
             ),
             (0, d.kt)(
