@@ -5646,6 +5646,24 @@
           (0, d.kt)(
             'p',
             null,
+            '💬 Comments on ',
+            (0, d.kt)(
+              'a',
+              Object.assign(
+                { parentName: 'p' },
+                {
+                  href:
+                    'https://www.reddit.com/r/rust/comments/rrc0gg/indexing_strings_in_rust_and_typescript_a_case/',
+                }
+              ),
+              'Reddit'
+            ),
+            '.'
+          ),
+          (0, d.kt)('hr', null),
+          (0, d.kt)(
+            'p',
+            null,
             'Here you have it! Thanks for reading through🙌'
           ),
           (0, d.kt)(
