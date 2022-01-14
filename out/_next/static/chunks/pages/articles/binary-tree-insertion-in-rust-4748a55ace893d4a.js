@@ -252,7 +252,7 @@
           description:
             "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.",
           url: '/articles/binary-tree-insertion-in-rust',
-          cover: 'optimized/indexing-strings-in-rust.png',
+          cover: 'optimized/rust-binary-tree-insertion.png',
           category: 'Rust',
           coverWidth: '1411',
           coverHeight: '682',
@@ -14500,7 +14500,13 @@
             '💬 Comments on ',
             (0, d.kt)(
               'a',
-              Object.assign({ parentName: 'p' }, { href: '' }),
+              Object.assign(
+                { parentName: 'p' },
+                {
+                  href:
+                    'https://www.reddit.com/r/rust/comments/s3u7fk/binary_tree_insertion_in_rust/',
+                }
+              ),
               'Reddit'
             ),
             '.'

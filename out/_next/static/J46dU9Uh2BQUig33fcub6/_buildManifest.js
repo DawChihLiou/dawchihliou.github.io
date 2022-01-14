@@ -13,7 +13,7 @@ var a
   ],
   '/articles/binary-tree-insertion-in-rust': [
     (a = 'static/css/7787e07ad0df5e53.css'),
-    'static/chunks/pages/articles/binary-tree-insertion-in-rust-8bb501ad78b0ea8f.js',
+    'static/chunks/pages/articles/binary-tree-insertion-in-rust-4748a55ace893d4a.js',
   ],
   '/articles/helloworld': [
     a,
