@@ -13,6 +13,21 @@ const category = {
 
 export default [
   {
+    date: 'January 13, 2022',
+    publisher: '',
+    title: 'Binary Tree Insertion in Rust',
+    description:
+      "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.",
+    url: '/articles/binary-tree-insertion-in-rust',
+    cover: 'optimized/rust-binary-tree-insertion.png',
+    category: category.rust,
+    author: 'Daw-Chih Liou',
+    avatar: '/optimized/portrait-sm.png',
+    social: socials.github,
+    external: false,
+    publisherUrl: '',
+  },
+  {
     date: 'December 28, 2021',
     publisher: '',
     title: 'Indexing Strings in Rust and TypeScript: A Case Study of String',
