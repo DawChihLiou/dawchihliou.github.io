@@ -1,5 +1,7 @@
 body {
   /* palette */
+  --white: #ffffff;
+  --black: #000000;
   --text-primary-color: #000000;
   --text-secondary-color: rgba(0, 0, 0, 0.54);
   --text-disabled-color: rgba(0, 0, 0, 0.38);
@@ -15,6 +17,7 @@ body {
   --action-disabled-color: rgba(0, 0, 0, 0.26);
   --action-disabledBackground-color: rgba(0, 0, 0, 0.12);
   --shadow-color: rgba(0, 0, 0, 0.12);
+  --code-block-color: #e7e7e7;
 
   /* viewport */
   --viewport-sm: 576px;
@@ -40,6 +43,7 @@ body.dark {
   --action-disabled-color: rgba(255, 255, 255, 0.3);
   --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
   --shadow-color: #ffffff;
+  --code-block-color: #011a2f;
 }
 
 html,
@@ -71,19 +75,26 @@ a {
   box-sizing: border-box;
 }
 
+/*
+ * overriding code block styles in "prism-themes/themes/prism-night-owl.css" 
+ */
+code[class*='language-'],
+pre[class*='language-'] {
+  font-size: 0.85rem !important;
+}
+
+.token {
+  font-style: initial !important;
+}
+
 pre {
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
 }
 
 :not(pre) > code {
-  color: var(--text-primary-color);
-  background: #f1f1f1;
+  background: var(--code-block-color);
   border-radius: 0.25rem;
-  padding: 0 4px;
-}
-
-body.dark :not(pre) > code {
-  background: #1e1e1e;
+  padding: 0.125rem 0.25rem;
 }
 
 blockquote {
