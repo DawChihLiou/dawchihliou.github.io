@@ -30,16 +30,16 @@ body.dark {
   --text-disabled-color: rgba(255, 255, 255, 0.5);
   --text-invert-color: #000000;
   --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
-  --background-default-color: #121212;
-  --background-paper-color: #262626;
-  --background-elevated-color: #303030;
+  --background-default-color: #000000;
+  --background-paper-color: #121212;
+  --background-elevated-color: #151515;
   --divider-color: rgba(255, 255, 255, 0.12);
   --action-active-color: #fff;
   --action-hover-color: rgba(255, 255, 255, 0.08);
   --action-selected-color: rgba(255, 255, 255, 0.16);
   --action-disabled-color: rgba(255, 255, 255, 0.3);
   --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
-  --shadow-color: #000000;
+  --shadow-color: #ffffff;
 }
 
 html,
