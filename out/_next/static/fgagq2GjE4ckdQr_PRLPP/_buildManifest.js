@@ -3,7 +3,7 @@ var a
   __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
   '/': [
     'static/chunks/291-901598fc36df641b.js',
-    'static/css/88509ea5dd23397a.css',
+    'static/css/6779eed7b413ac7b.css',
     'static/chunks/pages/index-eb572894a0dc9a92.js',
   ],
   '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
