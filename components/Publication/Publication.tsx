@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Publication.module.css'
 import articles from '../../data/articles'
 
-const publication = articles.filter((a) => a.url !== '/articles/helloworld')
+const publication = articles.filter((_, i) => i < 5)
 
 export default function Publication() {
   return (

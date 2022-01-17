@@ -1,4 +1,5 @@
 import socials from '../utils/socials'
+import { allArticles } from '.contentlayer/data'
 
 const category = {
   welcome: 'Welcome',
@@ -11,52 +12,37 @@ const category = {
   rust: 'Rust',
 }
 
-export default [
-  {
-    date: 'January 13, 2022',
-    publisher: '',
-    title: 'Binary Tree Insertion in Rust',
-    description:
-      "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.",
-    url: '/articles/binary-tree-insertion-in-rust',
-    cover: 'optimized/rust-binary-tree-insertion.png',
-    category: category.rust,
-    author: 'Daw-Chih Liou',
-    avatar: '/optimized/portrait-sm.png',
-    social: socials.github,
-    external: false,
-    publisherUrl: '',
-  },
-  {
-    date: 'December 28, 2021',
-    publisher: '',
-    title: 'Indexing Strings in Rust and TypeScript: A Case Study of String',
-    description:
-      "Text is essential in programming languages. String is the Rust's and JavaScript's definition to process text in written languages around the world. Through the simple concept of string indexing, we'll discuss how Rust and JavaScript process strings and how they handle the nuances in strings such as grapheme, or even emojis.",
-    url: '/articles/indexing-strings-in-rust-and-typescript',
-    cover: 'optimized/indexing-strings-in-rust.png',
-    category: category.rust,
-    author: 'Daw-Chih Liou',
-    avatar: '/optimized/portrait-sm.png',
-    social: socials.github,
-    external: false,
-    publisherUrl: '',
-  },
-  {
-    date: 'December 6, 2021',
-    publisher: '',
-    title: 'Writing Your Own TypeScript CLI',
-    description:
-      "Writing CLIs feels like a super power💯 You can write one too! I'll show you how to develop a CLI with TypeScript step by step and demonstrate how you can apply your CLI in CD/CI pipelines. We're going to uncover the power of Google Lighthouse and many more amazing npm packages!",
-    url: '/articles/writing-your-own-typescript-cli',
-    cover: 'optimized/writing-your-own-cli.png',
-    category: category.typescript,
-    author: 'Daw-Chih Liou',
-    avatar: '/optimized/portrait-sm.png',
-    social: socials.github,
-    external: false,
-    publisherUrl: '',
-  },
+type Writing = {
+  date: string
+  publisher: string
+  title: string
+  description: string
+  url: string
+  cover: string
+  category: string
+  author: string
+  avatar: string
+  social: string
+  external: boolean
+  publisherUrl: string
+}
+
+const originals = allArticles.map<Writing>((a) => ({
+  date: a.publishedAt,
+  publisher: '',
+  title: a.title,
+  description: a.description,
+  url: `/articles/${a.slug}`,
+  cover: a.cover,
+  category: a.category,
+  author: 'Daw-Chih Liou',
+  avatar: '/optimized/portrait-sm.png',
+  social: socials.github,
+  external: false,
+  publisherUrl: '',
+}))
+
+const externals: Writing[] = [
   {
     date: 'February 9, 2021',
     publisher: 'trivago tech blog',
@@ -73,36 +59,6 @@ export default [
     social: socials.github,
     external: true,
     publisherUrl: 'https://tech.trivago.com/',
-  },
-  {
-    date: 'Octobor 6, 2020',
-    publisher: '',
-    title: 'Using WebP for Better User Experience',
-    description:
-      "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
-    url: '/articles/use-webp-for-better-ux',
-    cover: 'optimized/portfolio-snapshot.png',
-    category: category.performance,
-    author: 'Daw-Chih Liou',
-    avatar: '/optimized/portrait-sm.png',
-    social: socials.github,
-    external: false,
-    publisherUrl: '',
-  },
-  {
-    date: 'September 29, 2020',
-    publisher: '',
-    title: 'Hello World☀️',
-    description:
-      "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
-    url: '/articles/helloworld',
-    cover: '/optimized/portrait.png',
-    category: category.welcome,
-    author: 'Daw-Chih Liou',
-    avatar: '/optimized/portrait-sm.png',
-    social: socials.github,
-    external: false,
-    publisherUrl: '',
   },
   {
     date: 'March 18, 2020',
@@ -152,3 +108,9 @@ export default [
     publisherUrl: 'https://medium.com/',
   },
 ]
+
+const writings = originals
+  .concat(externals)
+  .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)))
+
+export default writings
