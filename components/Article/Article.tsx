@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import styles from './Article.module.css'
 import socials from '../../utils/socials'
 import Author from '../Author'
@@ -46,11 +45,10 @@ export default function Article({
             <h1>{title}</h1>
             <div className={styles.info}>
               <div className={styles.author}>
-                <Image
+                <img
                   alt="Daw-Chih Liou"
                   src="/optimized/portrait-sm.webp"
-                  width="24"
-                  height="24"
+                  loading="lazy"
                 />
                 <p>Daw-Chih Liou</p>
               </div>
@@ -59,7 +57,7 @@ export default function Article({
                 {readingTime ? ` · ${readingTime.text}` : ''}
               </p>
             </div>
-            <Image alt={title} width={1400} height={coverHeight} src={cover} />
+            <img alt={title} src={cover} width="100%" loading="lazy" />
             <div className="article-content">{children}</div>
             {!hideAuthor && <Author />}
           </div>
