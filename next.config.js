@@ -1,21 +1,8 @@
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx$/,
-  options: {
-    remarkPlugins: [
-      require('remark-autolink-headings'),
-      require('remark-slug'),
-      require('remark-code-titles'),
-    ],
-    rehypePlugins: [require('@mapbox/rehype-prism')],
-  },
-})
+const { withContentlayer } = require('next-contentlayer')
 
-module.exports = withMDX({
+module.exports = withContentlayer()({
   // for deployment to github pages
   assetPrefix: '',
-
-  // for mdx support
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 
   // opt-in to SWC's JavaScript minification instead of Terser
   swcMinify: true,

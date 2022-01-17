@@ -22,3 +22,37 @@
     font-weight: bold;
   }
 }
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  color: var(--text-secondary-color);
+}
+
+.info p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.author img {
+  border-radius: 50%;
+}
+
+.author p {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}

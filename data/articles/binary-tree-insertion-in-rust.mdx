@@ -1,37 +1,12 @@
-import Article from '../../components/Article'
-
-export const meta = {
-  title: 'Binary Tree Insertion in Rust',
-  description:
-    "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.",
-  url: '/articles/binary-tree-insertion-in-rust',
-  cover: 'optimized/rust-binary-tree-insertion.png',
-  category: 'Rust',
-  coverWidth: '1411',
-  coverHeight: '682',
-}
-
-export default ({ children }) => (
-  <Article
-    title={meta.title}
-    description={meta.description}
-    cover={meta.cover}
-    url={meta.url}
-    coverWidth={meta.coverWidth}
-    coverHeight={meta.coverHeight}
-  >
-    {children}
-  </Article>
-)
-
-# Binary Tree Insertion in Rust
-
-<img
-  src="/optimized/rust-binary-tree-insertion.webp"
-  alt="Hero image for Binary Tree Insertion in Rust"
-  width="100%"
-  loading="lazy"
-/>
+---
+title: 'Binary Tree Insertion in Rust'
+publishedAt: 'January 13, 2022'
+description: "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership."
+cover: '/optimized/rust-binary-tree-insertion.png'
+category: 'Rust'
+coverWidth: '1411'
+coverHeight: '682'
+---
 
 ## TL;DR
 
@@ -405,6 +380,8 @@ In order to keep the program memory save, the compiler didn't allow us to "move"
 So what we can do is to pass in a copy (duplicate) of an array element.
 
 Now it should work!
+
+## Final Thought
 
 That's it! The full implementation of our Binary Tree assertion is here⬇️
 

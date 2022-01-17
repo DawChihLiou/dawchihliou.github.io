@@ -1,37 +1,12 @@
-import Article from '../../components/Article'
-
-export const meta = {
-  title: 'Using WebP for Better User Experience',
-  description:
-    "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
-  url: '/articles/use-webp-for-better-ux',
-  cover: 'optimized/portfolio-snapshot.png',
-  category: 'Performance',
-  coverWidth: '1411',
-  coverHeight: '682',
-}
-
-export default ({ children }) => (
-  <Article
-    title={meta.title}
-    description={meta.description}
-    cover={meta.cover}
-    url={meta.url}
-    coverWidth={meta.coverWidth}
-    coverHeight={meta.coverHeight}
-  >
-    {children}
-  </Article>
-)
-
-# Using WebP for Better User Experience
-
-<img
-  src="/optimized/portfolio-snapshot.png"
-  alt="Portfolio snapshot"
-  width="100%"
-  loading="lazy"
-/>
+---
+title: 'Using WebP for Better User Experience'
+publishedAt: 'October 6, 2020'
+description: "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience."
+cover: '/optimized/portfolio-snapshot.png'
+category: 'Performance'
+coverWidth: '1411'
+coverHeight: '682'
+---
 
 ## TL;DR
 

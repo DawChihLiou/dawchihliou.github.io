@@ -23,15 +23,14 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" type="image/svg" sizes="16x16" href="/favicon.svg" />
         <link rel="mask-icon" href="/favicon.svg" color="#ffffff"></link>
         <link rel="manifest" href="/site.webmanifest" />
+
         <title>Daw-Chih liou</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <meta name="msapplication-TileColor" content="#007cf0" />
         <meta name="theme-color" content="#ffff" />
-        <meta
-          name="description"
-          content={`Daw-Chih Liou's portfolio. ${socials.description}`}
-        />
+        <meta name="description" content={socials.description} />
       </Head>
 
       <div id="outer-container">
