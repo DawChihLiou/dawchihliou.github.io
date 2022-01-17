@@ -9,159 +9,157 @@
         },
       ])
     },
+    3295: function (a, b, c) {
+      'use strict'
+      c.d(b, {
+        Z: function () {
+          return f
+        },
+      })
+      var d = c(5893)
+      c(7294)
+      var e = c(9008)
+      function f(a) {
+        var b = a.children,
+          c = a.title,
+          f = a.description,
+          g = a.url,
+          h = a.image,
+          i = a.imageWidth,
+          j = a.imageHeight
+        return (0, d.jsxs)(d.Fragment, {
+          children: [
+            (0, d.jsxs)(e.default, {
+              children: [
+                (0, d.jsx)('title', { children: c }),
+                (0, d.jsx)('meta', { name: 'description', content: f }),
+                (0, d.jsx)('meta', { property: 'og:title', content: c }),
+                (0, d.jsx)('meta', { property: 'og:type', content: 'website' }),
+                (0, d.jsx)('meta', { property: 'og:url', content: g }),
+                (0, d.jsx)('meta', { property: 'og:description', content: f }),
+                (0, d.jsx)('meta', { property: 'og:image', content: h }),
+                (0, d.jsx)('meta', {
+                  property: 'og:image:type',
+                  content: 'image/png',
+                }),
+                (0, d.jsx)('meta', { property: 'og:image:width', content: i }),
+                (0, d.jsx)('meta', { property: 'og:image:height', content: j }),
+                (0, d.jsx)('meta', { property: 'og:image:alt', content: f }),
+              ],
+            }),
+            b,
+          ],
+        })
+      }
+    },
     6236: function (a, b, c) {
       'use strict'
-      var d = c(5699)
-      b.Z = [
-        {
-          date: 'January 13, 2022',
-          publisher: '',
-          title: 'Binary Tree Insertion in Rust',
-          description:
-            "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.",
-          url: '/articles/binary-tree-insertion-in-rust',
-          cover: 'optimized/rust-binary-tree-insertion.png',
-          category: 'Rust',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !1,
-          publisherUrl: '',
+      var d = c(5699),
+        e = c(3626),
+        f = {
+          welcome: 'Welcome',
+          performance: 'Performance',
+          leadership: 'Leadership',
+          frontend: 'Frontend',
+          backend: 'Backend',
+          javascript: 'JavaScript',
+          typescript: 'TypeScript',
+          rust: 'Rust',
         },
-        {
-          date: 'December 28, 2021',
-          publisher: '',
-          title:
-            'Indexing Strings in Rust and TypeScript: A Case Study of String',
-          description:
-            "Text is essential in programming languages. String is the Rust's and JavaScript's definition to process text in written languages around the world. Through the simple concept of string indexing, we'll discuss how Rust and JavaScript process strings and how they handle the nuances in strings such as grapheme, or even emojis.",
-          url: '/articles/indexing-strings-in-rust-and-typescript',
-          cover: 'optimized/indexing-strings-in-rust.png',
-          category: 'Rust',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !1,
-          publisherUrl: '',
-        },
-        {
-          date: 'December 6, 2021',
-          publisher: '',
-          title: 'Writing Your Own TypeScript CLI',
-          description:
-            "Writing CLIs feels like a super power💯 You can write one too! I'll show you how to develop a CLI with TypeScript step by step and demonstrate how you can apply your CLI in CD/CI pipelines. We're going to uncover the power of Google Lighthouse and many more amazing npm packages!",
-          url: '/articles/writing-your-own-typescript-cli',
-          cover: 'optimized/writing-your-own-cli.png',
-          category: 'TypeScript',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !1,
-          publisherUrl: '',
-        },
-        {
-          date: 'February 9, 2021',
-          publisher: 'trivago tech blog',
-          title: 'Rethinking the Next-gen Analytics Web App at trivago',
-          description:
-            "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
-          url:
-            'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
-          cover:
-            'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
-          category: 'Frontend',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !0,
-          publisherUrl: 'https://tech.trivago.com/',
-        },
-        {
-          date: 'Octobor 6, 2020',
-          publisher: '',
-          title: 'Using WebP for Better User Experience',
-          description:
-            "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience.",
-          url: '/articles/use-webp-for-better-ux',
-          cover: 'optimized/portfolio-snapshot.png',
-          category: 'Performance',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !1,
-          publisherUrl: '',
-        },
-        {
-          date: 'September 29, 2020',
-          publisher: '',
-          title: 'Hello World☀️',
-          description:
-            "Thank you so much for being interested in my articles! I'll use this space to write about web technologies. Hopefully it'll unblock you and give you a little dose of inspiration. Stay tuned!",
-          url: '/articles/helloworld',
-          cover: '/optimized/portrait.png',
-          category: 'Welcome',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.github,
-          external: !1,
-          publisherUrl: '',
-        },
-        {
-          date: 'March 18, 2020',
-          publisher: 'Medium',
-          title: '3 Principles to Triumph Your Software Project',
-          description:
-            'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
-          url:
-            'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
-          cover: '',
-          category: 'Leadership',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.medium,
-          external: !0,
-          publisherUrl: 'https://medium.com/',
-        },
-        {
-          date: 'November 6, 2019',
-          publisher: 'ITNEXT',
-          title:
-            'Writing Better Marble Tests for Redux Observable and TypeScript',
-          description:
-            'Marble testing is a brilliant way to test observables. It focuses on the behaviors of observables over time. The combination of test assertion and marble diagram let us visualize the progression of emitted values over time.',
-          url: 'https://itnext.io/better-marble-test-70c7676a1e2',
-          cover: '',
-          category: 'Frontend',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.medium,
-          external: !0,
-          publisherUrl: 'https://itnext.io/',
-        },
-        {
-          date: 'September 25, 2018',
-          publisher: 'Medium',
-          title: 'Intuitive Transducer in JavaScript',
-          description:
-            'What is transducing? Simply put, it’s a data transformation process without creating intermediate products. It’s like a pipeline. It’s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
-          url:
-            'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
-          cover: '',
-          category: 'JavaScript',
-          author: 'Daw-Chih Liou',
-          avatar: '/optimized/portrait-sm.png',
-          social: d.Z.medium,
-          external: !0,
-          publisherUrl: 'https://medium.com/',
-        },
-      ]
+        g = e.Z4.map(function (a) {
+          return {
+            date: a.publishedAt,
+            publisher: '',
+            title: a.title,
+            description: a.description,
+            url: '/articles/'.concat(a.slug),
+            cover: a.cover,
+            category: a.category,
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: d.Z.github,
+            external: !1,
+            publisherUrl: '',
+          }
+        }),
+        h = [
+          {
+            date: 'February 9, 2021',
+            publisher: 'trivago tech blog',
+            title: 'Rethinking the Next-gen Analytics Web App at trivago',
+            description:
+              "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
+            url:
+              'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
+            cover:
+              'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
+            category: f.frontend,
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: d.Z.github,
+            external: !0,
+            publisherUrl: 'https://tech.trivago.com/',
+          },
+          {
+            date: 'March 18, 2020',
+            publisher: 'Medium',
+            title: '3 Principles to Triumph Your Software Project',
+            description:
+              'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
+            url:
+              'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
+            cover: '',
+            category: f.leadership,
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: d.Z.medium,
+            external: !0,
+            publisherUrl: 'https://medium.com/',
+          },
+          {
+            date: 'November 6, 2019',
+            publisher: 'ITNEXT',
+            title:
+              'Writing Better Marble Tests for Redux Observable and TypeScript',
+            description:
+              'Marble testing is a brilliant way to test observables. It focuses on the behaviors of observables over time. The combination of test assertion and marble diagram let us visualize the progression of emitted values over time.',
+            url: 'https://itnext.io/better-marble-test-70c7676a1e2',
+            cover: '',
+            category: f.frontend,
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: d.Z.medium,
+            external: !0,
+            publisherUrl: 'https://itnext.io/',
+          },
+          {
+            date: 'September 25, 2018',
+            publisher: 'Medium',
+            title: 'Intuitive Transducer in JavaScript',
+            description:
+              'What is transducing? Simply put, it’s a data transformation process without creating intermediate products. It’s like a pipeline. It’s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
+            url:
+              'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
+            cover: '',
+            category: f.javascript,
+            author: 'Daw-Chih Liou',
+            avatar: '/optimized/portrait-sm.png',
+            social: d.Z.medium,
+            external: !0,
+            publisherUrl: 'https://medium.com/',
+          },
+        ],
+        i = g.concat(h).sort(function (a, b) {
+          return Number(new Date(b.date)) - Number(new Date(a.date))
+        })
+      b.Z = i
     },
     1906: function (a, b, c) {
       'use strict'
       c.r(b),
         c.d(b, {
           default: function () {
-            return L
+            return M
           },
         })
       var d,
@@ -477,8 +475,8 @@
       var G = c(3812),
         H = c.n(G),
         I = c(6236),
-        J = I.Z.filter(function (a) {
-          return '/articles/helloworld' !== a.url
+        J = I.Z.filter(function (a, b) {
+          return b < 5
         })
       function K() {
         return (0, e.jsxs)('section', {
@@ -510,65 +508,44 @@
           ],
         })
       }
-      function L() {
-        return (0, e.jsxs)('div', {
-          className: h().container,
-          children: [
-            (0, e.jsxs)(f.default, {
-              children: [
-                (0, e.jsx)('meta', {
-                  property: 'og:title',
-                  content: "Daw-Chih Liou's Portfolio",
-                }),
-                (0, e.jsx)('meta', { property: 'og:type', content: 'website' }),
-                (0, e.jsx)('meta', { property: 'og:url', content: p.Z.home }),
-                (0, e.jsx)('meta', {
-                  property: 'og:description',
-                  content: p.Z.description,
-                }),
-                (0, e.jsx)('meta', {
-                  property: 'og:image',
-                  content: p.Z.heroImage,
-                }),
-                (0, e.jsx)('meta', {
-                  property: 'og:image:type',
-                  content: 'image/png',
-                }),
-                (0, e.jsx)('meta', {
-                  property: 'og:image:width',
-                  content: '1411',
-                }),
-                (0, e.jsx)('meta', {
-                  property: 'og:image:height',
-                  content: '682',
-                }),
-                (0, e.jsx)('meta', {
-                  property: 'og:image:alt',
-                  content: p.Z.description,
-                }),
-                (0, e.jsx)('meta', {
-                  name: 'google-site-verification',
-                  content: 'XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8',
-                }),
-                (0, e.jsx)('script', {
-                  defer: !0,
-                  'data-domain': 'dawchihliou.github.io',
-                  src: 'https://plausible.io/js/plausible.outbound-links.js',
-                }),
-              ],
-            }),
-            (0, e.jsxs)('main', {
-              className: h().main,
-              children: [
-                (0, e.jsx)(l, {}),
-                (0, e.jsx)(q, {}),
-                (0, e.jsx)(w, {}),
-                (0, e.jsx)(A, {}),
-                (0, e.jsx)(K, {}),
-                (0, e.jsx)(F, {}),
-              ],
-            }),
-          ],
+      var L = c(3295)
+      function M() {
+        return (0, e.jsx)(L.Z, {
+          title: 'Daw-Chih Liou',
+          description: p.Z.description,
+          url: p.Z.home,
+          image: p.Z.heroImage,
+          imageWidth: '1411',
+          imageHeight: '682',
+          children: (0, e.jsxs)('div', {
+            className: h().container,
+            children: [
+              (0, e.jsxs)(f.default, {
+                children: [
+                  (0, e.jsx)('meta', {
+                    name: 'google-site-verification',
+                    content: 'XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8',
+                  }),
+                  (0, e.jsx)('script', {
+                    defer: !0,
+                    'data-domain': 'dawchihliou.github.io',
+                    src: 'https://plausible.io/js/plausible.outbound-links.js',
+                  }),
+                ],
+              }),
+              (0, e.jsxs)('main', {
+                className: h().main,
+                children: [
+                  (0, e.jsx)(l, {}),
+                  (0, e.jsx)(q, {}),
+                  (0, e.jsx)(w, {}),
+                  (0, e.jsx)(A, {}),
+                  (0, e.jsx)(K, {}),
+                  (0, e.jsx)(F, {}),
+                ],
+              }),
+            ],
+          }),
         })
       }
     },
@@ -645,7 +622,7 @@
     },
   },
   function (a) {
-    a.O(0, [291, 774, 888, 179], function () {
+    a.O(0, [926, 626, 291, 774, 888, 179], function () {
       return a((a.s = 5301))
     }),
       (_N_E = a.O())

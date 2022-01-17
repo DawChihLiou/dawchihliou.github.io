@@ -121,3 +121,29 @@ body.dark svg text {
 body.dark svg rect {
   stroke: #ffffff;
 }
+
+/* article anchor */
+.article-content .anchor {
+  visibility: hidden;
+  position: absolute;
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 720px;
+  cursor: pointer;
+}
+
+.article-content .anchor:hover {
+  visibility: visible;
+  text-decoration-line: none;
+}
+
+.article-content *:hover > .anchor {
+  visibility: visible;
+  text-decoration-line: none;
+}
+
+.article-content .anchor:after {
+  color: var(--text-secondary-color);
+  content: '#';
+}
