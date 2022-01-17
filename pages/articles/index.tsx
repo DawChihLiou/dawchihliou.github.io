@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import articles from '../../data/articles'
 import styles from '../../styles/Articles.module.css'
 import Link from 'next/link'
