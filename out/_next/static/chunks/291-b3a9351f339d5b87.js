@@ -149,6 +149,26 @@
         return d(a) || e(a)
       }
     },
+    8738: function (a) {
+      function b(a) {
+        return (
+          !!a.constructor &&
+          'function' == typeof a.constructor.isBuffer &&
+          a.constructor.isBuffer(a)
+        )
+      }
+      a.exports = function (a) {
+        var c
+        return (
+          null != a &&
+          (b(a) ||
+            ('function' == typeof (c = a).readFloatLE &&
+              'function' == typeof c.slice &&
+              b(c.slice(0, 0))) ||
+            !!a._isBuffer)
+        )
+      }
+    },
     6195: function (a) {
       'use strict'
       a.exports = function (a) {
@@ -1297,26 +1317,6 @@
       }
       a.exports = function (a) {
         return d(a, 'table', e), a
-      }
-    },
-    4829: function (a) {
-      function b(a) {
-        return (
-          !!a.constructor &&
-          'function' == typeof a.constructor.isBuffer &&
-          a.constructor.isBuffer(a)
-        )
-      }
-      a.exports = function (a) {
-        var c
-        return (
-          null != a &&
-          (b(a) ||
-            ('function' == typeof (c = a).readFloatLE &&
-              'function' == typeof c.slice &&
-              b(c.slice(0, 0))) ||
-            !!a._isBuffer)
-        )
       }
     },
     7416: function (a) {
@@ -4219,7 +4219,7 @@
       var d = c(4155),
         e = c(6470),
         f = c(156),
-        g = c(4829)
+        g = c(8738)
       a.exports = k
       var h = {}.hasOwnProperty,
         i = k.prototype

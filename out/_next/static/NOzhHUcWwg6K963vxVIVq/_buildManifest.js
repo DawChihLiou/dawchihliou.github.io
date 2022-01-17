@@ -3,9 +3,9 @@ var a, b
   (self.__BUILD_MANIFEST = {
     __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     '/': [
-      (a = 'static/chunks/ef87329b-f536748181fdbc0c.js'),
+      (a = 'static/chunks/ef87329b-d06e98538dd59cc4.js'),
       b,
-      'static/chunks/291-cd3ae329f56a4517.js',
+      'static/chunks/291-b3a9351f339d5b87.js',
       'static/css/6779eed7b413ac7b.css',
       'static/chunks/pages/index-818ba00d51b6fe1b.js',
     ],
