@@ -7,8 +7,9 @@ This site is built with
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [MDX](https://mdxjs.com/)
 - [Prism themes](https://github.com/PrismJS/prism-themes)
+- [Contentlayer](https://www.contentlayer.dev)
+- [unified](https://github.com/unifiedjs/unified)
 - [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
-- [`@mapbox/rehype-prism`](https://github.com/mapbox/rehype-prism)
 
 The Hero design is inspired by [Vercel](https://vercel.com/).
 
