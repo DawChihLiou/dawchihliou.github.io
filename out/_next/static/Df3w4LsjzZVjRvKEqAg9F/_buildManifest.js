@@ -1,6 +1,5 @@
-var a, b, c
+var a, b
 ;(b = 'static/chunks/626-ee9dfa3be787ac5e.js'),
-  (c = 'static/chunks/484-52a5ff1651728c8b.js'),
   (self.__BUILD_MANIFEST = {
     __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     '/': [
@@ -18,14 +17,12 @@ var a, b, c
       'static/chunks/pages/articles-df7116dd4e40d7ec.js',
     ],
     '/articles/[slug]': [
-      c,
-      'static/css/f3072ab2b99cc15d.css',
-      'static/chunks/pages/articles/[slug]-720cb347eaae0543.js',
+      'static/css/c3d1cb2e043c8a7f.css',
+      'static/chunks/pages/articles/[slug]-7c4ea0a1d070e06c.js',
     ],
     '/now': [
-      c,
       'static/css/0018c274a537ef81.css',
-      'static/chunks/pages/now-c41f9c9d7d704b78.js',
+      'static/chunks/pages/now-e6ad545d796e53fb.js',
     ],
     sortedPages: [
       '/',

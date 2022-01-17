@@ -13,14 +13,13 @@
       'use strict'
       c.d(b, {
         Z: function () {
-          return i
+          return h
         },
       })
       var d = c(5893)
       c(7294)
-      var e = c(1664),
-        f = c(5675)
-      function g(a, b, c) {
+      var e = c(1664)
+      function f(a, b, c) {
         return (
           b in a
             ? Object.defineProperty(a, b, {
@@ -33,7 +32,7 @@
           a
         )
       }
-      function h(a) {
+      function g(a) {
         for (var b = 1; b < arguments.length; b++) {
           var c = null != arguments[b] ? arguments[b] : {},
             d = Object.keys(c)
@@ -44,25 +43,22 @@
               })
             )),
             d.forEach(function (b) {
-              g(a, b, c[b])
+              f(a, b, c[b])
             })
         }
         return a
       }
-      var i = {
-        Image: function (a) {
-          return (0, d.jsx)(f.default, h({ alt: a.alt }, a))
-        },
+      var h = {
         a: function (a) {
           var b = a.href
           return b && (b.startsWith('/') || b.startsWith('#'))
             ? (0, d.jsx)(e.default, {
                 href: b,
-                children: (0, d.jsx)('a', h({}, a, { children: a.children })),
+                children: (0, d.jsx)('a', g({}, a, { children: a.children })),
               })
             : (0, d.jsx)(
                 'a',
-                h({ target: '_blank', rel: 'noopener noreferrer' }, a, {
+                g({ target: '_blank', rel: 'noopener noreferrer' }, a, {
                   children: a.children,
                 })
               )
@@ -158,9 +154,32 @@
     6944: function (a) {
       a.exports = { main: 'Now_main__vu_tz', article: 'Now_article__DX6t0' }
     },
+    544: function (a, b, c) {
+      'use strict'
+      var d
+      c.d(b, {
+        z: function () {
+          return i
+        },
+      })
+      var e = c(7294),
+        f = c(5893),
+        g = c(3935)
+      const h = (a, b = {}) => {
+          const h = {
+              React: e,
+              ReactDOM: g,
+              _jsx_runtime: d || (d = c.t(f, 2)),
+              ...b,
+            },
+            i = new Function(...Object.keys(h), a)
+          return i(...Object.values(h))
+        },
+        i = (a, b = {}) => e.useMemo(() => h(a, b), [a, b])
+    },
   },
   function (a) {
-    a.O(0, [484, 774, 888, 179], function () {
+    a.O(0, [774, 888, 179], function () {
       return a((a.s = 7144))
     }),
       (_N_E = a.O())
