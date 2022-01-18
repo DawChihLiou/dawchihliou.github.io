@@ -4,7 +4,7 @@ import styles from '../../styles/Articles.module.css'
 import Link from 'next/link'
 import { FiRss } from 'react-icons/fi'
 import SeoContainer from '../../components/SeoContainer'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 export default function Articles() {
   return (

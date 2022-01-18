@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Menubar.module.css'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 import { GrGithub } from 'react-icons/gr'
 import DarkmodeSwitch from '../DarkmodeSwitch'
 

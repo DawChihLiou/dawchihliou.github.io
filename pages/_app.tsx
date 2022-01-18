@@ -6,7 +6,7 @@ import 'prism-themes/themes/prism-night-owl.css'
 import Head from 'next/head'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
-import socials from '../utils/socials'
+import socials from '../.generated/meta/socialsTs'
 import Menubar from '../components/Menubar'
 import SchemeProvider from '../components/SchemeProvider'
 

@@ -6,7 +6,7 @@ import Intro from '../components/Intro'
 import Recommendation from '../components/Recommendation'
 import Project from '../components/Project'
 import SkillSet from '../components/SkillSet'
-import socials from '../utils/socials'
+import socials from '../.generated/meta/socialsTs'
 import Publication from '../components/Publication'
 import SeoContainer from '../components/SeoContainer'
 

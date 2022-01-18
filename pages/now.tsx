@@ -4,7 +4,7 @@ import { allOtherPages } from '.contentlayer/data'
 import type { OtherPage } from '.contentlayer/types'
 import components from '../components/MDXComponents'
 import SeoContainer from '../components/SeoContainer'
-import socials from '../utils/socials'
+import socials from '../.generated/meta/socialsTs'
 import styles from '../styles/Now.module.css'
 
 type NowProps = {

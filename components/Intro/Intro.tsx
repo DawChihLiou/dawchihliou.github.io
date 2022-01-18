@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Intro.module.css'
 import { GrTwitter, GrLinkedin, GrGithub, GrMedium } from 'react-icons/gr'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 export default function Intro() {
   return (

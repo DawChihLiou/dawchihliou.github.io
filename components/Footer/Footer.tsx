@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import styles from './Footer.module.css'
-import socials from '../../utils/socials'
-import resources from '../../utils/resources'
+import socials from '../../.generated/meta/socialsTs'
+import resources from '../../.generated/meta/resourcesTs'
 import { FiRss } from 'react-icons/fi'
 
 export default function Footer() {

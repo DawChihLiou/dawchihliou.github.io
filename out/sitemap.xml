@@ -18,27 +18,34 @@
   </url>
 
   <url>
+    <loc>https://dawchihliou.github.io/content/now</loc>
+    <lastmod>2022-01-18</lastmod>
+  </url>
+
+  <url>
     <loc
-      >https://dawchihliou.github.io/articles/binary-tree-insertion-in-rust</loc
+      >https://dawchihliou.github.io/content/articles/binary-tree-insertion-in-rust</loc
     >
     <lastmod>2022-01-18</lastmod>
   </url>
 
   <url>
     <loc
-      >https://dawchihliou.github.io/articles/indexing-strings-in-rust-and-typescript</loc
+      >https://dawchihliou.github.io/content/articles/indexing-strings-in-rust-and-typescript</loc
     >
     <lastmod>2022-01-18</lastmod>
   </url>
 
   <url>
-    <loc>https://dawchihliou.github.io/articles/use-webp-for-better-ux</loc>
+    <loc
+      >https://dawchihliou.github.io/content/articles/use-webp-for-better-ux</loc
+    >
     <lastmod>2022-01-18</lastmod>
   </url>
 
   <url>
     <loc
-      >https://dawchihliou.github.io/articles/writing-your-own-typescript-cli</loc
+      >https://dawchihliou.github.io/content/articles/writing-your-own-typescript-cli</loc
     >
     <lastmod>2022-01-18</lastmod>
   </url>

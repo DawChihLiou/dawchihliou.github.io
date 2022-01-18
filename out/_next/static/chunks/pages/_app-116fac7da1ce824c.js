@@ -227,9 +227,22 @@
       ;(window.__NEXT_P = window.__NEXT_P || []).push([
         '/_app',
         function () {
-          return c(3026)
+          return c(7467)
         },
       ])
+    },
+    2985: function (a, b) {
+      'use strict'
+      b.Z = {
+        linkedin: 'https://www.linkedin.com/in/dawchihliou',
+        medium: 'https://medium.com/@dawchihliou',
+        twitter: 'https://twitter.com/dawchihliou',
+        github: 'https://github.com/DawChihLiou',
+        home: 'https://dawchihliou.github.io',
+        heroImage: 'https://dawchihliou.github.io/optimized/social-media.png',
+        description:
+          'Daw-Chih is a software engineer, UX advocate, and mentor who is dedicated to Web engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.',
+      }
     },
     8418: function (a, b, c) {
       'use strict'
@@ -489,7 +502,7 @@
         return h.set(b, (c = { id: b, observer: e, elements: d })), c
       }
     },
-    3026: function (a, b, c) {
+    7467: function (a, b, c) {
       'use strict'
       c.r(b),
         c.d(b, {
@@ -504,7 +517,7 @@
         g = c(1664),
         h = c(9693),
         i = c.n(h),
-        j = c(5699),
+        j = c(2985),
         k = c(6893)
       function l() {
         return (0, d.jsxs)('footer', {
@@ -1602,19 +1615,6 @@
             }),
           ],
         })
-      }
-    },
-    5699: function (a, b) {
-      'use strict'
-      b.Z = {
-        linkedin: 'https://www.linkedin.com/in/dawchihliou',
-        medium: 'https://medium.com/@dawchihliou',
-        twitter: 'https://twitter.com/dawchihliou',
-        github: 'https://github.com/DawChihLiou',
-        home: 'https://dawchihliou.github.io',
-        heroImage: 'https://dawchihliou.github.io/optimized/social-media.png',
-        description:
-          'Daw-Chih is a software engineer, UX advocate, and mentor who is dedicated to Web engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.',
       }
     },
     8830: function (a) {

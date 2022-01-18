@@ -20,7 +20,7 @@
         e = c(7294),
         f = c(9008),
         g = c(1163),
-        h = c(5699)
+        h = c(2985)
       function i(a) {
         var b = a.children,
           c = a.title,
@@ -100,107 +100,101 @@
         })
       }
     },
-    6236: function (a, b, c) {
+    8937: function (a, b, c) {
       'use strict'
-      var d = c(5699),
-        e = c(3626),
-        f = {
-          welcome: 'Welcome',
-          performance: 'Performance',
-          leadership: 'Leadership',
-          frontend: 'Frontend',
-          backend: 'Backend',
-          javascript: 'JavaScript',
-          typescript: 'TypeScript',
-          rust: 'Rust',
+      c.d(b, {
+        Z: function () {
+          return e
         },
-        g = e.Z4.map(function (a) {
-          return {
-            date: a.publishedAt,
-            publisher: '',
-            title: a.title,
-            description: a.description,
-            url: '/articles/'.concat(a.slug),
-            cover: a.cover,
-            category: a.category,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: d.Z.github,
-            external: !1,
-            publisherUrl: '',
-          }
-        }),
-        h = [
-          {
-            date: 'February 9, 2021',
-            publisher: 'trivago tech blog',
-            title: 'Rethinking the Next-gen Analytics Web App at trivago',
-            description:
-              "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
-            url:
-              'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
-            cover:
-              'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
-            category: f.frontend,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: d.Z.github,
-            external: !0,
-            publisherUrl: 'https://tech.trivago.com/',
-          },
-          {
-            date: 'March 18, 2020',
-            publisher: 'Medium',
-            title: '3 Principles to Triumph Your Software Project',
-            description:
-              'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
-            url:
-              'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
-            cover: '',
-            category: f.leadership,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: d.Z.medium,
-            external: !0,
-            publisherUrl: 'https://medium.com/',
-          },
-          {
-            date: 'November 6, 2019',
-            publisher: 'ITNEXT',
-            title:
-              'Writing Better Marble Tests for Redux Observable and TypeScript',
-            description:
-              'Marble testing is a brilliant way to test observables. It focuses on the behaviors of observables over time. The combination of test assertion and marble diagram let us visualize the progression of emitted values over time.',
-            url: 'https://itnext.io/better-marble-test-70c7676a1e2',
-            cover: '',
-            category: f.frontend,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: d.Z.medium,
-            external: !0,
-            publisherUrl: 'https://itnext.io/',
-          },
-          {
-            date: 'September 25, 2018',
-            publisher: 'Medium',
-            title: 'Intuitive Transducer in JavaScript',
-            description:
-              'What is transducing? Simply put, it’s a data transformation process without creating intermediate products. It’s like a pipeline. It’s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
-            url:
-              'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
-            cover: '',
-            category: f.javascript,
-            author: 'Daw-Chih Liou',
-            avatar: '/optimized/portrait-sm.png',
-            social: d.Z.medium,
-            external: !0,
-            publisherUrl: 'https://medium.com/',
-          },
-        ],
-        i = g.concat(h).sort(function (a, b) {
-          return Number(new Date(b.date)) - Number(new Date(a.date))
-        })
-      b.Z = i
+      })
+      var d = c(2985),
+        e = c(3626)
+          .Z4.map(function (a) {
+            return {
+              date: a.publishedAt,
+              publisher: '',
+              title: a.title,
+              description: a.description,
+              url: '/articles/'.concat(a.slug),
+              cover: a.cover,
+              category: a.category,
+              author: 'Daw-Chih Liou',
+              avatar: '/optimized/portrait-sm.png',
+              social: d.Z.github,
+              external: !1,
+              publisherUrl: '',
+            }
+          })
+          .concat([
+            {
+              date: 'February 9, 2021',
+              publisher: 'trivago tech blog',
+              title: 'Rethinking the Next-gen Analytics Web App at trivago',
+              description:
+                "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
+              url:
+                'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
+              cover:
+                'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
+              category: 'Frontend',
+              author: 'Daw-Chih Liou',
+              avatar: '/optimized/portrait-sm.png',
+              social: 'https://github.com/DawChihLiou',
+              external: !0,
+              publisherUrl: 'https://tech.trivago.com/',
+            },
+            {
+              date: 'March 18, 2020',
+              publisher: 'Medium',
+              title: '3 Principles to Triumph Your Software Project',
+              description:
+                'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
+              url:
+                'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
+              cover: '',
+              category: 'Leadership',
+              author: 'Daw-Chih Liou',
+              avatar: '/optimized/portrait-sm.png',
+              social: 'https://medium.com/@dawchihliou',
+              external: !0,
+              publisherUrl: 'https://medium.com/',
+            },
+            {
+              date: 'November 6, 2019',
+              publisher: 'ITNEXT',
+              title:
+                'Writing Better Marble Tests for Redux Observable and TypeScript',
+              description:
+                'Marble testing is a brilliant way to test observables. It focuses on the behaviors of observables over time. The combination of test assertion and marble diagram let us visualize the progression of emitted values over time.',
+              url: 'https://itnext.io/better-marble-test-70c7676a1e2',
+              cover: '',
+              category: 'Frontend',
+              author: 'Daw-Chih Liou',
+              avatar: '/optimized/portrait-sm.png',
+              social: 'https://medium.com/@dawchihliou',
+              external: !0,
+              publisherUrl: 'https://itnext.io/',
+            },
+            {
+              date: 'September 25, 2018',
+              publisher: 'Medium',
+              title: 'Intuitive Transducer in JavaScript',
+              description:
+                'What is transducing? Simply put, it’s a data transformation process without creating intermediate products. It’s like a pipeline. It’s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
+              url:
+                'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
+              cover: '',
+              category: 'JavaScript',
+              author: 'Daw-Chih Liou',
+              avatar: '/optimized/portrait-sm.png',
+              social: 'https://medium.com/@dawchihliou',
+              external: !0,
+              publisherUrl: 'https://medium.com/',
+            },
+          ])
+          .sort(function (a, b) {
+            return Number(new Date(b.date)) - Number(new Date(a.date))
+          })
     },
     1906: function (a, b, c) {
       'use strict'
@@ -253,7 +247,7 @@
       var m = c(8861),
         n = c.n(m),
         o = c(5155),
-        p = c(5699)
+        p = c(2985)
       function q() {
         return (0, e.jsxs)('section', {
           className: n().wrap,
@@ -522,7 +516,7 @@
       }
       var G = c(3812),
         H = c.n(G),
-        I = c(6236),
+        I = c(8937),
         J = I.Z.filter(function (a, b) {
           return b < 5
         })

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Author.module.css'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 export default function Author() {
   return (

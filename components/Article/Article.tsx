@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Article.module.css'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 import Author from '../Author'
 import SeoContainer from '../SeoContainer'
 

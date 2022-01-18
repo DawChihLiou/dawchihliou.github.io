@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useMemo } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 type SeoContainerProps = PropsWithChildren<{
   title: string

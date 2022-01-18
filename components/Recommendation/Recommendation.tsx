@@ -2,7 +2,7 @@ import React from 'react'
 import { FiAward, FiSmile, FiAnchor } from 'react-icons/fi'
 import content from './content'
 import clsx from 'clsx'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 import styles from './Recommendation.module.css'
 

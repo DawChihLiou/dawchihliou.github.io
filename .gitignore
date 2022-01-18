@@ -36,8 +36,11 @@ yarn-error.log*
 # images
 /public/optimized
 
-# Contentlayer
+# contentlayer
 .contentlayer
 
 # seo sitemap
 public/sitemap.xml
+
+#generated
+.generated

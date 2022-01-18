@@ -1,7 +1,7 @@
 import React from 'react'
 import content from './content'
 import styles from './Project.module.css'
-import socials from '../../utils/socials'
+import socials from '../../.generated/meta/socialsTs'
 
 export default function Project() {
   return (
