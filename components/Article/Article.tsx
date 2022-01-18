@@ -38,6 +38,7 @@ export default function Article({
       image={`${socials.home}${cover}`}
       imageWidth={coverWidth}
       imageHeight={coverHeight}
+      publishedAt={publishedAt}
     >
       <article>
         <div className={styles.container}>

@@ -7,21 +7,25 @@ import SeoContainer from '../components/SeoContainer'
 import socials from '../utils/socials'
 import styles from '../styles/Now.module.css'
 
-export default function Now({ now }: { now: OtherPage }) {
-  const Component = useMDXComponent(now.body.code)
+type NowProps = {
+  meta: OtherPage
+}
+
+export default function Now({ meta }: NowProps) {
+  const Component = useMDXComponent(meta.body.code)
 
   return (
     <SeoContainer
-      title={now.title}
-      description={now.description}
-      url={`${socials.home}/${now.slug}`}
-      image={now.cover}
-      imageWidth={now.coverWidth}
-      imageHeight={now.coverHeight}
+      title={`Daw-Chih's ${meta.title}`}
+      description={meta.description}
+      url={`${socials.home}/${meta.slug}`}
+      image={meta.cover}
+      imageWidth={meta.coverWidth}
+      imageHeight={meta.coverHeight}
     >
       <main className={styles.main}>
         <article className={styles.article}>
-          <h1>{now.title}</h1>
+          <h1>{meta.title}</h1>
           <Component components={components} />
         </article>
       </main>
@@ -29,8 +33,8 @@ export default function Now({ now }: { now: OtherPage }) {
   )
 }
 
-export async function getStaticProps({ params }) {
-  const now = allOtherPages.find((page) => page.slug === 'now')
+export async function getStaticProps() {
+  const meta = allOtherPages.find((page) => page.slug === 'now')
 
-  return { props: { now } }
+  return { props: { meta } }
 }
