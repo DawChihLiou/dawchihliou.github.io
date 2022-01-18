@@ -1,10 +1,10 @@
-const imagemin = require('imagemin')
-const imageminJpegtran = require('imagemin-jpegtran')
-const imageminPngquant = require('imagemin-pngquant')
-const imageminWebp = require('imagemin-webp')
-const imageminSvgo = require('imagemin-svgo')
+import imagemin from 'imagemin'
+import imageminJpegtran from 'imagemin-jpegtran'
+import imageminPngquant from 'imagemin-pngquant'
+import imageminWebp from 'imagemin-webp'
+import imageminSvgo from 'imagemin-svgo'
 
-;(async () => {
+async function generate() {
   /**
    * generate optimized fallback images
    */
@@ -31,4 +31,6 @@ const imageminSvgo = require('imagemin-svgo')
     destination: 'public/optimized',
     plugins: [imageminSvgo({ removeViewBox: false })],
   })
-})()
+}
+
+generate()
