@@ -69,38 +69,86 @@
       'use strict'
       c.d(b, {
         Z: function () {
-          return f
+          return i
         },
       })
-      var d = c(5893)
-      c(7294)
-      var e = c(9008)
-      function f(a) {
+      var d = c(5893),
+        e = c(7294),
+        f = c(9008),
+        g = c(1163),
+        h = c(5699)
+      function i(a) {
         var b = a.children,
           c = a.title,
-          f = a.description,
-          g = a.url,
-          h = a.image,
-          i = a.imageWidth,
-          j = a.imageHeight
+          i = a.description,
+          j = a.url,
+          k = a.image,
+          l = a.imageWidth,
+          m = a.imageHeight,
+          n = a.publishedAt,
+          o = (0, g.useRouter)(),
+          p = (0, e.useMemo)(
+            function () {
+              return n ? new Date(n).toISOString() : new Date().toISOString()
+            },
+            [n]
+          )
         return (0, d.jsxs)(d.Fragment, {
           children: [
-            (0, d.jsxs)(e.default, {
+            (0, d.jsxs)(f.default, {
               children: [
                 (0, d.jsx)('title', { children: c }),
-                (0, d.jsx)('meta', { name: 'description', content: f }),
+                (0, d.jsx)('meta', { name: 'description', content: i }),
+                (0, d.jsx)('meta', {
+                  name: 'robots',
+                  content: 'follow, index',
+                }),
+                (0, d.jsx)('link', {
+                  rel: 'canonical',
+                  href: ''.concat(h.Z.home).concat(o.asPath),
+                }),
+                (0, d.jsx)('meta', { itemProp: 'name', content: c }),
+                (0, d.jsx)('meta', { itemProp: 'description', content: i }),
+                (0, d.jsx)('meta', { itemProp: 'image', content: k }),
                 (0, d.jsx)('meta', { property: 'og:title', content: c }),
                 (0, d.jsx)('meta', { property: 'og:type', content: 'website' }),
-                (0, d.jsx)('meta', { property: 'og:url', content: g }),
-                (0, d.jsx)('meta', { property: 'og:description', content: f }),
-                (0, d.jsx)('meta', { property: 'og:image', content: h }),
+                (0, d.jsx)('meta', { property: 'og:url', content: j }),
+                (0, d.jsx)('meta', { property: 'og:description', content: i }),
+                (0, d.jsx)('meta', { property: 'og:image', content: k }),
                 (0, d.jsx)('meta', {
                   property: 'og:image:type',
                   content: 'image/png',
                 }),
-                (0, d.jsx)('meta', { property: 'og:image:width', content: i }),
-                (0, d.jsx)('meta', { property: 'og:image:height', content: j }),
-                (0, d.jsx)('meta', { property: 'og:image:alt', content: f }),
+                (0, d.jsx)('meta', { property: 'og:image:width', content: l }),
+                (0, d.jsx)('meta', { property: 'og:image:height', content: m }),
+                (0, d.jsx)('meta', { property: 'og:image:alt', content: i }),
+                (0, d.jsx)('meta', {
+                  name: 'twitter:card',
+                  content: 'summary_large_image',
+                }),
+                (0, d.jsx)('meta', {
+                  name: 'twitter:site',
+                  content: '@dawchihliou',
+                }),
+                (0, d.jsx)('meta', {
+                  name: 'twitter:creator',
+                  content: '@dawchihliou',
+                }),
+                (0, d.jsx)('meta', { name: 'twitter:title', content: c }),
+                (0, d.jsx)('meta', { name: 'twitter:description', content: i }),
+                (0, d.jsx)('meta', { name: 'twitter:image', content: k }),
+                (0, d.jsx)('meta', {
+                  property: 'article:published_time',
+                  content: p,
+                }),
+                (0, d.jsx)('meta', {
+                  property: 'article:section',
+                  content: 'Article Section',
+                }),
+                (0, d.jsx)('meta', {
+                  property: 'article:tag',
+                  content: 'Article Tag',
+                }),
               ],
             }),
             b,
@@ -129,10 +177,10 @@
         j = c.n(i),
         k = !0
       function l(a) {
-        var b = a.now,
+        var b = a.meta,
           c = (0, e.z)(b.body.code)
         return (0, d.jsx)(g.Z, {
-          title: b.title,
+          title: "Daw-Chih's ".concat(b.title),
           description: b.description,
           url: ''.concat(h.Z.home, '/').concat(b.slug),
           image: b.cover,
@@ -153,6 +201,9 @@
     },
     6944: function (a) {
       a.exports = { main: 'Now_main__vu_tz', article: 'Now_article__DX6t0' }
+    },
+    1163: function (a, b, c) {
+      a.exports = c(387)
     },
     544: function (a, b, c) {
       'use strict'
