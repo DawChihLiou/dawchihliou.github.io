@@ -9,7 +9,8 @@
     "export": "next export",
     "lint": "eslint '**/*.{js,ts,jsx,tsx}'",
     "image": "node lib/webp.js",
-    "prepare": "yarn image",
+    "sitemap": "node scripts/sitemap.mjs",
+    "prepare": "yarn image && yarn sitemap",
     "deploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll && git add out/ && git commit -m \"chore: deploy to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "husky": {
@@ -62,6 +63,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.1",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "globby": "^12.2.0",
     "husky": "^4.3.0",
     "imagemin": "^7.0.1",
     "imagemin-jpegtran": "^7.0.0",
