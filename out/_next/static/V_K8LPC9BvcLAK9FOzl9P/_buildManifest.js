@@ -5,7 +5,7 @@ var a, b
     '/': [
       (a = 'static/chunks/ef87329b-d06e98538dd59cc4.js'),
       b,
-      'static/chunks/291-b3a9351f339d5b87.js',
+      'static/chunks/291-cd3ae329f56a4517.js',
       'static/css/6779eed7b413ac7b.css',
       'static/chunks/pages/index-1aeac56cb1866b89.js',
     ],
