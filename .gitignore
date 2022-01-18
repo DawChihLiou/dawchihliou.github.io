@@ -33,14 +33,11 @@ yarn-error.log*
 # vercel
 .vercel
 
-# images
-/public/optimized
+# generated files
+.generated
+public/optimized
+public/sitemap.xml
+public/rss.xml
 
 # contentlayer
 .contentlayer
-
-# seo sitemap
-public/sitemap.xml
-
-#generated
-.generated
