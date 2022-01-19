@@ -133,6 +133,13 @@ body.dark svg rect {
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .article-content .anchor {
+    /* reduce the margin for "#" */
+    margin-left: -0.65em;
+  }
+}
+
 .article-content .anchor:hover {
   visibility: visible;
   text-decoration-line: none;

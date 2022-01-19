@@ -44,12 +44,13 @@ export default function Intro() {
         </span>
       </p>
       <p>
-        My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor
-        who is dedicated to Web engineering. My background in Human Centered
-        Computing has led me to work with startups and public companies across
-        North America, Asia, and Europe. I'm passionate about meeting business
-        trajectory with user journey and utilizing engineering architecture and
-        performance monitoring to provide optimal user experience.
+        My name is Daw-Chih and I'm a software engineer, UX advocate, and
+        creator who is dedicated to Web engineering. My background in Human
+        Centered Computing has led me to work with startups and public companies
+        across North America, Asia, and Europe. I'm passionate about meeting
+        business trajectory with user journey and utilizing engineering
+        architecture and performance monitoring to provide optimal user
+        experience.
       </p>
 
       <div className={styles.socials}>
