@@ -2,6 +2,12 @@ import { writeFileSync } from 'fs'
 import { globby } from 'globby'
 import prettier from 'prettier'
 
+/**
+ * Returns the ISO string of a given datetime.
+ *
+ * @param datetime { string | number | undefined | null }
+ * @return string
+ */
 function getDateISOString(datetime) {
   if (datetime) {
     return new Date(datetime).toISOString().match(/.{4}-.{2}-.{2}/g)[0]
@@ -19,16 +25,22 @@ async function generate() {
     '!pages/404.tsx',
   ])
 
-  // TODO: add images
-
   const urlTags = pages
     .map((file) =>
       file
         .replace('pages', '')
-        .replace('data', '')
+        .replace('data/content', '')
         .replace('.tsx', '')
         .replace('.mdx', '')
     )
+    .reduce(
+      (memo, file) => {
+        memo[0].add(file)
+        return memo
+      },
+      [new Set()]
+    )
+    .reduce((files, memo) => [...files, ...Array.from(memo)], [])
     .map((path) => (path === '/index' ? '/' : path))
     .map(
       (path) => `

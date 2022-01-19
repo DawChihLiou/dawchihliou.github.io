@@ -57,7 +57,7 @@ export const OtherPage = defineDocumentType(() => ({
 }))
 
 export default makeSource({
-  contentDirPath: 'data',
+  contentDirPath: 'data/content',
   documentTypes: [Article, OtherPage],
   mdx: {
     remarkPlugins: [remarkGfm],
