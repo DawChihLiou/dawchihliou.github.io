@@ -154,3 +154,11 @@ body.dark svg rect {
   color: var(--text-secondary-color);
   content: '#';
 }
+
+.article-content .text-secondary {
+  color: var(--text-secondary-color);
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
