@@ -41,7 +41,6 @@ A [Binary Tree](https://en.wikipedia.org/wiki/Binary_tree) data structure look l
   src="/optimized/rust-binary-tree-insertion-tree.webp"
   alt="Binary tree data structure visualization"
   width="100%"
-  loading="lazy"
 />
 
 Each node has no more than two child nodes. We refer them as `left` child and `right` child.
@@ -179,7 +178,6 @@ The code creates a Binary Tree like this:
   src="/optimized/rust-binary-tree-insertion-tree-3.webp"
   alt="A simple Binary Tree example"
   width="100%"
-  loading="lazy"
 />
 
 It got me thinking.
@@ -304,7 +302,6 @@ If we run the tests, you'll see a error message like this:
   src="/optimized/error-partial-equal.webp"
   alt="Test aborted because of the Copy Trait is not implemented"
   width="100%"
-  loading="lazy"
 />
 
 It's because the trees couldn't compare with each other.
@@ -371,7 +368,6 @@ If you try to test it, you'll see an error message like this:
   src="/optimized/error-copy-trait.webp"
   alt="Test aborted because of the Copy Trait is not implemented"
   width="100%"
-  loading="lazy"
 />
 
 We can fix it by specifying the type `T` implements the [`Copy`](https://doc.rust-lang.org/std/marker/trait.Copy.html) trait.
