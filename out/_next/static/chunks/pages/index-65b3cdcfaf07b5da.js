@@ -108,7 +108,7 @@
         },
       })
       var d = c(2985),
-        e = c(3626)
+        e = c(5516)
           .Z4.map(function (a) {
             return {
               date: a.publishedAt,
@@ -294,7 +294,7 @@
             }),
             (0, e.jsx)('p', {
               children:
-                "My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
+                "My name is Daw-Chih and I'm a software engineer, UX advocate, and creator who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
             }),
             (0, e.jsxs)('div', {
               className: n().socials,
@@ -664,7 +664,7 @@
     },
   },
   function (a) {
-    a.O(0, [926, 62, 291, 774, 888, 179], function () {
+    a.O(0, [926, 134, 291, 774, 888, 179], function () {
       return a((a.s = 5301))
     }),
       (_N_E = a.O())

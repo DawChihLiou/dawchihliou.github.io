@@ -248,12 +248,7 @@
                       }),
                     ],
                   }),
-                  (0, d.jsx)('img', {
-                    alt: c,
-                    src: k,
-                    width: '100%',
-                    loading: 'lazy',
-                  }),
+                  (0, d.jsx)('img', { alt: c, src: k, width: '100%' }),
                   (0, d.jsx)('div', {
                     className: 'article-content',
                     children: b,

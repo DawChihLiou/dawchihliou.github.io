@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 18 Jan 2022 11:29:40 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 21 Jan 2022 14:08:38 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/api/rss" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 18 Jan 2022 11:29:40 GMT</pubDate>
+        <pubDate>Fri, 21 Jan 2022 14:08:38 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[From Frontend Developer to Principle Software Engineer]]></title>
+            <description><![CDATA[I recently joined a European public company as Lead Software Engineer. The role has a combined responsibility of Principle Software Engineer and Senior Engineering Manager. It is as challenging as it sounds. I want to share with you 50+ books and resources that help me in my journey.]]></description>
+            <link>https://dawchihliou.github.io/articles/from-frontend-developer-to-principle-software-engineer</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/from-frontend-developer-to-principle-software-engineer</guid>
+            <category><![CDATA[Leadership]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Wed, 19 Jan 2022 23:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Binary Tree Insertion in Rust]]></title>
             <description><![CDATA[I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership.]]></description>
