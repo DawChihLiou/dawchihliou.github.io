@@ -9,7 +9,7 @@
         },
       ])
     },
-    420: function (a, b, c) {
+    1208: function (a, b, c) {
       'use strict'
       c.d(b, {
         Z: function () {
@@ -48,22 +48,29 @@
         }
         return a
       }
-      var h = {
-        a: function (a) {
-          var b = a.href
-          return b && (b.startsWith('/') || b.startsWith('#'))
-            ? (0, d.jsx)(e.default, {
-                href: b,
-                children: (0, d.jsx)('a', g({}, a, { children: a.children })),
+      function h(a) {
+        var b = a.href
+        return b && (b.startsWith('/') || b.startsWith('#'))
+          ? (0, d.jsx)(e.default, {
+              href: b,
+              children: (0, d.jsx)('a', g({}, a, { children: a.children })),
+            })
+          : (0, d.jsx)(
+              'a',
+              g({ target: '_blank', rel: 'noopener noreferrer' }, a, {
+                children: a.children,
               })
-            : (0, d.jsx)(
-                'a',
-                g({ target: '_blank', rel: 'noopener noreferrer' }, a, {
-                  children: a.children,
-                })
-              )
-        },
+            )
       }
+    },
+    420: function (a, b, c) {
+      'use strict'
+      c.d(b, {
+        Z: function () {
+          return d
+        },
+      })
+      var d = { a: c(1208).Z }
     },
     3295: function (a, b, c) {
       'use strict'

@@ -6,8 +6,8 @@ var a, b
       (a = 'static/chunks/ef87329b-27d671e3278b6a3d.js'),
       b,
       'static/chunks/291-b3a9351f339d5b87.js',
-      'static/css/6779eed7b413ac7b.css',
-      'static/chunks/pages/index-65b3cdcfaf07b5da.js',
+      'static/css/6c11cfd1bcd27c89.css',
+      'static/chunks/pages/index-99ada3fc7676ad1d.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
@@ -18,11 +18,11 @@ var a, b
     ],
     '/articles/[slug]': [
       'static/css/c3d1cb2e043c8a7f.css',
-      'static/chunks/pages/articles/[slug]-addce0b56a977fbd.js',
+      'static/chunks/pages/articles/[slug]-83a78e0f834b844e.js',
     ],
     '/now': [
       'static/css/0018c274a537ef81.css',
-      'static/chunks/pages/now-aacbf162637b1e96.js',
+      'static/chunks/pages/now-d9f6aacb7e4bb2db.js',
     ],
     sortedPages: [
       '/',

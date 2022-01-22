@@ -9,6 +9,60 @@
         },
       ])
     },
+    1208: function (a, b, c) {
+      'use strict'
+      c.d(b, {
+        Z: function () {
+          return h
+        },
+      })
+      var d = c(5893)
+      c(7294)
+      var e = c(1664)
+      function f(a, b, c) {
+        return (
+          b in a
+            ? Object.defineProperty(a, b, {
+                value: c,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0,
+              })
+            : (a[b] = c),
+          a
+        )
+      }
+      function g(a) {
+        for (var b = 1; b < arguments.length; b++) {
+          var c = null != arguments[b] ? arguments[b] : {},
+            d = Object.keys(c)
+          'function' == typeof Object.getOwnPropertySymbols &&
+            (d = d.concat(
+              Object.getOwnPropertySymbols(c).filter(function (a) {
+                return Object.getOwnPropertyDescriptor(c, a).enumerable
+              })
+            )),
+            d.forEach(function (b) {
+              f(a, b, c[b])
+            })
+        }
+        return a
+      }
+      function h(a) {
+        var b = a.href
+        return b && (b.startsWith('/') || b.startsWith('#'))
+          ? (0, d.jsx)(e.default, {
+              href: b,
+              children: (0, d.jsx)('a', g({}, a, { children: a.children })),
+            })
+          : (0, d.jsx)(
+              'a',
+              g({ target: '_blank', rel: 'noopener noreferrer' }, a, {
+                children: a.children,
+              })
+            )
+      }
+    },
     3295: function (a, b, c) {
       'use strict'
       c.d(b, {
@@ -201,7 +255,7 @@
       c.r(b),
         c.d(b, {
           default: function () {
-            return M
+            return N
           },
         })
       var d,
@@ -517,10 +571,11 @@
       var G = c(3812),
         H = c.n(G),
         I = c(8937),
-        J = I.Z.filter(function (a, b) {
+        J = c(1208),
+        K = I.Z.filter(function (a, b) {
           return b < 5
         })
-      function K() {
+      function L() {
         return (0, e.jsxs)('section', {
           className: H().wrap,
           title: 'my open source and none-profit projects',
@@ -537,9 +592,9 @@
             }),
             (0, e.jsx)('article', {
               className: H().list,
-              children: J.map(function (a) {
+              children: K.map(function (a) {
                 return (0,
-                e.jsx)('article', { className: H().item, children: (0, e.jsx)('a', { href: a.url, target: '_blank', rel: 'noreferrer', children: (0, e.jsxs)('div', { className: H().itemDescription, children: [(0, e.jsx)('h2', { children: a.title }), a.external && (0, e.jsxs)('a', { href: a.publisherUrl, target: '_blank', rel: 'noreferrer', className: H().caption, children: ['Published on ', (0, e.jsx)('span', { children: a.publisher })] }), (0, e.jsx)('p', { children: a.description })] }) }) }, a.title)
+                e.jsx)('article', { className: H().item, children: (0, e.jsxs)('div', { className: H().itemDescription, children: [(0, e.jsx)(J.Z, { href: a.url, children: (0, e.jsx)('h2', { children: a.title }) }), a.external && (0, e.jsxs)(J.Z, { href: a.publisherUrl, className: H().caption, children: ['Published on ', (0, e.jsx)('span', { children: a.publisher })] }), (0, e.jsx)('p', { children: a.description })] }) }, a.title)
               }),
             }),
             (0, e.jsx)('a', {
@@ -550,9 +605,9 @@
           ],
         })
       }
-      var L = c(3295)
-      function M() {
-        return (0, e.jsx)(L.Z, {
+      var M = c(3295)
+      function N() {
+        return (0, e.jsx)(M.Z, {
           title: 'Daw-Chih Liou',
           description: p.Z.description,
           url: p.Z.home,
@@ -582,7 +637,7 @@
                   (0, e.jsx)(q, {}),
                   (0, e.jsx)(w, {}),
                   (0, e.jsx)(A, {}),
-                  (0, e.jsx)(K, {}),
+                  (0, e.jsx)(L, {}),
                   (0, e.jsx)(F, {}),
                 ],
               }),
@@ -633,9 +688,9 @@
         description: 'Publication_description__8sqET',
         list: 'Publication_list__3yiaQ',
         item: 'Publication_item__yxTJJ',
-        itemDescription: 'Publication_itemDescription__n6wAg',
         caption: 'Publication_caption__XENOq',
         link: 'Publication_link__pSetA',
+        itemDescription: 'Publication_itemDescription__n6wAg',
       }
     },
     4042: function (a) {
