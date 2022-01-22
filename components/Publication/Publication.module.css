@@ -4,9 +4,6 @@
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
-}
-
-.description {
   max-width: 720px;
 }
 
@@ -16,7 +13,6 @@
 }
 
 .list {
-  max-width: 720px;
   margin-top: 0rem;
 }
 
@@ -52,23 +48,17 @@
   text-decoration: none;
 }
 
-.itemDescription {
-  flex-grow: 1;
-  flex-basis: 60%;
-}
-
-.itemDescription h2 {
+.item h2 {
   margin: 0;
   transition: color 0.15s ease;
   text-decoration: underline;
 }
 
-.item:active h2,
-.item:hover h2 {
+.item h2:hover {
   color: rgba(0, 124, 240, 1);
 }
 
-.itemDescription p {
+.item p {
   margin: 0.5rem 0;
   text-decoration: none;
 }

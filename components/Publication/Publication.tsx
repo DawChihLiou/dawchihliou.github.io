@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Publication.module.css'
 import articles from '../../data/articles'
+import Link from '../Link'
 
 const publication = articles.filter((_, i) => i < 5)
 
@@ -21,23 +22,18 @@ export default function Publication() {
       <article className={styles.list}>
         {publication.map((article) => (
           <article key={article.title} className={styles.item}>
-            <a href={article.url} target="_blank" rel="noreferrer">
-              <div className={styles.itemDescription}>
+            <div className={styles.itemDescription}>
+              <Link href={article.url}>
                 <h2>{article.title}</h2>
-                {article.external && (
-                  <a
-                    href={article.publisherUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.caption}
-                  >
-                    {'Published on '}
-                    <span>{article.publisher}</span>
-                  </a>
-                )}
-                <p>{article.description}</p>
-              </div>
-            </a>
+              </Link>
+              {article.external && (
+                <Link href={article.publisherUrl} className={styles.caption}>
+                  {'Published on '}
+                  <span>{article.publisher}</span>
+                </Link>
+              )}
+              <p>{article.description}</p>
+            </div>
           </article>
         ))}
       </article>
