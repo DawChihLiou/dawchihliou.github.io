@@ -1,5 +1,5 @@
 var a, b
-;(b = 'static/chunks/134-f852639ba0d6819d.js'),
+;(b = 'static/chunks/568-423eb6753bfe0c95.js'),
   (self.__BUILD_MANIFEST = {
     __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     '/': [
@@ -7,14 +7,14 @@ var a, b
       b,
       'static/chunks/291-b3a9351f339d5b87.js',
       'static/css/6c11cfd1bcd27c89.css',
-      'static/chunks/pages/index-99ada3fc7676ad1d.js',
+      'static/chunks/pages/index-c3b50d5f93380382.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
       a,
       b,
       'static/css/5be9574e015a7040.css',
-      'static/chunks/pages/articles-24f9da0dc1a5fa50.js',
+      'static/chunks/pages/articles-03200a5f77ba5b64.js',
     ],
     '/articles/[slug]': [
       'static/css/c3d1cb2e043c8a7f.css',
