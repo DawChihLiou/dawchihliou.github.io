@@ -12,20 +12,20 @@ export default function Project() {
       <article className={styles.description}>
         <h1>Some of my Open Source projects</h1>
         <p>
-          I've spent over 8 years woking on Web engineering, mostly building
-          features and taking care of architectures for client facing products
-          and enterprise software for public tech companies and Fortune 500
-          enterprises.
-        </p>
-        <p>
-          I've been working on open source and non-profit projects too! It
-          brings me so much joy contributing back to the community.
+          I've been working on open source and non-profit projects! It brings me
+          so much joy contributing back to the community.
         </p>
         <p>
           I enjoy building tooling around testing, documentation, and CI/CD to
           improve developer experience. On top of solid coding and automation,
           nothing makes me happier than creating a meaningful product with
           thoughtful user experience and great performance.
+        </p>
+        <p>
+          Besides that, I've spent over {new Date().getFullYear() - 2013} years
+          working on Web engineering in startups, public tech companies, and
+          Fortune 500 enterprises. I've built features, architectures, and
+          infrastructure for client facing products and enterprise software.
         </p>
       </article>
       <article className={styles.list}>
