@@ -1,5 +1,5 @@
 var a, b
-;(b = 'static/chunks/568-92f795a5d0542f33.js'),
+;(b = 'static/chunks/568-f682492c4ac68c8a.js'),
   (self.__BUILD_MANIFEST = {
     __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     '/': [
