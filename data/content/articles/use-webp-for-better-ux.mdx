@@ -2,7 +2,7 @@
 title: 'Using WebP for Better User Experience'
 publishedAt: 'October 6, 2020'
 description: "WebP is a modern image format that provides outstanding image quality with smaller image size. I'll show you how much you can benefit from it and how to setup your project for optimal developer experience."
-cover: '/optimized/portfolio-snapshot.png'
+cover: '/optimized/articles/use-webp-for-better-ux/hero.png'
 category: 'Performance'
 coverWidth: '1411'
 coverHeight: '682'
@@ -74,12 +74,16 @@ Now we can use the generated image in the code.
 ```jsx
 // components/Intro
 
-<img src="optimized/portrait.webp" alt="Daw-Chih's portait" />
+<img src="optimized/raw/portrait.webp" alt="Daw-Chih's portait" />
 ```
 
 We can have a look at the download time from Network.
 
-<img src="/optimized/network.png" alt="WebP in Network" width="100%" />{' '}
+<img
+  src="/optimized/articles/use-webp-for-better-ux/network.png"
+  alt="WebP in Network"
+  width="100%"
+/>{' '}
 
 It takes about 1 millisecond to download the image. We just proved how effective WebP can be for our web performance.
 
@@ -158,7 +162,7 @@ At this point, we can really compare all image qualities.
 ##### PNG (left) and optimized PNG (right) comparison
 
 <img
-  src="/optimized/png-comparison.png"
+  src="/optimized/articles/use-webp-for-better-ux/png-comparison.png"
   alt="PNG and optimized PNG comparison"
   width="100%"
 />
@@ -166,7 +170,7 @@ At this point, we can really compare all image qualities.
 ##### PNG (left) and WebP (right) comparison
 
 <img
-  src="/optimized/webp-comparison.png"
+  src="/optimized/articles/use-webp-for-better-ux/webp-comparison.png"
   alt="PNG and WebP comparison"
   width="100%"
 />
@@ -235,7 +239,7 @@ As long as we make sure that the fallback images are in place, our audience can 
 ##### Lighthouse report with optimized WebP images
 
 <img
-  src="/optimized/lighthouse-report.png"
+  src="/optimized/articles/use-webp-for-better-ux/lighthouse-report.png"
   alt="Lighthouse report"
   width="100%"
 />

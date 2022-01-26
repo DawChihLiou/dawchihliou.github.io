@@ -48,7 +48,7 @@ export default function Article({
               <div className={styles.author}>
                 <img
                   alt="Daw-Chih Liou"
-                  src="/optimized/portrait-sm.webp"
+                  src="/optimized/raw/portrait-sm.webp"
                   loading="lazy"
                 />
                 <p>Daw-Chih Liou</p>
