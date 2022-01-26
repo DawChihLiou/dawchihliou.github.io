@@ -19,18 +19,18 @@ export default function Intro() {
       </h1>
       <picture>
         <source
-          srcSet="optimized/portrait.webp"
+          srcSet="optimized/raw/portrait.webp"
           className={styles.portrait}
           type="image/webp"
         />
         <source
-          srcSet="optimized/portrait.png"
+          srcSet="optimized/raw/portrait.png"
           className={styles.portrait}
           type="image/png"
         />
         <img
           src="optimized/portrait.png"
-          alt="Daw-Chih's portait"
+          alt="Daw-Chih's portrait"
           className={styles.portrait}
           loading="lazy"
           width="8rem"

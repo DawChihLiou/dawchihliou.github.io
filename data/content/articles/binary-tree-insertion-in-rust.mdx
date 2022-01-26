@@ -2,7 +2,7 @@
 title: 'Binary Tree Insertion in Rust'
 publishedAt: 'January 13, 2022'
 description: "I was struggling with Rust's ownership when implementing a Binary Tree so I re-read about it. After taking my time understanding it and refactoring, I finally made a breakthrough😎 I'm very excited to share with you the awesome features in Rust I came across. You'll see interesting concepts like smart pointers and ownership."
-cover: '/optimized/rust-binary-tree-insertion.png'
+cover: '/optimized/articles/rust-binary-tree-insertion/hero.png'
 category: 'Rust'
 coverWidth: '1411'
 coverHeight: '682'
@@ -38,7 +38,7 @@ Let's get it!
 A [Binary Tree](https://en.wikipedia.org/wiki/Binary_tree) data structure look like this:
 
 <img
-  src="/optimized/rust-binary-tree-insertion-tree.webp"
+  src="/optimized/articles/rust-binary-tree-insertion/tree.webp"
   alt="Binary tree data structure visualization"
   width="100%"
 />
@@ -175,7 +175,7 @@ BinaryTree::new(1)
 The code creates a Binary Tree like this:
 
 <img
-  src="/optimized/rust-binary-tree-insertion-tree-3.webp"
+  src="/optimized/articles/rust-binary-tree-insertion/tree-3.webp"
   alt="A simple Binary Tree example"
   width="100%"
 />
@@ -299,7 +299,7 @@ fn insert() {
 If we run the tests, you'll see a error message like this:
 
 <img
-  src="/optimized/error-partial-equal.webp"
+  src="/optimized/articles/rust-binary-tree-insertion/error-partial-equal.webp"
   alt="Test aborted because of the Copy Trait is not implemented"
   width="100%"
 />
@@ -365,7 +365,7 @@ In the function, we created a root node from the first array element and then in
 If you try to test it, you'll see an error message like this:
 
 <img
-  src="/optimized/error-copy-trait.webp"
+  src="/optimized/articles/rust-binary-tree-insertion/error-copy-trait.webp"
   alt="Test aborted because of the Copy Trait is not implemented"
   width="100%"
 />

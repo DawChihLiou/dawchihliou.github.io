@@ -26,7 +26,7 @@ const originals = allArticles.map<Writing>((a) => ({
   cover: a.cover,
   category: a.category,
   author: 'Daw-Chih Liou',
-  avatar: '/optimized/portrait-sm.png',
+  avatar: '/optimized/raw/portrait-sm.png',
   social: socials.github,
   external: false,
   publisherUrl: '',
