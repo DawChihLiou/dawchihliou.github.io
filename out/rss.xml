@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 26 Jan 2022 07:26:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 28 Jan 2022 08:58:13 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/api/rss" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 26 Jan 2022 07:26:00 GMT</pubDate>
+        <pubDate>Fri, 28 Jan 2022 08:58:13 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -107,6 +107,15 @@
             <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Tue, 05 Nov 2019 23:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[JavaScript Workshop with Kyle Simpson]]></title>
+            <description><![CDATA[A recap of the 5-day JavaScript journey. It has been a couple of months since Kyle, author of the “You Don’t Know JS” series, visited our trivago headquarters and gave us a wonderful JavaScript workshop. It was such an enjoyable week, being able to meet Kyle in person and walk through his thinking behind the materials.]]></description>
+            <link>https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/</link>
+            <guid isPermaLink="true">https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/</guid>
+            <category><![CDATA[Engineering Culture]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Sun, 14 Oct 2018 22:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Intuitive Transducer in JavaScript]]></title>
