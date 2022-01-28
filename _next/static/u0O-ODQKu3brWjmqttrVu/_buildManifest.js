@@ -7,14 +7,14 @@ var a, b
       b,
       'static/chunks/291-b3a9351f339d5b87.js',
       'static/css/6c11cfd1bcd27c89.css',
-      'static/chunks/pages/index-e8ef4a61525798c3.js',
+      'static/chunks/pages/index-c3d32625004c48ef.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
       a,
       b,
       'static/css/5be9574e015a7040.css',
-      'static/chunks/pages/articles-b0fddacf1074c1c9.js',
+      'static/chunks/pages/articles-fda5bcc9f9ab6d4f.js',
     ],
     '/articles/[slug]': [
       'static/css/c3d1cb2e043c8a7f.css',
