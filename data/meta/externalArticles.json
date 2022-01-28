@@ -9,7 +9,7 @@
     "category": "Frontend",
     "author": "Daw-Chih Liou",
     "avatar": "/optimized/raw/portrait-sm.png",
-    "social": "https://github.com/DawChihLiou",
+    "social": "https://twitter.com/dawchihliou",
     "external": true,
     "publisherUrl": "https://tech.trivago.com/"
   },
@@ -40,6 +40,20 @@
     "social": "https://medium.com/@dawchihliou",
     "external": true,
     "publisherUrl": "https://itnext.io/"
+  },
+  {
+    "date": "October 15, 2018",
+    "publisher": "trivago tech blog",
+    "title": "JavaScript Workshop with Kyle Simpson",
+    "description": "A recap of the 5-day JavaScript journey. It has been a couple of months since Kyle, author of the “You Don’t Know JS” series, visited our trivago headquarters and gave us a wonderful JavaScript workshop. It was such an enjoyable week, being able to meet Kyle in person and walk through his thinking behind the materials.",
+    "url": "https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/",
+    "cover": "https://tech.trivago.com/img/posts/javascript-workshop-with-kyle-simpson/hero.jpg",
+    "category": "Engineering Culture",
+    "author": "Daw-Chih Liou",
+    "avatar": "/optimized/raw/portrait-sm.png",
+    "social": "https://twitter.com/dawchihliou",
+    "external": true,
+    "publisherUrl": "https://tech.trivago.com/"
   },
   {
     "date": "September 25, 2018",
