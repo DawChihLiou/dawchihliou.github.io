@@ -92,6 +92,8 @@ pre {
 }
 
 :not(pre) > code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
   background: var(--code-block-color);
   border-radius: 0.25rem;
   padding: 0.125rem 0.25rem;
