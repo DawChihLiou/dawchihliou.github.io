@@ -4,10 +4,7 @@ import clsx from 'clsx'
 
 export default function Hero() {
   return (
-    <section
-      className={styles.hero}
-      title="Daw-Chih is a software engineer, ux designer, and mentor."
-    >
+    <section className={styles.hero}>
       <h1>
         <span
           className={clsx(styles.title, styles.heroTitle, styles.heroTitle_1)}

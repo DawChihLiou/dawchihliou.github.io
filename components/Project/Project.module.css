@@ -1,8 +1,4 @@
 .wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 3rem;
 }
 
@@ -17,71 +13,26 @@
 
 .list {
   max-width: 720px;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-between;
+  gap: 1rem 0.5rem;
+}
+
+.list > * {
+  flex-basis: calc(50% - 0.5rem);
 }
 
 @media (max-width: 768px) {
   .list {
-    width: 100%;
     flex-direction: column;
   }
-}
-
-.grid {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.item {
-  padding: 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  border-radius: 0.25rem;
-  transition: box-shadow 0.15s ease, background-color 0.15s ease;
-}
-
-@media (max-width: 768px) {
-  .item {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
+  .list > * {
+    flex-basis: 100%;
   }
-}
-
-.item a {
-  text-decoration: none;
-}
-
-.itemImage {
-  margin-right: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.itemImage img {
-  width: 48px;
-}
-
-.itemDescription {
-  flex-grow: 1;
-  flex-basis: 60%;
-}
-
-.itemDescription h2 {
-  margin: 0;
-  transition: color 0.15s ease;
-  text-decoration: underline;
-}
-
-.item:active h2,
-.item:hover h2 {
-  color: rgba(0, 124, 240, 1);
-}
-
-.itemDescription p {
-  margin: 0.5rem 0;
 }
 
 .link {
@@ -93,18 +44,4 @@
 .link:active,
 .link:hover {
   color: rgba(0, 124, 240, 1);
-}
-
-@media (max-width: 768px) {
-  .itemImage {
-    margin-right: 0;
-  }
-
-  .itemImage img {
-    width: 78px;
-  }
-
-  .itemDescription {
-    flex-basis: 100%;
-  }
 }

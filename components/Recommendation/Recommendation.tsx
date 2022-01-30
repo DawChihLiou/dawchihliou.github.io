@@ -8,11 +8,11 @@ import styles from './Recommendation.module.css'
 
 export default function Recommendation() {
   return (
-    <section className={styles.wrap} title="recommendation from others">
+    <section className={styles.wrap}>
       <div className={styles.smallerWrap}>
         <h1>See what people say about me</h1>
       </div>
-      <div className={styles.grid} title="what people say about me">
+      <div className={styles.grid}>
         {content.map((recommendation, key) => (
           <article className={styles.card} key={recommendation.title}>
             <a href={socials.linkedin} target="_blank" rel="noreferrer">

@@ -1,15 +1,22 @@
-import React from 'react'
-import content from './content'
+import React, { useMemo } from 'react'
 import styles from './Project.module.css'
 import socials from '../../.generated/meta/socialsTs'
+import repos from '../../.generated/github/githubReposTs'
+import Repo from '../Repo'
+import Link from '../Link'
 
 export default function Project() {
+  const filteredRepos = useMemo(
+    () =>
+      repos
+        .filter((repo) => repo.name !== 'dawchihliou.github.io')
+        .filter((_, i) => i < 6),
+    []
+  )
+
   return (
-    <section
-      className={styles.wrap}
-      title="my open source and none-profit projects"
-    >
-      <article className={styles.description}>
+    <section className={styles.wrap}>
+      <div className={styles.description}>
         <h1>Some of my Open Source projects</h1>
         <p>
           I've been working on open source and non-profit projects! It brings me
@@ -27,46 +34,15 @@ export default function Project() {
           Fortune 500 enterprises. I've built features, architectures, and
           infrastructure for client facing products and enterprise software.
         </p>
-      </article>
-      <article className={styles.list}>
-        {content.map((project) => (
-          <article key={project.title} className={styles.item}>
-            <a href={project.link} target="_blank" rel="noreferrer">
-              <div className={styles.grid}>
-                <div className={styles.itemImage}>
-                  <picture>
-                    <source
-                      srcSet={project.darkmodeImage}
-                      media="(prefers-color-scheme: dark)"
-                    />
-                    <source
-                      srcSet={project.image}
-                      media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
-                    />
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                    />
-                  </picture>
-                </div>
-                <div className={styles.itemDescription}>
-                  <h2>{project.title}</h2>
-                  <p>{project.description}</p>
-                </div>
-              </div>
-            </a>
-          </article>
+      </div>
+      <div className={styles.list}>
+        {filteredRepos.map((repo) => (
+          <Repo key={repo.id} repo={repo} />
         ))}
-      </article>
-      <a
-        href={socials.github}
-        target="_blank"
-        rel="noreferrer"
-        className={styles.link}
-      >
+      </div>
+      <Link href={socials.github} className={styles.link}>
         See more on GitHub
-      </a>
+      </Link>
     </section>
   )
 }

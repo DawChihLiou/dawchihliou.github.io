@@ -7,10 +7,7 @@ const publication = articles.filter((_, i) => i < 5)
 
 export default function Publication() {
   return (
-    <section
-      className={styles.wrap}
-      title="my open source and none-profit projects"
-    >
+    <section className={styles.wrap}>
       <article className={styles.description}>
         <h1>I love writing</h1>
         <p>
