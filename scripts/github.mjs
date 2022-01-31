@@ -3,7 +3,7 @@ import { writeFileSync, mkdirSync, rmSync, existsSync } from 'fs'
 import prettier from 'prettier'
 
 const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
+  auth: process.env.GITHUB_API_TOKEN,
 })
 
 async function fetchUser(username) {
