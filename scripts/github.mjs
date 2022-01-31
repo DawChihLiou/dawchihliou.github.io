@@ -80,6 +80,9 @@ async function writeFiles(data) {
   })
 }
 
+/**
+ * Generate a list of Starred GitHub Repos and output in ".generate/github" directory.
+ */
 async function generate() {
   const profile = await fetchUser('DawChihLiou')
   const repos = await fetchUserRepos('DawChihLiou', profile.public_repos)

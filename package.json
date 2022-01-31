@@ -9,7 +9,9 @@
     "start": "next start",
     "export": "next export",
     "lint": "eslint '**/*.{js,ts,jsx,tsx}'",
-    "image": "dx-scripts image public/articles/**/*.png public/raw/*.png -o public/optimized --png",
+    "image": "yarn image:optimization && yarn image:shields",
+    "image:optimization": "dx-scripts image public/articles/**/*.png public/raw/*.png -o public/optimized --png",
+    "image:shields": "node scripts/shields.mjs",
     "meta": "node scripts/meta.mjs",
     "github": "node scripts/github.mjs",
     "sitemap": "node scripts/sitemap.mjs",
@@ -72,6 +74,7 @@
     "eslint-plugin-react": "^7.21.1",
     "eslint-plugin-react-hooks": "^4.1.2",
     "globby": "^13.0.0",
+    "got": "^12.0.1",
     "husky": "^4.3.0",
     "imagemin": "^7.0.1",
     "imagemin-jpegtran": "^7.0.0",
@@ -82,6 +85,7 @@
     "prettier": "^2.1.2",
     "raw-loader": "^4.0.1",
     "rehype-accessible-emojis": "^0.3.2",
+    "sharp": "^0.29.3",
     "typescript": "^4.5.2"
   },
   "config": {

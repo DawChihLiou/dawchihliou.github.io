@@ -15,6 +15,9 @@ function getDateISOString(datetime) {
   return new Date().toISOString().match(/.{4}-.{2}-.{2}/g)[0]
 }
 
+/**
+ * Generate Sitemap.xml based on files in "/pages" and "/data".
+ */
 async function generate() {
   const pages = await globby([
     'pages/*.tsx',
