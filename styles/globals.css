@@ -3,12 +3,12 @@ body {
   --white: #ffffff;
   --black: #000000;
   --text-primary-color: #000000;
-  --text-secondary-color: rgba(0, 0, 0, 0.54);
+  --text-secondary-color: rgba(0, 0, 0, 0.7);
   --text-disabled-color: rgba(0, 0, 0, 0.38);
   --text-invert-color: #ffffff;
   --text-invert-secondary-color: rgba(255, 255, 255, 0.7);
   --background-default-color: #ffffff;
-  --background-paper-color: #f7f7f7;
+  --background-paper-color: #f5f5f5;
   --background-elevated-color: #ffffff;
   --divider-color: rgba(0, 0, 0, 0.12);
   --action-active-color: rgba(0, 0, 0, 0.54);
@@ -34,8 +34,8 @@ body.dark {
   --text-invert-color: #000000;
   --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
   --background-default-color: #000000;
-  --background-paper-color: #121212;
-  --background-elevated-color: #151515;
+  --background-paper-color: #090909;
+  --background-elevated-color: #121212;
   --divider-color: rgba(255, 255, 255, 0.12);
   --action-active-color: #fff;
   --action-hover-color: rgba(255, 255, 255, 0.08);
