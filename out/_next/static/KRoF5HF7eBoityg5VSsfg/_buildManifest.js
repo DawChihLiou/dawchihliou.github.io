@@ -4,10 +4,11 @@ var a, b
     __rewrites: { beforeFiles: [], afterFiles: [], fallback: [] },
     '/': [
       (a = 'static/chunks/ef87329b-36cb7858b125951f.js'),
+      'static/chunks/78e521c3-ddb0195bbc3aa1f5.js',
       b,
-      'static/chunks/291-b3a9351f339d5b87.js',
-      'static/css/6c11cfd1bcd27c89.css',
-      'static/chunks/pages/index-c3d32625004c48ef.js',
+      'static/chunks/24-333af93bf5428a8f.js',
+      'static/css/dbeac77e3880c43e.css',
+      'static/chunks/pages/index-f632b352a07a0251.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
@@ -18,11 +19,11 @@ var a, b
     ],
     '/articles/[slug]': [
       'static/css/c3d1cb2e043c8a7f.css',
-      'static/chunks/pages/articles/[slug]-6c9de093ac362d50.js',
+      'static/chunks/pages/articles/[slug]-26501c0d66d6484e.js',
     ],
     '/now': [
       'static/css/0018c274a537ef81.css',
-      'static/chunks/pages/now-d9f6aacb7e4bb2db.js',
+      'static/chunks/pages/now-47236bef94c9ded3.js',
     ],
     sortedPages: [
       '/',

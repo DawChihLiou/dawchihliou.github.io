@@ -5,15 +5,7 @@ import socials from '../../.generated/meta/socialsTs'
 
 export default function Intro() {
   return (
-    <section
-      className={styles.wrap}
-      title="My name is Daw-Chih and I'm a software engineer, UX advocate, and mentor
-    who is dedicated to Web engineering. My background in Human Centered
-    Computing has led me to work with startups and public companies across
-    North America, Asia, and Europe. I'm passionate about meeting business
-    trajectory with user journey and utilizing engineering architecture and
-    performance monitoring to provide optimal user experience."
-    >
+    <section className={styles.wrap}>
       <h1 hidden aria-label="About me">
         About me
       </h1>

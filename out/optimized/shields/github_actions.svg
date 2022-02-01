@@ -1,0 +1,65 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="141"
+  height="20"
+  role="img"
+  aria-label="Tool: GitHub Actions"
+>
+  <title>Tool: GitHub Actions</title>
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1" />
+    <stop offset="1" stop-opacity=".1" />
+  </linearGradient>
+  <clipPath id="r">
+    <rect width="141" height="20" rx="3" fill="#fff" />
+  </clipPath>
+  <g clip-path="url(#r)">
+    <rect width="50" height="20" fill="#121212" />
+    <rect x="50" width="91" height="20" fill="#2088ff" />
+    <rect width="141" height="20" fill="url(#s)" />
+  </g>
+  <g
+    fill="#fff"
+    text-anchor="middle"
+    font-family="Verdana,Geneva,DejaVu Sans,sans-serif"
+    text-rendering="geometricPrecision"
+    font-size="110"
+  >
+    <image
+      x="5"
+      y="3"
+      width="14"
+      height="14"
+      xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZSIgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkdpdEh1YiBBY3Rpb25zPC90aXRsZT48cGF0aCBkPSJNMTAuOTg0IDEzLjgzNmEuNS41IDAgMCAxLS4zNTMtLjE0NmwtLjc0NS0uNzQzYS41LjUgMCAxIDEgLjcwNi0uNzA4bC4zOTIuMzkxIDEuMTgxLTEuMThhLjUuNSAwIDAgMSAuNzA4LjcwN2wtMS41MzUgMS41MzNhLjUwNC41MDQgMCAwIDEtLjM1NC4xNDZ6bTkuMzUzLS4xNDdsMS41MzQtMS41MzJhLjUuNSAwIDAgMC0uNzA3LS43MDdsLTEuMTgxIDEuMTgtLjM5Mi0uMzkxYS41LjUgMCAxIDAtLjcwNi43MDhsLjc0Ni43NDNhLjQ5Ny40OTcgMCAwIDAgLjcwNi0uMDAxek00LjUyNyA3LjQ1MmwyLjU1Ny0xLjU4NUExIDEgMCAwIDAgNy4wOSA0LjE3TDQuNTMzIDIuNTZBMSAxIDAgMCAwIDMgMy40MDZ2My4xOTZhMS4wMDEgMS4wMDEgMCAwIDAgMS41MjcuODV6bTIuMDMtMi40MzZMNCA2LjYwMlYzLjQwNmwyLjU1NyAxLjYxek0yNCAxMi41YzAgMS45My0xLjU3IDMuNS0zLjUgMy41YTMuNTAzIDMuNTAzIDAgMCAxLTMuNDYtM2gtMi4wOGEzLjUwMyAzLjUwMyAwIDAgMS0zLjQ2IDMgMy41MDIgMy41MDIgMCAwIDEtMy40Ni0zaC0uNTU4Yy0uOTcyIDAtMS44NS0uMzk5LTIuNDgyLTEuMDQyVjE3YzAgMS42NTQgMS4zNDYgMyAzIDNoLjA0Yy4yNDQtMS42OTMgMS43LTMgMy40Ni0zIDEuOTMgMCAzLjUgMS41NyAzLjUgMy41UzEzLjQzIDI0IDExLjUgMjRhMy41MDIgMy41MDIgMCAwIDEtMy40Ni0zSDhjLTIuMjA2IDAtNC0xLjc5NC00LTRWOS44OTlBNS4wMDggNS4wMDggMCAwIDEgMCA1YzAtMi43NTcgMi4yNDMtNSA1LTVzNSAyLjI0MyA1IDVhNS4wMDUgNS4wMDUgMCAwIDEtNC45NTIgNC45OThBMi40ODIgMi40ODIgMCAwIDAgNy40ODIgMTJoLjU1OGMuMjQ0LTEuNjkzIDEuNy0zIDMuNDYtM2EzLjUwMiAzLjUwMiAwIDAgMSAzLjQ2IDNoMi4wOGEzLjUwMyAzLjUwMyAwIDAgMSAzLjQ2LTNjMS45MyAwIDMuNSAxLjU3IDMuNSAzLjV6bS0xNSA4YzAgMS4zNzggMS4xMjIgMi41IDIuNSAyLjVzMi41LTEuMTIyIDIuNS0yLjUtMS4xMjItMi41LTIuNS0yLjVTOSAxOS4xMjIgOSAyMC41ek01IDljMi4yMDYgMCA0LTEuNzk0IDQtNFM3LjIwNiAxIDUgMSAxIDIuNzk0IDEgNXMxLjc5NCA0IDQgNHptOSAzLjVjMC0xLjM3OC0xLjEyMi0yLjUtMi41LTIuNVM5IDExLjEyMiA5IDEyLjVzMS4xMjIgMi41IDIuNSAyLjUgMi41LTEuMTIyIDIuNS0yLjV6bTkgMGMwLTEuMzc4LTEuMTIyLTIuNS0yLjUtMi41UzE4IDExLjEyMiAxOCAxMi41czEuMTIyIDIuNSAyLjUgMi41IDIuNS0xLjEyMiAyLjUtMi41em0tMTMgOGEuNS41IDAgMSAwIDEgMCAuNS41IDAgMCAwLTEgMHptMiAwYS41LjUgMCAxIDAgMSAwIC41LjUgMCAwIDAtMSAwem0xMiAwYzAgMS45My0xLjU3IDMuNS0zLjUgMy41YTMuNTAzIDMuNTAzIDAgMCAxLTMuNDYtMy4wMDJjLS4wMDcuMDAxLS4wMTMuMDA1LS4wMjEuMDA1bC0uNTA2LjAxN2gtLjAxN2EuNS41IDAgMCAxLS4wMTYtLjk5OWwuNTA2LS4wMTdjLjAxOC0uMDAyLjAzNS4wMDYuMDUyLjAwN0EzLjUwMyAzLjUwMyAwIDAgMSAyMC41IDE3YzEuOTMgMCAzLjUgMS41NyAzLjUgMy41em0tMSAwYzAtMS4zNzgtMS4xMjItMi41LTIuNS0yLjVTMTggMTkuMTIyIDE4IDIwLjVzMS4xMjIgMi41IDIuNSAyLjUgMi41LTEuMTIyIDIuNS0yLjV6Ii8+PC9zdmc+"
+    />
+    <text
+      aria-hidden="true"
+      x="345"
+      y="150"
+      fill="#010101"
+      fill-opacity=".3"
+      transform="scale(.1)"
+      textLength="230"
+    >
+      Tool
+    </text>
+    <text x="345" y="140" transform="scale(.1)" fill="#fff" textLength="230">
+      Tool
+    </text>
+    <text
+      aria-hidden="true"
+      x="945"
+      y="150"
+      fill="#010101"
+      fill-opacity=".3"
+      transform="scale(.1)"
+      textLength="810"
+    >
+      GitHub Actions
+    </text>
+    <text x="945" y="140" transform="scale(.1)" fill="#fff" textLength="810">
+      GitHub Actions
+    </text>
+  </g>
+</svg>

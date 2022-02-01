@@ -4,13 +4,11 @@ import articles from '../../data/articles'
 import Link from '../Link'
 
 const publication = articles.filter((_, i) => i < 5)
+const isSameSite = (url: string) => url.startsWith('/')
 
 export default function Publication() {
   return (
-    <section
-      className={styles.wrap}
-      title="my open source and none-profit projects"
-    >
+    <section className={styles.wrap}>
       <article className={styles.description}>
         <h1>I love writing</h1>
         <p>
@@ -22,6 +20,11 @@ export default function Publication() {
       <article className={styles.list}>
         {publication.map((article) => (
           <article key={article.title} className={styles.item}>
+            <div className={styles.thumbnail}>
+              {isSameSite(article.cover) && (
+                <img src={article.cover} alt={article.title} />
+              )}
+            </div>
             <div className={styles.itemDescription}>
               <Link href={article.url}>
                 <h2>{article.title}</h2>

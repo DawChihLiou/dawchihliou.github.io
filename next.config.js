@@ -13,6 +13,12 @@ module.exports = withContentlayer()({
       use: 'raw-loader',
     })
 
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    })
+
     return config
   },
 })
