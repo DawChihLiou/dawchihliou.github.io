@@ -13,3 +13,7 @@
   margin-right: 0.5rem;
   margin-bottom: 0.25rem;
 }
+
+.wrap svg text {
+  fill: var(--white);
+}

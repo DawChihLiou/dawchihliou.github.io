@@ -35,6 +35,29 @@ export default function Project() {
           infrastructure for client facing products and enterprise software.
         </p>
       </div>
+      <div className={styles.project}>
+        <div className={styles.projectDescription}>
+          <Link href="https://www.spes.me" className={styles.link}>
+            <h2>Spes</h2>
+          </Link>
+          <p>
+            Reading turned my life around, and I believe it can turn yours too.
+            There're so many books full of wisdom but it's hard to find yourself
+            a book among the overwhelming options. So I'm giving away a book
+            every month to a subscriber and help you find your next book to
+            read. Sign up! Hopefully you'll be inspired too:)
+          </p>
+          <Link href="https://www.spes.me" className={styles.cfa}>
+            Learn more
+          </Link>
+        </div>
+        <div className={styles.imageContainer}>
+          <div className={styles.image}>
+            <img src="/optimized/raw/spes.webp" alt="Spes" />
+            <div className={styles.imageShadow}></div>
+          </div>
+        </div>
+      </div>
       <div className={styles.list}>
         {filteredRepos.map((repo) => (
           <Repo key={repo.id} repo={repo} />
