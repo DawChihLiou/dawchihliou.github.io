@@ -28,6 +28,7 @@
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 0 2rem;
   padding: 1rem;
   margin-left: -1rem;
   margin-right: -1rem;
@@ -41,6 +42,31 @@
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+.itemDescription {
+  flex-grow: 1;
+  flex-basis: 75%;
+}
+
+.thumbnail {
+  width: 9rem;
+  border-radius: 0.25rem;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .itemDescription {
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+
+  .thumbnail {
+    display: none;
   }
 }
 
@@ -89,10 +115,4 @@
 .link:active,
 .link:hover {
   color: rgba(0, 124, 240, 1);
-}
-
-@media (max-width: 768px) {
-  .itemDescription {
-    flex-basis: 100%;
-  }
 }
