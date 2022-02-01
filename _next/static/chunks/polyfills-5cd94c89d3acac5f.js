@@ -1320,14 +1320,15 @@
             return (
               c
                 ? (c.value = r)
-                : ((u.last = c = {
-                    index: (o = zr(e, !0)),
-                    key: e,
-                    value: r,
-                    previous: (n = u.last),
-                    next: void 0,
-                    removed: !1,
-                  }),
+                : ((u.last = c =
+                    {
+                      index: (o = zr(e, !0)),
+                      key: e,
+                      value: r,
+                      previous: (n = u.last),
+                      next: void 0,
+                      removed: !1,
+                    }),
                   u.first || (u.first = c),
                   n && (n.next = c),
                   i ? u.size++ : t.size++,
@@ -5656,9 +5657,10 @@
         (this.resolve = el(nl, t, e)),
         (this.reject = el(rl, t, e))
     }),
-    (Pf.f = zf = function (t) {
-      return t === Cf || t === Af ? new xf(t) : Wf(t)
-    }),
+    (Pf.f = zf =
+      function (t) {
+        return t === Cf || t === Af ? new xf(t) : Wf(t)
+      }),
     'function' == typeof Kc &&
       ((Of = Kc.prototype.then),
       et(

@@ -2,182 +2,171 @@
   [888],
   {
     1530: function (a, b) {
-      var c, d
-      !(function (e) {
-        var f,
-          g,
-          h = '0.5.4',
-          i = 'hasOwnProperty',
-          j = /[\.\/]/,
-          k = /\s*,\s*/,
-          l = { n: {} },
-          m = function () {
-            for (var a = 0, b = this.length; a < b; a++)
-              if (void 0 !== this[a]) return this[a]
-          },
-          n = function () {
-            for (var a = this.length; --a; )
-              if (void 0 !== this[a]) return this[a]
-          },
-          o = Object.prototype.toString,
-          p = String,
-          q =
-            Array.isArray ||
-            function (a) {
-              return a instanceof Array || '[object Array]' == o.call(a)
-            },
-          r = function (a, b) {
-            var c,
-              d = g,
-              e = Array.prototype.slice.call(arguments, 2),
-              h = r.listeners(a),
-              i = 0,
-              j = [],
-              k = {},
-              l = [],
-              o = f
-            ;(l.firstDefined = m), (l.lastDefined = n), (f = a), (g = 0)
-            for (var p = 0, q = h.length; p < q; p++)
-              'zIndex' in h[p] &&
-                (j.push(h[p].zIndex),
-                h[p].zIndex < 0 && (k[h[p].zIndex] = h[p]))
-            for (
-              j.sort(function (a, b) {
-                return a - b
-              });
-              j[i] < 0;
-
-            )
-              if (((c = k[j[i++]]), l.push(c.apply(b, e)), g)) return (g = d), l
-            for (p = 0; p < q; p++)
-              if ('zIndex' in (c = h[p]))
-                if (c.zIndex == j[i]) {
-                  if ((l.push(c.apply(b, e)), g)) break
-                  do if ((i++, (c = k[j[i]]) && l.push(c.apply(b, e)), g)) break
-                  while (c)
-                } else k[c.zIndex] = c
-              else if ((l.push(c.apply(b, e)), g)) break
-            return (g = d), (f = o), l
+      var c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s
+      ;(e = 'undefined' != typeof window ? window : this),
+        (h = '0.5.4'),
+        (i = 'hasOwnProperty'),
+        (j = /[\.\/]/),
+        (k = /\s*,\s*/),
+        (l = function (a, b) {
+          return a - b
+        }),
+        (m = { n: {} }),
+        (n = function () {
+          for (var a = 0, b = this.length; a < b; a++)
+            if (void 0 !== this[a]) return this[a]
+        }),
+        (o = function () {
+          for (var a = this.length; --a; )
+            if (void 0 !== this[a]) return this[a]
+        }),
+        (p = Object.prototype.toString),
+        (q = String),
+        (r =
+          Array.isArray ||
+          function (a) {
+            return a instanceof Array || '[object Array]' == p.call(a)
+          }),
+        ((s = function (a, b) {
+          var c,
+            d = g,
+            e = Array.prototype.slice.call(arguments, 2),
+            h = s.listeners(a),
+            i = 0,
+            j = [],
+            k = {},
+            m = [],
+            p = f
+          ;(m.firstDefined = n), (m.lastDefined = o), (f = a), (g = 0)
+          for (var q = 0, r = h.length; q < r; q++)
+            'zIndex' in h[q] &&
+              (j.push(h[q].zIndex), h[q].zIndex < 0 && (k[h[q].zIndex] = h[q]))
+          for (j.sort(l); j[i] < 0; )
+            if (((c = k[j[i++]]), m.push(c.apply(b, e)), g)) return (g = d), m
+          for (q = 0; q < r; q++)
+            if ('zIndex' in (c = h[q]))
+              if (c.zIndex == j[i]) {
+                if ((m.push(c.apply(b, e)), g)) break
+                do if ((i++, (c = k[j[i]]) && m.push(c.apply(b, e)), g)) break
+                while (c)
+              } else k[c.zIndex] = c
+            else if ((m.push(c.apply(b, e)), g)) break
+          return (g = d), (f = p), m
+        })._events = m),
+        (s.listeners = function (a) {
+          var b,
+            c,
+            d,
+            e,
+            f,
+            g,
+            h,
+            i,
+            k = r(a) ? a : a.split(j),
+            l = m,
+            n = [l],
+            o = []
+          for (e = 0, f = k.length; e < f; e++) {
+            for (g = 0, i = [], h = n.length; g < h; g++)
+              for (c = [(l = n[g].n)[k[e]], l['*']], d = 2; d--; )
+                (b = c[d]) && (i.push(b), (o = o.concat(b.f || [])))
+            n = i
           }
-        ;(r._events = l),
-          (r.listeners = function (a) {
-            var b,
-              c,
-              d,
-              e,
-              f,
-              g,
-              h,
-              i,
-              k = q(a) ? a : a.split(j),
-              m = l,
-              n = [m],
-              o = []
-            for (e = 0, f = k.length; e < f; e++) {
-              for (g = 0, i = [], h = n.length; g < h; g++)
-                for (c = [(m = n[g].n)[k[e]], m['*']], d = 2; d--; )
-                  (b = c[d]) && (i.push(b), (o = o.concat(b.f || [])))
-              n = i
-            }
-            return o
-          }),
-          (r.separator = function (a) {
-            a
-              ? ((a =
-                  '[' + (a = p(a).replace(/(?=[\.\^\]\[\-])/g, '\\')) + ']'),
-                (j = new RegExp(a)))
-              : (j = /[\.\/]/)
-          }),
-          (r.on = function (a, b) {
-            if ('function' != typeof b) return function () {}
-            for (
-              var c = q(a) ? (q(a[0]) ? a : [a]) : p(a).split(k),
-                d = 0,
-                e = c.length;
-              d < e;
-              d++
-            )
-              !(function (a) {
-                for (
-                  var c,
-                    d = q(a) ? a : p(a).split(j),
-                    e = l,
-                    f = 0,
-                    g = d.length;
-                  f < g;
-                  f++
-                )
-                  e =
-                    ((e = e.n).hasOwnProperty(d[f]) && e[d[f]]) ||
-                    (e[d[f]] = { n: {} })
-                for (f = 0, e.f = e.f || [], g = e.f.length; f < g; f++)
-                  if (e.f[f] == b) {
-                    c = !0
-                    break
-                  }
-                c || e.f.push(b)
-              })(c[d])
-            return function (a) {
-              ;+a == +a && (b.zIndex = +a)
-            }
-          }),
-          (r.f = function (a) {
-            var b = [].slice.call(arguments, 1)
-            return function () {
-              r.apply(
-                null,
-                [a, null].concat(b).concat([].slice.call(arguments, 0))
+          return o
+        }),
+        (s.separator = function (a) {
+          a
+            ? ((a = '[' + (a = q(a).replace(/(?=[\.\^\]\[\-])/g, '\\')) + ']'),
+              (j = new RegExp(a)))
+            : (j = /[\.\/]/)
+        }),
+        (s.on = function (a, b) {
+          if ('function' != typeof b) return function () {}
+          for (
+            var c = r(a) ? (r(a[0]) ? a : [a]) : q(a).split(k),
+              d = 0,
+              e = c.length;
+            d < e;
+            d++
+          )
+            !(function (a) {
+              for (
+                var c, d = r(a) ? a : q(a).split(j), e = m, f = 0, g = d.length;
+                f < g;
+                f++
               )
-            }
-          }),
-          (r.stop = function () {
-            g = 1
-          }),
-          (r.nt = function (a) {
-            var b = q(f) ? f.join('.') : f
-            return a
-              ? new RegExp('(?:\\.|\\/|^)' + a + '(?:\\.|\\/|$)').test(b)
-              : b
-          }),
-          (r.nts = function () {
-            return q(f) ? f : f.split(j)
-          }),
-          (r.off = r.unbind = function (a, b) {
+                e =
+                  ((e = e.n).hasOwnProperty(d[f]) && e[d[f]]) ||
+                  (e[d[f]] = { n: {} })
+              for (f = 0, e.f = e.f || [], g = e.f.length; f < g; f++)
+                if (e.f[f] == b) {
+                  c = !0
+                  break
+                }
+              c || e.f.push(b)
+            })(c[d])
+          return function (a) {
+            ;+a == +a && (b.zIndex = +a)
+          }
+        }),
+        (s.f = function (a) {
+          var b = [].slice.call(arguments, 1)
+          return function () {
+            s.apply(
+              null,
+              [a, null].concat(b).concat([].slice.call(arguments, 0))
+            )
+          }
+        }),
+        (s.stop = function () {
+          g = 1
+        }),
+        (s.nt = function (a) {
+          var b = r(f) ? f.join('.') : f
+          return a
+            ? new RegExp('(?:\\.|\\/|^)' + a + '(?:\\.|\\/|$)').test(b)
+            : b
+        }),
+        (s.nts = function () {
+          return r(f) ? f : f.split(j)
+        }),
+        (s.off = s.unbind =
+          function (a, b) {
             if (!a) {
-              r._events = l = { n: {} }
+              s._events = m = { n: {} }
               return
             }
-            var c = q(a) ? (q(a[0]) ? a : [a]) : p(a).split(k)
+            var c = r(a) ? (r(a[0]) ? a : [a]) : q(a).split(k)
             if (c.length > 1) {
-              for (var d = 0, e = c.length; d < e; d++) r.off(c[d], b)
+              for (var d = 0, e = c.length; d < e; d++) s.off(c[d], b)
               return
             }
-            c = q(a) ? a : p(a).split(j)
+            c = r(a) ? a : q(a).split(j)
             var f,
               g,
               h,
               d,
               e,
-              m,
+              l,
               n,
-              o = [l],
-              s = []
+              o = [m],
+              p = []
             for (d = 0, e = c.length; d < e; d++)
-              for (m = 0; m < o.length; m += h.length - 2) {
-                if (((h = [m, 1]), (f = o[m].n), '*' != c[d]))
-                  f[c[d]] && (h.push(f[c[d]]), s.unshift({ n: f, name: c[d] }))
+              for (l = 0; l < o.length; l += h.length - 2) {
+                if (((h = [l, 1]), (f = o[l].n), '*' != c[d]))
+                  f[c[d]] && (h.push(f[c[d]]), p.unshift({ n: f, name: c[d] }))
                 else
                   for (g in f)
-                    f[i](g) && (h.push(f[g]), s.unshift({ n: f, name: g }))
+                    f[i](g) && (h.push(f[g]), p.unshift({ n: f, name: g }))
                 o.splice.apply(o, h)
               }
             for (d = 0, e = o.length; d < e; d++)
               for (f = o[d]; f.n; ) {
                 if (b) {
                   if (f.f) {
-                    for (m = 0, n = f.f.length; m < n; m++)
-                      if (f.f[m] == b) {
-                        f.f.splice(m, 1)
+                    for (l = 0, n = f.f.length; l < n; l++)
+                      if (f.f[l] == b) {
+                        f.f.splice(l, 1)
                         break
                       }
                     f.f.length || delete f.f
@@ -185,9 +174,9 @@
                   for (g in f.n)
                     if (f.n[i](g) && f.n[g].f) {
                       var t = f.n[g].f
-                      for (m = 0, n = t.length; m < n; m++)
-                        if (t[m] == b) {
-                          t.splice(m, 1)
+                      for (l = 0, n = t.length; l < n; l++)
+                        if (t[l] == b) {
+                          t.splice(l, 1)
                           break
                         }
                       t.length || delete f.n[g].f
@@ -197,31 +186,30 @@
                     f.n[i](g) && f.n[g].f && delete f.n[g].f
                 f = f.n
               }
-            prune: for (d = 0, e = s.length; d < e; d++) {
-              for (g in (f = s[d]).n[f.name].f) continue prune
+            prune: for (d = 0, e = p.length; d < e; d++) {
+              for (g in (f = p[d]).n[f.name].f) continue prune
               for (g in f.n[f.name].n) continue prune
               delete f.n[f.name]
             }
           }),
-          (r.once = function (a, b) {
-            var c = function () {
-              return r.off(a, c), b.apply(this, arguments)
-            }
-            return r.on(a, c)
-          }),
-          (r.version = h),
-          (r.toString = function () {
-            return 'You are running Eve ' + h
-          }),
-          (e.eve = r),
-          a.exports
-            ? (a.exports = r)
-            : ((c = []),
-              void 0 !==
-                (d = function () {
-                  return r
-                }.apply(b, c)) && (a.exports = d))
-      })('undefined' != typeof window ? window : this)
+        (s.once = function (a, b) {
+          var c = function () {
+            return s.off(a, c), b.apply(this, arguments)
+          }
+          return s.on(a, c)
+        }),
+        (s.version = h),
+        (s.toString = function () {
+          return 'You are running Eve ' + h
+        }),
+        (e.eve = s),
+        a.exports
+          ? (a.exports = s)
+          : ((c = []),
+            void 0 !==
+              (d = function () {
+                return s
+              }.apply(b, c)) && (a.exports = d))
     },
     6363: function (a, b, c) {
       ;(window.__NEXT_P = window.__NEXT_P || []).push([
@@ -301,81 +289,111 @@
     8418: function (a, b, c) {
       'use strict'
       function d(a, b) {
+        ;(null == b || b > a.length) && (b = a.length)
+        for (var c = 0, d = new Array(b); c < b; c++) d[c] = a[c]
+        return d
+      }
+      function e(a, b) {
         return (
           (function (a) {
             if (Array.isArray(a)) return a
           })(a) ||
           (function (a, b) {
-            var c = [],
-              d = !0,
-              e = !1,
-              f = void 0
-            try {
-              for (
-                var g, h = a[Symbol.iterator]();
-                !(d = (g = h.next()).done) &&
-                (c.push(g.value), !b || c.length !== b);
-                d = !0
-              );
-            } catch (i) {
-              ;(e = !0), (f = i)
-            } finally {
+            var c,
+              d,
+              e =
+                null == a
+                  ? null
+                  : ('undefined' != typeof Symbol && a[Symbol.iterator]) ||
+                    a['@@iterator']
+            if (null != e) {
+              var f = [],
+                g = !0,
+                h = !1
               try {
-                d || null == h.return || h.return()
+                for (
+                  e = e.call(a);
+                  !(g = (c = e.next()).done) &&
+                  (f.push(c.value), !b || f.length !== b);
+                  g = !0
+                );
+              } catch (i) {
+                ;(h = !0), (d = i)
               } finally {
-                if (e) throw f
+                try {
+                  g || null == e.return || e.return()
+                } finally {
+                  if (h) throw d
+                }
               }
+              return f
             }
-            return c
           })(a, b) ||
+          f(a, b) ||
           (function () {
             throw new TypeError(
-              'Invalid attempt to destructure non-iterable instance'
+              'Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
             )
           })()
         )
       }
+      function f(a, b) {
+        if (a) {
+          if ('string' == typeof a) return d(a, b)
+          var c = Object.prototype.toString.call(a).slice(8, -1)
+          if (
+            ('Object' === c && a.constructor && (c = a.constructor.name),
+            'Map' === c || 'Set' === c)
+          )
+            return Array.from(c)
+          if (
+            'Arguments' === c ||
+            /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(c)
+          )
+            return d(a, b)
+        }
+      }
       b.default = void 0
-      var e,
-        f = (e = c(7294)) && e.__esModule ? e : { default: e },
-        g = c(6273),
-        h = c(387),
-        i = c(7190),
-        j = {}
-      function k(a, b, c, d) {
-        if (a && g.isLocalURL(b)) {
+      var g,
+        h = (g = c(7294)) && g.__esModule ? g : { default: g },
+        i = c(6273),
+        j = c(387),
+        k = c(7190),
+        l = {}
+      function m(a, b, c, d) {
+        if (a && i.isLocalURL(b)) {
           a.prefetch(b, c, d).catch(function (a) {})
           var e = d && void 0 !== d.locale ? d.locale : a && a.locale
-          j[b + '%' + c + (e ? '%' + e : '')] = !0
+          l[b + '%' + c + (e ? '%' + e : '')] = !0
         }
       }
       b.default = function (a) {
         var b,
           c = !1 !== a.prefetch,
-          e = h.useRouter(),
-          l = f.default.useMemo(
+          d = j.useRouter(),
+          f = h.default.useMemo(
             function () {
-              var b = d(g.resolveHref(e, a.href, !0), 2),
+              var b = e(i.resolveHref(d, a.href, !0), 2),
                 c = b[0],
                 f = b[1]
-              return { href: c, as: a.as ? g.resolveHref(e, a.as) : f || c }
+              return { href: c, as: a.as ? i.resolveHref(d, a.as) : f || c }
             },
-            [e, a.href, a.as]
+            [d, a.href, a.as]
           ),
-          m = l.href,
-          n = l.as,
+          g = f.href,
+          n = f.as,
           o = a.children,
           p = a.replace,
           q = a.shallow,
           r = a.scroll,
           s = a.locale
-        'string' == typeof o && (o = f.default.createElement('a', null, o))
+        'string' == typeof o && (o = h.default.createElement('a', null, o))
         var t =
-            (b = f.default.Children.only(o)) && 'object' == typeof b && b.ref,
-          u = d(i.useIntersection({ rootMargin: '200px' }), 2),
+            (b = h.default.Children.only(o)) && 'object' == typeof b && b.ref,
+          u = e(k.useIntersection({ rootMargin: '200px' }), 2),
           v = u[0],
           w = u[1],
-          x = f.default.useCallback(
+          x = h.default.useCallback(
             function (a) {
               v(a),
                 t &&
@@ -385,31 +403,31 @@
             },
             [t, v]
           )
-        f.default.useEffect(
+        h.default.useEffect(
           function () {
-            var a = w && c && g.isLocalURL(m),
-              b = void 0 !== s ? s : e && e.locale,
-              d = j[m + '%' + n + (b ? '%' + b : '')]
-            a && !d && k(e, m, n, { locale: b })
+            var a = w && c && i.isLocalURL(g),
+              b = void 0 !== s ? s : d && d.locale,
+              e = l[g + '%' + n + (b ? '%' + b : '')]
+            a && !e && m(d, g, n, { locale: b })
           },
-          [n, m, w, s, c, e]
+          [n, g, w, s, c, d]
         )
         var y = {
           ref: x,
           onClick: function (a) {
-            var c, d, f, h, i, j, k, l, o, t
+            var c, e, f, h, j, k, l, m, o, t
             b.props &&
               'function' == typeof b.props.onClick &&
               b.props.onClick(a),
               a.defaultPrevented ||
                 ((c = a),
-                (d = e),
-                (f = m),
+                (e = d),
+                (f = g),
                 (h = n),
-                (i = p),
-                (j = q),
-                (k = r),
-                (l = s),
+                (j = p),
+                (k = q),
+                (l = r),
+                (m = s),
                 ('A' === c.currentTarget.nodeName &&
                   (((t = (o = c).currentTarget.target) && '_self' !== t) ||
                     o.metaKey ||
@@ -417,13 +435,13 @@
                     o.shiftKey ||
                     o.altKey ||
                     (o.nativeEvent && 2 === o.nativeEvent.which) ||
-                    !g.isLocalURL(f))) ||
+                    !i.isLocalURL(f))) ||
                   (c.preventDefault(),
-                  null == k && h.indexOf('#') >= 0 && (k = !1),
-                  d[i ? 'replace' : 'push'](f, h, {
-                    shallow: j,
-                    locale: l,
-                    scroll: k,
+                  null == l && h.indexOf('#') >= 0 && (l = !1),
+                  e[j ? 'replace' : 'push'](f, h, {
+                    shallow: k,
+                    locale: m,
+                    scroll: l,
                   })))
           },
         }
@@ -432,101 +450,144 @@
             b.props &&
               'function' == typeof b.props.onMouseEnter &&
               b.props.onMouseEnter(a),
-              g.isLocalURL(m) && k(e, m, n, { priority: !0 })
+              i.isLocalURL(g) && m(d, g, n, { priority: !0 })
           }),
           a.passHref || ('a' === b.type && !('href' in b.props)))
         ) {
-          var z = void 0 !== s ? s : e && e.locale,
+          var z = void 0 !== s ? s : d && d.locale,
             A =
-              e &&
-              e.isLocaleDomain &&
-              g.getDomainLocale(n, z, e && e.locales, e && e.domainLocales)
-          y.href = A || g.addBasePath(g.addLocale(n, z, e && e.defaultLocale))
+              d &&
+              d.isLocaleDomain &&
+              i.getDomainLocale(n, z, d && d.locales, d && d.domainLocales)
+          y.href = A || i.addBasePath(i.addLocale(n, z, d && d.defaultLocale))
         }
-        return f.default.cloneElement(b, y)
+        return h.default.cloneElement(b, y)
       }
     },
     7190: function (a, b, c) {
       'use strict'
+      function d(a, b) {
+        ;(null == b || b > a.length) && (b = a.length)
+        for (var c = 0, d = new Array(b); c < b; c++) d[c] = a[c]
+        return d
+      }
+      function e(a, b) {
+        return (
+          (function (a) {
+            if (Array.isArray(a)) return a
+          })(a) ||
+          (function (a, b) {
+            var c,
+              d,
+              e =
+                null == a
+                  ? null
+                  : ('undefined' != typeof Symbol && a[Symbol.iterator]) ||
+                    a['@@iterator']
+            if (null != e) {
+              var f = [],
+                g = !0,
+                h = !1
+              try {
+                for (
+                  e = e.call(a);
+                  !(g = (c = e.next()).done) &&
+                  (f.push(c.value), !b || f.length !== b);
+                  g = !0
+                );
+              } catch (i) {
+                ;(h = !0), (d = i)
+              } finally {
+                try {
+                  g || null == e.return || e.return()
+                } finally {
+                  if (h) throw d
+                }
+              }
+              return f
+            }
+          })(a, b) ||
+          f(a, b) ||
+          (function () {
+            throw new TypeError(
+              'Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+            )
+          })()
+        )
+      }
+      function f(a, b) {
+        if (a) {
+          if ('string' == typeof a) return d(a, b)
+          var c = Object.prototype.toString.call(a).slice(8, -1)
+          if (
+            ('Object' === c && a.constructor && (c = a.constructor.name),
+            'Map' === c || 'Set' === c)
+          )
+            return Array.from(c)
+          if (
+            'Arguments' === c ||
+            /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(c)
+          )
+            return d(a, b)
+        }
+      }
       Object.defineProperty(b, '__esModule', { value: !0 }),
         (b.useIntersection = function (a) {
-          var b,
+          var b = a.rootRef,
             c = a.rootMargin,
-            h = a.disabled || !f,
-            i = d.useRef(),
-            j =
-              (function (a) {
-                if (Array.isArray(a)) return a
-              })((b = d.useState(!1))) ||
-              (function (a, b) {
-                var c = [],
-                  d = !0,
-                  e = !1,
-                  f = void 0
-                try {
-                  for (
-                    var g, h = a[Symbol.iterator]();
-                    !(d = (g = h.next()).done) &&
-                    (c.push(g.value), !b || c.length !== b);
-                    d = !0
-                  );
-                } catch (i) {
-                  ;(e = !0), (f = i)
-                } finally {
-                  try {
-                    d || null == h.return || h.return()
-                  } finally {
-                    if (e) throw f
-                  }
-                }
-                return c
-              })(b, 2) ||
-              (function () {
-                throw new TypeError(
-                  'Invalid attempt to destructure non-iterable instance'
-                )
-              })(),
-            k = j[0],
-            l = j[1],
-            m = d.useCallback(
+            d = a.disabled || !i,
+            f = g.useRef(),
+            k = e(g.useState(!1), 2),
+            l = k[0],
+            m = k[1],
+            n = e(g.useState(b ? b.current : null), 2),
+            o = n[0],
+            p = n[1],
+            q = g.useCallback(
               function (a) {
-                i.current && (i.current(), (i.current = void 0)),
-                  !h &&
-                    !k &&
+                f.current && (f.current(), (f.current = void 0)),
+                  !d &&
+                    !l &&
                     a &&
                     a.tagName &&
-                    (i.current = g(
+                    (f.current = j(
                       a,
                       function (a) {
-                        return a && l(a)
+                        return a && m(a)
                       },
-                      { rootMargin: c }
+                      { root: o, rootMargin: c }
                     ))
               },
-              [h, c, k]
+              [d, o, c, l]
             )
           return (
-            d.useEffect(
+            g.useEffect(
               function () {
-                if (!f && !k) {
-                  var a = e.requestIdleCallback(function () {
-                    return l(!0)
+                if (!i && !l) {
+                  var a = h.requestIdleCallback(function () {
+                    return m(!0)
                   })
                   return function () {
-                    return e.cancelIdleCallback(a)
+                    return h.cancelIdleCallback(a)
                   }
                 }
               },
-              [k]
+              [l]
             ),
-            [m, k]
+            g.useEffect(
+              function () {
+                b && p(b.current)
+              },
+              [b]
+            ),
+            [q, l]
           )
         })
-      var d = c(7294),
-        e = c(9311),
-        f = 'undefined' != typeof IntersectionObserver
-      function g(a, b, c) {
-        var d = i(c),
+      var g = c(7294),
+        h = c(9311),
+        i = 'undefined' != typeof IntersectionObserver
+      function j(a, b, c) {
+        var d = l(c),
           e = d.id,
           f = d.observer,
           g = d.elements
@@ -536,14 +597,14 @@
           function () {
             g.delete(a),
               f.unobserve(a),
-              0 === g.size && (f.disconnect(), h.delete(e))
+              0 === g.size && (f.disconnect(), k.delete(e))
           }
         )
       }
-      var h = new Map()
-      function i(a) {
+      var k = new Map()
+      function l(a) {
         var b = a.rootMargin || '',
-          c = h.get(b)
+          c = k.get(b)
         if (c) return c
         var d = new Map(),
           e = new IntersectionObserver(function (a) {
@@ -553,7 +614,7 @@
               b && c && b(c)
             })
           }, a)
-        return h.set(b, (c = { id: b, observer: e, elements: d })), c
+        return k.set(b, (c = { id: b, observer: e, elements: d })), c
       }
     },
     7467: function (a, b, c) {
@@ -561,7 +622,7 @@
       c.r(b),
         c.d(b, {
           default: function () {
-            return Y
+            return Z
           },
         })
       var d = c(5893),
@@ -765,7 +826,6 @@
           (a.prototype.constructor = a),
           s(a, b)
       }
-      c(5697)
       var u = e.createContext(null)
       function v(a, b) {
         var c = Object.create(null)
@@ -1201,12 +1261,8 @@
             )
               d[e] = arguments[e]
             return (
-              ((b =
-                a.call.apply(a, [this].concat(d)) || this).appliedClasses = {
-                appear: {},
-                enter: {},
-                exit: {},
-              }),
+              ((b = a.call.apply(a, [this].concat(d)) || this).appliedClasses =
+                { appear: {}, enter: {}, exit: {} }),
               (b.onEnter = function (a, c) {
                 var d = b.resolveArguments(a, c),
                   e = d[0],
@@ -1283,32 +1339,31 @@
                   d &&
                     e &&
                     e.split(' ').forEach(function (a) {
-                      var b, c, e, f
-                      return (
-                        (b = d),
-                        (c = a),
-                        void (b.classList
-                          ? b.classList.add(c)
-                          : ((e = b),
-                            (f = c),
-                            (e.classList
-                              ? !!f && e.classList.contains(f)
+                      return (function (a, b) {
+                        if (a.classList) a.classList.add(b)
+                        else {
+                          var c, d
+                          ;(c = a),
+                            (d = b),
+                            (c.classList
+                              ? !!d && c.classList.contains(d)
                               : -1 !==
                                 (
                                   ' ' +
-                                  (e.className.baseVal || e.className) +
+                                  (c.className.baseVal || c.className) +
                                   ' '
-                                ).indexOf(' ' + f + ' ')) ||
-                              ('string' == typeof b.className
-                                ? (b.className = b.className + ' ' + c)
-                                : b.setAttribute(
+                                ).indexOf(' ' + d + ' ')) ||
+                              ('string' == typeof a.className
+                                ? (a.className = a.className + ' ' + b)
+                                : a.setAttribute(
                                     'class',
-                                    ((b.className && b.className.baseVal) ||
+                                    ((a.className && a.className.baseVal) ||
                                       '') +
                                       ' ' +
-                                      c
-                                  ))))
-                      )
+                                      b
+                                  ))
+                        }
+                      })(d, a)
                     }))
             }),
             (c.removeClasses = function (a, b) {
@@ -1566,8 +1621,21 @@
       }
       var U = c(2795),
         V = c.n(U),
-        W = c(1208)
-      function X(a, b, c) {
+        W = c(1208),
+        X = function () {
+          return (0, d.jsxs)('div', {
+            className: V().menubar,
+            children: [
+              (0, d.jsx)(S, {}),
+              (0, d.jsx)(W.Z, {
+                href: j.Z.github,
+                'aria-label': "See more Daw-Chih's work on GitHub",
+                children: (0, d.jsx)(p.lfl, { size: '1.5em' }),
+              }),
+            ],
+          })
+        }
+      function Y(a, b, c) {
         return (
           b in a
             ? Object.defineProperty(a, b, {
@@ -1580,7 +1648,7 @@
           a
         )
       }
-      var Y = function (a) {
+      var Z = function (a) {
         var b = a.Component,
           c = a.pageProps
         return (0, d.jsxs)(R, {
@@ -1634,10 +1702,7 @@
               id: 'outer-container',
               children: [
                 (0, d.jsx)(T, {}),
-                (0, d.jsx)(function () {
-                  return (0,
-                  d.jsxs)('div', { className: V().menubar, children: [(0, d.jsx)(S, {}), (0, d.jsx)(W.Z, { href: j.Z.github, 'aria-label': "See more Daw-Chih's work on GitHub", children: (0, d.jsx)(p.lfl, { size: '1.5em' }) })] })
-                }, {}),
+                (0, d.jsx)(X, {}),
                 (0, d.jsxs)('div', {
                   id: 'page-wrap',
                   children: [
@@ -1657,7 +1722,7 @@
                               })
                             )),
                             d.forEach(function (b) {
-                              X(a, b, c[b])
+                              Y(a, b, c[b])
                             })
                         }
                         return a
@@ -1737,6 +1802,7 @@
           a.isRequired = a
           var c = {
             array: a,
+            bigint: a,
             bool: a,
             func: a,
             number: a,
@@ -1918,10 +1984,10 @@
                         this.props.styles.bmBurgerButton
                       ),
                     },
-                    b,
                     i.default.createElement(
                       'button',
                       {
+                        id: 'react-burger-menu-btn',
                         onClick: this.props.onClick,
                         onMouseOver: function () {
                           a.setState({ hover: !0 }),
@@ -1937,6 +2003,7 @@
                           position: 'absolute',
                           left: 0,
                           top: 0,
+                          zIndex: 1,
                           width: '100%',
                           height: '100%',
                           margin: 0,
@@ -1948,7 +2015,8 @@
                         },
                       },
                       'Open Menu'
-                    )
+                    ),
+                    b
                   )
                 },
               },
@@ -2138,15 +2206,16 @@
                         this.props.styles.bmCrossButton
                       ),
                     },
-                    a,
                     i.default.createElement(
                       'button',
                       {
+                        id: 'react-burger-cross-btn',
                         onClick: this.props.onClick,
                         style: {
                           position: 'absolute',
                           left: 0,
                           top: 0,
+                          zIndex: 1,
                           width: '100%',
                           height: '100%',
                           margin: 0,
@@ -2156,10 +2225,11 @@
                           background: 'transparent',
                           cursor: 'pointer',
                         },
-                        tabIndex: this.props.tabIndex,
+                        tabIndex: -1,
                       },
                       'Close Menu'
-                    )
+                    ),
+                    a
                   )
                 },
               },
@@ -2172,14 +2242,8 @@
           crossClassName: j.default.string,
           customIcon: j.default.element,
           styles: j.default.object,
-          tabIndex: j.default.number,
         }),
-        (k.defaultProps = {
-          crossClassName: '',
-          className: '',
-          styles: {},
-          tabIndex: 0,
-        }),
+        (k.defaultProps = { crossClassName: '', className: '', styles: {} }),
         (a.exports = b.default)
     },
     8057: function (a, b) {
@@ -2347,6 +2411,62 @@
             })(c, b),
             e(c, [
               {
+                key: 'focusOnFirstMenuItem',
+                value: function () {
+                  var a = Array.from(
+                    document.getElementsByClassName('bm-item')
+                  ).shift()
+                  a && a.focus()
+                },
+              },
+              {
+                key: 'focusOnLastMenuItem',
+                value: function () {
+                  var a = Array.from(
+                    document.getElementsByClassName('bm-item')
+                  ).pop()
+                  a && a.focus()
+                },
+              },
+              {
+                key: 'focusOnCrossButton',
+                value: function () {
+                  var a = document.getElementById('react-burger-cross-btn')
+                  a && a.focus()
+                },
+              },
+              {
+                key: 'focusOnMenuButton',
+                value: function () {
+                  var a = document.getElementById('react-burger-menu-btn')
+                  a && a.focus()
+                },
+              },
+              {
+                key: 'focusOnMenuItem',
+                value: function (a) {
+                  if (document.activeElement.className.includes('bm-item')) {
+                    var b = document.activeElement[a]
+                    b ? b.focus() : this.focusOnCrossButton()
+                  } else
+                    'previousElementSibling' === a
+                      ? this.focusOnLastMenuItem()
+                      : this.focusOnFirstMenuItem()
+                },
+              },
+              {
+                key: 'focusOnNextMenuItem',
+                value: function () {
+                  this.focusOnMenuItem('nextElementSibling')
+                },
+              },
+              {
+                key: 'focusOnPreviousMenuItem',
+                value: function () {
+                  this.focusOnMenuItem('previousElementSibling')
+                },
+              },
+              {
                 key: 'toggleMenu',
                 value: function () {
                   var a = this,
@@ -2356,24 +2476,23 @@
                         : arguments[0],
                     c = b.isOpen,
                     d = b.noStateChange,
-                    e = { isOpen: void 0 !== c ? c : !this.state.isOpen }
+                    e = b.focusOnLastItem,
+                    f = { isOpen: void 0 !== c ? c : !this.state.isOpen }
                   this.applyWrapperStyles(),
-                    this.setState(e, function () {
-                      if (
-                        (d || a.props.onStateChange(e),
-                        !a.props.disableAutoFocus)
-                      )
-                        if (e.isOpen) {
-                          var b = document.querySelector('.bm-item')
-                          b && b.focus()
-                        } else
-                          document.activeElement
+                    this.setState(f, function () {
+                      d || a.props.onStateChange(f),
+                        a.props.disableAutoFocus ||
+                          (f.isOpen
+                            ? e
+                              ? a.focusOnLastMenuItem()
+                              : a.focusOnFirstMenuItem()
+                            : document.activeElement
                             ? document.activeElement.blur()
-                            : document.body.blur()
-                      a.timeoutId && clearTimeout(a.timeoutId),
+                            : document.body.blur()),
+                        a.timeoutId && clearTimeout(a.timeoutId),
                         (a.timeoutId = setTimeout(function () {
                           ;(a.timeoutId = null),
-                            e.isOpen || a.applyWrapperStyles(!1)
+                            f.isOpen || a.applyWrapperStyles(!1)
                         }, 500))
                     })
                 },
@@ -2484,21 +2603,53 @@
                 },
               },
               {
-                key: 'listenForClose',
+                key: 'listenForKeyDowns',
                 value: function (a) {
-                  ;(a = a || window.event),
-                    !this.props.disableCloseOnEsc &&
-                      this.state.isOpen &&
-                      ('Escape' === a.key || 27 === a.keyCode) &&
-                      this.close()
+                  a = a || window.event
+                  var b = 'ArrowDown',
+                    c = 'ArrowUp'
+                  if (this.state.isOpen)
+                    switch (a.key) {
+                      case 'Escape':
+                        this.props.disableCloseOnEsc ||
+                          (this.close(), this.focusOnMenuButton())
+                        break
+                      case b:
+                        this.focusOnNextMenuItem()
+                        break
+                      case c:
+                        this.focusOnPreviousMenuItem()
+                        break
+                      case 'Home':
+                        this.focusOnFirstMenuItem()
+                        break
+                      case 'End':
+                        this.focusOnLastMenuItem()
+                        break
+                    }
+                  else if (
+                    a.target ===
+                    document.getElementById('react-burger-menu-btn')
+                  )
+                    switch (a.key) {
+                      case b:
+                      case 'Enter':
+                      case ' ':
+                        this.toggleMenu()
+                        break
+                      case c:
+                        this.toggleMenu({ focusOnLastItem: !0 })
+                        break
+                    }
                 },
               },
               {
                 key: 'componentDidMount',
                 value: function () {
-                  this.props.customOnKeyDown
-                    ? (window.onkeydown = this.props.customOnKeyDown)
-                    : (window.onkeydown = this.listenForClose.bind(this)),
+                  ;(this.onKeyDown = this.props.customOnKeyDown
+                    ? this.props.customOnKeyDown
+                    : this.listenForKeyDowns.bind(this)),
+                    window.addEventListener('keydown', this.onKeyDown),
                     this.props.isOpen &&
                       this.toggleMenu({ isOpen: !0, noStateChange: !0 })
                 },
@@ -2506,7 +2657,7 @@
               {
                 key: 'componentWillUnmount',
                 value: function () {
-                  ;(window.onkeydown = null),
+                  window.removeEventListener('keydown', this.onKeyDown),
                     this.applyWrapperStyles(!1),
                     this.timeoutId && clearTimeout(this.timeoutId)
                 },
@@ -2550,6 +2701,21 @@
                         },
                         style: this.getStyles('overlay'),
                       }),
+                    !1 !== this.props.customBurgerIcon &&
+                      i.default.createElement(
+                        'div',
+                        { style: this.getStyles('burgerIcon') },
+                        i.default.createElement(m.default, {
+                          onClick: function () {
+                            return b.open()
+                          },
+                          styles: this.props.styles,
+                          customIcon: this.props.customBurgerIcon,
+                          className: this.props.burgerButtonClassName,
+                          barClassName: this.props.burgerBarClassName,
+                          onIconStateChange: this.props.onIconStateChange,
+                        })
+                      ),
                     i.default.createElement(
                       'div',
                       {
@@ -2558,6 +2724,7 @@
                           'bm-menu-wrap ' + this.props.className
                         ).trim(),
                         style: this.getStyles('menuWrap'),
+                        'aria-hidden': !this.state.isOpen,
                       },
                       a.svg &&
                         i.default.createElement(
@@ -2590,35 +2757,35 @@
                           style: this.getStyles('menu'),
                         },
                         i.default.createElement(
-                          'nav',
+                          this.props.itemListElement,
                           {
                             className: (
                               'bm-item-list ' + this.props.itemListClassName
                             ).trim(),
                             style: this.getStyles('itemList'),
                           },
-                          i.default.Children.map(this.props.children, function (
-                            a,
-                            c
-                          ) {
-                            if (a) {
-                              var d = {
-                                key: c,
-                                className: [
-                                  'bm-item',
-                                  b.props.itemClassName,
-                                  a.props.className,
-                                ]
-                                  .filter(function (a) {
-                                    return !!a
-                                  })
-                                  .join(' '),
-                                style: b.getStyles('item', c, a.props.style),
-                                tabIndex: b.state.isOpen ? 0 : -1,
+                          i.default.Children.map(
+                            this.props.children,
+                            function (a, c) {
+                              if (a) {
+                                var d = {
+                                  key: c,
+                                  className: [
+                                    'bm-item',
+                                    b.props.itemClassName,
+                                    a.props.className,
+                                  ]
+                                    .filter(function (a) {
+                                      return !!a
+                                    })
+                                    .join(' '),
+                                  style: b.getStyles('item', c, a.props.style),
+                                  tabIndex: -1,
+                                }
+                                return i.default.cloneElement(a, d)
                               }
-                              return i.default.cloneElement(a, d)
                             }
-                          })
+                          )
                         )
                       ),
                       !1 !== this.props.customCrossIcon &&
@@ -2633,25 +2800,9 @@
                             customIcon: this.props.customCrossIcon,
                             className: this.props.crossButtonClassName,
                             crossClassName: this.props.crossClassName,
-                            tabIndex: this.state.isOpen ? 0 : -1,
                           })
                         )
-                    ),
-                    !1 !== this.props.customBurgerIcon &&
-                      i.default.createElement(
-                        'div',
-                        { style: this.getStyles('burgerIcon') },
-                        i.default.createElement(m.default, {
-                          onClick: function () {
-                            return b.open()
-                          },
-                          styles: this.props.styles,
-                          customIcon: this.props.customBurgerIcon,
-                          className: this.props.burgerButtonClassName,
-                          barClassName: this.props.burgerBarClassName,
-                          onIconStateChange: this.props.onIconStateChange,
-                        })
-                      )
+                    )
                   )
                 },
               },
@@ -2687,6 +2838,7 @@
             isOpen: k.default.bool,
             itemClassName: k.default.string,
             itemListClassName: k.default.string,
+            itemListElement: k.default.oneOf(['div', 'nav']),
             menuClassName: k.default.string,
             morphShapeClassName: k.default.string,
             noOverlay: k.default.bool,
@@ -2730,6 +2882,7 @@
             styles: {},
             width: 300,
             onIconHoverChange: function () {},
+            itemListElement: 'nav',
           }),
           b
         )
@@ -3191,13 +3344,12 @@
       ;(b.default = (0, e.default)({
         menuWrap: function (a, b, c) {
           return {
-            visibility: a ? 'visible' : 'hidden',
             MozTransform: 'translate3d(0, 0, 0)',
             MsTransform: 'translate3d(0, 0, 0)',
             OTransform: 'translate3d(0, 0, 0)',
             WebkitTransform: 'translate3d(0, 0, 0)',
             transform: 'translate3d(0, 0, 0)',
-            zIndex: 1000,
+            zIndex: a ? 1000 : -1,
           }
         },
         overlay: function (a, b, c) {
@@ -3564,8 +3716,7 @@
             {
               tag: 'path',
               attr: {
-                d:
-                  'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z',
+                d: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z',
               },
             },
           ],
@@ -3752,8 +3903,7 @@
               tag: 'path',
               attr: {
                 fillRule: 'evenodd',
-                d:
-                  'M11.9989871,1 C5.92550416,1 1,5.92482888 1,12.0003376 C1,16.8603395 4.15153934,20.9829338 8.52263728,22.4374904 C9.0729918,22.5387827 9.27355045,22.199116 9.27355045,21.9073943 C9.27355045,21.6467356 9.2640965,20.954572 9.25869425,20.0368642 C6.19899322,20.7013414 5.55342398,18.5620492 5.55342398,18.5620492 C5.0530403,17.2911692 4.33183953,16.9528531 4.33183953,16.9528531 C3.33309801,16.2708186 4.40747107,16.2843243 4.40747107,16.2843243 C5.51155652,16.3619816 6.09229872,17.4181221 6.09229872,17.4181221 C7.07348292,19.0988981 8.66714755,18.6133706 9.2938089,18.3317781 C9.39375058,17.6213819 9.67804414,17.1365297 9.99205009,16.86169 C7.54955646,16.5841493 4.98146045,15.6401056 4.98146045,11.4249977 C4.98146045,10.224347 5.41026428,9.24181221 6.11390773,8.47334172 C6.00046042,8.19512569 5.62297799,7.07618404 6.22195279,5.56220265 C6.22195279,5.56220265 7.14506277,5.26642929 9.24653918,6.68992296 C10.12373,6.44547101 11.0650726,6.32392032 12.0003376,6.31919335 C12.9349274,6.32392032 13.8755947,6.44547101 14.7541361,6.68992296 C16.8542619,5.26642929 17.7760214,5.56220265 17.7760214,5.56220265 C18.3763467,7.07618404 17.9988643,8.19512569 17.8860923,8.47334172 C18.5910863,9.24181221 19.0165137,10.224347 19.0165137,11.4249977 C19.0165137,15.6509101 16.444366,16.5807729 13.9944443,16.8529114 C14.3888087,17.192578 14.7406305,17.863808 14.7406305,18.890236 C14.7406305,20.3603241 14.7271248,21.5467939 14.7271248,21.9073943 C14.7271248,22.2018171 14.9256576,22.5441849 15.4834403,22.4368151 C19.8511618,20.9788821 23,16.8589889 23,12.0003376 C23,5.92482888 18.0744958,1 11.9989871,1',
+                d: 'M11.9989871,1 C5.92550416,1 1,5.92482888 1,12.0003376 C1,16.8603395 4.15153934,20.9829338 8.52263728,22.4374904 C9.0729918,22.5387827 9.27355045,22.199116 9.27355045,21.9073943 C9.27355045,21.6467356 9.2640965,20.954572 9.25869425,20.0368642 C6.19899322,20.7013414 5.55342398,18.5620492 5.55342398,18.5620492 C5.0530403,17.2911692 4.33183953,16.9528531 4.33183953,16.9528531 C3.33309801,16.2708186 4.40747107,16.2843243 4.40747107,16.2843243 C5.51155652,16.3619816 6.09229872,17.4181221 6.09229872,17.4181221 C7.07348292,19.0988981 8.66714755,18.6133706 9.2938089,18.3317781 C9.39375058,17.6213819 9.67804414,17.1365297 9.99205009,16.86169 C7.54955646,16.5841493 4.98146045,15.6401056 4.98146045,11.4249977 C4.98146045,10.224347 5.41026428,9.24181221 6.11390773,8.47334172 C6.00046042,8.19512569 5.62297799,7.07618404 6.22195279,5.56220265 C6.22195279,5.56220265 7.14506277,5.26642929 9.24653918,6.68992296 C10.12373,6.44547101 11.0650726,6.32392032 12.0003376,6.31919335 C12.9349274,6.32392032 13.8755947,6.44547101 14.7541361,6.68992296 C16.8542619,5.26642929 17.7760214,5.56220265 17.7760214,5.56220265 C18.3763467,7.07618404 17.9988643,8.19512569 17.8860923,8.47334172 C18.5910863,9.24181221 19.0165137,10.224347 19.0165137,11.4249977 C19.0165137,15.6509101 16.444366,16.5807729 13.9944443,16.8529114 C14.3888087,17.192578 14.7406305,17.863808 14.7406305,18.890236 C14.7406305,20.3603241 14.7271248,21.5467939 14.7271248,21.9073943 C14.7271248,22.2018171 14.9256576,22.5441849 15.4834403,22.4368151 C19.8511618,20.9788821 23,16.8589889 23,12.0003376 C23,5.92482888 18.0744958,1 11.9989871,1',
               },
             },
           ],
@@ -3768,8 +3918,7 @@
               tag: 'path',
               attr: {
                 fillRule: 'evenodd',
-                d:
-                  'M20.45175,20.45025 L16.89225,20.45025 L16.89225,14.88075 C16.89225,13.5525 16.86975,11.844 15.04275,11.844 C13.191,11.844 12.90825,13.2915 12.90825,14.7855 L12.90825,20.45025 L9.3525,20.45025 L9.3525,8.997 L12.765,8.997 L12.765,10.563 L12.81375,10.563 C13.2885,9.66225 14.4495,8.71275 16.18125,8.71275 C19.78575,8.71275 20.45175,11.08425 20.45175,14.169 L20.45175,20.45025 Z M5.33925,7.4325 C4.1955,7.4325 3.27375,6.50775 3.27375,5.36775 C3.27375,4.2285 4.1955,3.30375 5.33925,3.30375 C6.47775,3.30375 7.4025,4.2285 7.4025,5.36775 C7.4025,6.50775 6.47775,7.4325 5.33925,7.4325 L5.33925,7.4325 Z M7.11975,20.45025 L3.5565,20.45025 L3.5565,8.997 L7.11975,8.997 L7.11975,20.45025 Z M23.00025,0 L1.0005,0 C0.44775,0 0,0.44775 0,0.99975 L0,22.9995 C0,23.55225 0.44775,24 1.0005,24 L23.00025,24 C23.55225,24 24,23.55225 24,22.9995 L24,0.99975 C24,0.44775 23.55225,0 23.00025,0 L23.00025,0 Z',
+                d: 'M20.45175,20.45025 L16.89225,20.45025 L16.89225,14.88075 C16.89225,13.5525 16.86975,11.844 15.04275,11.844 C13.191,11.844 12.90825,13.2915 12.90825,14.7855 L12.90825,20.45025 L9.3525,20.45025 L9.3525,8.997 L12.765,8.997 L12.765,10.563 L12.81375,10.563 C13.2885,9.66225 14.4495,8.71275 16.18125,8.71275 C19.78575,8.71275 20.45175,11.08425 20.45175,14.169 L20.45175,20.45025 Z M5.33925,7.4325 C4.1955,7.4325 3.27375,6.50775 3.27375,5.36775 C3.27375,4.2285 4.1955,3.30375 5.33925,3.30375 C6.47775,3.30375 7.4025,4.2285 7.4025,5.36775 C7.4025,6.50775 6.47775,7.4325 5.33925,7.4325 L5.33925,7.4325 Z M7.11975,20.45025 L3.5565,20.45025 L3.5565,8.997 L7.11975,8.997 L7.11975,20.45025 Z M23.00025,0 L1.0005,0 C0.44775,0 0,0.44775 0,0.99975 L0,22.9995 C0,23.55225 0.44775,24 1.0005,24 L23.00025,24 C23.55225,24 24,23.55225 24,22.9995 L24,0.99975 C24,0.44775 23.55225,0 23.00025,0 L23.00025,0 Z',
               },
             },
           ],
@@ -3783,8 +3932,7 @@
             {
               tag: 'path',
               attr: {
-                d:
-                  'M2.84593838,5.88685595 C2.87575654,5.59224254 2.76340763,5.30104995 2.54341737,5.10276397 L0.302521008,2.4032473 L0.302521008,2 L7.2605042,2 L12.6386555,13.7949836 L17.3669469,2 L24,2 L24,2.4032473 L22.0840336,4.2402628 C21.9188563,4.36617057 21.8369199,4.57310892 21.8711485,4.77792587 L21.8711485,18.2755093 C21.8369199,18.4803262 21.9188563,18.6872645 22.0840336,18.8131723 L23.9551821,20.6501878 L23.9551821,21.0534351 L14.5434174,21.0534351 L14.5434174,20.6501878 L16.4817928,18.7683671 C16.6722689,18.5779447 16.6722689,18.5219382 16.6722689,18.2307041 L16.6722689,7.32062416 L11.2829132,21.0086299 L10.5546219,21.0086299 L4.28011204,7.32062416 L4.28011204,16.4945003 C4.22779746,16.8801958 4.35589372,17.2685069 4.62745097,17.5474239 L7.14845938,20.6053826 L7.14845938,21.0086299 L0,21.0086299 L0,20.6053826 L2.5210084,17.5474239 C2.79058848,17.2680445 2.91121535,16.8771576 2.84593838,16.4945003 L2.84593838,5.88685595 Z',
+                d: 'M2.84593838,5.88685595 C2.87575654,5.59224254 2.76340763,5.30104995 2.54341737,5.10276397 L0.302521008,2.4032473 L0.302521008,2 L7.2605042,2 L12.6386555,13.7949836 L17.3669469,2 L24,2 L24,2.4032473 L22.0840336,4.2402628 C21.9188563,4.36617057 21.8369199,4.57310892 21.8711485,4.77792587 L21.8711485,18.2755093 C21.8369199,18.4803262 21.9188563,18.6872645 22.0840336,18.8131723 L23.9551821,20.6501878 L23.9551821,21.0534351 L14.5434174,21.0534351 L14.5434174,20.6501878 L16.4817928,18.7683671 C16.6722689,18.5779447 16.6722689,18.5219382 16.6722689,18.2307041 L16.6722689,7.32062416 L11.2829132,21.0086299 L10.5546219,21.0086299 L4.28011204,7.32062416 L4.28011204,16.4945003 C4.22779746,16.8801958 4.35589372,17.2685069 4.62745097,17.5474239 L7.14845938,20.6053826 L7.14845938,21.0086299 L0,21.0086299 L0,20.6053826 L2.5210084,17.5474239 C2.79058848,17.2680445 2.91121535,16.8771576 2.84593838,16.4945003 L2.84593838,5.88685595 Z',
               },
             },
           ],
@@ -3799,8 +3947,7 @@
               tag: 'path',
               attr: {
                 fillRule: 'evenodd',
-                d:
-                  'M24,4.3086 C23.117,4.7006 22.168,4.9646 21.172,5.0836 C22.188,4.4746 22.969,3.5096 23.337,2.3596 C22.386,2.9246 21.332,3.3336 20.21,3.5556 C19.312,2.5976 18.032,1.9996 16.616,1.9996 C13.897,1.9996 11.692,4.2046 11.692,6.9236 C11.692,7.3096 11.736,7.6856 11.82,8.0456 C7.728,7.8406 4.099,5.8806 1.671,2.9006 C1.247,3.6286 1.004,4.4736 1.004,5.3766 C1.004,7.0846 1.873,8.5926 3.195,9.4756 C2.388,9.4486 1.628,9.2276 0.964,8.8596 L0.964,8.9206 C0.964,11.3066 2.661,13.2966 4.914,13.7486 C4.501,13.8626 4.065,13.9216 3.617,13.9216 C3.299,13.9216 2.991,13.8906 2.69,13.8336 C3.317,15.7896 5.135,17.2136 7.29,17.2536 C5.604,18.5736 3.481,19.3606 1.175,19.3606 C0.777,19.3606 0.385,19.3376 0,19.2926 C2.179,20.6886 4.767,21.5046 7.548,21.5046 C16.605,21.5046 21.557,14.0016 21.557,7.4946 C21.557,7.2816 21.552,7.0696 21.543,6.8586 C22.505,6.1636 23.34,5.2966 24,4.3086',
+                d: 'M24,4.3086 C23.117,4.7006 22.168,4.9646 21.172,5.0836 C22.188,4.4746 22.969,3.5096 23.337,2.3596 C22.386,2.9246 21.332,3.3336 20.21,3.5556 C19.312,2.5976 18.032,1.9996 16.616,1.9996 C13.897,1.9996 11.692,4.2046 11.692,6.9236 C11.692,7.3096 11.736,7.6856 11.82,8.0456 C7.728,7.8406 4.099,5.8806 1.671,2.9006 C1.247,3.6286 1.004,4.4736 1.004,5.3766 C1.004,7.0846 1.873,8.5926 3.195,9.4756 C2.388,9.4486 1.628,9.2276 0.964,8.8596 L0.964,8.9206 C0.964,11.3066 2.661,13.2966 4.914,13.7486 C4.501,13.8626 4.065,13.9216 3.617,13.9216 C3.299,13.9216 2.991,13.8906 2.69,13.8336 C3.317,15.7896 5.135,17.2136 7.29,17.2536 C5.604,18.5736 3.481,19.3606 1.175,19.3606 C0.777,19.3606 0.385,19.3376 0,19.2926 C2.179,20.6886 4.767,21.5046 7.548,21.5046 C16.605,21.5046 21.557,14.0016 21.557,7.4946 C21.557,7.2816 21.552,7.0696 21.543,6.8586 C22.505,6.1636 23.34,5.2966 24,4.3086',
               },
             },
           ],
@@ -4140,7 +4287,8 @@
             p = k.PI,
             q = k.round,
             r = Object.prototype.toString,
-            s = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+%?(?:\s*,\s*[\d\.]+%?)?)\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?%?)\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?%?)\s*\))\s*$/i,
+            s =
+              /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+%?(?:\s*,\s*[\d\.]+%?)?)\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?%?)\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?%?)\s*\))\s*$/i,
             t = (b._.separator = /[,\s]+/),
             u = /[\s]*,[\s]*/,
             v = { hs: 1, rg: 1 },
@@ -4523,9 +4671,14 @@
                       (a.l = c.l),
                       (c = b.rgb2hsb(a)),
                       (a.v = c.b))
-                    : (((a = {
-                        hex: 'none',
-                      }).r = a.g = a.b = a.h = a.s = a.v = a.l = -1),
+                    : (((a = { hex: 'none' }).r =
+                        a.g =
+                        a.b =
+                        a.h =
+                        a.s =
+                        a.v =
+                        a.l =
+                          -1),
                       (a.error = 1))),
               (a.toString = M),
               a
@@ -5354,21 +5507,24 @@
           (f.parent = function () {
             return m(this.node.parentNode)
           }),
-          (f.append = f.add = function (a) {
-            if (a) {
-              if ('set' == a.type) {
-                var b = this
-                return (
-                  a.forEach(function (a) {
-                    b.add(a)
-                  }),
-                  this
-                )
+          (f.append = f.add =
+            function (a) {
+              if (a) {
+                if ('set' == a.type) {
+                  var b = this
+                  return (
+                    a.forEach(function (a) {
+                      b.add(a)
+                    }),
+                    this
+                  )
+                }
+                ;(a = m(a)),
+                  this.node.appendChild(a.node),
+                  (a.paper = this.paper)
               }
-              ;(a = m(a)), this.node.appendChild(a.node), (a.paper = this.paper)
-            }
-            return this
-          }),
+              return this
+            }),
           (f.appendTo = function (a) {
             return a && (a = m(a)).append(this), this
           }),
@@ -5551,26 +5707,27 @@
           (f.toDefs = function () {
             return l(this).appendChild(this.node), this
           }),
-          (f.pattern = f.toPattern = function (a, b, c, d) {
-            var e = k('pattern', l(this))
-            return (
-              null == a && (a = this.getBBox()),
-              g(a, 'object') &&
-                'x' in a &&
-                ((b = a.y), (c = a.width), (d = a.height), (a = a.x)),
-              j(e.node, {
-                x: a,
-                y: b,
-                width: c,
-                height: d,
-                patternUnits: 'userSpaceOnUse',
-                id: e.id,
-                viewBox: [a, b, c, d].join(' '),
-              }),
-              e.node.appendChild(this.node),
-              e
-            )
-          }),
+          (f.pattern = f.toPattern =
+            function (a, b, c, d) {
+              var e = k('pattern', l(this))
+              return (
+                null == a && (a = this.getBBox()),
+                g(a, 'object') &&
+                  'x' in a &&
+                  ((b = a.y), (c = a.width), (d = a.height), (a = a.x)),
+                j(e.node, {
+                  x: a,
+                  y: b,
+                  width: c,
+                  height: d,
+                  patternUnits: 'userSpaceOnUse',
+                  id: e.id,
+                  viewBox: [a, b, c, d].join(' '),
+                }),
+                e.node.appendChild(this.node),
+                e
+              )
+            }),
           (f.marker = function (a, b, c, d, e, f) {
             var h = k('marker', l(this))
             return (
@@ -6220,7 +6377,7 @@
               i = h.className.baseVal,
               j = i.match(f) || []
             if (e.length) {
-              for (; (c = e[b++]); ) ~j.indexOf(c) || j.push(c)
+              for (b = 0; (c = e[b++]); ) ~j.indexOf(c) || j.push(c)
               i != (d = j.join(' ')) && (h.className.baseVal = d)
             }
             return this
@@ -6235,7 +6392,8 @@
                 j = i.className.baseVal,
                 k = j.match(f) || []
               if (k.length) {
-                for (; (d = h[b++]); ) ~(c = k.indexOf(d)) && k.splice(c, 1)
+                for (b = 0; (d = h[b++]); )
+                  ~(c = k.indexOf(d)) && k.splice(c, 1)
                 j != (e = k.join(' ')) && (i.className.baseVal = e)
               }
               return this
@@ -6245,18 +6403,15 @@
             }),
             (h.toggleClass = function (a, b) {
               if (null != b) return b ? this.addClass(a) : this.removeClass(a)
-              for (
-                var c,
-                  d,
-                  e,
-                  g,
-                  h = (a || '').match(f) || [],
-                  i = this.node,
-                  j = i.className.baseVal,
-                  k = j.match(f) || [];
-                (e = h[c++]);
-
-              )
+              var c,
+                d,
+                e,
+                g,
+                h = (a || '').match(f) || [],
+                i = this.node,
+                j = i.className.baseVal,
+                k = j.match(f) || []
+              for (c = 0; (e = h[c++]); )
                 ~(d = k.indexOf(e)) ? k.splice(d, 1) : k.push(e)
               return j != (g = k.join(' ')) && (i.className.baseVal = g), this
             })
@@ -6407,16 +6562,17 @@
                 this.el('path', b)
               )
             }),
-            (f.group = f.g = function (a) {
-              var b = this.el('g')
-              return (
-                1 == arguments.length && a && !a.type
-                  ? b.attr(a)
-                  : arguments.length &&
-                    b.add(Array.prototype.slice.call(arguments, 0)),
-                b
-              )
-            }),
+            (f.group = f.g =
+              function (a) {
+                var b = this.el('g')
+                return (
+                  1 == arguments.length && a && !a.type
+                    ? b.attr(a)
+                    : arguments.length &&
+                      b.add(Array.prototype.slice.call(arguments, 0)),
+                  b
+                )
+              }),
             (f.svg = function (a, b, c, d, e, f, h, i) {
               var j = {}
               return (
@@ -6622,17 +6778,18 @@
                   return i(this.defs, a, b, c, d, e)
                 }),
                 (f.toString = function () {
-                  var b = this.node.ownerDocument,
-                    c = b.createDocumentFragment(),
-                    d = b.createElement('div'),
-                    e = this.node.cloneNode(!0)
+                  var b,
+                    c = this.node.ownerDocument,
+                    d = c.createDocumentFragment(),
+                    e = c.createElement('div'),
+                    f = this.node.cloneNode(!0)
                   return (
-                    c.appendChild(d),
                     d.appendChild(e),
-                    a._.$(e, { xmlns: 'http://www.w3.org/2000/svg' }),
-                    d.innerHTML,
-                    c.removeChild(c.firstChild),
-                    d.innerHTML
+                    e.appendChild(f),
+                    a._.$(f, { xmlns: 'http://www.w3.org/2000/svg' }),
+                    (b = e.innerHTML),
+                    d.removeChild(d.firstChild),
+                    b
                   )
                 }),
                 (f.toDataURL = function () {
@@ -6868,32 +7025,12 @@
             for (
               var k = (i = i > 1 ? 1 : i < 0 ? 0 : i) / 2,
                 l = [
-                  -0.1252,
-                  0.1252,
-                  -0.3678,
-                  0.3678,
-                  -0.5873,
-                  0.5873,
-                  -0.7699,
-                  0.7699,
-                  -0.9041,
-                  0.9041,
-                  -0.9816,
-                  0.9816,
+                  -0.1252, 0.1252, -0.3678, 0.3678, -0.5873, 0.5873, -0.7699,
+                  0.7699, -0.9041, 0.9041, -0.9816, 0.9816,
                 ],
                 m = [
-                  0.2491,
-                  0.2491,
-                  0.2335,
-                  0.2335,
-                  0.2032,
-                  0.2032,
-                  0.1601,
-                  0.1601,
-                  0.1069,
-                  0.1069,
-                  0.0472,
-                  0.0472,
+                  0.2491, 0.2491, 0.2335, 0.2335, 0.2032, 0.2032, 0.1601,
+                  0.1601, 0.1069, 0.1069, 0.0472, 0.0472,
                 ],
                 n = 0,
                 o = 0;
@@ -8220,33 +8357,35 @@
             o--;
 
           )
-            (a[(e = h[o])] = f[e] = function (b, c) {
-              if (a.is(b, 'function'))
-                (this.events = this.events || []),
-                  this.events.push({
-                    name: e,
-                    f: b,
-                    unbind: k(this.node || document, e, b, c || this),
-                  })
-              else
-                for (var d = 0, f = this.events.length; d < f; d++)
-                  if (this.events[d].name == e)
-                    try {
-                      this.events[d].f.call(this)
-                    } catch (g) {}
-              return this
-            }),
-              (a['un' + e] = f['un' + e] = function (a) {
-                for (var b = this.events || [], c = b.length; c--; )
-                  if (b[c].name == e && (b[c].f == a || !a))
-                    return (
-                      b[c].unbind(),
-                      b.splice(c, 1),
-                      b.length || delete this.events,
-                      this
-                    )
+            (a[(e = h[o])] = f[e] =
+              function (b, c) {
+                if (a.is(b, 'function'))
+                  (this.events = this.events || []),
+                    this.events.push({
+                      name: e,
+                      f: b,
+                      unbind: k(this.node || document, e, b, c || this),
+                    })
+                else
+                  for (var d = 0, f = this.events.length; d < f; d++)
+                    if (this.events[d].name == e)
+                      try {
+                        this.events[d].f.call(this)
+                      } catch (g) {}
                 return this
-              })
+              }),
+              (a['un' + e] = f['un' + e] =
+                function (a) {
+                  for (var b = this.events || [], c = b.length; c--; )
+                    if (b[c].name == e && (b[c].f == a || !a))
+                      return (
+                        b[c].unbind(),
+                        b.splice(c, 1),
+                        b.length || delete this.events,
+                        this
+                      )
+                  return this
+                })
           ;(f.hover = function (a, b, c, d) {
             return this.mouseover(a, c).mouseout(b, d || c)
           }),
