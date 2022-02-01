@@ -132,8 +132,7 @@
               title: 'Rethinking the Next-gen Analytics Web App at trivago',
               description:
                 "How trivago Frontend Engineering revamped the company's Business Intelligence web application. After almost a decade, we decided to rebuild our in-house Business Intelligence web application to better support the organization. We successfully completed the project because we fundamentally challenged and re-thought all aspects of the project.",
-              url:
-                'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
+              url: 'https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/',
               cover:
                 'https://tech.trivago.com/img/posts/rethinknextgenanalyticswebappattrivago/image3.png',
               category: 'Frontend',
@@ -149,8 +148,7 @@
               title: '3 Principles to Triumph Your Software Project',
               description:
                 'Practical experience that shapes billion dollar enterprise. I have been very fortunate to take a part in important topics at trivago. We have brought groundbreaking changes in accommodation search. It was clear that our data-informed approach is the foundation to innovation. I want to share with you our learnings.',
-              url:
-                'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
+              url: 'https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f',
               cover: '',
               category: 'Leadership',
               author: 'Daw-Chih Liou',
@@ -181,8 +179,7 @@
               title: 'JavaScript Workshop with Kyle Simpson',
               description:
                 'A recap of the 5-day JavaScript journey. It has been a couple of months since Kyle, author of the “You Don’t Know JS” series, visited our trivago headquarters and gave us a wonderful JavaScript workshop. It was such an enjoyable week, being able to meet Kyle in person and walk through his thinking behind the materials.',
-              url:
-                'https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/',
+              url: 'https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/',
               cover:
                 'https://tech.trivago.com/img/posts/javascript-workshop-with-kyle-simpson/hero.jpg',
               category: 'Engineering Culture',
@@ -198,8 +195,7 @@
               title: 'Intuitive Transducer in JavaScript',
               description:
                 'What is transducing? Simply put, it’s a data transformation process without creating intermediate products. It’s like a pipeline. It’s your data on one end, and the pipeline transforms the data and produce your output on the other end.',
-              url:
-                'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
+              url: 'https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d',
               cover: '',
               category: 'JavaScript',
               author: 'Daw-Chih Liou',
