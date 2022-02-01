@@ -244,6 +244,60 @@
           'Daw-Chih is a software engineer, UX advocate, and creator who is dedicated to Web engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.',
       }
     },
+    1208: function (a, b, c) {
+      'use strict'
+      c.d(b, {
+        Z: function () {
+          return h
+        },
+      })
+      var d = c(5893)
+      c(7294)
+      var e = c(1664)
+      function f(a, b, c) {
+        return (
+          b in a
+            ? Object.defineProperty(a, b, {
+                value: c,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0,
+              })
+            : (a[b] = c),
+          a
+        )
+      }
+      function g(a) {
+        for (var b = 1; b < arguments.length; b++) {
+          var c = null != arguments[b] ? arguments[b] : {},
+            d = Object.keys(c)
+          'function' == typeof Object.getOwnPropertySymbols &&
+            (d = d.concat(
+              Object.getOwnPropertySymbols(c).filter(function (a) {
+                return Object.getOwnPropertyDescriptor(c, a).enumerable
+              })
+            )),
+            d.forEach(function (b) {
+              f(a, b, c[b])
+            })
+        }
+        return a
+      }
+      function h(a) {
+        var b = a.href
+        return b && (b.startsWith('/') || b.startsWith('#'))
+          ? (0, d.jsx)(e.default, {
+              href: b,
+              children: (0, d.jsx)('a', g({}, a, { children: a.children })),
+            })
+          : (0, d.jsx)(
+              'a',
+              g({ target: '_blank', rel: 'noopener noreferrer' }, a, {
+                children: a.children,
+              })
+            )
+      }
+    },
     8418: function (a, b, c) {
       'use strict'
       function d(a, b) {
@@ -507,7 +561,7 @@
       c.r(b),
         c.d(b, {
           default: function () {
-            return X
+            return Y
           },
         })
       var d = c(5893),
@@ -1511,8 +1565,9 @@
         })
       }
       var U = c(2795),
-        V = c.n(U)
-      function W(a, b, c) {
+        V = c.n(U),
+        W = c(1208)
+      function X(a, b, c) {
         return (
           b in a
             ? Object.defineProperty(a, b, {
@@ -1525,7 +1580,7 @@
           a
         )
       }
-      var X = function (a) {
+      var Y = function (a) {
         var b = a.Component,
           c = a.pageProps
         return (0, d.jsxs)(R, {
@@ -1581,7 +1636,7 @@
                 (0, d.jsx)(T, {}),
                 (0, d.jsx)(function () {
                   return (0,
-                  d.jsxs)('div', { className: V().menubar, children: [(0, d.jsx)(S, {}), (0, d.jsx)('a', { href: j.Z.github, target: '_blank', rel: 'noreferrer', children: (0, d.jsx)(p.lfl, { size: '1.5em' }) })] })
+                  d.jsxs)('div', { className: V().menubar, children: [(0, d.jsx)(S, {}), (0, d.jsx)(W.Z, { href: j.Z.github, 'aria-label': "See more Daw-Chih's work on GitHub", children: (0, d.jsx)(p.lfl, { size: '1.5em' }) })] })
                 }, {}),
                 (0, d.jsxs)('div', {
                   id: 'page-wrap',
@@ -1602,7 +1657,7 @@
                               })
                             )),
                             d.forEach(function (b) {
-                              W(a, b, c[b])
+                              X(a, b, c[b])
                             })
                         }
                         return a
@@ -3404,26 +3459,32 @@
         HR2: function () {
           return f
         },
-        cur: function () {
+        AlO: function () {
           return g
         },
-        wOW: function () {
+        QoU: function () {
           return h
         },
-        xaD: function () {
+        cur: function () {
           return i
         },
-        jMy: function () {
+        wOW: function () {
           return j
         },
-        kXG: function () {
+        xaD: function () {
           return k
         },
-        gU9: function () {
+        jMy: function () {
           return l
         },
-        q5L: function () {
+        kXG: function () {
           return m
+        },
+        gU9: function () {
+          return n
+        },
+        q5L: function () {
+          return o
         },
       })
       var d = c(8357)
@@ -3477,13 +3538,58 @@
             strokeLinejoin: 'round',
           },
           child: [
+            {
+              tag: 'path',
+              attr: {
+                d: 'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
+              },
+            },
+            { tag: 'polyline', attr: { points: '15 3 21 3 21 9' } },
+            { tag: 'line', attr: { x1: '10', y1: '14', x2: '21', y2: '3' } },
+          ],
+        })(a)
+      }
+      function h(a) {
+        return (0, d.w_)({
+          tag: 'svg',
+          attr: {
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: '2',
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          },
+          child: [
+            {
+              tag: 'path',
+              attr: {
+                d:
+                  'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z',
+              },
+            },
+          ],
+        })(a)
+      }
+      function i(a) {
+        return (0, d.w_)({
+          tag: 'svg',
+          attr: {
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: '2',
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+          },
+          child: [
             { tag: 'line', attr: { x1: '3', y1: '12', x2: '21', y2: '12' } },
             { tag: 'line', attr: { x1: '3', y1: '6', x2: '21', y2: '6' } },
             { tag: 'line', attr: { x1: '3', y1: '18', x2: '21', y2: '18' } },
           ],
         })(a)
       }
-      function h(a) {
+      function j(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
@@ -3502,7 +3608,7 @@
           ],
         })(a)
       }
-      function i(a) {
+      function k(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
@@ -3520,7 +3626,7 @@
           ],
         })(a)
       }
-      function j(a) {
+      function l(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
@@ -3539,7 +3645,7 @@
           ],
         })(a)
       }
-      function k(a) {
+      function m(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
@@ -3575,7 +3681,7 @@
           ],
         })(a)
       }
-      function l(a) {
+      function n(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
@@ -3602,7 +3708,7 @@
           ],
         })(a)
       }
-      function m(a) {
+      function o(a) {
         return (0, d.w_)({
           tag: 'svg',
           attr: {
