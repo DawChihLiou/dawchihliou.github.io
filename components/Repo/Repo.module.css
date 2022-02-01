@@ -74,3 +74,8 @@
 .labelLink:hover {
   color: rgba(0, 124, 240, 1);
 }
+
+.title {
+  font-size: 1.17em;
+  font-weight: bold;
+}

@@ -32,19 +32,31 @@ export default function Repo({ repo }: RepoProps) {
           <FiFolder />
         </div>
         <div className={styles.headerRight}>
-          <Link href={repo.htmlUrl} className={styles.link}>
+          <Link
+            href={repo.htmlUrl}
+            className={styles.link}
+            aria-label={`Read more about ${repo.name} on GitHub`}
+          >
             <GoMarkGithub />
           </Link>
           {repo.homepage && (
-            <Link href={repo.homepage} className={styles.link}>
+            <Link
+              href={repo.homepage}
+              className={styles.link}
+              aria-label={`Read more about ${repo.name} on the project's homepage`}
+            >
               {isNpm(repo.homepage) ? <RiNpmjsFill /> : <FiExternalLink />}
             </Link>
           )}
         </div>
       </div>
       <div className={styles.body}>
-        <Link href={repo.htmlUrl} className={styles.link}>
-          <h3>{repo.name}</h3>
+        <Link
+          href={repo.htmlUrl}
+          className={styles.link}
+          aria-label={`Read more about ${repo.name} on GitHub`}
+        >
+          <span className={styles.title}>{repo.name}</span>
         </Link>
         <p>{repo.description}</p>
       </div>
@@ -56,7 +68,11 @@ export default function Repo({ repo }: RepoProps) {
           </div>
         )}
         {repo.stargazersCount > 0 && (
-          <Link href={repo.htmlUrl} className={styles.labelLink}>
+          <Link
+            href={repo.htmlUrl}
+            className={styles.labelLink}
+            aria-label={`Give ${repo.name} a star on GitHub`}
+          >
             <div className={styles.label}>
               <GoStar />
               <span>{repo.stargazersCount}</span>
@@ -64,7 +80,11 @@ export default function Repo({ repo }: RepoProps) {
           </Link>
         )}
         {repo.forksCount > 0 && (
-          <Link href={repo.htmlUrl} className={styles.labelLink}>
+          <Link
+            href={repo.htmlUrl}
+            className={styles.labelLink}
+            aria-label={`Fork ${repo.name} on GitHub`}
+          >
             <div className={styles.label}>
               <GoRepoForked />
               <span>{repo.forksCount}</span>
