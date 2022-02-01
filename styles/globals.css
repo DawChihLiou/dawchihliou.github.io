@@ -34,8 +34,8 @@ body.dark {
   --text-invert-color: #000000;
   --text-invert-secondary-color: rgba(0, 0, 0, 0.7);
   --background-default-color: #000000;
-  --background-paper-color: #090909;
-  --background-elevated-color: #121212;
+  --background-paper-color: #121212;
+  --background-elevated-color: #151515;
   --divider-color: rgba(255, 255, 255, 0.12);
   --action-active-color: #fff;
   --action-hover-color: rgba(255, 255, 255, 0.08);
