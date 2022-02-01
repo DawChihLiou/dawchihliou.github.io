@@ -28,7 +28,7 @@
   width: 100%;
   max-width: 22rem;
   position: relative;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 }
 
 .image img {

@@ -2,15 +2,18 @@ import React, { useMemo } from 'react'
 import styles from './Project.module.css'
 import socials from '../../.generated/meta/socialsTs'
 import repos from '../../.generated/github/githubReposTs'
+import pinnedRepos from '../../.generated/meta/pinnedGitHubReposTs'
 import Repo from '../Repo'
 import Link from '../Link'
+
+const regex = pinnedRepos.reduce((str, repo) => `${str}|${repo}`, '').slice(1)
 
 export default function Project() {
   const filteredRepos = useMemo(
     () =>
       repos
         .filter((repo) => repo.name !== 'dawchihliou.github.io')
-        .filter((_, i) => i < 6),
+        .filter((repo) => repo.name.match(new RegExp(regex))),
     []
   )
 
