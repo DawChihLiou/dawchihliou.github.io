@@ -6,7 +6,7 @@ import pinnedRepos from '../../.generated/meta/pinnedGitHubReposTs'
 import Repo from '../Repo'
 import Link from '../Link'
 
-const regex = pinnedRepos.reduce((str, repo) => `${str}|${repo}`, '').slice(1)
+const regex = pinnedRepos.join('|')
 
 export default function Project() {
   const filteredRepos = useMemo(
@@ -20,11 +20,7 @@ export default function Project() {
   return (
     <section className={styles.wrap}>
       <div className={styles.description}>
-        <h1>Some of my Open Source projects</h1>
-        <p>
-          I've been working on open source and non-profit projects! It brings me
-          so much joy contributing back to the community.
-        </p>
+        <h1>Some of my experiences & projects</h1>
         <p>
           I enjoy building tooling around testing, documentation, and CI/CD to
           improve developer experience. On top of solid coding and automation,
@@ -33,16 +29,22 @@ export default function Project() {
         </p>
         <p>
           Besides that, I've spent over {new Date().getFullYear() - 2013} years
-          working on Web engineering in startups, public tech companies, and
+          working on web engineering in startups, public tech companies, and
           Fortune 500 enterprises. I've built features, architectures, and
-          infrastructure for client facing products and enterprise software.
+          infrastructure for customer-facing products and enterprise software.
         </p>
       </div>
       <div className={styles.project}>
         <div className={styles.projectDescription}>
-          <Link href="https://www.spes.me" className={styles.link}>
-            <h2>Spes</h2>
-          </Link>
+          <h2>
+            <Link
+              href="https://www.spes.me"
+              className={styles.link}
+              aria-label="Go to https://spes.me"
+            >
+              Spes
+            </Link>
+          </h2>
           <p>
             Reading turned my life around, and I believe it can turn yours too.
             There're so many books full of wisdom but it's hard to find yourself
@@ -50,7 +52,11 @@ export default function Project() {
             every month to a subscriber and help you find your next book to
             read. Sign up! Hopefully you'll be inspired too:)
           </p>
-          <Link href="https://www.spes.me" className={styles.cfa}>
+          <Link
+            href="https://www.spes.me"
+            className={styles.cfa}
+            aria-label="Go to https://spes.me"
+          >
             Learn more
           </Link>
         </div>
@@ -60,6 +66,14 @@ export default function Project() {
             <div className={styles.imageShadow}></div>
           </div>
         </div>
+      </div>
+      <div className={styles.description}>
+        <h1>My Open Source projects</h1>
+        <p>
+          I've been working on open source and non-profit projects! Making
+          helpful libraries is my happy place. It brings me so much joy
+          contributing back to the community.
+        </p>
       </div>
       <div className={styles.list}>
         {filteredRepos.map((repo) => (
