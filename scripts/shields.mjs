@@ -1,7 +1,7 @@
-import sharp from 'sharp'
 import got from 'got'
+import prettier from 'prettier'
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs'
 import image from '../.generated/meta/shieldsIoBadges.mjs'
-import { existsSync, mkdirSync, rmSync } from 'fs'
 
 async function generate() {
   const outdir = 'public/optimized/shields'
@@ -12,19 +12,20 @@ async function generate() {
   }
   mkdirSync(outdir, { recursive: true })
 
-  const keys = Object.keys(image)
+  const prettierConfig = await prettier.resolveConfig('./prettierrc')
 
-  const streams = keys.map(async (key) => {
+  const downloads = Object.keys(image).map(async (key) => {
     const url = image[key]
-    const stream = sharp({ failOnError: false })
+    const result = await got(url)
+    const formatted = prettier.format(result.body, {
+      ...prettierConfig,
+      parser: 'html',
+    })
 
-    // more detail: https://github.com/sindresorhus/got#gotstreamurl-options
-    got.stream(url).pipe(stream)
-
-    return stream.clone().webp().toFile(`${outdir}/${key.toLowerCase()}.webp`)
+    writeFileSync(`${outdir}/${key.toLocaleLowerCase()}.svg`, formatted)
   })
 
-  Promise.all(streams).catch((error) => {
+  Promise.all(downloads).catch((error) => {
     console.log('Failed to generate Shields image.', error)
   })
 }
