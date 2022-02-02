@@ -227,7 +227,7 @@
         twitter: 'https://twitter.com/dawchihliou',
         github: 'https://github.com/DawChihLiou',
         home: 'https://dawchihliou.github.io',
-        heroImage: 'https://dawchihliou.github.io/optimized/social-media.png',
+        heroImage: 'https://dawchihliou.github.io/optimized/social-media.webp',
         description:
           'Daw-Chih is a software engineer, UX advocate, and creator who is dedicated to Web engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.',
       }
@@ -1461,26 +1461,27 @@
         },
         S = function (a) {
           var b = a.showLabel,
-            c = (0, e.useContext)(Q),
-            f = c.scheme,
-            g = c.setScheme,
-            h = function () {
-              g('light' === f ? 'dark' : 'dark' === f ? 'auto' : 'light')()
+            c = a.tabIndex,
+            f = (0, e.useContext)(Q),
+            g = f.scheme,
+            h = f.setScheme,
+            i = function () {
+              h('light' === g ? 'dark' : 'dark' === g ? 'auto' : 'light')()
             }
           return (0, d.jsxs)('div', {
             className: P().container,
-            onClick: h,
+            onClick: i,
             onKeyPress: function (a) {
-              'Enter' === a.key && h()
+              'Enter' === a.key && i()
             },
-            tabIndex: 0,
+            tabIndex: void 0 === c ? 0 : c,
             children: [
               (0, d.jsx)('div', {
                 className: P().wrap,
                 children: (0, d.jsxs)(z, {
                   component: null,
                   children: [
-                    'auto' === f &&
+                    'auto' === g &&
                       (0, d.jsx)(N, {
                         timeout: 250,
                         classNames: {
@@ -1491,7 +1492,7 @@
                         },
                         children: (0, d.jsx)(k.gU9, { className: P().button }),
                       }),
-                    'light' === f &&
+                    'light' === g &&
                       (0, d.jsx)(N, {
                         timeout: 250,
                         classNames: {
@@ -1502,7 +1503,7 @@
                         },
                         children: (0, d.jsx)(k.kXG, { className: P().button }),
                       }),
-                    'dark' === f &&
+                    'dark' === g &&
                       (0, d.jsx)(N, {
                         timeout: 250,
                         classNames: {
@@ -1517,13 +1518,13 @@
                 }),
               }),
               b &&
-                'light' === f &&
+                'light' === g &&
                 (0, d.jsx)('span', { children: 'Light scheme' }),
               b &&
-                'dark' === f &&
+                'dark' === g &&
                 (0, d.jsx)('span', { children: 'Dark scheme' }),
               b &&
-                'auto' === f &&
+                'auto' === g &&
                 (0, d.jsx)('span', { children: 'Sync with OS scheme' }),
             ],
           })
@@ -1586,6 +1587,7 @@
                     rel: 'noreferrer',
                     'aria-label': "Link to Daw-Chih's Linkedin profile",
                     className: o().iconLink,
+                    tabIndex: b ? 0 : -1,
                     children: (0, d.jsx)(p.juy, {}),
                   }),
                   (0, d.jsx)('a', {
@@ -1594,6 +1596,7 @@
                     rel: 'noreferrer',
                     'aria-label': "Link to Daw-Chih's GitHub profile",
                     className: o().iconLink,
+                    tabIndex: b ? 0 : -1,
                     children: (0, d.jsx)(p.lfl, {}),
                   }),
                   (0, d.jsx)('a', {
@@ -1602,6 +1605,7 @@
                     rel: 'noreferrer',
                     'aria-label': "Link to Daw-Chih's Medium profile",
                     className: o().iconLink,
+                    tabIndex: b ? 0 : -1,
                     children: (0, d.jsx)(p.lUN, {}),
                   }),
                   (0, d.jsx)('a', {
@@ -1610,11 +1614,12 @@
                     rel: 'noreferrer',
                     'aria-label': "Link to Daw-Chih's Twitter",
                     className: o().iconLink,
+                    tabIndex: b ? 0 : -1,
                     children: (0, d.jsx)(p.Xai, {}),
                   }),
                 ],
               }),
-              (0, d.jsx)(S, { showLabel: !0 }),
+              (0, d.jsx)(S, { showLabel: !0, tabIndex: b ? 0 : -1 }),
             ],
           }),
         })

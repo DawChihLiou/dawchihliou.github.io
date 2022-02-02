@@ -7,7 +7,7 @@
       b,
       'static/chunks/24-333af93bf5428a8f.js',
       'static/css/78eda12f28812824.css',
-      'static/chunks/pages/index-283ef8dd49fabc84.js',
+      'static/chunks/pages/index-56dbc2623e59abc5.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
