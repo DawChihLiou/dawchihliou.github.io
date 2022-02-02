@@ -64,6 +64,7 @@ That's a `97.89%` reduction right off the bat. Let's have a look at the image qu
   src="/optimized/articles/use-webp-for-better-ux/webp-comparison.png"
   alt="PNG and WebP comparison"
   width="100%"
+  loading="lazy"
 />
 
 If we zoom in a little, we can actually see the difference between the two compression algorithms.
@@ -83,7 +84,8 @@ We can have a look at the download time from Network.
   src="/optimized/articles/use-webp-for-better-ux/network.png"
   alt="WebP in Network"
   width="100%"
-/>{' '}
+  loading="lazy"
+/>
 
 It takes about 1 millisecond to download the image. We just proved how effective WebP can be for our web performance.
 
@@ -153,7 +155,7 @@ Now we are ready to add fallback images.
 <picture>
   <source srcSet="optimized/portrait.webp" type="image/webp" />
   <source srcSet="optimized/portrait.png" type="image/png" />
-  <img src="optimized/portrait.png" alt="Daw-Chih's portait" />
+  <img src="optimized/portrait.png" alt="Daw-Chih's portrait" loading="lazy" />
 </picture>
 ```
 
@@ -165,6 +167,7 @@ At this point, we can really compare all image qualities.
   src="/optimized/articles/use-webp-for-better-ux/png-comparison.png"
   alt="PNG and optimized PNG comparison"
   width="100%"
+  loading="lazy"
 />
 
 ##### PNG (left) and WebP (right) comparison
@@ -173,6 +176,7 @@ At this point, we can really compare all image qualities.
   src="/optimized/articles/use-webp-for-better-ux/webp-comparison.png"
   alt="PNG and WebP comparison"
   width="100%"
+  loading="lazy"
 />
 
 If you are looking for optimizing SVG files, you can achieve it with [`imagemin-svgo`](https://www.npmjs.com/package/imagemin-svgo).
@@ -242,6 +246,7 @@ As long as we make sure that the fallback images are in place, our audience can 
   src="/optimized/articles/use-webp-for-better-ux/lighthouse-report.png"
   alt="Lighthouse report"
   width="100%"
+  loading="lazy"
 />
 
 ---

@@ -22,7 +22,7 @@ export default function Publication() {
           <article key={article.title} className={styles.item}>
             <div className={styles.thumbnail}>
               {isSameSite(article.cover) && (
-                <img src={article.cover} alt={article.title} />
+                <img src={article.cover} alt={article.title} loading="lazy" />
               )}
             </div>
             <div className={styles.itemDescription}>

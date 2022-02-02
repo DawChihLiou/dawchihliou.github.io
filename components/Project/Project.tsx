@@ -62,7 +62,7 @@ export default function Project() {
         </div>
         <div className={styles.imageContainer}>
           <div className={styles.image}>
-            <img src="/optimized/raw/spes.webp" alt="Spes" />
+            <img src="/optimized/raw/spes.webp" alt="Spes" loading="lazy" />
             <div className={styles.imageShadow}></div>
           </div>
         </div>
