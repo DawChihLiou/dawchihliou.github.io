@@ -6,9 +6,13 @@ import { SchemeContext } from '../SchemeProvider'
 
 type DarkmodeSwitchProps = {
   showLabel?: boolean
+  tabIndex?: number
 }
 
-const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({ showLabel }) => {
+const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({
+  showLabel,
+  tabIndex = 0,
+}) => {
   const { scheme, setScheme } = useContext(SchemeContext)
   const switchScheme = () => {
     let preference
@@ -33,7 +37,7 @@ const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({ showLabel }) => {
       className={styles.container}
       onClick={switchScheme}
       onKeyPress={keypress}
-      tabIndex={0}
+      tabIndex={tabIndex}
     >
       <div className={styles.wrap}>
         <TransitionGroup component={null}>

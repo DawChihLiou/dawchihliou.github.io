@@ -59,6 +59,7 @@ export default function Nav() {
             rel="noreferrer"
             aria-label="Link to Daw-Chih's Linkedin profile"
             className={styles.iconLink}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrLinkedin />
           </a>
@@ -68,6 +69,7 @@ export default function Nav() {
             rel="noreferrer"
             aria-label="Link to Daw-Chih's GitHub profile"
             className={styles.iconLink}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrGithub />
           </a>
@@ -77,6 +79,7 @@ export default function Nav() {
             rel="noreferrer"
             aria-label="Link to Daw-Chih's Medium profile"
             className={styles.iconLink}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrMedium />
           </a>
@@ -86,11 +89,12 @@ export default function Nav() {
             rel="noreferrer"
             aria-label="Link to Daw-Chih's Twitter"
             className={styles.iconLink}
+            tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrTwitter />
           </a>
         </div>
-        <DarkmodeSwitch showLabel />
+        <DarkmodeSwitch showLabel tabIndex={isMenuOpen ? 0 : -1} />
       </Menu>
     </header>
   )

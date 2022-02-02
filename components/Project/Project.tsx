@@ -57,7 +57,7 @@ export default function Project() {
             className={styles.cfa}
             aria-label="Go to https://spes.me"
           >
-            Learn more
+            Visit Spes
           </Link>
         </div>
         <div className={styles.imageContainer}>
