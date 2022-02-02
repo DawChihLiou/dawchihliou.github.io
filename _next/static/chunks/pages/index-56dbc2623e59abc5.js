@@ -1078,7 +1078,7 @@
                       href: 'https://www.spes.me',
                       className: gc().cfa,
                       'aria-label': 'Go to https://spes.me',
-                      children: 'Learn more',
+                      children: 'Visit Spes',
                     }),
                   ],
                 }),
