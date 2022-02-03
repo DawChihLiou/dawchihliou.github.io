@@ -91,6 +91,21 @@ pre {
   border-radius: 0.5rem;
 }
 
+.rehype-code-title {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #022a4b;
+  color: var(--white);
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.rehype-code-title + pre[class*='language-'] {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 :not(pre) > code {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.85rem;

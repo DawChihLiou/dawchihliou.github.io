@@ -1,0 +1,345 @@
+---
+title: 'Build Better NextJS Static Sites with MDX and Contentlayer'
+publishedAt: 'February 4, 2022'
+description: ''
+cover: '/optimized/articles/nextjs-mdx-contentlayer/hero.webp'
+category: 'Frontend'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+---
+
+Recently I've been researching on reducing the effort to create a new article on my website.
+There were many touch points in my [Next.js](https://nextjs.org/) project setup in order to:
+
+- publish a new article
+- update [the list of articles](https://dawchihliou.github.io/articles)
+- create a new RSS feed
+- generate a new sitemap
+
+There were also things in [MDX](https://mdxjs.com/) that hasn't been 100% working either, including:
+
+- Code block titles
+- Accessibility for emojis
+- Heading links transformation (The [URI fragment](https://en.wikipedia.org/wiki/URI_fragment). [Demo](#what-is-contentlayer))
+- Reading time calculation
+
+## What Was The Problem?
+
+I analyzed a little more and found out the friction lies in my MDX usage.
+My file structure looked like this:
+
+```bash
+my-blog
+├── public
+├── data
+│   └── blogs.json
+├── components
+│   └── Blog.tsx
+└── pages
+    ├── blogs
+    │   ├── blog-one.mdx
+    │   ├── blog-two.mdx
+    │   └── blog-three.mdx
+    └── index.tsx
+```
+
+It is the [standard setup](https://nextjs.org/docs/advanced-features/using-mdx) recommended by Next.js.
+I was using [@mdx-js/loader](https://github.com/mdx-js/mdx/tree/main/packages/loader) and [@next/mdx](https://www.npmjs.com/package/@next/mdx) to transform MDX into pages.
+
+Take `pages/blogs/blog-one.mdx` for example, the content looked like this:
+
+```jsx:pages/blogs/blog-one.mdx
+import Blog from '../../components/Blog'
+
+export const meta = {
+  title: 'Blog One🚀',
+  publishedAt: 'February 4, 2022'
+  description: "Learn how to build a NextJS blog with MDX and Contentlayer!",
+  cover: '/optimized/articles/blog-one/hero.webp',
+}
+
+export default ({ children }) => (
+  <Blog
+    title={meta.title}
+    description={meta.description}
+    cover={meta.cover}
+    publishedAt={meta.publishedAt}
+  >
+    {children}
+  </Blog>
+)
+
+Hey There👋
+
+Welcome to Blog one✨ Let's learn together!
+```
+
+`blog-one.mdx` named-exported a meta data.
+It was picked up by the the default component that took care of the layout and rendered the meta data.
+
+The `<Blog />` component looked like this:
+
+```tsx:components/Blog.tsx
+import { BlogProps } from './types'
+
+export default function Blog(props: BlogProps) {
+  return (
+    <article>
+      <h1>{props.title}</h1>
+      <h2>{props.description}</h2>
+      <p>
+        {props.publishedAt}
+      </p>
+      <img alt={props.title} src={props.cover} width="100%" loading="lazy" />
+      {props.children}
+    </article>
+  )
+}
+```
+
+Because the `meta` data in each MDX file was trapped in the page, I duplicated all the meta data and aggregated them in `data/blogs.json`.
+I used it to maintain the list of articles on my website and generate RSS feed and [`sitemap.xml`](https://developers.google.com/search/docs/advanced/sitemaps/overview) for SEO.
+
+> It would be much better if I can treat the MDX files as data, and generate pages based on the data.
+
+This way, I could use the MDX files as data points and page content at the same time.
+Publishing a new article ideally could be much more frictionless.
+
+I came across [Lee Robinson's website](https://leerob.io/) and found out he was using a alpha library called [Contentlayer](https://github.com/contentlayerdev/contentlayer) to solve the exact same problems I had.
+
+## What is Contentlayer
+
+## Using MDX as Data
+
+```md:data/blogs/blog-one.mdx
+---
+title: 'Blog One🚀'
+publishedAt: 'February 4, 2022'
+description: 'Learn how to build a NextJS blog with MDX and Contentlayer!'
+cover: '/optimized/articles/blog-one/hero.webp'
+---
+
+Hey There👋
+
+Welcome to Blog one✨ Let's learn together!
+```
+
+## Integrating Contentlayer in NextJS
+
+```bash
+my-blog
+├── public
+├── components
+├── pages
+│    ├── blogs
+│    │    └── [slug].tsx
+│    └── index.tsx
+└── data
+    └──blogs
+       ├── blog-one.mdx
+       ├── blog-two.mdx
+       └── blog-three.mdx
+```
+
+```ts:contentlayer.config.ts
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import readingTime from 'reading-time'
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypePrism from 'rehype-prism-plus'
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
+
+export const Blog = defineDocumentType(() => ({
+  name: 'Blog',
+  filePathPattern: 'blogs/*.mdx',
+  bodyType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    publishedAt: { type: 'string', required: true },
+    description: { type: 'string', required: true },
+    cover: { type: 'string', required: true },
+  },
+  computedFields: {
+    readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+    slug: {
+      type: 'string',
+      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
+    },
+  },
+}))
+
+export default makeSource({
+  contentDirPath: 'data',
+  documentTypes: [Blog],
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypeAutolinkHeadings,
+      rehypeAccessibleEmojis,
+    ],
+  },
+})
+```
+
+```tsx:pages/blogs/[slug].tsx
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { allArticles } from '.contentlayer/data'
+import type { Blog } from '.contentlayer/types'
+import BlogLayout from '../../../components/Blog'
+
+type BlogProps = {
+  blog: Blog
+}
+
+export default function Blog({ blog }: BlogProps) {
+  const Component = useMDXComponent(post.body.code)
+
+  return (
+    <BlogLayout {...blog}>
+      <Component />
+    </BlogLayout>
+  )
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const blog = allArticles.find((blog) => blog.slug === params.slug)
+  return { props: { blog } }
+}
+```
+
+### Introducing remark & rehype
+
+## Contentlayer Applications
+
+### Reading Time
+
+### RSS Feed
+
+```js:scripts/rss.mjs
+import { writeFileSync } from 'fs'
+import RSS from 'rss'
+import { allArticles } from '.contentlayer/data'
+
+const feed = new RSS({
+  title: "Daw-Chih's tech articles",
+  feed_url: 'https://my-awesome-blog.me/rss.xml',
+  site_url: 'https://my-awesome-blog.me',
+})
+
+allArticles.map((article) => ({
+  title: article.title,
+  description: article.description,
+  url: `https://my-awesome-blog.me/articles/${article.slug}`
+  date: article.publishedAt,
+})).forEach((item) => {
+  feed.item(item)
+})
+
+const xml = feed.xml({ indent: true })
+
+writeFileSync('./public/rss.xml', xml)
+```
+
+### XML Sitemap
+
+```js:scripts/sitemap.mjs
+import { writeFileSync } from 'fs'
+import { globby } from 'globby'
+import prettier from 'prettier'
+
+const pages = await globby([
+  'pages/*.tsx',
+  'data/**/*.mdx',
+  '!data/*.mdx',
+  '!pages/_*.tsx',
+  '!pages/api',
+  '!pages/404.tsx',
+])
+
+const urlTags = pages
+  .map((file) =>
+    file
+      .replace('pages', '')
+      .replace('data/content', '')
+      .replace('.tsx', '')
+      .replace('.mdx', '')
+  )
+  .map((path) => (path === '/index' ? '/' : path))
+  .map(
+    (path) => `
+      <url>
+          <loc>https://my-awesome-blog.me${path}</loc>
+      </url>
+    `
+  )
+  .join('')
+
+const sitemap = `
+  <?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${urlTags}
+  </urlset>
+`
+
+const prettierConfig = await prettier.resolveConfig('./prettierrc')
+const formatted = prettier.format(sitemap, {
+  ...prettierConfig,
+  parser: 'html',
+})
+
+writeFileSync('public/sitemap.xml', formatted)
+```
+
+## Final Thoughts
+
+## References
+
+- [GitHub: Contentlayer](https://github.com/contentlayerdev/contentlayer)
+- [GitHub: rss](https://github.com/dylang/node-rss)
+- [GitHub: remark](https://github.com/remarkjs/remark)
+- [GitHub: rehype](https://github.com/rehypejs/rehype)
+- [GitHub: rehype-slug](https://github.com/rehypejs/rehype-slug)
+- [GitHub: rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings)
+- [GitHub: @mdx-js/loader](https://github.com/mdx-js/mdx/tree/main/packages/loader)
+- [npm: @next/mdx](https://www.npmjs.com/package/@next/mdx)
+- [Website: Lee Robinson's portfolio](https://leerob.io/)
+- [Website: MDX](https://mdxjs.com/)
+- [Website: Using MDX with Next.js](https://nextjs.org/docs/advanced-features/using-mdx)
+- [Website: Next.js](https://nextjs.org/)
+- [Website: Frontmatter](https://mdxjs.com/guides/frontmatter/)
+- [Website: URI Fragment](https://en.wikipedia.org/wiki/URI_fragment)
+- [Website: Learn about sitemaps](https://developers.google.com/search/docs/advanced/sitemaps/overview)
+
+---
+
+Here you have it! Thanks for reading through🙌
+
+If you find it useful, please share this article to help more people in their engineering journey.
+
+Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+In my previous article ["From Frontend Developer to Principal Software Engineer"](/articles/from-frontend-developer-to-principal-software-engineer), I shared 50+ books and online resources that helped me in my engineering journey.
+
+If you're interested in implementing Binary Trees in Rust, my previous article ["Binary Tree Insertion in Rust"](/articles/binary-tree-insertion-in-rust) shared my struggle when I was implementing a Binary Tree.
+It took me some time to have a grasp on Rust's ownership.
+
+If you're interested in Unicode in Rust and JavaScript, I wrote an article ["Indexing Strings in Rust and TypeScript: A Case Study of String"](/articles/indexing-strings-in-rust-and-typescript).
+There we discussed how Rust and JavaScript handle strings with a classic algorithm.
+
+Happy coding!
