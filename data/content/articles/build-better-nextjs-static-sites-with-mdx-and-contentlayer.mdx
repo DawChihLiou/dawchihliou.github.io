@@ -1,7 +1,7 @@
 ---
 title: 'Building Better Next.js Static Sites with MDX and Contentlayer'
 publishedAt: 'February 4, 2022'
-description: "Recently I've been researching on reducing the effort to create a new article on my static website. I analyzed more and found out the friction was in my MDX usage with Next.js. After shifting to Contentlayer, publishing content becomes so effortless. I'll show you how."
+description: 'Recently I have been researching on reducing the effort to create a new article on my static website. I analyzed more and found out the friction was in my MDX usage with Next.js. After shifting to Contentlayer, publishing content becomes so effortless. I will show you how.'
 cover: '/optimized/articles/nextjs-mdx-contentlayer/hero.webp'
 category: 'Frontend'
 coverWidth: '1400'
@@ -223,10 +223,13 @@ export const Blog = defineDocumentType(() => ({
     cover: { type: 'string', required: true },
   },
   computedFields: {
-    readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
+    readingTime: {
+      type: 'json',
+      resolve: (doc) => readingTime(doc.body.raw)
+    },
     slug: {
       type: 'string',
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
+      resolve: (doc) => doc._raw.sourceFileName.replace('.mdx', ''),
     },
   },
 }))
