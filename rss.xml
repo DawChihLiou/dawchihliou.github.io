@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 04 Feb 2022 16:38:44 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 04 Feb 2022 22:17:25 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 04 Feb 2022 16:38:44 GMT</pubDate>
+        <pubDate>Fri, 04 Feb 2022 22:17:25 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -38,7 +38,7 @@
         <category><![CDATA[Database]]></category>
         <item>
             <title><![CDATA[Building Better Next.js Static Sites with MDX and Contentlayer]]></title>
-            <description><![CDATA[Recently I've been researching on reducing the effort to create a new article on my static website. I analyzed more and found out the friction was in my MDX usage with Next.js. After shifting to Contentlayer, publishing content becomes so effortless. I'll show you how.]]></description>
+            <description><![CDATA[Recently I have been researching on reducing the effort to create a new article on my static website. I analyzed more and found out the friction was in my MDX usage with Next.js. After shifting to Contentlayer, publishing content becomes so effortless. I will show you how.]]></description>
             <link>https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer</guid>
             <category><![CDATA[Frontend]]></category>
