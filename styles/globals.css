@@ -43,7 +43,7 @@ body.dark {
   --action-disabled-color: rgba(255, 255, 255, 0.3);
   --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
   --shadow-color: #ffffff;
-  --code-block-color: #011a2f;
+  --code-block-color: #022a4b;
 }
 
 html,
@@ -89,6 +89,21 @@ pre[class*='language-'] {
 
 pre {
   border-radius: 0.5rem;
+}
+
+.rehype-code-title {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #022a4b;
+  color: var(--white);
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.rehype-code-title + pre[class*='language-'] {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 :not(pre) > code {

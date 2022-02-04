@@ -7,14 +7,14 @@
       b,
       'static/chunks/24-333af93bf5428a8f.js',
       'static/css/78eda12f28812824.css',
-      'static/chunks/pages/index-56dbc2623e59abc5.js',
+      'static/chunks/pages/index-73c17425864be04b.js',
     ],
     '/_error': ['static/chunks/pages/_error-d742f979193aeae4.js'],
     '/articles': [
       a,
       b,
       'static/css/b084efbe0f624134.css',
-      'static/chunks/pages/articles-fda5bcc9f9ab6d4f.js',
+      'static/chunks/pages/articles-9da57a520a378615.js',
     ],
     '/articles/[slug]': [
       'static/css/d886348a0f635b75.css',
@@ -35,6 +35,6 @@
   }
 })(
   'static/chunks/ef87329b-e04d9365c7286ed1.js',
-  'static/chunks/568-10ed054a73285d30.js'
+  'static/chunks/169-c9b4c004e00fa7a4.js'
 )),
   self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()

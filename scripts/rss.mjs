@@ -27,13 +27,13 @@ const articles = originals
  * RSS Feed for the articles on the site.
  * Read more about rss package here: https://github.com/dylang/node-rss
  *
- * To add new articles in the feed, add the article metadata in `/data/articles.ts`.
+ * To add new articles in the feed, run `yarn build`.
  */
 function generate() {
   const feed = new RSS({
     title: "Daw-Chih's tech articles",
-    description: 'description',
-    feed_url: 'https://dawchihliou.github.io/api/rss',
+    description: socials.description,
+    feed_url: 'https://dawchihliou.github.io/rss.xml',
     site_url: 'https://dawchihliou.github.io/',
     image_url: 'https://dawchihliou.github.io/portrait.png',
     docs: 'https://dawchihliou.github.io/articles',

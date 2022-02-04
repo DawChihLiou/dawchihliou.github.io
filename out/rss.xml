@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title><![CDATA[Daw-Chih's tech articles]]></title>
-        <description><![CDATA[description]]></description>
+        <description><![CDATA[Daw-Chih is a software engineer, UX advocate, and creator who is dedicated to Web engineering. His background in Human Centered Computing has led him to work with startups and public companies across North America, Asia, and Europe. He is passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.]]></description>
         <link>https://dawchihliou.github.io/</link>
         <image>
             <url>https://dawchihliou.github.io/portrait.png</url>
@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 02 Feb 2022 05:04:45 GMT</lastBuildDate>
-        <atom:link href="https://dawchihliou.github.io/api/rss" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 02 Feb 2022 05:04:45 GMT</pubDate>
+        <lastBuildDate>Fri, 04 Feb 2022 16:38:44 GMT</lastBuildDate>
+        <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Fri, 04 Feb 2022 16:38:44 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Building Better Next.js Static Sites with MDX and Contentlayer]]></title>
+            <description><![CDATA[Recently I've been researching on reducing the effort to create a new article on my static website. I analyzed more and found out the friction was in my MDX usage with Next.js. After shifting to Contentlayer, publishing content becomes so effortless. I'll show you how.]]></description>
+            <link>https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer</guid>
+            <category><![CDATA[Frontend]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Thu, 03 Feb 2022 23:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[From Frontend Developer to Principal Software Engineer]]></title>
             <description><![CDATA[I recently joined a European public company as a Lead Software Engineer. The role has a combined responsibility of Principal Software Engineer and Senior Engineering Manager. It is challenging but I was prepared. I want to share with you 50+ books and resources that help me in my journey.]]></description>
