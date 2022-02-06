@@ -6,7 +6,7 @@ export default function Author() {
   return (
     <article className={styles.wrap}>
       <img
-        src="/optimized/raw/portrait-sm.png"
+        src="/optimized/raw/portrait-sm.webp"
         alt="Daw-Chih Liou"
         className={styles.avatar}
         loading="lazy"

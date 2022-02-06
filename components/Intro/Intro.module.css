@@ -1,15 +1,22 @@
 .wrap {
   max-width: 720px;
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  gap: 2rem;
   justify-content: center;
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
 .greeting {
   width: 100%;
-  margin-bottom: 0;
 }
 
 .portrait {
