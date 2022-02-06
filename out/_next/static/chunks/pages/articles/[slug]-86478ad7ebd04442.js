@@ -134,7 +134,7 @@
           className: k().wrap,
           children: [
             (0, d.jsx)('img', {
-              src: '/optimized/raw/portrait-sm.png',
+              src: '/optimized/raw/portrait-sm.webp',
               alt: 'Daw-Chih Liou',
               className: k().avatar,
               loading: 'lazy',
