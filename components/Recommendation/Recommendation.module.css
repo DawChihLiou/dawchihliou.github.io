@@ -1,69 +1,41 @@
 .wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-top: 3rem;
+  width: 100%;
 }
 
 .wrap h1 {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 2.5rem;
   line-height: 1.15;
 }
 
-.smallerWrap {
+.horizontal {
   width: 100%;
-  max-width: 720px;
+  overflow-x: scroll;
 }
 
 .grid {
-  width: 100%;
-  max-width: 1600px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+  gap: 1rem;
+  width: fit-content;
+  padding: 0.5rem 0;
 }
 
 .card {
-  margin-right: 1rem;
-  flex-basis: calc(33% - 1rem);
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 26rem;
   color: inherit;
-  text-decoration: none;
   border: 1px solid var(--divider-color);
-  border-radius: 10px;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  box-shadow: 0px 0px 8px 2px var(--shadow-color);
-  background-color: var(--background-elevated-color);
-}
-
-.card:last-child {
-  margin-right: 0;
-}
-
-.card a {
-  text-decoration: none;
+  border-radius: 1rem;
 }
 
 @media (max-width: 768px) {
   .card {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-  .card:last-child {
-    margin-bottom: 0;
+    width: calc(100vw - 4rem);
   }
 }
 
@@ -74,10 +46,8 @@
 
 .cardAction {
   display: flex;
+  gap: 0.5rem;
   align-items: center;
-}
-.cardAction > *:not(:last-child) {
-  margin-right: 0.5em;
 }
 
 .avatar {
@@ -104,17 +74,20 @@
   vertical-align: bottom;
 }
 
-.descrition {
+.body {
   flex-grow: 1;
 }
 
 .footer {
   margin-top: 1rem;
-  font-size: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--divider-color);
   text-decoration: underline;
   transition: color 0.15s ease;
 }
 
-.card:hover .footer {
+.footer:focus,
+.footer:active,
+.footer:hover {
   color: rgba(0, 124, 240, 1);
 }

@@ -3,42 +3,42 @@ import { FiAward, FiSmile, FiAnchor } from 'react-icons/fi'
 import content from './content'
 import clsx from 'clsx'
 import socials from '../../.generated/meta/socialsTs'
-
 import styles from './Recommendation.module.css'
+import Link from '../Link'
 
 export default function Recommendation() {
   return (
     <section className={styles.wrap}>
-      <div className={styles.smallerWrap}>
-        <h1>See what people say about me</h1>
-      </div>
-      <div className={styles.grid}>
-        {content.map((recommendation, key) => (
-          <article className={styles.card} key={recommendation.title}>
-            <a href={socials.linkedin} target="_blank" rel="noreferrer">
-              <p>" {recommendation.quote} "</p>
-              <div className={styles.cardAction}>
-                <span
-                  className={clsx(styles.avatar, {
-                    [styles.avatarColorBlue]: key === 0,
-                    [styles.avatarColorRed]: key === 1,
-                    [styles.avatarColorYellow]: key === 2,
-                  })}
-                >
-                  {key === 0 && <FiAward />}
-                  {key === 1 && <FiSmile />}
-                  {key === 2 && <FiAnchor />}
-                </span>
-                <span className={styles.description}>
-                  {recommendation.title}
-                </span>
+      <h1>See what people say about me</h1>
+      <div className={styles.horizontal}>
+        <div className={styles.grid}>
+          {content.map((recommendation) => (
+            <article className={styles.card} key={recommendation.id}>
+              <div className={styles.body}>
+                <p>" {recommendation.quote} "</p>
+                <div className={styles.cardAction}>
+                  <span
+                    className={clsx(styles.avatar, {
+                      [styles.avatarColorBlue]: recommendation.type === 1,
+                      [styles.avatarColorRed]: recommendation.type === 2,
+                      [styles.avatarColorYellow]: recommendation.type === 3,
+                    })}
+                  >
+                    {recommendation.type === 1 && <FiAward />}
+                    {recommendation.type === 2 && <FiSmile />}
+                    {recommendation.type === 3 && <FiAnchor />}
+                  </span>
+                  <span>{recommendation.title}</span>
+                </div>
               </div>
               <div className={styles.footer}>
-                <span>See more on Linkedin</span>
+                <Link href={socials.linkedin} target="_blank" rel="noreferrer">
+                  See more on Linkedin
+                </Link>
               </div>
-            </a>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
