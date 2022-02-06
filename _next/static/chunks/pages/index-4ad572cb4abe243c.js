@@ -508,24 +508,52 @@
       var _b = c(6893),
         ac = [
           {
+            id: 1,
             title: 'Founder & CEO',
+            type: 1,
             quote:
               'Daw-Chih is an very proactive critical thinker that has curiosity on lots of multiple technologies and software trend. He has expertise on front-end technology with his artistic designer sense. He loves challenging and is always willing to share what he knows with the peers.',
           },
           {
+            id: 2,
             title: 'Software Engineer',
+            type: 2,
             quote:
               'Daw-Chih is one of the most hard-working, highly-skilled and dedicated people I’ve ever worked with. During the 3+ years we’ve worked together, he has shown great drive and perseverance in getting things done. Once he commits to doing a project or task, no matter how challenging, it gets done at a high standard. Tense meetings are no match for him - his tranquil nature is appreciated in the team and helps us keep calm even in challenging situations. These qualities, along with his strong engineering mindset make Daw-Chih a great teammate and a pleasure to work with.',
           },
           {
+            id: 4,
+            title: 'Team Lead',
+            type: 3,
+            quote:
+              'Daw-Chih is a very dedicated and versatile developer. He always keeps in mind the overall roadmap for a project, starting from problem analysis together with our users and including planning and architecture of the solution. These skills are rounded up a deep understanding of the topics he is involved in. His recommendations and feedback is appreciated by our team. Daw-Chih is always pushing on developing his own skills further which makes him a respected team member who can quickly adapt to new challenges.',
+          },
+          {
+            id: 5,
+            title: 'Software Engineer',
+            type: 2,
+            quote:
+              'I had the pleasure to work with Daw-Chih for a couple of years on different projects and was impressed with his skills, drive, and level of commitment. Daw-Chih is a perfectionist engineer that commits to and cares about every detail - from the informative commit message to code quality to writing documentation to sharing learnings on guilds. Even though he is a perfectionist, Daw-Chih is pragmatic when finding solutions and meeting deadlines. Besides hard skills, he is a positive colleague you want to chat with on a coffee break and the kind of person that would "warm-up" a boring meeting with a joke. I greatly enjoyed working with him!',
+          },
+          {
+            id: 6,
+            title: 'Senior Software Engineer',
+            type: 2,
+            quote:
+              'Daw-Chih is a patient and proactive engineer who works with great attention to detail. He cares about the entire development cycle, from planning through development to testing and deployment. But what I like most about him is that he always puts his work in the context of the product roadmap and deeply cares about the user. I consulted him on UI/UX questions and frontend architecture. He always helped me get a new perspective on a problem.',
+          },
+          {
+            id: 3,
             title: 'Manager',
+            type: 3,
             quote:
               'Daw Chih is one of the rising super developer that I have ever seen for a long time. He is meticulous, quick learner and self-starter. His courage to fight what is right from wrong, passion for the technology and willingness to help out others make everyone love to have him on the team. Highly recommended.',
           },
         ],
         bc = c(4042),
-        cc = c.n(bc)
-      function dc(a, b, c) {
+        cc = c.n(bc),
+        dc = c(1208)
+      function ec(a, b, c) {
         return (
           b in a
             ? Object.defineProperty(a, b, {
@@ -538,30 +566,28 @@
           a
         )
       }
-      function ec() {
+      function fc() {
         return (0, Nb.jsxs)('section', {
           className: cc().wrap,
           children: [
+            (0, Nb.jsx)('h1', { children: 'See what people say about me' }),
             (0, Nb.jsx)('div', {
-              className: cc().smallerWrap,
-              children: (0, Nb.jsx)('h1', {
-                children: 'See what people say about me',
-              }),
-            }),
-            (0, Nb.jsx)('div', {
-              className: cc().grid,
-              children: ac.map(function (a, b) {
-                var c
-                return (0,
-                Nb.jsx)('article', { className: cc().card, children: (0, Nb.jsxs)('a', { href: Zb.Z.linkedin, target: '_blank', rel: 'noreferrer', children: [(0, Nb.jsxs)('p', { children: ['" ', a.quote, ' "'] }), (0, Nb.jsxs)('div', { className: cc().cardAction, children: [(0, Nb.jsxs)('span', { className: (0, Ub.Z)(cc().avatar, (dc((c = {}), cc().avatarColorBlue, 0 === b), dc(c, cc().avatarColorRed, 1 === b), dc(c, cc().avatarColorYellow, 2 === b), c)), children: [0 === b && (0, Nb.jsx)(_b.HR2, {}), 1 === b && (0, Nb.jsx)(_b.jMy, {}), 2 === b && (0, Nb.jsx)(_b.Siq, {})] }), (0, Nb.jsx)('span', { className: cc().description, children: a.title })] }), (0, Nb.jsx)('div', { className: cc().footer, children: (0, Nb.jsx)('span', { children: 'See more on Linkedin' }) })] }) }, a.title)
+              className: cc().horizontal,
+              children: (0, Nb.jsx)('div', {
+                className: cc().grid,
+                children: ac.map(function (a) {
+                  var b
+                  return (0,
+                  Nb.jsxs)('article', { className: cc().card, children: [(0, Nb.jsxs)('div', { className: cc().body, children: [(0, Nb.jsxs)('p', { children: ['" ', a.quote, ' "'] }), (0, Nb.jsxs)('div', { className: cc().cardAction, children: [(0, Nb.jsxs)('span', { className: (0, Ub.Z)(cc().avatar, (ec((b = {}), cc().avatarColorBlue, 1 === a.type), ec(b, cc().avatarColorRed, 2 === a.type), ec(b, cc().avatarColorYellow, 3 === a.type), b)), children: [1 === a.type && (0, Nb.jsx)(_b.HR2, {}), 2 === a.type && (0, Nb.jsx)(_b.jMy, {}), 3 === a.type && (0, Nb.jsx)(_b.Siq, {})] }), (0, Nb.jsx)('span', { children: a.title })] })] }), (0, Nb.jsx)('div', { className: cc().footer, children: (0, Nb.jsx)(dc.Z, { href: Zb.Z.linkedin, target: '_blank', rel: 'noreferrer', children: 'See more on Linkedin' }) })] }, a.id)
+                }),
               }),
             }),
           ],
         })
       }
-      var fc = c(493),
-        gc = c.n(fc),
-        hc = [
+      var gc = c(493),
+        hc = c.n(gc),
+        ic = [
           {
             id: 288395102,
             name: 'react-use-pip',
@@ -690,9 +716,8 @@
             topics: [],
           },
         ],
-        ic = c(7152),
-        jc = c.n(ic),
-        kc = c(1208),
+        jc = c(7152),
+        kc = c.n(jc),
         lc = c(6653),
         mc = c(9352),
         nc = {
@@ -910,21 +935,21 @@
       function rc(a) {
         var b = a.repo
         return (0, Nb.jsxs)('article', {
-          className: jc().repo,
+          className: kc().repo,
           children: [
             (0, Nb.jsxs)('div', {
-              className: jc().header,
+              className: kc().header,
               children: [
                 (0, Nb.jsx)('div', {
-                  className: jc().headerLeft,
+                  className: kc().headerLeft,
                   children: (0, Nb.jsx)(_b.QoU, {}),
                 }),
                 (0, Nb.jsxs)('div', {
-                  className: jc().headerRight,
+                  className: kc().headerRight,
                   children: [
-                    (0, Nb.jsx)(kc.Z, {
+                    (0, Nb.jsx)(dc.Z, {
                       href: b.htmlUrl,
-                      className: jc().link,
+                      className: kc().link,
                       'aria-label': 'Read more about '.concat(
                         b.name,
                         ' on GitHub'
@@ -932,9 +957,9 @@
                       children: (0, Nb.jsx)(lc.Jmn, {}),
                     }),
                     b.homepage &&
-                      (0, Nb.jsx)(kc.Z, {
+                      (0, Nb.jsx)(dc.Z, {
                         href: b.homepage,
-                        className: jc().link,
+                        className: kc().link,
                         'aria-label': 'Read more about '.concat(
                           b.name,
                           " on the project's homepage"
@@ -948,14 +973,14 @@
               ],
             }),
             (0, Nb.jsxs)('div', {
-              className: jc().body,
+              className: kc().body,
               children: [
-                (0, Nb.jsx)(kc.Z, {
+                (0, Nb.jsx)(dc.Z, {
                   href: b.htmlUrl,
-                  className: jc().link,
+                  className: kc().link,
                   'aria-label': 'Read more about '.concat(b.name, ' on GitHub'),
                   children: (0, Nb.jsx)('span', {
-                    className: jc().title,
+                    className: kc().title,
                     children: b.name,
                   }),
                 }),
@@ -963,23 +988,23 @@
               ],
             }),
             (0, Nb.jsxs)('div', {
-              className: jc().footer,
+              className: kc().footer,
               children: [
                 b.language &&
                   (0, Nb.jsxs)('div', {
-                    className: jc().label,
+                    className: kc().label,
                     children: [
                       (0, Nb.jsx)(qc, { language: b.language }),
                       (0, Nb.jsx)('span', { children: b.language }),
                     ],
                   }),
                 b.stargazersCount > 0 &&
-                  (0, Nb.jsx)(kc.Z, {
+                  (0, Nb.jsx)(dc.Z, {
                     href: b.htmlUrl,
-                    className: jc().labelLink,
+                    className: kc().labelLink,
                     'aria-label': 'Give '.concat(b.name, ' a star on GitHub'),
                     children: (0, Nb.jsxs)('div', {
-                      className: jc().label,
+                      className: kc().label,
                       children: [
                         (0, Nb.jsx)(lc.ObP, {}),
                         (0, Nb.jsx)('span', { children: b.stargazersCount }),
@@ -987,12 +1012,12 @@
                     }),
                   }),
                 b.forksCount > 0 &&
-                  (0, Nb.jsx)(kc.Z, {
+                  (0, Nb.jsx)(dc.Z, {
                     href: b.htmlUrl,
-                    className: jc().labelLink,
+                    className: kc().labelLink,
                     'aria-label': 'Fork '.concat(b.name, ' on GitHub'),
                     children: (0, Nb.jsxs)('div', {
-                      className: jc().label,
+                      className: kc().label,
                       children: [
                         (0, Nb.jsx)(lc.bLi, {}),
                         (0, Nb.jsx)('span', { children: b.forksCount }),
@@ -1006,7 +1031,7 @@
       }
       function sc() {
         var a = (0, Ob.useMemo)(function () {
-          return hc
+          return ic
             .filter(function (a) {
               return 'dawchihliou.github.io' !== a.name
             })
@@ -1019,10 +1044,10 @@
             })
         }, [])
         return (0, Nb.jsxs)('section', {
-          className: gc().wrap,
+          className: hc().wrap,
           children: [
             (0, Nb.jsxs)('div', {
-              className: gc().description,
+              className: hc().description,
               children: [
                 (0, Nb.jsx)('h1', {
                   children: 'Some of my experiences & projects',
@@ -1041,15 +1066,15 @@
               ],
             }),
             (0, Nb.jsxs)('div', {
-              className: gc().project,
+              className: hc().project,
               children: [
                 (0, Nb.jsxs)('div', {
-                  className: gc().projectDescription,
+                  className: hc().projectDescription,
                   children: [
                     (0, Nb.jsx)('h2', {
-                      children: (0, Nb.jsx)(kc.Z, {
+                      children: (0, Nb.jsx)(dc.Z, {
                         href: 'https://www.spes.me',
-                        className: gc().link,
+                        className: hc().link,
                         'aria-label': 'Go to https://spes.me',
                         children: 'Spes',
                       }),
@@ -1058,32 +1083,32 @@
                       children:
                         "Reading turned my life around, and I believe it can turn yours too. There're so many books full of wisdom but it's hard to find yourself a book among the overwhelming options. So I'm giving away a book every month to a subscriber and help you find your next book to read. Sign up! Hopefully you'll be inspired too:)",
                     }),
-                    (0, Nb.jsx)(kc.Z, {
+                    (0, Nb.jsx)(dc.Z, {
                       href: 'https://www.spes.me',
-                      className: gc().cfa,
+                      className: hc().cfa,
                       'aria-label': 'Go to https://spes.me',
                       children: 'Visit Spes',
                     }),
                   ],
                 }),
                 (0, Nb.jsx)('div', {
-                  className: gc().imageContainer,
+                  className: hc().imageContainer,
                   children: (0, Nb.jsxs)('div', {
-                    className: gc().image,
+                    className: hc().image,
                     children: [
                       (0, Nb.jsx)('img', {
                         src: '/optimized/raw/spes.webp',
                         alt: 'Spes',
                         loading: 'lazy',
                       }),
-                      (0, Nb.jsx)('div', { className: gc().imageShadow }),
+                      (0, Nb.jsx)('div', { className: hc().imageShadow }),
                     ],
                   }),
                 }),
               ],
             }),
             (0, Nb.jsxs)('div', {
-              className: gc().description,
+              className: hc().description,
               children: [
                 (0, Nb.jsx)('h1', { children: 'My Open Source projects' }),
                 (0, Nb.jsx)('p', {
@@ -1093,14 +1118,14 @@
               ],
             }),
             (0, Nb.jsx)('div', {
-              className: gc().list,
+              className: hc().list,
               children: a.map(function (a) {
                 return (0, Nb.jsx)(rc, { repo: a }, a.id)
               }),
             }),
-            (0, Nb.jsx)(kc.Z, {
+            (0, Nb.jsx)(dc.Z, {
               href: Zb.Z.github,
-              className: gc().link,
+              className: hc().link,
               children: 'See more on GitHub',
             }),
           ],
@@ -5406,7 +5431,7 @@
               className: Pd().list,
               children: Rd.map(function (a) {
                 return (0,
-                Nb.jsxs)('article', { className: Pd().item, children: [(0, Nb.jsx)('div', { className: Pd().thumbnail, children: a.cover.startsWith('/') && (0, Nb.jsx)('img', { src: a.cover, alt: a.title, loading: 'lazy' }) }), (0, Nb.jsxs)('div', { className: Pd().itemDescription, children: [(0, Nb.jsx)(kc.Z, { href: a.url, children: (0, Nb.jsx)('h2', { children: a.title }) }), a.external && (0, Nb.jsxs)(kc.Z, { href: a.publisherUrl, className: Pd().caption, children: ['Published on ', (0, Nb.jsx)('span', { children: a.publisher })] }), (0, Nb.jsx)('p', { children: a.description })] })] }, a.title)
+                Nb.jsxs)('article', { className: Pd().item, children: [(0, Nb.jsx)('div', { className: Pd().thumbnail, children: a.cover.startsWith('/') && (0, Nb.jsx)('img', { src: a.cover, alt: a.title, loading: 'lazy' }) }), (0, Nb.jsxs)('div', { className: Pd().itemDescription, children: [(0, Nb.jsx)(dc.Z, { href: a.url, children: (0, Nb.jsx)('h2', { children: a.title }) }), a.external && (0, Nb.jsxs)(dc.Z, { href: a.publisherUrl, className: Pd().caption, children: ['Published on ', (0, Nb.jsx)('span', { children: a.publisher })] }), (0, Nb.jsx)('p', { children: a.description })] })] }, a.title)
               }),
             }),
             (0, Nb.jsx)('a', {
@@ -5447,7 +5472,7 @@
                 children: [
                   (0, Nb.jsx)(Vb, {}),
                   (0, Nb.jsx)($b, {}),
-                  (0, Nb.jsx)(ec, {}),
+                  (0, Nb.jsx)(fc, {}),
                   (0, Nb.jsx)(sc, {}),
                   (0, Nb.jsx)(Sd, {}),
                   (0, Nb.jsx)(Nd, {}),
@@ -5514,7 +5539,7 @@
     4042: function (a) {
       a.exports = {
         wrap: 'Recommendation_wrap__FTToN',
-        smallerWrap: 'Recommendation_smallerWrap__3fDmx',
+        horizontal: 'Recommendation_horizontal__bhCT9',
         grid: 'Recommendation_grid__sclrm',
         card: 'Recommendation_card__mVkTf',
         cardAction: 'Recommendation_cardAction__PWhvl',
@@ -5522,7 +5547,7 @@
         avatarColorBlue: 'Recommendation_avatarColorBlue__foK4O',
         avatarColorRed: 'Recommendation_avatarColorRed__8c7de',
         avatarColorYellow: 'Recommendation_avatarColorYellow__DwssE',
-        descrition: 'Recommendation_descrition__hlpwg',
+        body: 'Recommendation_body__ypVx5',
         footer: 'Recommendation_footer__a4mcs',
       }
     },
