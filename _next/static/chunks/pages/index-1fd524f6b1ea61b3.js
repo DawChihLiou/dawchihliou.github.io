@@ -419,100 +419,84 @@
         return (0, Nb.jsxs)('section', {
           className: Xb().wrap,
           children: [
-            (0, Nb.jsx)('h1', {
-              hidden: !0,
-              'aria-label': 'About me',
-              children: 'About me',
-            }),
-            (0, Nb.jsxs)('picture', {
-              children: [
-                (0, Nb.jsx)('source', {
-                  srcSet: 'optimized/raw/portrait.webp',
-                  className: Xb().portrait,
-                  type: 'image/webp',
-                }),
-                (0, Nb.jsx)('source', {
-                  srcSet: 'optimized/raw/portrait.png',
-                  className: Xb().portrait,
-                  type: 'image/png',
-                }),
-                (0, Nb.jsx)('img', {
-                  src: 'optimized/portrait.png',
-                  alt: "Daw-Chih's portrait",
-                  className: Xb().portrait,
-                  loading: 'lazy',
-                  width: '8rem',
-                  height: '8rem',
-                }),
-              ],
-            }),
-            (0, Nb.jsxs)('p', {
-              className: Xb().greeting,
-              children: [
-                'Hi there',
-                (0, Nb.jsx)('span', {
-                  role: 'img',
-                  'aria-label': 'waving emoji',
-                  children: '👋',
-                }),
-              ],
-            }),
-            (0, Nb.jsx)('p', {
-              children:
-                "My name is Daw-Chih and I'm a software engineer, UX advocate, and creator who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
+            (0, Nb.jsx)('img', {
+              src: 'optimized/raw/portrait.webp',
+              alt: "Daw-Chih's portrait",
+              className: Xb().portrait,
+              loading: 'lazy',
+              width: '8rem',
+              height: '8rem',
             }),
             (0, Nb.jsxs)('div', {
-              className: Xb().socials,
+              className: Xb().greeting,
               children: [
-                (0, Nb.jsxs)('a', {
-                  href: Zb.Z.linkedin,
-                  target: '_blank',
-                  rel: 'noreferrer',
-                  'aria-label': "Link to Daw-Chih's Linkedin profile",
+                (0, Nb.jsx)('h1', { children: 'Daw-Chih Liou' }),
+                (0, Nb.jsxs)('p', {
                   children: [
-                    (0, Nb.jsx)(Yb.juy, { size: '1.5em' }),
+                    'Hi there',
                     (0, Nb.jsx)('span', {
-                      hidden: !0,
-                      children: "Link to Daw-Chih's Linkedin profile",
+                      role: 'img',
+                      'aria-label': 'waving emoji',
+                      children: '👋',
                     }),
+                    ' ',
+                    "My name is Daw-Chih and I'm a software engineer, UX advocate, and creator who is dedicated to Web engineering. My background in Human Centered Computing has led me to work with startups and public companies across North America, Asia, and Europe. I'm passionate about meeting business trajectory with user journey and utilizing engineering architecture and performance monitoring to provide optimal user experience.",
                   ],
                 }),
-                (0, Nb.jsxs)('a', {
-                  href: Zb.Z.github,
-                  target: '_blank',
-                  rel: 'noreferrer',
-                  'aria-label': "Link to Daw-Chih's GitHub profile",
+                (0, Nb.jsxs)('div', {
+                  className: Xb().socials,
                   children: [
-                    (0, Nb.jsx)(Yb.lfl, { size: '1.5em' }),
-                    (0, Nb.jsx)('span', {
-                      hidden: !0,
-                      children: "Link to Daw-Chih's GitHub profile",
+                    (0, Nb.jsxs)('a', {
+                      href: Zb.Z.linkedin,
+                      target: '_blank',
+                      rel: 'noreferrer',
+                      'aria-label': "Link to Daw-Chih's Linkedin profile",
+                      children: [
+                        (0, Nb.jsx)(Yb.juy, { size: '1.5em' }),
+                        (0, Nb.jsx)('span', {
+                          hidden: !0,
+                          children: "Link to Daw-Chih's Linkedin profile",
+                        }),
+                      ],
                     }),
-                  ],
-                }),
-                (0, Nb.jsxs)('a', {
-                  href: Zb.Z.medium,
-                  target: '_blank',
-                  rel: 'noreferrer',
-                  'aria-label': "Link to Daw-Chih's Medium profile",
-                  children: [
-                    (0, Nb.jsx)(Yb.lUN, { size: '1.5em' }),
-                    (0, Nb.jsx)('span', {
-                      hidden: !0,
-                      children: "Link to Daw-Chih's Medium profile",
+                    (0, Nb.jsxs)('a', {
+                      href: Zb.Z.github,
+                      target: '_blank',
+                      rel: 'noreferrer',
+                      'aria-label': "Link to Daw-Chih's GitHub profile",
+                      children: [
+                        (0, Nb.jsx)(Yb.lfl, { size: '1.5em' }),
+                        (0, Nb.jsx)('span', {
+                          hidden: !0,
+                          children: "Link to Daw-Chih's GitHub profile",
+                        }),
+                      ],
                     }),
-                  ],
-                }),
-                (0, Nb.jsxs)('a', {
-                  href: Zb.Z.twitter,
-                  target: '_blank',
-                  rel: 'noreferrer',
-                  'aria-label': "Link to Daw-Chih's Twitter",
-                  children: [
-                    (0, Nb.jsx)(Yb.Xai, { size: '1.5em' }),
-                    (0, Nb.jsx)('span', {
-                      hidden: !0,
-                      children: "Link to Daw-Chih's Twitter",
+                    (0, Nb.jsxs)('a', {
+                      href: Zb.Z.medium,
+                      target: '_blank',
+                      rel: 'noreferrer',
+                      'aria-label': "Link to Daw-Chih's Medium profile",
+                      children: [
+                        (0, Nb.jsx)(Yb.lUN, { size: '1.5em' }),
+                        (0, Nb.jsx)('span', {
+                          hidden: !0,
+                          children: "Link to Daw-Chih's Medium profile",
+                        }),
+                      ],
+                    }),
+                    (0, Nb.jsxs)('a', {
+                      href: Zb.Z.twitter,
+                      target: '_blank',
+                      rel: 'noreferrer',
+                      'aria-label': "Link to Daw-Chih's Twitter",
+                      children: [
+                        (0, Nb.jsx)(Yb.Xai, { size: '1.5em' }),
+                        (0, Nb.jsx)('span', {
+                          hidden: !0,
+                          children: "Link to Daw-Chih's Twitter",
+                        }),
+                      ],
                     }),
                   ],
                 }),
