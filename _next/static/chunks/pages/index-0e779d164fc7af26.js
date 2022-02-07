@@ -5,7 +5,7 @@
       ;(window.__NEXT_P = window.__NEXT_P || []).push([
         '/',
         function () {
-          return c(8737)
+          return c(2817)
         },
       ])
     },
@@ -209,7 +209,7 @@
             return Number(new Date(b.date)) - Number(new Date(a.date))
           })
     },
-    8737: function (a, b, c) {
+    2817: function (a, b, c) {
       'use strict'
       c.r(b),
         c.d(b, {
@@ -510,42 +510,42 @@
           {
             id: 1,
             title: 'Founder & CEO',
-            type: 1,
+            type: 'entrepreneur',
             quote:
               'Daw-Chih is an very proactive critical thinker that has curiosity on lots of multiple technologies and software trend. He has expertise on front-end technology with his artistic designer sense. He loves challenging and is always willing to share what he knows with the peers.',
           },
           {
             id: 2,
             title: 'Software Engineer',
-            type: 2,
+            type: 'engineer',
             quote:
               'Daw-Chih is one of the most hard-working, highly-skilled and dedicated people I’ve ever worked with. During the 3+ years we’ve worked together, he has shown great drive and perseverance in getting things done. Once he commits to doing a project or task, no matter how challenging, it gets done at a high standard. Tense meetings are no match for him - his tranquil nature is appreciated in the team and helps us keep calm even in challenging situations. These qualities, along with his strong engineering mindset make Daw-Chih a great teammate and a pleasure to work with.',
           },
           {
-            id: 4,
+            id: 3,
             title: 'Team Lead',
-            type: 3,
+            type: 'manager',
             quote:
               'Daw-Chih is a very dedicated and versatile developer. He always keeps in mind the overall roadmap for a project, starting from problem analysis together with our users and including planning and architecture of the solution. These skills are rounded up a deep understanding of the topics he is involved in. His recommendations and feedback is appreciated by our team. Daw-Chih is always pushing on developing his own skills further which makes him a respected team member who can quickly adapt to new challenges.',
           },
           {
-            id: 5,
+            id: 4,
             title: 'Software Engineer',
-            type: 2,
+            type: 'engineer',
             quote:
               'I had the pleasure to work with Daw-Chih for a couple of years on different projects and was impressed with his skills, drive, and level of commitment. Daw-Chih is a perfectionist engineer that commits to and cares about every detail - from the informative commit message to code quality to writing documentation to sharing learnings on guilds. Even though he is a perfectionist, Daw-Chih is pragmatic when finding solutions and meeting deadlines. Besides hard skills, he is a positive colleague you want to chat with on a coffee break and the kind of person that would "warm-up" a boring meeting with a joke. I greatly enjoyed working with him!',
           },
           {
-            id: 6,
+            id: 5,
             title: 'Senior Software Engineer',
-            type: 2,
+            type: 'engineer',
             quote:
               'Daw-Chih is a patient and proactive engineer who works with great attention to detail. He cares about the entire development cycle, from planning through development to testing and deployment. But what I like most about him is that he always puts his work in the context of the product roadmap and deeply cares about the user. I consulted him on UI/UX questions and frontend architecture. He always helped me get a new perspective on a problem.',
           },
           {
-            id: 3,
+            id: 6,
             title: 'Manager',
-            type: 3,
+            type: 'manager',
             quote:
               'Daw Chih is one of the rising super developer that I have ever seen for a long time. He is meticulous, quick learner and self-starter. His courage to fight what is right from wrong, passion for the technology and willingness to help out others make everyone love to have him on the team. Highly recommended.',
           },
@@ -578,7 +578,7 @@
                 children: ac.map(function (a) {
                   var b
                   return (0,
-                  Nb.jsxs)('article', { className: cc().card, children: [(0, Nb.jsxs)('div', { className: cc().body, children: [(0, Nb.jsxs)('p', { children: ['" ', a.quote, ' "'] }), (0, Nb.jsxs)('div', { className: cc().cardAction, children: [(0, Nb.jsxs)('span', { className: (0, Ub.Z)(cc().avatar, (ec((b = {}), cc().avatarColorBlue, 1 === a.type), ec(b, cc().avatarColorRed, 2 === a.type), ec(b, cc().avatarColorYellow, 3 === a.type), b)), children: [1 === a.type && (0, Nb.jsx)(_b.HR2, {}), 2 === a.type && (0, Nb.jsx)(_b.jMy, {}), 3 === a.type && (0, Nb.jsx)(_b.Siq, {})] }), (0, Nb.jsx)('span', { children: a.title })] })] }), (0, Nb.jsx)('div', { className: cc().footer, children: (0, Nb.jsx)(dc.Z, { href: Zb.Z.linkedin, target: '_blank', rel: 'noreferrer', children: 'See more on Linkedin' }) })] }, a.id)
+                  Nb.jsxs)('article', { className: cc().card, children: [(0, Nb.jsxs)('div', { className: cc().body, children: [(0, Nb.jsxs)('p', { children: ['" ', a.quote, ' "'] }), (0, Nb.jsxs)('div', { className: cc().cardAction, children: [(0, Nb.jsxs)('span', { className: (0, Ub.Z)(cc().avatar, (ec((b = {}), cc().avatarColorBlue, 'entrepreneur' === a.type), ec(b, cc().avatarColorRed, 'engineer' === a.type), ec(b, cc().avatarColorYellow, 'manager' === a.type), b)), children: ['entrepreneur' === a.type && (0, Nb.jsx)(_b.HR2, {}), 'engineer' === a.type && (0, Nb.jsx)(_b.jMy, {}), 'manager' === a.type && (0, Nb.jsx)(_b.Siq, {})] }), (0, Nb.jsx)('span', { children: a.title })] })] }), (0, Nb.jsx)('div', { className: cc().footer, children: (0, Nb.jsx)(dc.Z, { href: Zb.Z.linkedin, target: '_blank', rel: 'noreferrer', children: 'See more on Linkedin' }) })] }, a.id)
                 }),
               }),
             }),
