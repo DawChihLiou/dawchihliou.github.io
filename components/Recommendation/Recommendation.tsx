@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiAward, FiSmile, FiAnchor } from 'react-icons/fi'
-import content from './content'
 import clsx from 'clsx'
+import recommendations from '../../.generated/meta/linkedinRecommendationsTs'
 import socials from '../../.generated/meta/socialsTs'
 import styles from './Recommendation.module.css'
 import Link from '../Link'
@@ -12,23 +12,23 @@ export default function Recommendation() {
       <h1>See what people say about me</h1>
       <div className={styles.horizontal}>
         <div className={styles.grid}>
-          {content.map((recommendation) => (
-            <article className={styles.card} key={recommendation.id}>
+          {recommendations.map((recom) => (
+            <article className={styles.card} key={recom.id}>
               <div className={styles.body}>
-                <p>" {recommendation.quote} "</p>
+                <p>" {recom.quote} "</p>
                 <div className={styles.cardAction}>
                   <span
                     className={clsx(styles.avatar, {
-                      [styles.avatarColorBlue]: recommendation.type === 1,
-                      [styles.avatarColorRed]: recommendation.type === 2,
-                      [styles.avatarColorYellow]: recommendation.type === 3,
+                      [styles.avatarColorBlue]: recom.type === 'entrepreneur',
+                      [styles.avatarColorRed]: recom.type === 'engineer',
+                      [styles.avatarColorYellow]: recom.type === 'manager',
                     })}
                   >
-                    {recommendation.type === 1 && <FiAward />}
-                    {recommendation.type === 2 && <FiSmile />}
-                    {recommendation.type === 3 && <FiAnchor />}
+                    {recom.type === 'entrepreneur' && <FiAward />}
+                    {recom.type === 'engineer' && <FiSmile />}
+                    {recom.type === 'manager' && <FiAnchor />}
                   </span>
-                  <span>{recommendation.title}</span>
+                  <span>{recom.title}</span>
                 </div>
               </div>
               <div className={styles.footer}>
