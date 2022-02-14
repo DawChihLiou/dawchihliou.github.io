@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
@@ -32,7 +32,7 @@ jobs:
         run: yarn lint
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: ['lint']
     steps:
       - uses: actions/checkout@v2
@@ -62,20 +62,14 @@ jobs:
         run: yarn export
 
       - name: Push to gh-pages branch
-        shell: bash
-        env:
-          EMAIL: ${{ secrets.GIT_USER_EMAIL }}
-          NAME: ${{ secrets.GIT_USER_NAME }}
-        run: |
-          touch out/.nojekyll
-          git config --global user.email "$EMAIL"
-          git config --global user.name "$NAME"
-          git add out
-          git commit -m "chore: deploy to gh-pages"
-          git subtree push --prefix out origin gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          commit_message: 'chore: deploy to gh-pages'
 
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: ['deploy']
     steps:
       - uses: actions/checkout@v2
