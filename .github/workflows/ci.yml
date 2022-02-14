@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Lint source code
         run: yarn lint
@@ -67,6 +67,7 @@ jobs:
 
       - name: Push to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
@@ -91,7 +92,8 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Release
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           git config --global user.email "$GIT_USER_EMAIL"
           git config --global user.name "$GIT_USER_NAME"
-          yarn release
+          yarn release --ci
