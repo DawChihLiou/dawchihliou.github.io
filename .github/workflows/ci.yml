@@ -1,0 +1,59 @@
+name: Production Release Workflow
+
+on:
+  push:
+    branch:
+      - main
+      - build/release-workflow
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Lint source code
+        run: yarn lint
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: ['lint']
+    steps:
+      - name: Remove node modules cache
+        run: rm -rf node_modules/.cache
+
+      - name: Build project
+        run: yarn build
+
+      - name: Export Static Assets
+        run: yarn export
+
+      - name: Push to gh-pages branch
+        run: |
+          touch out/.nojekyll
+          git add out
+          git commit -m "chore: deploy to gh-pages"
+          git subtree push --prefix out origin gh-pages
+
+  release:
+    run-on: ubuntu-latest
+    needs: ['deploy']
+    steps:
+      - name: Release
+        run: yarn release
