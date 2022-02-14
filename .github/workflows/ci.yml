@@ -52,7 +52,7 @@ jobs:
           git subtree push --prefix out origin gh-pages
 
   release:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: ['deploy']
     steps:
       - name: Release
