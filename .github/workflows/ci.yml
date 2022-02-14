@@ -4,7 +4,6 @@ on:
   push:
     branch:
       - main
-      - build/release-workflow
 
 env:
   GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
