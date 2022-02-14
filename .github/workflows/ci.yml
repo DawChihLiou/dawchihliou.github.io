@@ -52,6 +52,9 @@ jobs:
       - name: Remove node modules cache
         run: rm -rf node_modules/.cache
 
+      - name: Run prepare scripts
+        run: yarn prepare
+
       - name: Build project
         run: yarn build
 
