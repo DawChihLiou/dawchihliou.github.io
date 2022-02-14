@@ -1,6 +1,6 @@
 {
   "name": "dawchihliou.github.io",
-  "version": "0.1.0",
+  "version": "2.4.5",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +19,8 @@
     "prepare": "yarn meta && yarn image && yarn github",
     "lighthouse:dev": "dx-scripts lighthouse http://localhost:3000/",
     "lighthouse:prod": "dx-scripts lighthouse https://dawchihliou.github.io/",
-    "deploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll && git add out/ && git commit -m \"chore: deploy to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll && git add out/ && git commit -m \"chore: deploy to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "release": "release-it"
   },
   "husky": {
     "hooks": {
@@ -33,41 +34,31 @@
     ]
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.22",
-    "@types/react-transition-group": "^4.4.0",
     "clsx": "^1.1.1",
-    "contentlayer": "^0.0.34",
     "next": "^12.0.9",
-    "next-contentlayer": "^0.0.34",
     "normalize.css": "^8.0.1",
     "prism-themes": "^1.9.0",
-    "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-burger-menu": "^2.7.1",
     "react-dom": "^17.0.2",
     "react-icons": "^3.11.0",
-    "react-markdown": "^4.3.1",
-    "react-transition-group": "^4.4.1",
-    "reading-time": "^1.5.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-code-titles": "^1.0.3",
-    "rehype-prism-plus": "^1.3.1",
-    "rehype-slug": "^5.0.1",
-    "remark-gfm": "^3.0.1",
-    "rss": "^1.2.2"
+    "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
     "@octokit/core": "^3.5.1",
+    "@release-it/conventional-changelog": "^4.1.0",
     "@svgr/webpack": "^6.2.1",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.49",
     "@types/react-burger-menu": "^2.6.1",
     "@types/react-icons": "^3.0.0",
+    "@types/react-transition-group": "^4.4.0",
     "@types/rss": "^0.0.28",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "cz-conventional-changelog": "3.3.0",
+    "contentlayer": "^0.0.34",
+    "cz-conventional-changelog-with-jiraid-detection": "^1.0.3",
     "dx-scripts": "^0.1.1",
     "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.22.0",
@@ -77,21 +68,25 @@
     "globby": "^13.0.0",
     "got": "^12.0.1",
     "husky": "^4.3.0",
-    "imagemin": "^7.0.1",
-    "imagemin-jpegtran": "^7.0.0",
-    "imagemin-pngquant": "^9.0.1",
-    "imagemin-svgo": "^8.0.0",
-    "imagemin-webp": "^6.0.0",
     "lint-staged": "^10.4.0",
+    "next-contentlayer": "^0.0.34",
     "prettier": "^2.1.2",
     "raw-loader": "^4.0.1",
+    "reading-time": "^1.5.0",
     "rehype-accessible-emojis": "^0.3.2",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-code-titles": "^1.0.3",
+    "rehype-prism-plus": "^1.3.1",
+    "rehype-slug": "^5.0.1",
+    "release-it": "^14.12.4",
+    "remark-gfm": "^3.0.1",
+    "rss": "^1.2.2",
     "sharp": "^0.29.3",
     "typescript": "^4.5.2"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog-with-jiraid-detection"
     }
   }
 }

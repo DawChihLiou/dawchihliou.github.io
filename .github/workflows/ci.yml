@@ -1,0 +1,104 @@
+name: Production Release Workflow
+
+on:
+  push:
+    branch:
+      - main
+
+env:
+  GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
+  GIT_USER_NAME: ${{secrets.GIT_USER_NAME}}
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: Lint source code
+        run: yarn lint
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: ['lint']
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Remove node modules cache
+        run: rm -rf node_modules/.cache
+
+      - name: Run prepare scripts
+        run: yarn prepare
+
+      - name: Build project
+        run: yarn build
+
+      - name: Export Static Assets
+        run: yarn export
+
+      - name: Push to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          commit_message: 'chore: deploy to gh-pages'
+
+  release:
+    runs-on: ubuntu-20.04
+    needs: ['deploy']
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Config git user
+        run: |
+          git config --global user.email "$GIT_USER_EMAIL"
+          git config --global user.name "$GIT_USER_NAME"
+
+      - name: Dry Run
+        if: ${{ github.ref != 'refs/heads/main'}}
+        run: yarn release --dry-run
+
+      - name: Release
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: yarn release --ci
