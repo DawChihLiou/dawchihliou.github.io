@@ -91,9 +91,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Release
-        if: ${{ github.ref == 'refs/heads/main' }}
+      - name: Config git user
         run: |
           git config --global user.email "$GIT_USER_EMAIL"
           git config --global user.name "$GIT_USER_NAME"
-          yarn release --ci
+
+      - name: Dry Run
+        if: ${{ github.ref != 'refs/heads/main'}}
+        run: yarn release --dry-run
+
+      - name: Release
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: yarn release --ci
