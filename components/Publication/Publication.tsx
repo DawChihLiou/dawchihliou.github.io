@@ -40,9 +40,9 @@ export default function Publication() {
           </article>
         ))}
       </article>
-      <a href="/articles" className={styles.link}>
+      <Link href="/articles" className={styles.link}>
         See more articles
-      </a>
+      </Link>
     </section>
   )
 }

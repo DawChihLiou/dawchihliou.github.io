@@ -20,37 +20,46 @@
 
 .grid {
   display: flex;
-  margin-bottom: 1rem;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.grid a {
-  transition: color 0.15s ease;
-}
-
-.grid a:hover,
-.grid a:active {
-  color: rgba(0, 124, 240, 1);
-}
-
-.grid .date {
+.grid .support {
   flex-basis: 30%;
   color: var(--text-secondary-color);
 }
 
-.grid .description {
+.grid .focal {
   flex-basis: 70%;
 }
 
 @media (max-width: 576px) {
   .grid {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 0;
   }
+}
 
-  .grid .description {
-    padding-left: 0;
-  }
+.tags {
+  display: flex;
+  flex-flow: wrap;
+  gap: 0.25rem;
+}
 
-  .date > p {
-    margin: 1rem 0 0.5rem;
+@media (max-width: 576px) {
+  .tags {
+    margin-top: 1rem;
   }
+}
+
+.tag {
+  background: var(--background-paper-color);
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 2rem;
+}
+
+.link {
+  width: 100%;
+  margin-top: 1rem;
 }
