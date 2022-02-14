@@ -19,7 +19,7 @@ export default function Project() {
   return (
     <section className={styles.wrap}>
       <div className={styles.description}>
-        <h1>Some of my experiences & projects</h1>
+        <h2>Some of my experiences & projects</h2>
         <p>
           I enjoy building tooling around testing, documentation, and CI/CD to
           improve developer experience. On top of solid coding and automation,
@@ -35,7 +35,7 @@ export default function Project() {
       </div>
       <div className={styles.project}>
         <div className={styles.projectDescription}>
-          <h2>
+          <h3>
             <Link
               href="https://www.spes.me"
               className={styles.link}
@@ -43,7 +43,7 @@ export default function Project() {
             >
               Spes
             </Link>
-          </h2>
+          </h3>
           <p>
             Reading turned my life around, and I believe it can turn yours too.
             There're so many books full of wisdom but it's hard to find yourself
@@ -67,7 +67,7 @@ export default function Project() {
         </div>
       </div>
       <div className={styles.description}>
-        <h1>My Open Source projects</h1>
+        <h2>My Open Source projects</h2>
         <p>
           I've been working on open source and non-profit projects! Making
           helpful libraries is my happy place. It brings me so much joy

@@ -40,7 +40,7 @@ import AkamaiSvg from '../../public/optimized/shields/akamai.svg'
 export default function SkillSet() {
   return (
     <section className={styles.wrap}>
-      <h1>My tech stack</h1>
+      <h2>My tech stack</h2>
       <TypeScriptSvg />
       <JavaScriptSvg />
       <JavaSvg />

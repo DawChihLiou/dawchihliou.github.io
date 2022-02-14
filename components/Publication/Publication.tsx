@@ -10,7 +10,7 @@ export default function Publication() {
   return (
     <section className={styles.wrap}>
       <article className={styles.description}>
-        <h1>I love writing</h1>
+        <h2>I love writing</h2>
         <p>
           I enjoy writing about software development. Especially the things that
           can unblock our daily work and gives people inspirations to strive for
@@ -27,7 +27,7 @@ export default function Publication() {
             </div>
             <div className={styles.itemDescription}>
               <Link href={article.url}>
-                <h2>{article.title}</h2>
+                <h3>{article.title}</h3>
               </Link>
               {article.external && (
                 <Link href={article.publisherUrl} className={styles.caption}>
