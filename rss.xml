@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 11 Feb 2022 04:55:21 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 14 Feb 2022 08:19:42 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 11 Feb 2022 04:55:21 GMT</pubDate>
+        <pubDate>Mon, 14 Feb 2022 08:19:42 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -43,7 +43,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer</guid>
             <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Thu, 03 Feb 2022 23:00:00 GMT</pubDate>
+            <pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[From Frontend Developer to Principal Software Engineer]]></title>
@@ -52,7 +52,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/from-frontend-developer-to-principal-software-engineer</guid>
             <category><![CDATA[Leadership]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Wed, 19 Jan 2022 23:00:00 GMT</pubDate>
+            <pubDate>Thu, 20 Jan 2022 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Binary Tree Insertion in Rust]]></title>
@@ -61,7 +61,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/binary-tree-insertion-in-rust</guid>
             <category><![CDATA[Rust]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Wed, 12 Jan 2022 23:00:00 GMT</pubDate>
+            <pubDate>Thu, 13 Jan 2022 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Indexing Strings in Rust and TypeScript: A Case Study of String]]></title>
@@ -70,7 +70,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/indexing-strings-in-rust-and-typescript</guid>
             <category><![CDATA[Rust]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Mon, 27 Dec 2021 23:00:00 GMT</pubDate>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Writing Your Own TypeScript CLI]]></title>
@@ -79,7 +79,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/writing-your-own-typescript-cli</guid>
             <category><![CDATA[TypeScript]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Sun, 05 Dec 2021 23:00:00 GMT</pubDate>
+            <pubDate>Mon, 06 Dec 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Rethinking the Next-gen Analytics Web App at trivago]]></title>
@@ -88,7 +88,7 @@
             <guid isPermaLink="true">https://tech.trivago.com/2021/02/09/rethinking-the-next-gen-analytics-web-app-at-trivago/</guid>
             <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Mon, 08 Feb 2021 23:00:00 GMT</pubDate>
+            <pubDate>Tue, 09 Feb 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Using WebP for Better User Experience]]></title>
@@ -97,7 +97,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/use-webp-for-better-ux</guid>
             <category><![CDATA[Performance]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Mon, 05 Oct 2020 22:00:00 GMT</pubDate>
+            <pubDate>Tue, 06 Oct 2020 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[3 Principles to Triumph Your Software Project]]></title>
@@ -106,7 +106,7 @@
             <guid isPermaLink="true">https://medium.com/@dawchihliou/3-principles-to-triumph-your-software-project-38cc0951b64f</guid>
             <category><![CDATA[Leadership]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Tue, 17 Mar 2020 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 18 Mar 2020 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Writing Better Marble Tests for Redux Observable and TypeScript]]></title>
@@ -115,7 +115,7 @@
             <guid isPermaLink="true">https://itnext.io/better-marble-test-70c7676a1e2</guid>
             <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Tue, 05 Nov 2019 23:00:00 GMT</pubDate>
+            <pubDate>Wed, 06 Nov 2019 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[JavaScript Workshop with Kyle Simpson]]></title>
@@ -124,7 +124,7 @@
             <guid isPermaLink="true">https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/</guid>
             <category><![CDATA[Engineering Culture]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Sun, 14 Oct 2018 22:00:00 GMT</pubDate>
+            <pubDate>Mon, 15 Oct 2018 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Intuitive Transducer in JavaScript]]></title>
@@ -133,7 +133,7 @@
             <guid isPermaLink="true">https://medium.com/@dawchihliou/intuitive-transducer-in-javascript-f358d3fe53d</guid>
             <category><![CDATA[JavaScript]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Mon, 24 Sep 2018 22:00:00 GMT</pubDate>
+            <pubDate>Tue, 25 Sep 2018 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
