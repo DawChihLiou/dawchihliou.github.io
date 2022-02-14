@@ -50,6 +50,15 @@ export default function Nav() {
             Articles
           </button>
         </Link>
+        <Link href="/projects">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Projects
+          </button>
+        </Link>
         <span className={styles.pusher} />
         <span className={styles.divider} />
         <div className={styles.profile}>
