@@ -16,7 +16,7 @@ body {
   --action-selected-color: rgba(0, 0, 0, 0.08);
   --action-disabled-color: rgba(0, 0, 0, 0.26);
   --action-disabledBackground-color: rgba(0, 0, 0, 0.12);
-  --shadow-color: rgba(0, 0, 0, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.25);
   --code-block-color: #e7e7e7;
 
   /* viewport */
@@ -42,7 +42,7 @@ body.dark {
   --action-selected-color: rgba(255, 255, 255, 0.16);
   --action-disabled-color: rgba(255, 255, 255, 0.3);
   --action-disabledBackground-color: rgba(255, 255, 255, 0.12);
-  --shadow-color: #ffffff;
+  --shadow-color: rgba(255, 255, 255, 0.5);
   --code-block-color: #022a4b;
 }
 

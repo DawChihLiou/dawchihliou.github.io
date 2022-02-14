@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import styles from './Project.module.css'
-import socials from '../../.generated/meta/socialsTs'
 import repos from '../../.generated/github/githubReposTs'
 import pinnedRepos from '../../.generated/meta/pinnedGitHubReposTs'
 import Repo from '../Repo'
@@ -77,11 +76,11 @@ export default function Project() {
       </div>
       <div className={styles.list}>
         {filteredRepos.map((repo) => (
-          <Repo key={repo.id} repo={repo} />
+          <Repo key={repo.id} repo={repo} paper />
         ))}
       </div>
-      <Link href={socials.github} className={styles.link}>
-        See more on GitHub
+      <Link href="/projects" className={styles.link}>
+        See more projects
       </Link>
     </section>
   )

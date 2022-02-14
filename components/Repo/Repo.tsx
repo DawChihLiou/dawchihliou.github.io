@@ -5,6 +5,7 @@ import { GoMarkGithub, GoStar, GoRepoForked } from 'react-icons/go'
 import { FiFolder, FiExternalLink } from 'react-icons/fi'
 import { RiNpmjsFill } from 'react-icons/ri'
 import LanguageColorDot from '../LanguageColorDot'
+import clsx from 'clsx'
 
 function isNpm(url: string) {
   return url.includes('npmjs.com')
@@ -21,12 +22,19 @@ type RepoProps = {
     forksCount: number
     stargazersCount: number
     topics: string[]
+    createdAt?: string
+    updatedAt?: string
   }
+  paper?: boolean
 }
 
-export default function Repo({ repo }: RepoProps) {
+export default function Repo({ repo, paper }: RepoProps) {
   return (
-    <article className={styles.repo}>
+    <article
+      className={clsx(styles.repo, {
+        [styles.paper]: paper,
+      })}
+    >
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <FiFolder />

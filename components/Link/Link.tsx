@@ -1,5 +1,6 @@
 import React, { DetailedHTMLProps, AnchorHTMLAttributes } from 'react'
 import NextLink from 'next/link'
+import styles from './styles.module.css'
 
 type LinkProps = DetailedHTMLProps<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -13,13 +14,20 @@ export default function Link(props: LinkProps) {
   if (isInternalLink) {
     return (
       <NextLink href={href}>
-        <a {...props}>{props.children}</a>
+        <a className={styles.anchor} {...props}>
+          {props.children}
+        </a>
       </NextLink>
     )
   }
 
   return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
+    <a
+      className={styles.anchor}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
       {props.children}
     </a>
   )

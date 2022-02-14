@@ -1,0 +1,11 @@
+.anchor {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.anchor:focus,
+.anchor:hover,
+.anchor:active {
+  color: rgba(0, 124, 240, 1);
+}

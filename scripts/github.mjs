@@ -50,6 +50,8 @@ async function fetchUserRepos(username, numberOfRepos) {
     forksCount: repo.forks_count,
     stargazersCount: repo.stargazers_count,
     topics: repo.topics,
+    createdAt: repo.created_at,
+    updatedAt: repo.updated_at,
   }))
 }
 

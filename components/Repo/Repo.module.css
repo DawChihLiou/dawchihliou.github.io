@@ -1,15 +1,18 @@
-.repo {
-  background-color: var(--background-paper-color);
-  border-radius: 1rem;
-  padding: 1rem;
+.repo.paper {
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
+}
+
+.repo.paper {
+  padding: 1rem;
+  background-color: var(--background-paper-color);
   transition: box-shadow 0.15s ease;
 }
 
-.repo:active,
-.repo:focus,
-.repo:hover {
+.repo.paper:active,
+.repo.paper:focus,
+.repo.paper:hover {
   box-shadow: 0px 0px 8px 2px var(--shadow-color);
 }
 
@@ -37,7 +40,6 @@
   flex-direction: column;
   align-items: flex-start;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .body h3 {

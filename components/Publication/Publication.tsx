@@ -3,7 +3,7 @@ import styles from './Publication.module.css'
 import articles from '../../data/articles'
 import Link from '../Link'
 
-const publication = articles.filter((_, i) => i < 5)
+const publication = articles.filter((_, i) => i < 3)
 const isSameSite = (url: string) => url.startsWith('/')
 
 export default function Publication() {
@@ -40,9 +40,9 @@ export default function Publication() {
           </article>
         ))}
       </article>
-      <a href="/articles" className={styles.link}>
+      <Link href="/articles" className={styles.link}>
         See more articles
-      </a>
+      </Link>
     </section>
   )
 }
