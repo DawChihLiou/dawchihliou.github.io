@@ -6,6 +6,10 @@ on:
       - main
       - build/release-workflow
 
+env:
+  GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
+  GIT_USER_NAME: ${{secrets.GIT_USER_NAME}}
+
 jobs:
   lint:
     runs-on: ubuntu-20.04
@@ -87,4 +91,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Release
-        run: yarn release
+        run: |
+          git config --global user.email "$GIT_USER_EMAIL"
+          git config --global user.name "$GIT_USER_NAME"
+          yarn release
