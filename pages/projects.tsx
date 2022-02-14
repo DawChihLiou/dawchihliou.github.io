@@ -11,7 +11,7 @@ export default function Projects() {
   return (
     <SeoContainer
       title="Daw-Chih's projects"
-      description=""
+      description="I've been working on open source software and non-profit projects! Making helpful libraries is my happy place. It brings me so much joy contributing back to the community."
       url={`${socials.home}/projects`}
       image={socials.heroImage}
       imageWidth="1411"
