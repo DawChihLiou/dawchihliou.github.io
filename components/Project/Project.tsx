@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import styles from './Project.module.css'
-import socials from '../../.generated/meta/socialsTs'
 import repos from '../../.generated/github/githubReposTs'
 import pinnedRepos from '../../.generated/meta/pinnedGitHubReposTs'
 import Repo from '../Repo'
