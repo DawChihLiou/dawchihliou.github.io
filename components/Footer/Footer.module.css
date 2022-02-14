@@ -43,6 +43,8 @@
   flex-basis: 33.33%;
 }
 
+.contact a,
+.resources a,
 .sitemap a {
   display: block;
   margin-block-start: 1em;

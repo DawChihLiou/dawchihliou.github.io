@@ -1,6 +1,8 @@
 {
-  "nextjs": "https://nextjs.org/",
+  "nextjs": "https://nextjs.org",
   "cssModule": "https://github.com/css-modules/css-modules",
-  "reactIcons": "https://react-icons.github.io/react-icons/",
-  "mdx": "https://mdxjs.com/"
+  "reactIcons": "https://react-icons.github.io/react-icons",
+  "mdx": "https://mdxjs.com",
+  "contentlayer": "https://github.com/contentlayerdev/contentlayer",
+  "unified": "https://unifiedjs.com"
 }

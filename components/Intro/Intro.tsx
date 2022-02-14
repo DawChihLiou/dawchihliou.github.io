@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from './Intro.module.css'
 import { GrTwitter, GrLinkedin, GrGithub, GrMedium } from 'react-icons/gr'
+import { SiHackernoon } from 'react-icons/si'
 import socials from '../../.generated/meta/socialsTs'
+import Link from '../Link'
 
 export default function Intro() {
   return (
@@ -29,44 +31,42 @@ export default function Intro() {
           engineering architecture and performance monitoring to provide optimal
           user experience.
         </p>
-
         <div className={styles.socials}>
-          <a
+          <Link
             href={socials.linkedin}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's Linkedin profile"
           >
             <GrLinkedin size="1.5em" />
             <span hidden>Link to Daw-Chih's Linkedin profile</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href={socials.github}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's GitHub profile"
           >
             <GrGithub size="1.5em" />
             <span hidden>Link to Daw-Chih's GitHub profile</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href={socials.medium}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's Medium profile"
           >
             <GrMedium size="1.5em" />
             <span hidden>Link to Daw-Chih's Medium profile</span>
-          </a>
-          <a
+          </Link>
+          <Link
+            href={socials.hackernoon}
+            aria-label="Link to Daw-Chih's Hackernoon profile"
+          >
+            <SiHackernoon size="1.5em" />
+            <span hidden>Link to Daw-Chih's Hacker Noon profile</span>
+          </Link>
+          <Link
             href={socials.twitter}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Daw-Chih's Twitter"
+            aria-label="Link to Daw-Chih's Twitter profile"
           >
             <GrTwitter size="1.5em" />
             <span hidden>Link to Daw-Chih's Twitter</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

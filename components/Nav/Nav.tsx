@@ -5,7 +5,8 @@ import styles from './Nav.module.css'
 import socials from '../../.generated/meta/socialsTs'
 import { GrLinkedin, GrGithub, GrMedium, GrTwitter } from 'react-icons/gr'
 import DarkmodeSwitch from '../DarkmodeSwitch'
-import Link from 'next/link'
+import Link from '../Link'
+import { SiHackernoon } from 'react-icons/si'
 
 export default function Nav() {
   const [isMenuOpen, openMenu] = useState(false)
@@ -59,49 +60,52 @@ export default function Nav() {
             Projects
           </button>
         </Link>
+
         <span className={styles.pusher} />
         <span className={styles.divider} />
+
         <div className={styles.profile}>
-          <a
+          <Link
             href={socials.linkedin}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's Linkedin profile"
             className={styles.iconLink}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrLinkedin />
-          </a>
-          <a
+          </Link>
+          <Link
             href={socials.github}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's GitHub profile"
             className={styles.iconLink}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrGithub />
-          </a>
-          <a
+          </Link>
+          <Link
             href={socials.medium}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Link to Daw-Chih's Medium profile"
             className={styles.iconLink}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrMedium />
-          </a>
-          <a
+          </Link>
+          <Link
+            href={socials.hackernoon}
+            aria-label="Link to Daw-Chih's Hackernoon profile"
+            className={styles.iconLink}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            <SiHackernoon size="1.5em" />
+            <span hidden>Link to Daw-Chih's Hacker Noon profile</span>
+          </Link>
+          <Link
             href={socials.twitter}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Link to Daw-Chih's Twitter"
+            aria-label="Link to Daw-Chih's Twitter profile"
             className={styles.iconLink}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             <GrTwitter />
-          </a>
+          </Link>
         </div>
         <DarkmodeSwitch showLabel tabIndex={isMenuOpen ? 0 : -1} />
       </Menu>

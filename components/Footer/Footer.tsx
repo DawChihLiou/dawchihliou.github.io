@@ -1,9 +1,10 @@
 import React from 'react'
-import Link from 'next/link'
+
 import styles from './Footer.module.css'
 import socials from '../../.generated/meta/socialsTs'
 import resources from '../../.generated/meta/resourcesTs'
 import { FiRss } from 'react-icons/fi'
+import Link from '../Link'
 
 export default function Footer() {
   return (
@@ -20,26 +21,11 @@ export default function Footer() {
             </span>
             This site is built with
           </p>
-          <p>
-            <a href={resources.nextjs} target="_blank" rel="noreferrer">
-              Next.js
-            </a>
-          </p>
-          <p>
-            <a href={resources.cssModule} target="_blank" rel="noreferrer">
-              CSS Modules
-            </a>
-          </p>
-          <p>
-            <a href={resources.reactIcons} target="_blank" rel="noreferrer">
-              React Icons
-            </a>
-          </p>
-          <p>
-            <a href={resources.mdx} target="_blank" rel="noreferrer">
-              MDX
-            </a>
-          </p>
+          <Link href={resources.nextjs}>Next.js</Link>
+          <Link href={resources.reactIcons}>React Icons</Link>
+          <Link href={resources.mdx}>MDX</Link>
+          <Link href={resources.unified}>unified</Link>
+          <Link href={resources.contentlayer}>Contentlayer</Link>
         </div>
         <div className={styles.contact}>
           <p>
@@ -52,26 +38,11 @@ export default function Footer() {
             </span>
             Where to find me
           </p>
-          <p>
-            <a href={socials.linkedin} target="_blank" rel="noreferrer">
-              Linkedin
-            </a>
-          </p>
-          <p>
-            <a href={socials.github} target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-          </p>
-          <p>
-            <a href={socials.medium} target="_blank" rel="noreferrer">
-              Medium
-            </a>
-          </p>
-          <p>
-            <a href={socials.twitter} target="_blank" rel="noreferrer">
-              Twitter
-            </a>
-          </p>
+          <Link href={socials.linkedin}>Linkedin</Link>
+          <Link href={socials.github}>GitHub</Link>
+          <Link href={socials.twitter}>Twitter</Link>
+          <Link href={socials.medium}>Medium</Link>
+          <Link href={socials.hackernoon}>Hacker Noon</Link>
         </div>
         <div className={styles.sitemap}>
           <p>
@@ -87,18 +58,15 @@ export default function Footer() {
           <Link href="/">Home</Link>
           <Link href="/now">Now</Link>
           <Link href="/articles">Articles</Link>
+          <Link href="/projects">Projects</Link>
           <Link href="/rss.xml">
-            <a href="/#">
-              RSS Feed to The Articles <FiRss />
-            </a>
+            RSS Feed to The Articles <FiRss />
           </Link>
         </div>
       </div>
       <div className={styles.copyright}>
         © {new Date().getFullYear()}{' '}
-        <a href={socials.github} target="_blank" rel="noreferrer">
-          Daw-Chih Liou
-        </a>
+        <Link href={socials.linkedin}>Daw-Chih Liou</Link>
       </div>
     </footer>
   )
