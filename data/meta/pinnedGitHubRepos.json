@@ -2,7 +2,5 @@
   "react-use-pip",
   "cz-conventional-changelog-with-jiraid-detection",
   "dx-scripts",
-  "better-redux-observable-marble-testing",
-  "changed-files-action",
-  "express-typeorm-postgres-example"
+  "changed-files-action"
 ]
