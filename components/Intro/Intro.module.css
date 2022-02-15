@@ -9,7 +9,6 @@
 @media (max-width: 768px) {
   .wrap {
     flex-direction: column;
-    gap: 0;
   }
 }
 
@@ -19,6 +18,7 @@
 
 .greeting h1 {
   font-weight: 800;
+  margin-top: 0;
   margin-bottom: 0;
 }
 

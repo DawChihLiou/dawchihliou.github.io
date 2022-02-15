@@ -24,9 +24,9 @@ export default function Intro() {
           <p>
             Helping developers and organizations around the world build an
             outstanding web. With human-centered design principle at the core,
-            I'll help you and your team achieve more engineering confidence,
-            architectural clarity, scaling velocity, future profit, and tons of
-            joy building what you love.
+            I'm here to help you and your team achieve more engineering
+            confidence, architectural clarity, scaling velocity, future profit,
+            and tons of joy building what you love.
           </p>
           <div className={styles.socials}>
             <Link
