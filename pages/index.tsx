@@ -9,6 +9,7 @@ import SkillSet from '../components/SkillSet'
 import socials from '../.generated/meta/socialsTs'
 import Publication from '../components/Publication'
 import SeoContainer from '../components/SeoContainer'
+import Expertise from '../components/Expertise'
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
           <Hero />
           <Intro />
           <Recommendation />
+          <Expertise />
           <Project />
           <Publication />
           <SkillSet />

@@ -23,8 +23,10 @@ export default function Intro() {
           <h2>Principal Software Engineer</h2>
           <p>
             Helping developers and organizations around the world build an
-            outstanding web. I teach web development, SEO, functional
-            programming, and React.
+            outstanding web. With human-centered design principle at the core,
+            I'll help you and your team achieve more engineering confidence,
+            architectural clarity, scaling velocity, future profit, and tons of
+            joy building what you love.
           </p>
           <div className={styles.socials}>
             <Link
