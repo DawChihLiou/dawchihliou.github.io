@@ -1,11 +1,9 @@
 import React from 'react'
-import styles from '../styles/Projects.module.css'
+import styles from '../styles/Work.module.css'
 import SeoContainer from '../components/SeoContainer'
 import socials from '../.generated/meta/socialsTs'
 import repos from '../.generated/github/githubReposTs'
 import Repo from '../components/Repo'
-import Link from '../components/Link'
-import socialsTs from '../.generated/meta/socialsTs'
 
 export default function Work() {
   return (
@@ -36,9 +34,6 @@ export default function Work() {
                 </div>
               </section>
             ))}
-          </div>
-          <div className={styles.link}>
-            <Link href={socialsTs.github}>See more on GitHub</Link>
           </div>
         </main>
       </div>

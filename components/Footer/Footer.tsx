@@ -56,9 +56,10 @@ export default function Footer() {
             Sitemap
           </p>
           <Link href="/">Home</Link>
-          <Link href="/now">Now</Link>
+          <Link href="/expertise">Expertise</Link>
           <Link href="/articles">Articles</Link>
           <Link href="/work">Work</Link>
+          <Link href="/now">Now</Link>
           <Link href="/rss.xml">
             RSS Feed to The Articles <FiRss />
           </Link>

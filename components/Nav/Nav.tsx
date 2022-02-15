@@ -33,13 +33,13 @@ export default function Nav() {
             Home
           </button>
         </Link>
-        <Link href="/now">
+        <Link href="/expertise">
           <button
             className={styles.link}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
-            Now
+            Expertise
           </button>
         </Link>
         <Link href="/articles">
@@ -58,6 +58,15 @@ export default function Nav() {
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Work
+          </button>
+        </Link>
+        <Link href="/now">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Now
           </button>
         </Link>
 

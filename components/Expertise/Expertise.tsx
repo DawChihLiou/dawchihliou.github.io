@@ -8,14 +8,14 @@ export default function Expertise() {
     <Section heading="Let's work together">
       <div className={styles.description}>
         <p>
-          My background in Human Centered Computing has led me to work with
-          startups and public companies across North America, Asia, and Europe.
-          I'm passionate about meeting business trajectory with user journey and
-          utilizing engineering architecture and performance monitoring to
-          provide optimal user experience.
+          From web fundamentals to modern technology, I'm passionate about team
+          work and building meaningful products that encompass SEO,
+          accessibility, website performance, and optimal user experience.
+          They're the nuances for your digital business to stand out from the
+          competitive space.
         </p>
       </div>
-      <Link href="/work">See more about my approach</Link>
+      <Link href="/expertise">See more about my approach</Link>
     </Section>
   )
 }
