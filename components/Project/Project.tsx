@@ -79,7 +79,7 @@ export default function Project() {
           <Repo key={repo.id} repo={repo} paper />
         ))}
       </div>
-      <Link href="/projects" className={styles.link}>
+      <Link href="/work" className={styles.link}>
         See more projects
       </Link>
     </section>

@@ -7,12 +7,12 @@ import Repo from '../components/Repo'
 import Link from '../components/Link'
 import socialsTs from '../.generated/meta/socialsTs'
 
-export default function Projects() {
+export default function Work() {
   return (
     <SeoContainer
-      title="Daw-Chih's projects"
+      title="Daw-Chih's work"
       description="I've been working on open source software and non-profit projects! Making helpful libraries is my happy place. It brings me so much joy contributing back to the community."
-      url={`${socials.home}/projects`}
+      url={`${socials.home}/work`}
       image={socials.heroImage}
       imageWidth="1411"
       imageHeight="682"

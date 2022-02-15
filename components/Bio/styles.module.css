@@ -1,4 +1,6 @@
 .wrap {
+  max-width: 720px;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row-reverse;
   gap: 2rem;
@@ -22,18 +24,12 @@
   margin-bottom: 0;
 }
 
-.greeting h2 {
-  font-size: 1rem;
-  font-weight: normal;
-  color: var(--text-secondary-color);
-  margin-top: 0;
-}
-
 .portrait {
   vertical-align: middle;
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
 .socials {

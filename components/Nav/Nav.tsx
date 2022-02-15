@@ -51,13 +51,13 @@ export default function Nav() {
             Articles
           </button>
         </Link>
-        <Link href="/projects">
+        <Link href="/work">
           <button
             className={styles.link}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
-            Projects
+            Work
           </button>
         </Link>
 

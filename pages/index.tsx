@@ -13,7 +13,7 @@ import SeoContainer from '../components/SeoContainer'
 export default function Home() {
   return (
     <SeoContainer
-      title="Daw-Chih Liou"
+      title="Daw-Chih Liou - Software Engineer, creator, writer"
       description={socials.description}
       url={socials.home}
       image={socials.heroImage}

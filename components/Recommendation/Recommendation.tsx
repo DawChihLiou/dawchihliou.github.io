@@ -6,11 +6,11 @@ import recommendations from '../../.generated/meta/linkedinRecommendationsTs'
 import socials from '../../.generated/meta/socialsTs'
 import styles from './Recommendation.module.css'
 import Link from '../Link'
+import Section from '../Section'
 
 export default function Recommendation() {
   return (
-    <section className={styles.wrap}>
-      <h2>See what people say about me</h2>
+    <Section fluid heading="See what people say about me">
       <div className={styles.horizontal}>
         <div className={styles.grid}>
           {recommendations.map((recom) => (
@@ -42,6 +42,6 @@ export default function Recommendation() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }

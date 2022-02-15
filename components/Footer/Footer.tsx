@@ -58,7 +58,7 @@ export default function Footer() {
           <Link href="/">Home</Link>
           <Link href="/now">Now</Link>
           <Link href="/articles">Articles</Link>
-          <Link href="/projects">Projects</Link>
+          <Link href="/work">Work</Link>
           <Link href="/rss.xml">
             RSS Feed to The Articles <FiRss />
           </Link>
