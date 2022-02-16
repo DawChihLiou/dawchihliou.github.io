@@ -36,47 +36,49 @@ import SketchSvg from '../../public/optimized/shields/sketch.svg'
 import AmazonAWSSvg from '../../public/optimized/shields/amazon_aws.svg'
 import GoogleCloudSvg from '../../public/optimized/shields/google_cloud.svg'
 import AkamaiSvg from '../../public/optimized/shields/akamai.svg'
+import Section from '../Section'
 
 export default function SkillSet() {
   return (
-    <section className={styles.wrap}>
-      <h2>My tech stack</h2>
-      <TypeScriptSvg />
-      <JavaScriptSvg />
-      <JavaSvg />
-      <ReactSvg />
-      <ReactiveXSvg />
-      <ReduxSvg />
-      <NodeSvg />
-      <GraphQLSvg />
-      <TypeORMSvg />
-      <CSS3Svg />
-      <SassSvg />
-      <HTML5Svg />
-      <VueSvg />
-      <MDXSvg />
-      <AuthOSvg />
-      <SVGSvg />
-      <WebpackSvg />
-      <BabelSvg />
-      <JestSvg />
-      <CypressSvg />
-      <NextSvg />
-      <VercelSvg />
-      <PostgreSQLSvg />
-      <DockerSvg />
-      <GitHubSvg />
-      <GitHubActionsSvg />
-      <StorybookSvg />
-      <JFrogSvg />
-      <NpmSvg />
-      <YarnSvg />
-      <PostmanSvg />
-      <RSSSvg />
-      <SketchSvg />
-      <AmazonAWSSvg />
-      <GoogleCloudSvg />
-      <AkamaiSvg />
-    </section>
+    <Section heading="The tech I enjoy now">
+      <article className={styles.wrap}>
+        <TypeScriptSvg />
+        <JavaScriptSvg />
+        <JavaSvg />
+        <ReactSvg />
+        <ReactiveXSvg />
+        <ReduxSvg />
+        <NodeSvg />
+        <GraphQLSvg />
+        <TypeORMSvg />
+        <CSS3Svg />
+        <SassSvg />
+        <HTML5Svg />
+        <VueSvg />
+        <MDXSvg />
+        <AuthOSvg />
+        <SVGSvg />
+        <WebpackSvg />
+        <BabelSvg />
+        <JestSvg />
+        <CypressSvg />
+        <NextSvg />
+        <VercelSvg />
+        <PostgreSQLSvg />
+        <DockerSvg />
+        <GitHubSvg />
+        <GitHubActionsSvg />
+        <StorybookSvg />
+        <JFrogSvg />
+        <NpmSvg />
+        <YarnSvg />
+        <PostmanSvg />
+        <RSSSvg />
+        <SketchSvg />
+        <AmazonAWSSvg />
+        <GoogleCloudSvg />
+        <AkamaiSvg />
+      </article>
+    </Section>
   )
 }

@@ -27,7 +27,7 @@
   transform: translateY(-4rem);
 }
 
-.articles {
+.description {
   transform: translateY(-2rem);
 }
 
@@ -37,7 +37,7 @@
     margin-bottom: 1rem;
   }
 
-  .articles {
+  .description {
     transform: translateY(0);
   }
 }

@@ -69,13 +69,14 @@
   text-decoration: none;
 }
 
-.item h3 {
+.item h4 {
   margin: 0;
+  font-size: 1.25rem;
   transition: color 0.15s ease;
   text-decoration: underline;
 }
 
-.item h3:hover {
+.item h4:hover {
   color: rgba(0, 124, 240, 1);
 }
 

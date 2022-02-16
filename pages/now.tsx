@@ -6,6 +6,7 @@ import components from '../components/MDXComponents'
 import SeoContainer from '../components/SeoContainer'
 import socials from '../.generated/meta/socialsTs'
 import styles from '../styles/Now.module.css'
+import Section from '../components/Section'
 
 type NowProps = {
   meta: OtherPage
@@ -24,10 +25,12 @@ export default function Now({ meta }: NowProps) {
       imageHeight={meta.coverHeight}
     >
       <main className={styles.main}>
-        <article className={styles.article}>
-          <h1>{meta.title}</h1>
-          <Component components={components} />
-        </article>
+        <Section>
+          <article className={styles.article}>
+            <h1>{meta.title}</h1>
+            <Component components={components} />
+          </article>
+        </Section>
       </main>
     </SeoContainer>
   )
