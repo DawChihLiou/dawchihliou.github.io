@@ -18,6 +18,17 @@
   align-items: center;
 }
 
+.main h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+
+@media (max-width: 576px) {
+  .main h1 {
+    font-size: 2rem;
+  }
+}
+
 .banner {
   background-color: var(--text-primary-color);
   color: var(--text-invert-color);

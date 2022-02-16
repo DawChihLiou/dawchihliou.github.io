@@ -27,7 +27,7 @@ export default function Articles() {
             </p>
           </div>
           <div className={styles.description}>
-            <h1>I Write to Share My Learnings</h1>
+            <h1>I Write to Share What I Learned</h1>
             <p>
               I enjoy writing about TypeScript, Rust, and web technology.
               Especially the subtle things that unblock engineers' daily work
