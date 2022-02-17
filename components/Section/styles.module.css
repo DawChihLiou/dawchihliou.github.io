@@ -1,6 +1,7 @@
 .section {
   max-width: 720px;
   margin-top: 2rem;
+  width: 100%;
 }
 
 .section.fluid {

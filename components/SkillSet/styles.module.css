@@ -1,0 +1,16 @@
+.grid {
+  display: flex;
+  flex-flow: wrap;
+  gap: 2rem;
+}
+
+.grid > * {
+  flex-basis: calc(50% - 1rem);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    flex-direction: column;
+    gap: 0;
+  }
+}

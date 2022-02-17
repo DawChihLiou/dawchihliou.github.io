@@ -1,8 +1,9 @@
 import React from 'react'
-import styles from '../styles/Work.module.css'
+import styles from '../styles/Expertise.module.css'
 import SeoContainer from '../components/SeoContainer'
 import socials from '../.generated/meta/socialsTs'
 import Section from '../components/Section'
+import SkillSet from '../components/SkillSet'
 
 export default function Expertise() {
   return (
@@ -14,12 +15,12 @@ export default function Expertise() {
       imageWidth="1411"
       imageHeight="682"
     >
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <h1>Build to win</h1>
-          <Section heading=""></Section>
-        </main>
-      </div>
+      <main className={styles.main}>
+        <h1>Build to win</h1>
+        <Section heading="My Philosophy"></Section>
+        <Section heading="My Process"></Section>
+        <SkillSet />
+      </main>
     </SeoContainer>
   )
 }
