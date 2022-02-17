@@ -99,11 +99,6 @@ export default function SkillSet() {
             color="linear-gradient(90deg, #5665f6, #d8b4fe)"
           />
           <BarChart
-            title="JavaScript"
-            score={100}
-            color="linear-gradient(90deg, #5665f6, #d8b4fe)"
-          />
-          <BarChart
             title="HTML"
             score={100}
             color="linear-gradient(90deg, #5665f6, #d8b4fe)"
@@ -116,6 +111,11 @@ export default function SkillSet() {
           <BarChart
             title="Rust"
             score={40}
+            color="linear-gradient(90deg, #5665f6, #d8b4fe)"
+          />
+          <BarChart
+            title="Wasm"
+            score={20}
             color="linear-gradient(90deg, #5665f6, #d8b4fe)"
           />
         </article>
