@@ -2,22 +2,27 @@ import React from 'react'
 import styles from './Publication.module.css'
 import articles from '../../data/articles'
 import Link from '../Link'
+import Section from '../Section'
+import socialsTs from '../../.generated/meta/socialsTs'
 
 const publication = articles.filter((_, i) => i < 3)
 const isSameSite = (url: string) => url.startsWith('/')
 
 export default function Publication() {
   return (
-    <section className={styles.wrap}>
-      <article className={styles.description}>
-        <h1>I love writing</h1>
-        <p>
-          I enjoy writing about software development. Especially the things that
-          can unblock our daily work and gives people inspirations to strive for
-          engineering excellence.
-        </p>
-      </article>
-      <article className={styles.list}>
+    <Section heading="I love writing">
+      <p>
+        I
+        <span role="img" aria-label="heart">
+          {'❤️ '}
+        </span>
+        writing. I share frequently about what I learned in TypeScript, Rust,
+        and the subtle things in web technology that give you an "AHA!" moment.
+        Some of my articles are featured in publications such as{' '}
+        <Link href={socialsTs.medium}>Better Programming</Link> and{' '}
+        <Link href={socialsTs.hackernoon}>Hacker Noon</Link>.
+      </p>
+      <div className={styles.list}>
         {publication.map((article) => (
           <article key={article.title} className={styles.item}>
             <div className={styles.thumbnail}>
@@ -27,7 +32,7 @@ export default function Publication() {
             </div>
             <div className={styles.itemDescription}>
               <Link href={article.url}>
-                <h2>{article.title}</h2>
+                <h4>{article.title}</h4>
               </Link>
               {article.external && (
                 <Link href={article.publisherUrl} className={styles.caption}>
@@ -39,10 +44,10 @@ export default function Publication() {
             </div>
           </article>
         ))}
-      </article>
+      </div>
       <Link href="/articles" className={styles.link}>
         See more articles
       </Link>
-    </section>
+    </Section>
   )
 }

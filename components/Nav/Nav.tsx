@@ -33,15 +33,6 @@ export default function Nav() {
             Home
           </button>
         </Link>
-        <Link href="/now">
-          <button
-            className={styles.link}
-            onClick={closeMenu}
-            tabIndex={isMenuOpen ? 0 : -1}
-          >
-            Now
-          </button>
-        </Link>
         <Link href="/articles">
           <button
             className={styles.link}
@@ -51,13 +42,40 @@ export default function Nav() {
             Articles
           </button>
         </Link>
-        <Link href="/projects">
+        <Link href="/work">
           <button
             className={styles.link}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
-            Projects
+            Work
+          </button>
+        </Link>
+        <Link href="/now">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Now
+          </button>
+        </Link>
+        <Link href="/expertise">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Expertise
+          </button>
+        </Link>
+        <Link href="/contact">
+          <button
+            className={styles.link}
+            onClick={closeMenu}
+            tabIndex={isMenuOpen ? 0 : -1}
+          >
+            Contact
           </button>
         </Link>
 

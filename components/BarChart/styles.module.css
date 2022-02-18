@@ -1,0 +1,20 @@
+.grid {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.grid .sm {
+  flex-basis: 30%;
+}
+
+.grid .lg {
+  flex-basis: 70%;
+}
+
+.bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: 1rem;
+}

@@ -20,10 +20,22 @@ export default function Articles() {
         <main className={styles.main}>
           <div className={styles.banner}>
             <p>
-              If you enjoy the articles, please do{' '}
+              If you enjoy the articles, please{' '}
               <Link href="/rss.xml">
                 subscribe to the RSS feed <FiRss />
               </Link>
+            </p>
+          </div>
+          <div className={styles.description}>
+            <h1>I Write to Share What I Learned</h1>
+            <h2>Ship. Learn. Share. Repeat.</h2>
+            <p>
+              I enjoy writing about TypeScript, Rust, and web technology.
+              Especially the subtle things that unblock engineers' daily work
+              and inspire to strive for engineering excellence. Some of my
+              articles are featured in publications such as{' '}
+              <Link href={socials.medium}>Better Programming</Link> and{' '}
+              <Link href={socials.hackernoon}>Hacker Noon</Link>.
             </p>
           </div>
           <div className={styles.articles}>

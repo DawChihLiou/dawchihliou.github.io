@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  flex-flow: wrap;
+  margin-top: 2rem;
+}
+
+.wrapper > article {
+  flex-basis: calc(50% - 1rem);
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .wrapper > article {
+    flex-basis: initial;
+  }
+}
+
+.right {
+  flex-grow: 1;
+}
+
+.right h4 {
+  margin-top: 0;
+}
+
+.right p {
+  margin: 0;
+}
+
+.symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.symbol > span {
+  transform: translateX(-2px);
+}

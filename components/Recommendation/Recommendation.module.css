@@ -1,13 +1,12 @@
 .wrap {
-  margin-top: 3rem;
+  margin-top: 1rem;
   width: 100%;
 }
 
-.wrap h1 {
+.wrap h2 {
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 2.5rem;
   line-height: 1.15;
 }
 
@@ -20,7 +19,6 @@
   display: flex;
   gap: 1rem;
   width: fit-content;
-  padding: 0.5rem 0;
   margin: 0 auto;
 }
 
@@ -91,4 +89,8 @@
 .footer:active,
 .footer:hover {
   color: rgba(0, 124, 240, 1);
+}
+
+.quote {
+  font-size: 1.5rem;
 }

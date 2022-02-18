@@ -9,13 +9,38 @@
 .main {
   width: 100%;
   max-width: 720px;
-  padding: 1rem 1rem;
+  padding: 1rem 0;
   margin: 0 auto;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.main h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 0;
+}
+
+.main h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--text-secondary-color);
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main h1 {
+    font-size: 2rem;
+  }
 }
 
 .banner {
@@ -27,7 +52,7 @@
   transform: translateY(-4rem);
 }
 
-.articles {
+.description {
   transform: translateY(-2rem);
 }
 
@@ -37,7 +62,7 @@
     margin-bottom: 1rem;
   }
 
-  .articles {
+  .description {
     transform: translateY(0);
   }
 }
