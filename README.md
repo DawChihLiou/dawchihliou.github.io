@@ -2,7 +2,7 @@
 
 This site is built with
 
-- [Next.js](https://nextjs.org/) 
+- [Next.js](https://nextjs.org/)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [MDX](https://mdxjs.com/)
@@ -12,6 +12,12 @@ This site is built with
 - [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 
 The Hero design is inspired by [Vercel](https://vercel.com/).
+
+## Versions
+
+- v1: [Source code](https://github.com/DawChihLiou/dawchihliou.github.io/tree/archive/1.0)
+- v2: [Source code](https://github.com/DawChihLiou/dawchihliou.github.io/tree/v2.4.3) ([Web Archive](https://web.archive.org/web/20220207143307/https://dawchihliou.github.io/))
+- v3: [Source code](https://github.com/DawChihLiou/dawchihliou.github.io/tree/3.0.0) ([Live](https://dawchihliou.github.io))
 
 ## Getting Started
 
@@ -43,7 +49,6 @@ to start production server
 
 to generate production build. The built assets will be in under `/.next` directory.
 
-
 #### `yarn export`
 
 to export the app to static HTML, which can be run standalone without the need of a Node.js server.
@@ -60,4 +65,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
