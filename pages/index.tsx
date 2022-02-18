@@ -14,7 +14,7 @@ import Expertise from '../components/Expertise'
 export default function Home() {
   return (
     <SeoContainer
-      title="Daw-Chih Liou - Software Engineer, creator, writer"
+      title="Daw-Chih Liou - Software engineer, UX designer, writer"
       description={socials.description}
       url={socials.home}
       image={socials.heroImage}

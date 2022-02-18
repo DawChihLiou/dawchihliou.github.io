@@ -22,7 +22,7 @@ export default function Hero() {
           className={clsx(styles.title, styles.heroTitle, styles.heroTitle_2)}
         >
           <span className={clsx(styles.title, styles.animatedTitle_2)}>
-            {'libre creator '}
+            {'ux designer '}
           </span>
         </span>
         <span
