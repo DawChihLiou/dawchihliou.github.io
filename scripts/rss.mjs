@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs'
 import RSS from 'rss'
-import { allArticles } from '.contentlayer/data'
+import { allArticles } from '../.contentlayer/data'
 import socials from '../.generated/meta/socials.mjs'
 import externalArticles from '../.generated/meta/externalArticles.mjs'
 
