@@ -1,3 +1,15 @@
+# 3.0.0 (2022-02-18)
+
+
+### Features
+
+* udpate title ([54e4ca4](https://github.com/DawChihLiou/dawchihliou.github.io/commit/54e4ca44e8252e91c7ceaa6d06603db5463c1a11))
+
+
+### BREAKING CHANGES
+
+* total redesign
+
 ## 2.5.2 (2022-02-18)
 
 ## 2.5.1 (2022-02-14)
