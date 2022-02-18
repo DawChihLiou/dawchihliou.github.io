@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile --ignore-optional
+        run: yarn install --frozen-lockfile
 
       - name: Lint source code
         run: yarn lint
@@ -60,6 +60,9 @@ jobs:
 
       - name: Build project
         run: yarn build
+
+      - name: Post Build
+        run: yarn temp-postbuild
 
       - name: Export Static Assets
         run: yarn export
