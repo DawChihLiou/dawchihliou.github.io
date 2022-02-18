@@ -28,6 +28,7 @@ export default function Articles() {
           </div>
           <div className={styles.description}>
             <h1>I Write to Share What I Learned</h1>
+            <h2>Ship. Learn. Share. Repeat.</h2>
             <p>
               I enjoy writing about TypeScript, Rust, and web technology.
               Especially the subtle things that unblock engineers' daily work

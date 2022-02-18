@@ -19,6 +19,7 @@ export default function Work() {
       <div className={styles.container}>
         <main className={styles.main}>
           <h1>I Build Meaningful Products And Open Source Software</h1>
+          <h2>A pinch of awesomeness</h2>
           <p>
             I enjoy building tooling around testing, documentation, and CI/CD to
             improve developer experience. On top of solid coding and automation,

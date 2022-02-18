@@ -9,6 +9,14 @@
   width: 100%;
   font-size: 3.5rem;
   font-weight: 900;
+  margin-bottom: 0;
+}
+
+.main h2 {
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--text-secondary-color);
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {

@@ -1,18 +1,12 @@
 .main {
   width: 100%;
+  max-width: 720px;
   padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .main {
-    padding: 1rem;
-  }
+  margin: 0 auto;
 }
 
 .main h1 {
+  width: 100%;
   font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: 0;
@@ -25,12 +19,14 @@
   margin-top: 0;
 }
 
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 576px) {
   .main h1 {
     font-size: 2rem;
   }
-}
-
-.article {
-  min-height: calc(100vh - 6rem);
 }

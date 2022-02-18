@@ -12,16 +12,22 @@
     "quote": "Daw-Chih is one of the most hard-working, highly-skilled and dedicated people I’ve ever worked with. During the 3+ years we’ve worked together, he has shown great drive and perseverance in getting things done. Once he commits to doing a project or task, no matter how challenging, it gets done at a high standard. Tense meetings are no match for him - his tranquil nature is appreciated in the team and helps us keep calm even in challenging situations. These qualities, along with his strong engineering mindset make Daw-Chih a great teammate and a pleasure to work with."
   },
   {
-    "id": 3,
-    "title": "Team Lead",
+    "id": 7,
+    "title": "Director",
     "type": "manager",
-    "quote": "Daw-Chih is a very dedicated and versatile developer. He always keeps in mind the overall roadmap for a project, starting from problem analysis together with our users and including planning and architecture of the solution. These skills are rounded up a deep understanding of the topics he is involved in. His recommendations and feedback is appreciated by our team. Daw-Chih is always pushing on developing his own skills further which makes him a respected team member who can quickly adapt to new challenges."
+    "quote": "I had the pleasure to meet Daw-Chih from the very beginning when he joined our company. He took the time to observe and to listen to get a proper impression about the company, the product, and the people to understand why things are in a specific state. He has an excellent technical understanding but even more important, he cares about people and understands what it needs to drive technical excellence in an organization. He's not someone who wants to shine to the outside but put more the team into the spotlight. It was a pleasure to work with him and exchange ideas."
   },
   {
     "id": 4,
     "title": "Software Engineer",
     "type": "engineer",
     "quote": "I had the pleasure to work with Daw-Chih for a couple of years on different projects and was impressed with his skills, drive, and level of commitment. Daw-Chih is a perfectionist engineer that commits to and cares about every detail - from the informative commit message to code quality to writing documentation to sharing learnings on guilds. Even though he is a perfectionist, Daw-Chih is pragmatic when finding solutions and meeting deadlines. Besides hard skills, he is a positive colleague you want to chat with on a coffee break and the kind of person that would \"warm-up\" a boring meeting with a joke. I greatly enjoyed working with him!"
+  },
+  {
+    "id": 3,
+    "title": "Team Lead",
+    "type": "manager",
+    "quote": "Daw-Chih is a very dedicated and versatile developer. He always keeps in mind the overall roadmap for a project, starting from problem analysis together with our users and including planning and architecture of the solution. These skills are rounded up a deep understanding of the topics he is involved in. His recommendations and feedback is appreciated by our team. Daw-Chih is always pushing on developing his own skills further which makes him a respected team member who can quickly adapt to new challenges."
   },
   {
     "id": 5,

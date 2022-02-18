@@ -43,6 +43,9 @@ export default function Footer() {
           <Link href={socials.twitter}>Twitter</Link>
           <Link href={socials.medium}>Medium</Link>
           <Link href={socials.hackernoon}>Hacker Noon</Link>
+          <Link href="/rss.xml">
+            RSS Feed <FiRss />
+          </Link>
         </div>
         <div className={styles.sitemap}>
           <p>
@@ -56,13 +59,11 @@ export default function Footer() {
             Sitemap
           </p>
           <Link href="/">Home</Link>
-          <Link href="/expertise">Expertise</Link>
           <Link href="/articles">Articles</Link>
           <Link href="/work">Work</Link>
           <Link href="/now">Now</Link>
-          <Link href="/rss.xml">
-            RSS Feed to The Articles <FiRss />
-          </Link>
+          <Link href="/expertise">Expertise</Link>
+          <Link href="/contact">Contact</Link>
         </div>
       </div>
       <div className={styles.copyright}>
