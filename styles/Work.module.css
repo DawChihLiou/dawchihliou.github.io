@@ -86,8 +86,8 @@
 }
 
 .project {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   max-width: 720px;
   display: flex;
   gap: 2rem;
@@ -120,7 +120,6 @@
 }
 
 .image img {
-  margin-top: 1rem;
   width: 100%;
   border-radius: 1rem;
   transform: translate(-1rem, 0rem);
