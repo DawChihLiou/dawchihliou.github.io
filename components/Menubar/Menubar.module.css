@@ -17,3 +17,22 @@
 .menubar a > * {
   vertical-align: middle;
 }
+
+.menubar > .hireMe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  letter-spacing: normal;
+  transition: letter-spacing 0.15s ease;
+}
+
+.menubar > .hireMe:hover {
+  text-decoration: none;
+  letter-spacing: 0.125rem;
+  transition: letter-spacing 0.15s ease;
+}
+
+.menubar > .hireMe > svg {
+  transform: scale(-1, 1);
+}

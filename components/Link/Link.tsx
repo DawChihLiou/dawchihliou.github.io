@@ -7,15 +7,19 @@ type LinkProps = DetailedHTMLProps<
   HTMLAnchorElement
 >
 
-export default function Link(props: LinkProps) {
-  const { href } = props
+export default function Link({
+  href,
+  className,
+  children,
+  ...rest
+}: LinkProps) {
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
 
   if (isInternalLink) {
     return (
       <NextLink href={href}>
-        <a className={styles.anchor} {...props}>
-          {props.children}
+        <a className={`${styles.anchor} ${className}`} {...rest}>
+          {children}
         </a>
       </NextLink>
     )
@@ -23,12 +27,13 @@ export default function Link(props: LinkProps) {
 
   return (
     <a
-      className={styles.anchor}
+      className={`${styles.anchor} ${className}`}
       target="_blank"
       rel="noopener noreferrer"
-      {...props}
+      href={href}
+      {...rest}
     >
-      {props.children}
+      {children}
     </a>
   )
 }
