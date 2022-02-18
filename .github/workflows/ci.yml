@@ -61,9 +61,6 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Post Build
-        run: yarn temp-postbuild
-
       - name: Export Static Assets
         run: yarn export
 
