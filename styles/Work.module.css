@@ -95,7 +95,15 @@
 
 @media (max-width: 768px) {
   .project {
-    flex-direction: column-reverse;
+    flex-direction: column;
+  }
+
+  .projectDescription {
+    order: 2;
+  }
+
+  .imageContainer {
+    order: 1;
   }
 }
 
