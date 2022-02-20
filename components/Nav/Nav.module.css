@@ -1,6 +1,10 @@
 .link {
-  display: block;
   margin-bottom: 1rem;
+}
+
+.button {
+  display: block;
+  width: 100%;
   cursor: pointer;
   background-color: initial;
   border: initial;

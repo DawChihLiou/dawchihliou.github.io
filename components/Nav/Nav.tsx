@@ -24,54 +24,54 @@ export default function Nav() {
         isOpen={isMenuOpen}
         onStateChange={onMenuStateChange}
       >
-        <Link href="/">
+        <Link href="/" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Home
           </button>
         </Link>
-        <Link href="/articles">
+        <Link href="/articles" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Articles
           </button>
         </Link>
-        <Link href="/work">
+        <Link href="/work" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Work
           </button>
         </Link>
-        <Link href="/now">
+        <Link href="/now" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Now
           </button>
         </Link>
-        <Link href="/expertise">
+        <Link href="/expertise" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
             Expertise
           </button>
         </Link>
-        <Link href="/contact">
+        <Link href="/contact" className={styles.link}>
           <button
-            className={styles.link}
+            className={styles.button}
             onClick={closeMenu}
             tabIndex={isMenuOpen ? 0 : -1}
           >
