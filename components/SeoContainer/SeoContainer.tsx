@@ -31,6 +31,8 @@ export default function SeoContainer({
         : new Date().toISOString(),
     [publishedAt]
   )
+  // To support Linkedin. LinkedIn media link doesn't render webp images
+  const img = useMemo(() => image.replace(/\.webp$/, '.png'), [image])
 
   return (
     <>
@@ -45,14 +47,14 @@ export default function SeoContainer({
         {/* schema.org */}
         <meta itemProp="name" content={title} />
         <meta itemProp="description" content={description} />
-        <meta itemProp="image" content={image} />
+        <meta itemProp="image" content={img} />
 
         {/*  Open Graph */}
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={url} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={img} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content={imageWidth} />
         <meta property="og:image:height" content={imageHeight} />
@@ -65,6 +67,7 @@ export default function SeoContainer({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+
         <meta property="article:published_time" content={date} />
         <meta property="article:section" content="Article Section" />
         <meta property="article:tag" content="Article Tag" />
