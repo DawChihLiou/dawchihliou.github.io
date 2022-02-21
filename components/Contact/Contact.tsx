@@ -41,7 +41,7 @@ export default function Contact({ heading }: ContactProps) {
 
       <p>
         Just want to say hi? Ping me over on{' '}
-        <Link href={socialsTs.linkedin}>Twitter</Link>!
+        <Link href={socialsTs.twitter}>Twitter</Link>!
       </p>
     </Section>
   )
