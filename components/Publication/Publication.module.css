@@ -3,13 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   max-width: 720px;
-}
-
-.description h1 {
-  font-size: 2.5rem;
-  line-height: 1.15;
 }
 
 .list {
@@ -74,13 +69,14 @@
   text-decoration: none;
 }
 
-.item h2 {
+.item h4 {
   margin: 0;
+  font-size: 1.25rem;
   transition: color 0.15s ease;
   text-decoration: underline;
 }
 
-.item h2:hover {
+.item h4:hover {
   color: rgba(0, 124, 240, 1);
 }
 

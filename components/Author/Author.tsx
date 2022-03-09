@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Author.module.css'
 import socials from '../../.generated/meta/socialsTs'
+import Link from '../Link'
 
 export default function Author() {
   return (
@@ -12,9 +13,9 @@ export default function Author() {
         loading="lazy"
       />
       <div>
-        <a href={socials.home} className={styles.author}>
-          <span>Daw-Chih Liou</span>
-        </a>
+        <Link href={socials.home} className={styles.author}>
+          Daw-Chih Liou
+        </Link>
         <p>{socials.description}</p>
       </div>
     </article>

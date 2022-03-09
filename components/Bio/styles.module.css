@@ -1,0 +1,52 @@
+.wrap {
+  max-width: 720px;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.greeting {
+  width: 100%;
+}
+
+.greeting h1 {
+  font-weight: 800;
+  margin-bottom: 0;
+}
+
+.portrait {
+  vertical-align: middle;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.socials {
+  width: 100%;
+}
+
+.socials a {
+  color: var(--text-primary-color);
+  transition: color 0.15s ease;
+  margin-right: 1rem;
+}
+
+.socials a:last-child {
+  margin-right: 0;
+}
+
+.socials a:active,
+.socials a:hover {
+  color: rgba(0, 124, 240, 1);
+}

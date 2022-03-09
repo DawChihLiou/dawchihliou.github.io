@@ -1,7 +1,7 @@
 import React from 'react'
 import articles from '../../data/articles'
 import styles from '../../styles/Articles.module.css'
-import Link from 'next/link'
+import Link from '../../components/Link'
 import { FiRss } from 'react-icons/fi'
 import SeoContainer from '../../components/SeoContainer'
 import socials from '../../.generated/meta/socialsTs'
@@ -20,10 +20,22 @@ export default function Articles() {
         <main className={styles.main}>
           <div className={styles.banner}>
             <p>
-              If you enjoy the articles, please do{' '}
-              <a href="/rss.xml">
+              If you enjoy the articles, please{' '}
+              <Link href="/rss.xml">
                 subscribe to the RSS feed <FiRss />
-              </a>
+              </Link>
+            </p>
+          </div>
+          <div className={styles.description}>
+            <h1>I Write to Share What I Learned</h1>
+            <h2>Ship. Learn. Share. Repeat.</h2>
+            <p>
+              I enjoy writing about TypeScript, Rust, and web technology.
+              Especially the subtle things that unblock engineers' daily work
+              and inspire to strive for engineering excellence. Some of my
+              articles are featured in publications such as{' '}
+              <Link href={socials.medium}>Better Programming</Link> and{' '}
+              <Link href={socials.hackernoon}>Hacker Noon</Link>.
             </p>
           </div>
           <div className={styles.articles}>
@@ -35,23 +47,19 @@ export default function Articles() {
                 <article className={styles.description}>
                   <p className={styles.category}>{article.category}</p>
                   {article.external && (
-                    <a href={article.url} target="_blank" rel="noreferrer">
-                      {article.title}
-                    </a>
+                    <Link href={article.url}>{article.title}</Link>
                   )}
                   {!article.external && (
                     <Link href={article.url}>{article.title}</Link>
                   )}
                   {article.external && (
-                    <a
+                    <Link
                       href={article.publisherUrl}
-                      target="_blank"
-                      rel="noreferrer"
                       className={styles.caption}
                     >
                       {'Published on '}
                       <span>{article.publisher}</span>
-                    </a>
+                    </Link>
                   )}
                   <p>{article.description}</p>
                   <div>
@@ -61,9 +69,9 @@ export default function Articles() {
                       className={styles.avatar}
                       loading="lazy"
                     />
-                    <a href={article.social} className={styles.author}>
-                      <span>{article.author}</span>
-                    </a>
+                    <Link href={article.social} className={styles.author}>
+                      {article.author}
+                    </Link>
                   </div>
                 </article>
               </section>

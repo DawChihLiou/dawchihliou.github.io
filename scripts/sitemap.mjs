@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs'
 import { globby } from 'globby'
 import prettier from 'prettier'
+import socials from '../.generated/meta/socials.mjs'
 
 /**
  * Returns the ISO string of a given datetime.
@@ -48,7 +49,7 @@ async function generate() {
     .map(
       (path) => `
         <url>
-            <loc>https://dawchihliou.github.io${path}</loc>
+            <loc>${socials.home}${path}</loc>
             <lastmod>${getDateISOString()}</lastmod>
         </url>
       `
@@ -56,13 +57,10 @@ async function generate() {
 
   const sitemap = `
     <?xml version="1.0" encoding="UTF-8"?>
-    <urlset 
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-      xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" 
-      xmlns:xhtml="http://www.w3.org/1999/xhtml" 
-      xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" 
-      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
-      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+    <urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
     >
         ${urlTags.join('')}
     </urlset>
