@@ -35,6 +35,51 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Wasm Full Text Search
+
+🦀 + 🕸 = ❤️
+
+The Full Text Search in WebAssembly is aiming for minimizing bundle size and heavy computation on the client side. Make sure Cargo and the following tools are installed. 
+
+[Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+
+```bash
+curl https://sh.rustup.rs -sSf | sh
+```
+
+[`wasm-pack`](https://rustwasm.github.io/docs/wasm-pack/introduction.html)
+
+```bash
+cargo install wasm-pack
+```
+
+[`binaryen`](https://github.com/WebAssembly/binaryen)
+
+```bash
+brew install binaryen
+```
+
+[Twiggy](https://rustwasm.github.io/twiggy/index.html)
+
+```bash
+cargo install twiggy
+```
+
+### Building `wasm/fulltext-search`
+
+At the project root, run
+
+```bash
+# execute script with Cargo
+cargo run scripts/fulltext-search
+
+# or npm
+yarn fulltext-search
+```
+
+It will generate the WebAssembly and JavaScript glue code in `wasm/fulltext-search/pkg`.
+
+
 ## Available Scripts
 
 #### `yarn dev`
