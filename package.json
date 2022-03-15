@@ -16,7 +16,7 @@
     "github": "node scripts/github.mjs",
     "sitemap": "node scripts/sitemap.mjs",
     "rss": "node --experimental-json-modules scripts/rss.mjs",
-    "tinysearch": "node --experimental-json-modules scripts/tinysearch.mjs",
+    "fulltext-search": "node --experimental-json-modules scripts/fulltext-search/index.mjs",
     "prepare": "yarn meta && yarn image && yarn github",
     "lighthouse:dev": "dx-scripts lighthouse http://localhost:3000/",
     "lighthouse:prod": "dx-scripts lighthouse https://dawchihliou.github.io/",

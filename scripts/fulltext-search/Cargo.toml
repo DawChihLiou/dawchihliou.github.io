@@ -1,5 +1,5 @@
 [package]
-name = "fulltext_search_cli"
+name = "fulltext-search"
 version = "0.1.0"
 edition = "2021"
 

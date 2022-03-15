@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+  "scripts/fulltext-search",
+  "wasm/fulltext-search"
+]

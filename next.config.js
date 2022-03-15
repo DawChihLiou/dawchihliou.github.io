@@ -7,7 +7,7 @@ module.exports = withContentlayer()({
   // opt-in to SWC's JavaScript minification instead of Terser
   swcMinify: true,
 
-  webpack: function (config, options) {
+  webpack: function (config, { isServer }) {
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
@@ -19,8 +19,15 @@ module.exports = withContentlayer()({
       use: ['@svgr/webpack'],
     })
 
-    // wasm support
-    config.output.webassemblyModuleFilename = 'static/wasm/[modulehash].wasm'
+    // wasm support workaround
+    // https://github.com/vercel/next.js/issues/25852
+    if (isServer) {
+      config.output.webassemblyModuleFilename =
+        './../static/wasm/[modulehash].wasm'
+    } else {
+      config.output.webassemblyModuleFilename = 'static/wasm/[modulehash].wasm'
+    }
+
     // Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
     config.experiments = { asyncWebAssembly: true }
 

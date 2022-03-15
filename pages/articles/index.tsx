@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import articles from '../../data/articles'
 import styles from '../../styles/Articles.module.css'
 import Link from '../../components/Link'
 import { FiRss } from 'react-icons/fi'
 import SeoContainer from '../../components/SeoContainer'
 import socials from '../../.generated/meta/socialsTs'
-
-import * as wasm from '../../wasm/fulltext_search/core/pkg'
+import Search from '../../components/Search'
 
 export default function Articles() {
-  const [results, setResults] = useState<string[]>([])
-  useEffect(() => {
-    const results = wasm.search('rust next.js wasm', 5)
-    setResults(results)
-  }, [])
-
   return (
     <SeoContainer
       title="Daw-Chih's articles"
@@ -34,10 +27,6 @@ export default function Articles() {
               </Link>
             </p>
           </div>
-          <div>
-            <h1>Test</h1>
-            <p>{results.join(' | ')}</p>
-          </div>
           <div className={styles.description}>
             <h1>I Write to Share What I Learned</h1>
             <h2>Ship. Learn. Share. Repeat.</h2>
@@ -49,8 +38,9 @@ export default function Articles() {
               <Link href={socials.medium}>Better Programming</Link> and{' '}
               <Link href={socials.hackernoon}>Hacker Noon</Link>.
             </p>
+            <Search />
           </div>
-          <div className={styles.articles}>
+          <div>
             {articles.map((article) => (
               <section className={styles.grid} key={article.url}>
                 <div className={styles.date}>

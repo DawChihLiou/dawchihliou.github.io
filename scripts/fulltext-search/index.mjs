@@ -1,14 +1,16 @@
 import prettier from 'prettier'
 import { writeFileSync, mkdirSync, rmSync, existsSync } from 'fs'
-// import spawn from 'cross-spawn'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 import { allArticles } from '.contentlayer/data'
-import externalArticles from '../.generated/meta/externalArticles.mjs'
+import externalArticles from '../../.generated/meta/externalArticles.mjs'
 
-const outdir = '.generated/tinysearch'
+const outdir = '.generated/fulltext-search'
 const outfilename = 'index.json'
 
+/**
+ * Consolidate all articles and generate the index JSON file for full text search WebAssembly module.
+ */
 async function generate() {
   if (existsSync(outdir)) {
     rmSync(outdir, { recursive: true })
@@ -46,14 +48,6 @@ async function generate() {
   mkdirSync(outdir, { recursive: true })
 
   writeFileSync(`${outdir}/${outfilename}`, formatted)
-
-  // const { status } = spawn.sync('tinysearch', [`${outdir}/${outfilename}`], {
-  //   stdio: 'inherit',
-  // })
-
-  // if (status !== 0) {
-  //   console.error('tinysearch failed.')
-  // }
 }
 
 generate()

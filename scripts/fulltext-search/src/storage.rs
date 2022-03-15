@@ -1,5 +1,5 @@
 use anyhow::Result;
-use bincode::{deserialize, serialize, Result as BincodeResult};
+use bincode::{serialize, Result as BincodeResult};
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 use std::convert::From;
@@ -25,12 +25,6 @@ impl Storage {
   pub fn to_bytes(&self) -> BincodeResult<Vec<u8>> {
     let encoded: Vec<u8> = serialize(&self)?;
     Ok(encoded)
-  }
-
-  pub fn from_bytes(bytes: &[u8]) -> BincodeResult<Self> {
-    let decoded = deserialize(bytes)?;
-    let storage = Storage { filters: decoded };
-    Ok(storage)
   }
 }
 
