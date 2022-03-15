@@ -1,0 +1,9 @@
+[workspace]
+
+members = [
+  "scripts/fulltext-search",
+]
+
+exclude = [
+  "wasm/fulltext-search"
+]

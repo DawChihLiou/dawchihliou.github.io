@@ -1,0 +1,30 @@
+[package]
+name = "fulltext-search-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Daw-Chih Liou <dawochih.liou@gmail.com>"]
+description = "Full text search made by Rust and WebAssembly"
+license = "MIT"
+documentation = "https://github.com/DawChihLiou/dawchihliou.github.io/blob/main/README.md"
+homepage = "https://github.com/DawChihLiou/dawchihliou.github.io"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wee_alloc = "0.4"
+once_cell = "1.8"
+anyhow = "1.0"
+bincode = "1.3"
+serde = { version = "1.0", features = ["derive"] }
+
+[dependencies.wasm-bindgen]
+version = "0.2"
+features = ["serde-serialize"]
+
+[dependencies.xorf]
+version = "0.8"
+default-features = false 
+features = ["serde"]

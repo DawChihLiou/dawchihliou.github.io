@@ -41,3 +41,7 @@ public/rss.xml
 
 # contentlayer
 .contentlayer
+
+# wasm
+target
+storage
