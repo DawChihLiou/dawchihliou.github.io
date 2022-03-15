@@ -1,7 +1,12 @@
 [package]
-name = "fulltext_search_core"
+name = "fulltext-search-core"
 version = "0.1.0"
 edition = "2021"
+authors = ["Daw-Chih Liou <dawochih.liou@gmail.com>"]
+description = "Full text search made by Rust and WebAssembly"
+license = "MIT"
+documentation = "https://github.com/DawChihLiou/dawchihliou.github.io/blob/main/README.md"
+homepage = "https://github.com/DawChihLiou/dawchihliou.github.io"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
