@@ -45,14 +45,18 @@ fn build_post_hashmap(posts: Vec<Post>) -> HashMap<Id, Option<String>> {
 }
 
 fn build_filters(post_map: HashMap<Id, Option<String>>) -> Result<PostFilters> {
+  let stopwords: HashSet<String> = include_str!("../stopwords/en")
+    .split_whitespace()
+    .map(String::from)
+    .collect();
   let tokenized_posts: HashMap<Id, Option<HashSet<String>>> = post_map
     .into_iter()
-    .map(|(id, content)| (id, content.map(|body| tokenize(&body))))
+    .map(|(id, content)| (id, content.map(|body| tokenize(&body, &stopwords))))
     .collect();
   let mut filters = vec![];
 
   for (id, body_tokens) in tokenized_posts {
-    let tokenized_title = tokenize(&id.0);
+    let tokenized_title = tokenize(&id.0, &stopwords);
     let tokens: Vec<String> = if let Some(t) = body_tokens {
       t.union(&tokenized_title).cloned().collect()
     } else {
@@ -65,11 +69,12 @@ fn build_filters(post_map: HashMap<Id, Option<String>>) -> Result<PostFilters> {
   Ok(filters)
 }
 
-fn tokenize(str: &str) -> HashSet<String> {
+fn tokenize(str: &str, stopwords: &HashSet<String>) -> HashSet<String> {
   strip_markdown(str)
     .split_whitespace()
     .filter(|word| !word.trim().is_empty())
     .map(str::to_lowercase)
+    .filter(|word| !stopwords.contains(word))
     .collect()
 }
 
@@ -83,7 +88,9 @@ mod test {
     let post = Post {
       title: String::from("This is a title. Don't care - A test title"),
       url: String::from("https://www.thisisaurl.io"),
-      body: Some(String::from("Hello world!")),
+      body: Some(String::from(
+        "# Hello World!\n## __Subtitle Here__\n```console.log('code block');```",
+      )),
     };
     let mut map = HashMap::new();
     map.insert((post.title, post.url), post.body);
@@ -91,11 +98,19 @@ mod test {
     let filters = build_filters(map).unwrap();
     let (_id, filter) = filters.first().unwrap();
 
+    // no empty string
     assert!(!filter.contains(&String::from("")));
 
+    // no stop words
+    assert!(!filter.contains(&String::from("this")));
+    assert!(!filter.contains(&String::from("don't")));
+
+    // no markdown
+    assert!(!filter.contains(&String::from("##")));
+    assert!(!filter.contains(&String::from("```")));
+    assert!(!filter.contains(&String::from("__")));
+
     assert!(filter.contains(&String::from("-")));
-    assert!(filter.contains(&String::from("this")));
     assert!(filter.contains(&String::from("world!")));
-    assert!(filter.contains(&String::from("don't")));
   }
 }
