@@ -37,8 +37,14 @@ async function fetchUserRepos(username, numberOfRepos) {
     .filter((resp) => resp.status === 'fulfilled')
     .map((resp) => resp.value)
     .reduce((acc, repos) => [...acc, ...repos])
-    .filter((repo) => repo.stargazers_count > 0)
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    .filter((repo) => repo.stargazers_count > 0 || repo.forks_count > 0)
+    .sort(
+      // prioritize stars in the list
+      (a, b) =>
+        b.stargazers_count * 3 +
+        b.forks_count -
+        (a.stargazers_count * 3 + a.forks_count)
+    )
 
   return repos.map((repo) => ({
     id: repo.id,
