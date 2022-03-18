@@ -1,3 +1,5 @@
+#![allow(clippy::unused_unit)]
+
 use once_cell::sync::Lazy;
 use std::cmp::Reverse;
 use wasm_bindgen::prelude::*;
@@ -6,13 +8,13 @@ mod filter;
 
 use crate::filter::{Id, PostFilters, Score, Storage, XorfProxy};
 
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 static FILTERS: Lazy<PostFilters> = Lazy::new(|| {
     let bytes = include_bytes!("../../../.generated/fulltext-search/storage");
     Storage::from_bytes(bytes).unwrap().filters
 });
-
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 fn tokenize(query: &str) -> Vec<String> {
     query
@@ -24,11 +26,11 @@ fn tokenize(query: &str) -> Vec<String> {
 }
 
 /// weight title more than content body
-fn score(title: &String, search_terms: &Vec<String>, filter: &XorfProxy) -> usize {
-    let tokens = tokenize(&title);
+fn score(title: &str, search_terms: &[String], filter: &XorfProxy) -> usize {
+    let tokens = tokenize(title);
     let score = search_terms
         .iter()
-        .filter(|term| tokens.contains(&term))
+        .filter(|term| tokens.contains(term))
         .map(String::from)
         .count();
     score * 5 + filter.score(search_terms)
@@ -40,7 +42,7 @@ pub fn search(query: String, per_page: usize) -> JsValue {
 
     let mut matches: Vec<(&Id, usize)> = FILTERS
         .iter()
-        .map(|(id, filter)| (id, score(&id.0, &terms, &filter)))
+        .map(|(id, filter)| (id, score(&id.0, &terms, filter)))
         .filter(|(_id, score)| score > &0)
         .collect();
 

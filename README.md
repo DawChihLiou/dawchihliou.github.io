@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 🦀 + 🕸 = ❤️
 
-The Full Text Search in WebAssembly is aiming for minimizing bundle size and heavy computation on the client side. Make sure Cargo and the following tools are installed. 
+The Full Text Search in WebAssembly is aiming for minimizing bundle size and heavy computation on the client side. Make sure Cargo and the following tools are installed.
 
 [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 
@@ -79,6 +79,13 @@ yarn fulltext-search
 
 It will generate the WebAssembly and JavaScript glue code in `wasm/fulltext-search/pkg`.
 
+To lint the script, run
+
+```bash
+cargo clippy
+```
+
+More information about Clippy, please check out [its repository](https://github.com/rust-lang/rust-clippy).
 
 ## Available Scripts
 
@@ -102,11 +109,6 @@ to export the app to static HTML, which can be run standalone without the need o
 
 to deploy the static app from `yarn export` to github pages. The deployment is triggered by merging into `gh-pages` branch.
 
-## Learn More about Next.js
+#### `yarn fulltext-search`
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+to generate `fulltext-search` WebAssembly module.

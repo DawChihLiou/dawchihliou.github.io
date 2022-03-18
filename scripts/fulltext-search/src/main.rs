@@ -33,7 +33,7 @@ fn main() -> Result<()> {
         .output()
         .with_context(|| format!("Failed to run {:?}", opt_cmd))?;
 
-    println!("🕵️ Profiling Wasm code size...");
+    println!("🦀 Profiling Wasm code size...");
 
     let mut twiggy_cmd = Command::new("twiggy");
     twiggy_cmd
@@ -46,6 +46,6 @@ fn main() -> Result<()> {
         .output()
         .with_context(|| format!("Failed to run {:?}", twiggy_cmd))?;
 
-    println!("✨ All Done!");
+    println!("🦀 All Done!");
     Ok(())
 }
