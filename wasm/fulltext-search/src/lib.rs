@@ -46,8 +46,7 @@ pub fn search(query: String, per_page: usize) -> JsValue {
         .filter(|(_id, score)| score > &0)
         .collect();
 
-    // highest score on top
-    matches.sort_by_key(|(_, score)| Reverse(score));
+    matches.sort_by_key(|key| Reverse(key.1));
 
     let results: Vec<&Id> = matches
         .into_iter()
