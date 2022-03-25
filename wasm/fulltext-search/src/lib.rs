@@ -25,15 +25,15 @@ fn tokenize(query: &str) -> Vec<String> {
         .collect()
 }
 
-/// weight title more than content body
 fn score(title: &str, search_terms: &[String], filter: &XorfProxy) -> usize {
     let tokens = tokenize(title);
-    let score = search_terms
+    let title_score = search_terms
         .iter()
         .filter(|term| tokens.contains(term))
         .map(String::from)
         .count();
-    score * 5 + filter.score(search_terms)
+    // weight title more than content body
+    title_score * 5 + filter.score(search_terms)
 }
 
 #[wasm_bindgen]
@@ -46,7 +46,8 @@ pub fn search(query: String, per_page: usize) -> JsValue {
         .filter(|(_id, score)| score > &0)
         .collect();
 
-    matches.sort_by_key(|key| Reverse(key.1));
+    // highest score on top
+    matches.sort_by_key(|(_, score)| Reverse(score));
 
     let results: Vec<&Id> = matches
         .into_iter()

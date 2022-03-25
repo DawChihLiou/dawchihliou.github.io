@@ -24,11 +24,11 @@ mod test {
 
   #[test]
   fn test_read() {
-    let raw = String::from("[{\"title\":\"this is a title\",\"url\":\"https://www.thisisaurl.io\",\"body\":\"Hello world!\"}]");
+    let raw = "[{\"title\":\"this is a title\",\"url\":\"https://www.thisisaurl.io\",\"body\":\"Hello world!\"}]".to_owned();
     let expected = Post {
-      title: String::from("this is a title"),
-      url: String::from("https://www.thisisaurl.io"),
-      body: Some(String::from("Hello world!")),
+      title: "this is a title".to_owned(),
+      url: "https://www.thisisaurl.io".to_owned(),
+      body: Some("Hello world!".to_owned()),
     };
     let deserialized = read(raw);
     if let Ok(posts) = deserialized {
