@@ -5,8 +5,10 @@ use std::cmp::Reverse;
 use wasm_bindgen::prelude::*;
 
 mod filter;
+mod storage;
 
-use crate::filter::{Id, PostFilters, Score, Storage, XorfProxy};
+use crate::filter::{Id, PostFilters, Score, XorfProxy};
+use crate::storage::Storage;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;

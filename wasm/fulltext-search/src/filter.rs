@@ -1,5 +1,3 @@
-use bincode::{deserialize, Result};
-use serde::{Deserialize, Serialize};
 use std::collections::hash_map::DefaultHasher;
 use xorf::{Filter, HashProxy, Xor8};
 
@@ -18,24 +16,5 @@ pub trait Score {
 impl Score for XorfProxy {
   fn score(&self, terms: &[String]) -> usize {
     terms.iter().filter(|term| self.contains(term)).count()
-  }
-}
-
-#[derive(Serialize, Deserialize)]
-pub struct Storage {
-  pub filters: PostFilters,
-}
-
-impl From<PostFilters> for Storage {
-  fn from(filters: PostFilters) -> Self {
-    Storage { filters }
-  }
-}
-
-impl Storage {
-  pub fn from_bytes(bytes: &[u8]) -> Result<Self> {
-    let decoded = deserialize(bytes)?;
-    let storage = Storage { filters: decoded };
-    Ok(storage)
   }
 }
