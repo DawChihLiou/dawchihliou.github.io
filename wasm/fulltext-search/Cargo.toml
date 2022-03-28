@@ -28,3 +28,7 @@ features = ["serde-serialize"]
 version = "0.8"
 default-features = false 
 features = ["serde"]
+
+[profile.release]
+opt-level = 's' 
+lto = true

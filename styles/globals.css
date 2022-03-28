@@ -108,7 +108,7 @@ pre {
 
 :not(pre) > code {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.85em;
   background: var(--code-block-color);
   border-radius: 0.25rem;
   padding: 0.125rem 0.25rem;
@@ -178,4 +178,15 @@ body.dark svg rect {
 
 .rounded {
   border-radius: 0.5rem;
+}
+
+.centered {
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .centered {
+    width: 75%;
+  }
 }

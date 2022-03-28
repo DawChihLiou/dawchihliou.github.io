@@ -1,0 +1,221 @@
+---
+title: 'I Built A Snappy Static Full-text Search with WebAssembly, Rust, Next.js, and Xor Filter'
+publishedAt: 'March 28, 2022'
+description: ''
+cover: '/optimized/articles/wasm-fulltext-search/hero.webp'
+category: 'Rust'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+---
+
+I always knew that I wanted a full-text search feature in my [portfolio](https://dawchihliou.github.io) so the visitors could conveniently look for the content they're interested in. After [migrating to Contentlayer](https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer), it doesn't seemed to be so far-fetched anymore. So I started exploring🚀
+
+## I Was Inspired by `tinysearch`: A WebAssembly Full-text Search Engine
+
+After some researching, I found a search engine called [`tinysearch`](https://github.com/tinysearch/tinysearch). It's static search engine built with [Rust](https://www.rust-lang.org) and [WebAssembly](https://webassembly.org). The author Matthias Endler wrote [an amazing blog post](https://endler.dev/2019/tinysearch) about how `tinysearch` came about.
+
+I love the idea of building a minimalistic search engine at compile time and shipping it in optimized low-level code to the browsers. So I decided to use `tinysearch` as the blueprint and write my own search engine.
+
+_I highly recommend reading [`tinysearch`](https://github.com/tinysearch/tinysearch)'s codebase. It's very well-written. My search engine's implementation is simplified version of it. The core logic is the same._
+
+## What Goes into The Snappy Full-text Search Engine
+
+## What are Xor Filters
+
+[Xor filters](https://arxiv.org/abs/1912.08258) are relatively new data structures that allow us to estimate whether an value exists or not. It's very fast and memory efficient so it's suitable for the full-text search.
+
+It stores fingerprints(L-bit numbers) of input values [in a specific way](https://web.stanford.edu/class/archive/cs/cs166/cs166.1216/lectures/13/Slides13.pdf#page=49). When looking for whether a value exists in the filter, it checks if the fingerprint of the value exists.
+
+Xor filters have a couple of trade-offs:
+
+- Xor filters are probabilistic and there's a chance false positive can happen.
+- Xor filters are not able to estimate partial values, so in our use case, the full-text search will only be able to search for complete words.
+
+<img
+  src="/articles/wasm-fulltext-search/screen-recording.gif"
+  alt="Search demo"
+  width="30%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Setting up Next.js for WebAssembly
+
+```js:next.config.js
+webpack: function (config, { isServer }) {
+  if (isServer) {
+    config.output.webassemblyModuleFilename =
+      './../static/wasm/[modulehash].wasm'
+  } else {
+    config.output.webassemblyModuleFilename = 'static/wasm/[modulehash].wasm'
+  }
+
+  config.experiments = { asyncWebAssembly: true }
+
+  return config
+},
+```
+
+## Building The Script
+
+- Read the post index file.
+- Build one xor filter per post.
+- Serialize the filters in a storage file. The Wasm will deserialize the filters in the storage file to build the search function.
+- Run command to build the Wasm with `wasm-pack`.
+
+## Building The WebAssembly
+
+## Using The WebAssembly in Your React Component
+
+```ts:components/Search.tsx
+import React, { useState, useCallback, ChangeEvent, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+
+type Title = string;
+type Url = string;
+type SearchResult = [Title, Url][];
+
+const Search = dynamic({
+  loader: async () => {
+    const wasm = await import('../../wasm/fulltext-search/pkg')
+
+    return () => {
+      const [term, setTerm] = useState('')
+      const [results, setResults] = useState<SearchResult>([])
+
+      const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setTerm(e.target.value)
+      }, [])
+
+      useEffect(() => {
+        const pending = wasm.search(term, 5)
+        setResults(pending)
+      }, [term])
+
+      return (
+        <div>
+          <input
+            value={term}
+            onChange={onChange}
+            placeholder="🔭 search..."
+          />
+          {results.map(([title, url]) => (
+            <a key={url} href={url}>{title}</a>
+          ))}
+        </div>
+      )
+    }
+  },
+})
+
+export default Search
+```
+
+## Tuning The Code Size
+
+Original wasm file size: 114.56KB
+
+```bash
+Shallow Bytes  │ Shallow % │ Item
+───────────────┼───────────┼─────────────────────
+        117314 ┊   100.00% ┊ Σ [1670 Total Rows]
+```
+
+```diff:Cargo.toml
+[profile.release]
++ opt-level = 's'
++ lto = true
+```
+
+```bash
+Shallow Bytes  │ Shallow % │ Item
+───────────────┼───────────┼─────────────────────
+        111319 ┊   100.00% ┊ Σ [1604 Total Rows]
+```
+
+```diff:wasm/fulltext-search/src/lib.rs
++ #[global_allocator]
++ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+```
+
+```bash
+Shallow Bytes  │ Shallow % │ Item
+───────────────┼───────────┼─────────────────────
+        100483 ┊   100.00% ┊ Σ [1625 Total Rows]
+```
+
+```diff:scripts/fulltext-search/src/main.rs
++ let mut opt_cmd = Command::new("wasm-opt");
++     opt_cmd
++         .arg("-Oz")
++         .arg("-o")
++         .arg("wasm/fulltext-search/pkg/fulltext_search_core_bg.wasm")
++         .arg("wasm/fulltext-search/pkg/fulltext_search_core_bg.wasm")
++         .stderr(Stdio::inherit())
++         .stdout(Stdio::inherit())
++         .output()?;
+```
+
+```bash
+Shallow Bytes  │ Shallow % │ Item
+───────────────┼───────────┼─────────────────────
+        100390 ┊   100.00% ┊ Σ [1625 Total Rows]
+```
+
+Trimmed 14.4% off.
+
+- 98.04 KB raw wasm size
+- 45.92 KB gzip
+
+## Final Thoughts
+
+## References
+
+- Article: [A Tiny, Static, Full-Text Search Engine using Rust and WebAssembly - Matthias Endler](https://endler.dev/2019/tinysearch)
+- Article: [Writing a full-text search engine using Bloom filters - Stavros Korokithakis](https://www.stavros.io/posts/bloom-filter-search-engine/)
+- Article: [Xor Filters: Faster and Smaller Than Bloom Filters - Daniel Lemire](https://lemire.me/blog/2019/12/19/xor-filters-faster-and-smaller-than-bloom-filters/)
+- Article: [Shrinking .wasm Code Size - The Rust and WebAssembly Working Group](https://rustwasm.github.io/docs/book/reference/code-size.html)
+- Article: [Building Better Next.js Static Sites with MDX and Contentlayer - Daw-Chih Liou](https://dawchihliou.github.io/articles/build-better-nextjs-static-sites-with-mdx-and-contentlayer)
+- Website: [Xor Filters: Faster and Smaller Than Bloom and Cuckoo Filters](https://arxiv.org/abs/1912.08258)
+- Website: [Daw-Chih Liou's Portfolio](https://dawchihliou.github.io)
+- Website: [Meilisearch](https://www.meilisearch.com)
+- Website: [Typesense](https://typesense.org)
+- Website: [Algolia](https://www.algolia.com)
+- Website: [Elasticlunr.js](http://elasticlunr.com)
+- Website: [Rust](https://www.rust-lang.org)
+- Website: [WebAssembly](https://webassembly.org)
+- Website: [MDN WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)
+- Lecture: [Approximate Membership Queries - Stanford](https://web.stanford.edu/class/archive/cs/cs166/cs166.1216/lectures/13/Slides13.pdf#page=49)
+- Wiki: [Full-text Search](https://en.wikipedia.org/wiki/Full-text_search)
+- GitHub: [Next.js & WebAssembly example](https://github.com/vercel/next.js/tree/canary/examples/with-webassembly)
+- GitHub: [Minimizing Rust Binary Size](https://github.com/johnthagen/min-sized-rust)
+- Github: [tinysearch](https://github.com/tinysearch/tinysearch)
+- GitHub: [Meilisearch](https://github.com/meilisearch/meilisearch)
+- GitHub: [xorf](https://github.com/ayazhafiz/xorf)
+- GitHub: [wasm-pack](https://github.com/rustwasm/wasm-pack)
+- GitHub: [Binaryen](https://github.com/WebAssembly/binaryen)
+- GitHub: [Twiggy](https://github.com/rustwasm/twiggy)
+- GitHub: [Clippy](https://github.com/rust-lang/rust-clippy)
+- GitHub: [once_cell](https://github.com/matklad/once_cell)
+- GitHub: [Bincode](https://github.com/bincode-org/bincode)
+- GitHub: [wee_alloc](https://github.com/rustwasm/wee_alloc)
+- GitHub: [Serde](https://github.com/serde-rs/serde)
+- GitHub: [Anyhow](https://github.com/dtolnay/anyhow)
+- GitHub: [Contentlayer](https://github.com/contentlayerdev/contentlayer)
+- GitHub: [FlexSearch](https://github.com/nextapps-de/flexsearch)
+- GitHub: [MiniSearch](https://github.com/lucaong/minisearch)
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Read the next article: [How to Plan A Project as A Principal Software Engineer: A Human-centered Approach](/articles/how-to-plan-a-project-as-a-principal-software-engineer)
+
+Happy coding!
