@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 26 Mar 2022 07:01:26 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 29 Mar 2022 19:50:48 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Sat, 26 Mar 2022 07:01:26 GMT</pubDate>
+        <pubDate>Tue, 29 Mar 2022 19:50:48 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[I Built A Snappy Static Full-text Search with WebAssembly, Rust, Next.js, and Xor Filters]]></title>
+            <description><![CDATA[After migrating to Contentlayer, I started exploring how to use the content data to roll out a search feature for my portfolio. Inspired by some of the amazing open-source projects, I built my own full-text search engine in Rust and WebAssembly. It is fast, lightweight, and tons of fun to build!]]></description>
+            <link>https://dawchihliou.github.io/articles/i-built-a-snappy-full-text-search-with-webassembly-rust-nextjs-and-xor-filters</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/i-built-a-snappy-full-text-search-with-webassembly-rust-nextjs-and-xor-filters</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Wed, 30 Mar 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Plan A Project as A Principal Software Engineer: A Human-centered Approach]]></title>
             <description><![CDATA[Operating as a principal software engineer is all about bringing engineering, business, and people close together. There are many things to consider in terms of time budget, resources, and even your own involvement when it comes to planning. I want to share with you how I think about the important questions to ask in the planning phase of the project.]]></description>
