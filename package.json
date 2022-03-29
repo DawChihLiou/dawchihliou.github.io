@@ -10,7 +10,7 @@
     "export": "next export",
     "lint": "eslint '**/*.{js,ts,jsx,tsx}'",
     "image": "yarn image:optimization",
-    "image:optimization": "dx-scripts image public/articles/**/*.png public/raw/*.png -o public/optimized --png --gif",
+    "image:optimization": "dx-scripts image public/articles/**/*.png public/raw/*.png -o public/optimized --png",
     "image:shields": "node scripts/shields.mjs",
     "meta": "node scripts/meta.mjs",
     "github": "node scripts/github.mjs",

@@ -184,9 +184,3 @@ body.dark svg rect {
   display: block;
   margin: 0 auto;
 }
-
-@media (max-width: 576px) {
-  .centered {
-    width: 75%;
-  }
-}
