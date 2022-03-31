@@ -1,5 +1,12 @@
 undefined
 
+## 3.0.18 (2022-03-31)
+
+
+### Bug Fixes
+
+* rebuild full-text search ([d2e540a](https://github.com/DawChihLiou/dawchihliou.github.io/commit/d2e540a181339a353731e4e7a1631299888fe434))undefined
+
 ## 3.0.17 (2022-03-29)undefined
 
 ## 3.0.16 (2022-03-26)undefined
