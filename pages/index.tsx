@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Script from 'next/script'
 import styles from '../styles/Home.module.css'
 import Hero from '../components/Hero'
 import Intro from '../components/Intro'
@@ -28,14 +29,13 @@ export default function Home() {
             name="google-site-verification"
             content="XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8"
           />
-          {/* plausible analytics */}
-          <script
-            defer
-            data-domain="dawchihliou.github.io"
-            src="https://plausible.io/js/plausible.outbound-links.js"
-          ></script>
         </Head>
-
+        {/* plausible analytics */}
+        <Script
+          strategy="afterInteractive"
+          data-domain="dawchihliou.github.io"
+          src="https://plausible.io/js/plausible.outbound-links.js"
+        />
         <main className={styles.main}>
           <Hero />
           <Intro />

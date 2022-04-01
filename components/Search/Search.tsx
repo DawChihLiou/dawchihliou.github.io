@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, useEffect } from 'react'
+import React, { useState, useCallback, ChangeEvent, useTransition } from 'react'
 import dynamic from 'next/dynamic'
 import { FiExternalLink, FiFileText } from 'react-icons/fi'
 import Link from '../Link'
@@ -11,33 +11,29 @@ const Search = dynamic({
     const wasm = await import('../../wasm/fulltext-search/pkg')
 
     return function SearchComponent() {
-      const [term, setTerm] = useState('')
+      const [query, setQuery] = useState('')
       const [results, setResults] = useState<[string, string][]>([])
+      const [, startTransition] = useTransition()
 
       const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setTerm(e.target.value)
+        setQuery(e.target.value)
+        startTransition(() => {
+          const pending = wasm.search(e.target.value, 5)
+          setResults(pending)
+        })
       }, [])
-
-      const search = useCallback((term: string): [string, string][] => {
-        return wasm.search(term, 5)
-      }, [])
-
-      useEffect(() => {
-        const pending = search(term)
-        setResults(pending)
-      }, [search, term])
 
       return (
         <div className={styles.wrapper}>
           <input
-            value={term}
+            value={query}
             onChange={onChange}
             placeholder="🔭 Type anything to search for articles..."
             className={styles.search}
           />
 
           <div className={styles.result}>
-            {term && (
+            {query && (
               <p className={styles.resultTitle}>
                 {results.length === 0
                   ? 'No result yet 🤷'
