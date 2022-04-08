@@ -1,6 +1,5 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import { FiMoon, FiSun, FiToggleLeft } from 'react-icons/fi'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styles from './DarkmodeSwitch.module.css'
 import { SchemeContext } from '../SchemeProvider'
 
@@ -14,10 +13,6 @@ const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({
   tabIndex = 0,
 }) => {
   const { scheme, setScheme } = useContext(SchemeContext)
-
-  const autoRef = useRef(null)
-  const lightRef = useRef(null)
-  const darkRef = useRef(null)
 
   const switchScheme = () => {
     let preference
