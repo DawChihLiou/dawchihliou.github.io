@@ -3,7 +3,7 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
+  plugins: ['import', 'jsx-a11y', 'react', 'react-hooks', 'testing-library'],
 
   env: {
     browser: true,
@@ -28,6 +28,11 @@ module.exports = {
   },
 
   overrides: [
+    {
+      // Only uses Testing Library lint rules in test files
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
     {
       files: ['**/*.ts?(x)'],
       parser: '@typescript-eslint/parser',
