@@ -1,5 +1,12 @@
 undefined
 
+# 3.1.0 (2022-04-08)
+
+
+### Features
+
+* static full-text search in wasm: add publishers ([2d8f563](https://github.com/DawChihLiou/dawchihliou.github.io/commit/2d8f56366254654b09d03f0773bf1e0ed266d53f))undefined
+
 ## 3.0.19 (2022-04-01)undefined
 
 ## 3.0.18 (2022-03-31)
