@@ -28,12 +28,6 @@ export default function Home() {
             name="google-site-verification"
             content="XzmO5hA3kc7-91MB68LpYNOvXxLasSYbiecgmnWuFL8"
           />
-          {/* plausible analytics */}
-          <script
-            defer
-            data-domain="dawchihliou.github.io"
-            src="https://plausible.io/js/plausible.outbound-links.js"
-          ></script>
         </Head>
 
         <main className={styles.main}>
