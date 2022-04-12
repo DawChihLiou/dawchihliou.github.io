@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, useEffect } from 'react'
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { FiExternalLink, FiFileText } from 'react-icons/fi'
 import Link from '../Link'
@@ -34,11 +34,15 @@ const Search = dynamic({
             onChange={onChange}
             placeholder="🔭 Type anything to search for articles..."
             className={styles.search}
+            data-testid="search-input"
           />
 
           <div className={styles.result}>
             {term && (
-              <p className={styles.resultTitle}>
+              <p
+                className={styles.resultTitle}
+                data-testid="search-result-message"
+              >
                 {results.length === 0
                   ? 'No result yet 🤷'
                   : 'Search results ✨'}
@@ -48,7 +52,11 @@ const Search = dynamic({
             {results.map(([title, url]) => (
               <div key={url} className={styles.list}>
                 {isSameSite(url) ? <FiFileText /> : <FiExternalLink />}
-                <Link href={url} className={styles.link}>
+                <Link
+                  href={url}
+                  className={styles.link}
+                  data-testid="search-result-item"
+                >
                   {title}
                 </Link>
               </div>
