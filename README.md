@@ -112,3 +112,11 @@ to deploy the static app from `yarn export` to github pages. The deployment is t
 #### `yarn fulltext-search`
 
 to generate `fulltext-search` WebAssembly module.
+
+#### `yarn test`
+
+to run unit testing with [Jest](https://jestjs.io). To run unit tests in CI, run `yarn test:ci`.
+
+#### `yarn test:e2e`
+
+to run end-to-end testing with [Playwright](https://playwright.dev). To run unit tests in CI, run `yarn test:e2e:ci`.

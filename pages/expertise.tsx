@@ -17,7 +17,7 @@ export default function Expertise() {
       imageHeight="682"
     >
       <main className={styles.main}>
-        <h1>Build to win</h1>
+        <h1>Build to Win</h1>
         <h2>How I can help you stand out</h2>
         <DevProcess />
         <SkillSet />
