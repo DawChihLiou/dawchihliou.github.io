@@ -16,7 +16,7 @@ export default function Contact() {
       imageHeight="682"
     >
       <main className={styles.main}>
-        <h1>Get In Touch</h1>
+        <h1>Get in Touch</h1>
         <h2>Let's build something together</h2>
         <ContactSection />
         <Section heading="Transparency">
