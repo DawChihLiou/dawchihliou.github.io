@@ -176,6 +176,26 @@ body.dark svg rect {
   color: var(--text-secondary-color);
 }
 
+.article-content table {
+  border: 1px solid var(--text-primary-color);
+  border-radius: 1rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.article-content table tr {
+  border-bottom: 1px solid var(--text-primary-color);
+}
+
+.article-content table th {
+  padding: 0.5rem 1rem;
+  min-width: 8rem;
+}
+
+.article-content table td {
+  padding: 0.5rem 1rem;
+}
+
 .rounded {
   border-radius: 0.5rem;
 }
