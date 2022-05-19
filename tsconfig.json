@@ -14,8 +14,17 @@
     "jsx": "preserve",
     "incremental": true,
     "noEmit": true,
-    "types": ["react/next", "react-dom/next"]
+    "types": ["react/next", "react-dom/next"],
+    "baseUrl": ".",
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".contentlayer/generated"
+  ],
   "exclude": ["node_modules", "**/*.mjs"]
 }

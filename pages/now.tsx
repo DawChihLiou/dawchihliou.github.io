@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { allOtherPages } from '.contentlayer/data'
+import { allOtherPages } from 'contentlayer/generated'
 import type { OtherPage } from '.contentlayer/types'
 import components from '../components/MDXComponents'
 import SeoContainer from '../components/SeoContainer'
