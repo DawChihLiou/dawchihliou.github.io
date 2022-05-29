@@ -1,0 +1,420 @@
+---
+title: 'Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering'
+publishedAt: 'May 30, 2022'
+description: "React 18 released the highly anticipated concurrent features. In this article, we are diving into a 3D visualization and discuss how to optimize its performance step by step with React 18's concurrent rendering."
+cover: '/optimized/articles/concurrent-react-18/hero.webp'
+category: 'Rust'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+- 🚀 Concurrent rendering addresses the performance problem with rendering large UI updates while keeping the UI responsive.
+- 🧑‍🔬 We'll use 3D rendering in the browser to stress test React 18.
+- ⚖️ We'll look at the typical approaches alongside concurrent rendering and discuss their pros and cons.
+
+---
+
+In this article, we are diving into a 3D visualization and discuss how to optimize its performance step by step with React 18's concurrent rendering. Here's the sneak peek.
+
+<video controls>
+  <source src="/articles/concurrent-react-18/demo.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+## Concurrent Rendering with useTransition
+
+[React 18 introduces the concurrent features](https://reactjs.org/blog/2022/03/29/react-v18.html). The core idea is to classify state updates into two categories:
+
+- **Urgent updates**: they provide responsive feedback to user interactions, like typing and clicking.
+- **Transition updates**: they provide non-urgent UI transitions, like displaying dataset.
+
+The purpose is to create a snappier and more responsive experience for the users.
+
+Before React 18, all updates are considered urgent and a simple click or typing can cause the screen to freeze when there's a larger rending. So in React 18, by deferring non-urgent updates to urgent updates, users are able to receive immediate feedback from their interaction while React is working on the non-urgent updates in the background and reflect the result when ready.
+
+React Working Group published a couple great articles about transition updates:
+
+- [New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
+- [Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+
+According to the working group, the concurrent rendering is able to perform the following things:
+
+- **Yielding**: React will periodically stop working and let the browser fire one or more side effects.
+- **Interrupting**: When React detects new urgent updates, it will interrupt and pause non-urgent updates and start working on incoming urgent updates so the page can stay responsive.
+- **Skipping old results**: React will discard outdated transition updates and only render with the newest state.
+
+## 3D Rendering Demo Overview
+
+In order to create heavy computations for rendering, I built a 3D visualization to show the connections between a GitHub user and the users she's connected with on GitHub.
+
+The technology includes:
+
+- [three.js](https://github.com/mrdoob/three.js/)
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [React 18](https://reactjs.org/blog/2022/03/29/react-v18.html)
+
+The UI looks like this:
+
+<img
+  src="/optimized/articles/concurrent-react-18/screenshot.webp"
+  alt="Demo screen shot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The components we will be discussing today includes:
+
+- **Search Bar**: to search for a GitHub username and fetch the user info from the GitHub GraphQL API.
+- **Scene**: to visualize the connections between the user and her connections in on a 3D globe.
+
+> **You can find [the repository on GitHub](https://github.com/DawChihLiou/concurrent-react-stress-testing) and [the demo on Netlify](https://sweaty-concurrent-react.netlify.app).**
+>
+> _Please note that the demo might crash due to a task timeout. The timeout is caused by the slow experimental API call to fetch the coordinates of the cities. If you'd like to interact with the demo, it's recommended to fork the repository and run the development server locally._
+
+As we type into the search bar, you'll see an increasing amount of stars in the scene to simulate the high rendering demand on the UI. The amount of stars is `100,000 * inputValue.length`. We'll use it to stress test concurrent rendering.
+
+## The Problem
+
+Let's start with our base case with the most basic implementation. The outcome looks like this:
+
+<video controls>
+  <source src="/articles/concurrent-react-18/perf-sync.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+_You can see my typing on the bottom left corner of the video._
+
+As I was typing, the search bar was frozen. It didn't display the input value until the very end. Not just the search bar, the scene was frozen too. The stars didn't get rendered until I finished typing. Ideally, we want to be able to observe immediate feedback from our typing.
+
+Let's look into the performance together. We'll slow down the CPU by 4x and run a performance profiling.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-sync.webp"
+  alt="Performance profile for unoptimized rendering"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+You can see the big chunks of tasks with keypress event in the flame chart. With each keypress, React computes the next rendering for the SearchBar and the Scene. As we see in the chart, the longest task takes almost 0.8 seconds to complete. That's why the page feels so slow.
+
+### So, what's happening?
+
+In the Home page component, the SearchBar listens to the keypress event and update the `username` when changes happens.
+
+```tsx
+const Home: NextPage = () => {
+  const [username, setUsername] = useState<string>('')
+
+  const vertices = useMemo(() => computeVertices(username.length), [username])
+
+  const handleChange = (username: string) => {
+    setUsername(username)
+  }
+
+  return (
+    <>
+      <SearchBar value={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </>
+  )
+}
+```
+
+Whenever there's a `username` update, React recomputes `vertices` by calling `computeVertices()` and pass the result in to the Scene component to render the stars. Since the number of vertices is `100,000 * username.length`, coupling the two state updates together is a very expensive rendering cycle.
+
+## How did We Fix It Before React 18?
+
+Ideally, we want to see what we typed in the search bar immediately. Knowing that updating both states in the same rendering cycle takes too long, we can simply split the two updates so that SearchBar and Scene gets rendered separately.
+
+Let's first add a new state for the SearchBar:
+
+```tsx
+type FastSearchBarProps = {
+  defaultValue: string
+  onChange: (value: string) => void
+}
+
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  // new state designated to SearchBar
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = (value: string) => {
+    // update input value
+    setValue(value)
+
+    // update vertices
+    onChange(value)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+
+const Home: NextPage = () => {
+  const [username, setUsername] = useState<string>('')
+
+  const vertices = useMemo(() => computeVertices(username.length), [username])
+
+  const handleChange = (username: string) => {
+    setUsername(username)
+  }
+
+  return (
+    <>
+      <FastSearchBar defaultValue={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </>
+  )
+}
+```
+
+Now we have a `value` state for SearchBar and a `username` state for computing `vertices`. We'll need additional work to separate the renderings because React will batch the state updates together in the same event to avoid additional rendering. Let's take a look at some of the typical approaches.
+
+### Approach #1: setTimeout
+
+We can simply defer the slower update by adding setTimeout to put the it in the event loop.
+
+```tsx
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = (value: string) => {
+    setValue(value)
+
+    setTimeout(() => {
+      onChange(value)
+    }, 0)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+```
+
+Now even with the 4x slowdown, the SearchBar looks more responsive. We also observed that the stars are getting rendered while we were typing.
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-timeout-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+If you take a look at the performance profile, you can see that we were able to separate the keypress events from the expensive tasks.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-timeout.webp"
+  alt="Performance profile for rendering with timeout"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+However, we noticed that the Scene was rendered twice after the last keypress event. That's because the renderings were still scheduled with outdated state when the `setTimeout`s were fired.
+
+### Approach #2: Debouncing
+
+We can actually cancel the rendering schedule by implementing debouncing.
+
+```tsx
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+  const timeout = useRef<NodeJS.Timeout>()
+
+  const handleChange = (value: string) => {
+    // cancel the schedule if `value` changed within 100ms.
+    clearTimeout(timeout.current)
+
+    setValue(value)
+
+    // schedule a new update if input value hasn't changed for 100ms.
+    timeout.current = setTimeout(() => {
+      onChange(value)
+    }, 100)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+```
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-debounce-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+The user experience looks better now. The SearchBar stays fairly responsive with 4x slowdown and the redundant update on the Scene after the last keypress event was gone.
+
+However, the shortcoming of debouncing in this case is that the Scene update will always be delayed by 100ms. With faster CPU, the delay is most likely redundant and it makes the page feel slow.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-debounce.webp"
+  alt="Performance profile for rendering with debouncing"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## React 18's Concurrent Rendering: startTransition
+
+The page feel more responsive with either adding setTimeout or debouncing, but they introduces different problems:
+
+- setTimeout: results in additional UI updates with outdated states
+- debouncing: results in artificial delay in UI updates
+
+Let's take a look at how React 18 solves the problems with concurrent rendering:
+
+```tsx
+import { startTransition } from 'react'
+
+type FastSearchBarProps = {
+  defaultValue: string
+  onChange: (value: string) => void
+}
+
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = (value: string) => {
+    setValue(value)
+    onChange(value)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+
+const Home: NextPage = () => {
+  const [username, setUsername] = useState<string>('')
+
+  const vertices = useMemo(
+    () => computeCoordinates(username.length),
+    [username]
+  )
+
+  const handleChange = (username: string) => {
+    // defer username update in a less urgent UI transition
+    startTransition(() => {
+      setUsername(username)
+    })
+  }
+
+  return (
+    <Container>
+      <FastSearchBar defaultValue={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </Container>
+  )
+}
+```
+
+We call `setUsername` inside of `startTransition` function. It tells React to defer `setUsername` to the other urgent updates.
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+As you can see, we are able to separate the rendering of SearchBar and Scene without any asynchronous functions. If we take a look at the performance profile, we can observe a few things:
+
+- The keypress events are separated from the long rendering function calls.
+- The keypress events are grouped. It aligns with the **yielding** behavior in concurrent rendering.
+- There's only one rendering call after the last group of keypress events. It aligns with the **skipping old results** behavior in concurrent rendering.
+
+The **interrupting** behavior is not very straight forward to observe. If you know how to analyze it from the performance profile, please feel free to [reach out to me on Twitter](https://twitter.com/dawchihliou)!
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-transition.webp"
+  alt="Performance profile for rendering with startTransition"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Let's remove the slowdown and see the final result:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+As you can see, the SearchBar is always responsive while the Scene updates quickly. The user experience feels so much smoother.
+
+## Final Thoughts
+
+In the past, adding debouncing was the go-to solution for rendering large UI updates while keeping pages responsive. Based on this experiment, concurrent rendering makes the UI more responsive without the shortcoming of debouncing. Even for the heavy computation with at least 100,000 3D objects, concurrent rendering still helped the page to be snappy.
+
+Here's the side-by-side comparisons:
+
+**UI Comparison with 4x CPU Throttling**
+
+Basic implementation without concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-sync-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+Optimized implementation with concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+**UI Comparison with No CPU Throttling**
+
+Basic implementation without concurrent rendering:
+
+<video controls>
+  <source src="/articles/concurrent-react-18/perf-sync.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+Optimized implementation with concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+## References
+
+- [GitHub: Demo repository](https://github.com/DawChihLiou/concurrent-react-stress-testing)
+- [Website: Demo Site](https://sweaty-concurrent-react.netlify.app)
+- [Website: React v18.0](https://reactjs.org/blog/2022/03/29/react-v18.html)
+- [GitHub: New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
+- [GitHub: Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+- [GitHub: three.js](https://github.com/mrdoob/three.js/)
+- [GitHub: react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [Website: WebGL Globe Solution](https://webgl-globe-solutions.stackblitz.io)
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**I Built A Snappy Static Full-text Search with WebAssembly, Rust, Next.js, and Xor Filters**](/articles/i-built-a-snappy-full-text-search-with-webassembly-rust-nextjs-and-xor-filters)
+
+Happy coding!
