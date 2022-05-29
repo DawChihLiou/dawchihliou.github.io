@@ -12,7 +12,7 @@ coverHeight: '600'
 
 ---
 
-In this article, we are diving into a 3D demo and discuss how to optimize its performance step by step with React 18's concurrent rendering. The final outcome looks like this:
+In this article, we are diving into a 3D demo and discuss how to optimize its performance step by step with React 18's concurrent rendering. Here's the sneak peek.
 
 <video controls>
   <source src="/articles/concurrent-react-18/demo.mp4" type="video/mp4" />
@@ -21,7 +21,7 @@ In this article, we are diving into a 3D demo and discuss how to optimize its pe
 
 ## Concurrent Rendering with useTransition
 
-React 18 introduces the concurrent rendering feature. The core idea is to classify state updates into two categories:
+[React 18 introduces the concurrent features](https://reactjs.org/blog/2022/03/29/react-v18.html). The core idea is to classify state updates into two categories:
 
 - **Urgent updates**: they provide responsive feedback to user interactions, like typing and clicking.
 - **Transition updates**: they provide non-urgent UI transitions, like displaying dataset.
@@ -39,11 +39,13 @@ According to the working group, the concurrent rendering is able to perform the 
 
 - **Yielding**: React will periodically stop working and let the browser fire one or more side effects.
 - **Interrupting**: When React detects new urgent updates, it will interrupt and pause non-urgent updates and start working on incoming urgent updates so the page can stay responsive.
-- **Skipping old results**: React will discard outdated transition rendering and only render with the newest state.
+- **Skipping old results**: React will discard outdated transition updates and only render with the newest state.
 
-## Demo Overview
+## 3D Rendering Demo Overview
 
-In order to stress test the concurrent rendering, I built a 3D demo with
+In order to create heavy computations for rendering, I built a 3D visualization to show the connections between a GitHub user and the users she's connected with on GitHub.
+
+The technology includes:
 
 - [three.js](https://github.com/mrdoob/three.js/)
 - [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
@@ -61,12 +63,12 @@ The UI looks like this:
 
 The components we will be discussing today includes:
 
-- **Search Bar**: to search for a GitHub username and compute the coordinates of the user and her following users and followers on GitHub.
+- **Search Bar**: to search for a GitHub username and fetch the user info from the GitHub GraphQL API.
 - **Scene**: to visualize the connections between the user and her connections in on a 3D globe.
 
 > You can find [the repository on GitHub](https://github.com/DawChihLiou/six-degrees) and [the live demo on Netlify](https://sweaty-concurrent-react.netlify.app).
 
-As we type into the search bar, you should see an increasing amount of stars in the scene to simulate the high rendering demand on the UI.
+As we type into the search bar, you'll see an increasing amount of stars in the scene to simulate the high rendering demand on the UI. The amount of stars is `100,000 * inputValue.length`. We'll use it to stress test concurrent rendering.
 
 ## The Problem
 
@@ -79,7 +81,7 @@ Let's start with our base case with the most basic implementation. The outcome l
 
 _You can see my typing on the bottom left corner of the video._
 
-As I was typing, the search bar was frozen. It didn't display the input value until the very end. Not just the search bar, the scene was frozen too. The stars didn't get rendered until I finished typing. Ideally, we want to be able to observe immediate responses from our typing.
+As I was typing, the search bar was frozen. It didn't display the input value until the very end. Not just the search bar, the scene was frozen too. The stars didn't get rendered until I finished typing. Ideally, we want to be able to observe immediate feedback from our typing.
 
 Let's look into the performance together. We'll slow down the CPU by 4x and run a performance profiling.
 
@@ -91,11 +93,11 @@ Let's look into the performance together. We'll slow down the CPU by 4x and run 
   loading="lazy"
 />
 
-You can see the big chunks of tasks with keypress event in the flame chart. With each keypress, React computes the next rendering for the `SearchBar` and the `Scene`. As we see in the chart, the longest task takes almost 0.8 seconds to complete. That's why the page feels so slow.
+You can see the big chunks of tasks with keypress event in the flame chart. With each keypress, React computes the next rendering for the SearchBar and the Scene. As we see in the chart, the longest task takes almost 0.8 seconds to complete. That's why the page feels so slow.
 
 ### So, what's happening?
 
-In the Home page component, the `SearchBar` listens to the keypress event and update the `username` when changes happens.
+In the Home page component, the SearchBar listens to the keypress event and update the `username` when changes happens.
 
 ```tsx
 const Home: NextPage = () => {
@@ -116,13 +118,13 @@ const Home: NextPage = () => {
 }
 ```
 
-Whenever there's a `username` update, React recomputes `vertices` by calling `computeVertices()` and pass the result in to the `Scene` component to render the stars. Since the number of vertices is `100,000 * username.length`, coupling the two state updates together is a very expensive rendering cycle.
+Whenever there's a `username` update, React recomputes `vertices` by calling `computeVertices()` and pass the result in to the Scene component to render the stars. Since the number of vertices is `100,000 * username.length`, coupling the two state updates together is a very expensive rendering cycle.
 
 ## How did We Fix It Before React 18?
 
-Ideally, we want to see what we typed in the search bar immediately. Knowing that updating both states in the same rendering cycle takes too long, we can simply split the two updates so that `SearchBar` and `Scene` gets rendered separately.
+Ideally, we want to see what we typed in the search bar immediately. Knowing that updating both states in the same rendering cycle takes too long, we can simply split the two updates so that SearchBar and Scene gets rendered separately.
 
-Let's first add a new state for the `SearchBar`:
+Let's first add a new state for the SearchBar:
 
 ```tsx
 type FastSearchBarProps = {
@@ -163,7 +165,7 @@ const Home: NextPage = () => {
 }
 ```
 
-Because React will batch the state updates together in the same event for better performance, we need additional work to separate the renderings. Let's take a look at the typical approaches.
+Now we have a `value` state for SearchBar and a `username` state for computing `vertices`. We'll need additional work to separate the renderings because React will batch the state updates together in the same event to avoid additional rendering. Let's take a look at some of the typical approaches.
 
 ### Approach #1: setTimeout
 
@@ -185,7 +187,7 @@ function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
 }
 ```
 
-Now even with the 4x slowdown, the `SearchBar` looks more responsive. We also observed that the stars are getting rendered while we were typing.
+Now even with the 4x slowdown, the SearchBar looks more responsive. We also observed that the stars are getting rendered while we were typing.
 
 <video controls>
   <source
@@ -205,11 +207,11 @@ If you take a look at the performance profile, you can see that we were able to 
   loading="lazy"
 />
 
-However, we noticed that the `Scene` is continuously rendered updated multipal times after we were done typing. That's because the renderings were still scheduled when the `setTimeout`s were fired.
+However, we noticed that the Scene was rendered twice after the last keypress event. That's because the renderings were still scheduled with outdated state when the `setTimeout`s were fired.
 
 ### Approach #2: Debouncing
 
-We can actually cancel the rendering schedule by using debouncing.
+We can actually cancel the rendering schedule by implementing debouncing.
 
 ```tsx
 function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
@@ -240,9 +242,9 @@ function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
   <p>Your browser doesn't support HTML5 video.</p>
 </video>
 
-The user experience looks better now. The `SearchBar` remains fairly responsive with 4x slowdown and the redundant updates on the `Scene` after typing is gone.
+The user experience looks better now. The SearchBar stays fairly responsive with 4x slowdown and the redundant update on the Scene after the last keypress event was gone.
 
-However, the shortcoming of debouncing is that the `Scene` update will always be delayed by 100ms. With faster CPU, the delay is most likely redundant and it makes the page feel slow.
+However, the shortcoming of debouncing in this case is that the Scene update will always be delayed by 100ms. With faster CPU, the delay is most likely redundant and it makes the page feel slow.
 
 <img
   src="/optimized/articles/concurrent-react-18/perf-debounce.webp"
@@ -304,7 +306,7 @@ const Home: NextPage = () => {
 }
 ```
 
-We call `setUsername` inside of the `startTransition` function. It tells React to defer `setUsername` to the other urgent updates.
+We call `setUsername` inside of `startTransition` function. It tells React to defer `setUsername` to the other urgent updates.
 
 <video controls>
   <source
@@ -314,13 +316,13 @@ We call `setUsername` inside of the `startTransition` function. It tells React t
   <p>Your browser doesn't support HTML5 video.</p>
 </video>
 
-As you can see, we are able to separate the rendering of `SearchBar` and `Scene` without any asynchronous functions. If we take a look at the performance profile, we can observe a few things:
+As you can see, we are able to separate the rendering of SearchBar and Scene without any asynchronous functions. If we take a look at the performance profile, we can observe a few things:
 
-- The keypress events are separated from the long rendering function calls. It has a similar pattern as with setTimeout.
+- The keypress events are separated from the long rendering function calls.
 - The keypress events are grouped. It aligns with the **yielding** behavior in concurrent rendering.
 - There's only one rendering call after the last group of keypress events. It aligns with the **skipping old results** behavior in concurrent rendering.
 
-The **interrupting** behavior is not so straight forward to observe but the fact that 5 rendering calls only resulted in 2 UI updates, I assume the transition updates did defer to the keypress events when they happens.
+The **interrupting** behavior is not very straight forward to observe. If you know how to analyze it from the performance profile, please feel free to [reach out to me on Twitter](https://twitter.com/dawchihliou)!
 
 <img
   src="/optimized/articles/concurrent-react-18/perf-transition.webp"
@@ -340,11 +342,11 @@ Let's remove the slowdown and see the final result:
   <p>Your browser doesn't support HTML5 video.</p>
 </video>
 
-`SearchBar` is always responsive while `Scene` updates quickly. The user experience feels so much smoother.
+As you can see, the SearchBar is always responsive while the Scene updates quickly. The user experience feels so much smoother.
 
 ## Final Thoughts
 
-In the past, adding debouncing was my go-to solution for rendering large UI updates while keeping pages responsive. Based on this experiment, concurrent rendering makes the UI more responsive without the shortcoming of debouncing. Even for the heavy computation with at least 100,000 3D objects, concurrent rendering still helped the page to be snappy.
+In the past, adding debouncing was the go-to solution for rendering large UI updates while keeping pages responsive. Based on this experiment, concurrent rendering makes the UI more responsive without the shortcoming of debouncing. Even for the heavy computation with at least 100,000 3D objects, concurrent rendering still helped the page to be snappy.
 
 Here's the side-by-side comparisons:
 
@@ -391,13 +393,14 @@ Optimized implementation with concurrent rendering:
 
 ## References
 
-- [Demo repository](https://github.com/DawChihLiou/six-degrees)
-- [Demo Site](https://sweaty-concurrent-react.netlify.app)
-- [New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
-- [Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
-- [WebGL Globe Solution](https://webgl-globe-solutions.stackblitz.io)
-- [three.js](https://github.com/mrdoob/three.js/)
-- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [GitHub: Demo repository](https://github.com/DawChihLiou/six-degrees)
+- [Website: Demo Site](https://sweaty-concurrent-react.netlify.app)
+- [Website: React v18.0](https://reactjs.org/blog/2022/03/29/react-v18.html)
+- [GitHub: New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
+- [GitHub: Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+- [GitHub: three.js](https://github.com/mrdoob/three.js/)
+- [GitHub: react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [Website: WebGL Globe Solution](https://webgl-globe-solutions.stackblitz.io)
 
 ---
 
