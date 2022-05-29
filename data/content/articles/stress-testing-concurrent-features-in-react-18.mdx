@@ -66,7 +66,9 @@ The components we will be discussing today includes:
 - **Search Bar**: to search for a GitHub username and fetch the user info from the GitHub GraphQL API.
 - **Scene**: to visualize the connections between the user and her connections in on a 3D globe.
 
-> You can find [the repository on GitHub](https://github.com/DawChihLiou/six-degrees) and [the live demo on Netlify](https://sweaty-concurrent-react.netlify.app).
+> **You can find [the repository on GitHub](https://github.com/DawChihLiou/concurrent-react-stress-testing) and [the demo on Netlify](https://sweaty-concurrent-react.netlify.app).**
+>
+> _Please note that the demo might crash due to a task timeout. The timeout is caused by the slow experimental API call to fetch the coordinates of the cities. If you'd like to interact with the demo, it's recommended to fork the repository and run the development server locally._
 
 As we type into the search bar, you'll see an increasing amount of stars in the scene to simulate the high rendering demand on the UI. The amount of stars is `100,000 * inputValue.length`. We'll use it to stress test concurrent rendering.
 
@@ -393,7 +395,7 @@ Optimized implementation with concurrent rendering:
 
 ## References
 
-- [GitHub: Demo repository](https://github.com/DawChihLiou/six-degrees)
+- [GitHub: Demo repository](https://github.com/DawChihLiou/concurrent-react-stress-testing)
 - [Website: Demo Site](https://sweaty-concurrent-react.netlify.app)
 - [Website: React v18.0](https://reactjs.org/blog/2022/03/29/react-v18.html)
 - [GitHub: New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
