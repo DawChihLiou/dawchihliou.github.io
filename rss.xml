@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 13 Apr 2022 09:27:41 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 29 May 2022 13:20:28 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 13 Apr 2022 09:27:41 GMT</pubDate>
+        <pubDate>Sun, 29 May 2022 13:20:28 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering]]></title>
+            <description><![CDATA[React 18 released the highly anticipated concurrent features. In this article, we are diving into a 3D visualization and discuss how to optimize its performance step by step with React 18's concurrent rendering.]]></description>
+            <link>https://dawchihliou.github.io/articles/stress-testing-concurrent-features-in-react-18</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/stress-testing-concurrent-features-in-react-18</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Mon, 30 May 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[I Built A Snappy Static Full-text Search with WebAssembly, Rust, Next.js, and Xor Filters]]></title>
             <description><![CDATA[After migrating to Contentlayer, I started exploring how to use the content data to roll out a search feature for my portfolio. Inspired by some of the amazing open-source projects, I built my own full-text search engine in Rust and WebAssembly. It is fast, lightweight, and tons of fun to build!]]></description>
