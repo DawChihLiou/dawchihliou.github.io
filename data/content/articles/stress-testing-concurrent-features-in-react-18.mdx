@@ -1,6 +1,6 @@
 ---
-title: 'Stress Testing Concurrent Features in React 18'
-publishedAt: 'May 24, 2022'
+title: 'Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering'
+publishedAt: 'May 30, 2022'
 description: ''
 cover: '/optimized/articles/concurrent-react-18/hero.webp'
 category: 'Rust'
@@ -12,6 +12,45 @@ coverHeight: '600'
 
 ---
 
+In this article, we are diving into a 3D demo and discuss how to optimize its performance step by step with React 18's concurrent rendering. The final outcome looks like this:
+
+<video controls>
+  <source src="/articles/concurrent-react-18/demo.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+## Concurrent Rendering with useTransition
+
+React 18 introduces the concurrent rendering feature. The core idea is to classify state updates into two categories:
+
+- **Urgent updates**: they provide responsive feedback to user interactions, like typing and clicking.
+- **Transition updates**: they provide non-urgent UI transitions, like displaying dataset.
+
+The purpose is to create a snappier and more responsive experience for the users.
+
+Before React 18, all updates are considered urgent and a simple click or typing can cause the screen to freeze when there's a larger rending. So in React 18, by deferring non-urgent updates to urgent updates, users are able to receive immediate feedback from their interaction while React is working on the non-urgent updates in the background and reflect the result when ready.
+
+React Working Group published a couple great articles about transition updates:
+
+- [New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
+- [Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+
+According to the working group, the concurrent rendering is able to perform the following things:
+
+- **Yielding**: React will periodically stop working and let the browser fire one or more side effects.
+- **Interrupting**: When React detects new urgent updates, it will interrupt and pause non-urgent updates and start working on incoming urgent updates so the page can stay responsive.
+- **Skipping old results**: React will discard outdated transition rendering and only render with the newest state.
+
+## Demo Overview
+
+In order to stress test the concurrent rendering, I built a 3D demo with
+
+- [three.js](https://github.com/mrdoob/three.js/)
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
+- [React 18](https://reactjs.org/blog/2022/03/29/react-v18.html)
+
+The UI looks like this:
+
 <img
   src="/optimized/articles/concurrent-react-18/screenshot.webp"
   alt="Demo screen shot"
@@ -20,509 +59,345 @@ coverHeight: '600'
   loading="lazy"
 />
 
-## Create Basic 3D View with React Three Fiber
+The components we will be discussing today includes:
 
-```tsx:pages/index.tsx
-import type { NextPage } from 'next';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import Sphere from '../components/Sphere';
-import Particles from '../components/Particles';
+- **Search Bar**: to search for a GitHub username and compute the coordinates of the user and her following users and followers on GitHub.
+- **Scene**: to visualize the connections between the user and her connections in on a 3D globe.
 
+> You can find [the repository on GitHub](https://github.com/DawChihLiou/six-degrees) and [the live demo on Netlify](https://sweaty-concurrent-react.netlify.app).
+
+As we type into the search bar, you should see an increasing amount of stars in the scene to simulate the high rendering demand on the UI.
+
+## The Problem
+
+Let's start with our base case with the most basic implementation. The outcome looks like this:
+
+<video controls>
+  <source src="/articles/concurrent-react-18/perf-sync.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+_You can see my typing on the bottom left corner of the video._
+
+As I was typing, the search bar was frozen. It didn't display the input value until the very end. Not just the search bar, the scene was frozen too. The stars didn't get rendered until I finished typing. Ideally, we want to be able to observe immediate responses from our typing.
+
+Let's look into the performance together. We'll slow down the CPU by 4x and run a performance profiling.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-sync.webp"
+  alt="Performance profile for unoptimized rendering"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+You can see the big chunks of tasks with keypress event in the flame chart. With each keypress, React computes the next rendering for the `SearchBar` and the `Scene`. As we see in the chart, the longest task takes almost 0.8 seconds to complete. That's why the page feels so slow.
+
+### So, what's happening?
+
+In the Home page component, the `SearchBar` listens to the keypress event and update the `username` when changes happens.
+
+```tsx
 const Home: NextPage = () => {
+  const [username, setUsername] = useState<string>('')
+
+  const vertices = useMemo(() => computeVertices(username.length), [username])
+
+  const handleChange = (username: string) => {
+    setUsername(username)
+  }
+
   return (
-    <main>
-      {/* 3D Rendering */}
-      <Canvas>
-        <OrbitControls />
-        <hemisphereLight args={['#ffffff', '#ffffff', 3]} />
-        {/* The Earth */}
-        <Sphere position={[0, 0, 0]} />
-        {/* The Stars */}
-        <Particles />
-      </Canvas>
-    </main>
+    <>
+      <SearchBar value={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </>
   )
 }
-
-export default Home;
 ```
 
-```tsx:components/Sphere.tsx
-import { useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
-import { memo } from 'react';
+Whenever there's a `username` update, React recomputes `vertices` by calling `computeVertices()` and pass the result in to the `Scene` component to render the stars. Since the number of vertices is `100,000 * username.length`, coupling the two state updates together is a very expensive rendering cycle.
 
-function Sphere(props: JSX.IntrinsicElements['mesh']) {
-  const texture = useLoader(TextureLoader, 'https://i.imgur.com/45naBE9.jpg');
+## How did We Fix It Before React 18?
 
-  return (
-    <mesh {...props} scale={1}>
-      <sphereGeometry args={[2, 32, 16]} />
-      <meshPhongMaterial map={texture} />
-    </mesh>
-  );
+Ideally, we want to see what we typed in the search bar immediately. Knowing that updating both states in the same rendering cycle takes too long, we can simply split the two updates so that `SearchBar` and `Scene` gets rendered separately.
+
+Let's first add a new state for the `SearchBar`:
+
+```tsx
+type FastSearchBarProps = {
+  defaultValue: string
+  onChange: (value: string) => void
 }
 
-export default memo(Sphere);
-```
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  // new state designated to SearchBar
+  const [value, setValue] = useState(defaultValue)
 
-```tsx:components/Particles.tsx
-import { useRef, useEffect, useTransition, useState, memo } from 'react';
-import { BufferGeometry, MathUtils, Float32BufferAttribute } from 'three';
-import randomColor from 'randomcolor';
+  const handleChange = (value: string) => {
+    // update input value
+    setValue(value)
 
-type ParticlesProps = {
-  trigger?: boolean;
-};
+    // update vertices
+    onChange(value)
+  }
 
-function Particles({ trigger }: ParticlesProps) {
-  const geometry = useRef<BufferGeometry>(null);
-  const [color, setColor] = useState('#888888');
-  const [, startTransition] = useTransition();
-
-  useEffect(() => {
-      const vertices = [];
-
-      for (let i = 0; i < 100_000; i++) {
-        const x = MathUtils.randFloatSpread(2000);
-        const y = MathUtils.randFloatSpread(2000);
-        const z = MathUtils.randFloatSpread(2000);
-
-        vertices.push(x, y, z);
-      }
-
-      geometry.current?.setAttribute(
-        'position',
-        new Float32BufferAttribute(vertices, 3),
-      );
-
-      setColor(randomColor());
-  }, [trigger]);
-
-  return (
-    <mesh>
-      <points>
-        <bufferGeometry ref={geometry} />
-        <pointsMaterial color={color} />
-      </points>
-    </mesh>
-  );
+  return <SearchBar value={value} onChange={handleChange} />
 }
-
-export default memo(Particles);
-```
-
-## Twinkle The Stars
-
-```tsx:pages.index.tsx
-// inside the page component
-const [trigger, setTrigger] = useState(false);
-
-// send the trigger to the particles every second
-useEffect(() => {
-  const interval = setInterval(() => {
-    setTrigger(!trigger);
-  }, 1000);
-  return () => {
-    clearInterval(interval);
-  };
-}, [trigger])
-
-// ...
-
-return (
-  <main>
-    {/* ... */}
-    <Particles trigger={trigger}>
-  </main>
-)
-```
-
-## Add Input Field to Fetch GitHub User and Connections
-
-```diff:pages/index.tsx
-// ...
-+ import {
-+   useEffect,
-+   useState,
-+   ChangeEvent,
-+   useCallback,
-+   KeyboardEvent,
-+ } from 'react';
 
 const Home: NextPage = () => {
-+  const [username, setUsername] = useState<string>('');
-+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-+    setUsername(e.target.value);
-+  };
+  const [username, setUsername] = useState<string>('')
 
-+  const handleKeyPress = useCallback(
-+    (e: KeyboardEvent<HTMLInputElement>) => {
-+      if (e.key === 'Enter' && username !== '') {
-+        fetchUserConnections({ variables: { login: username } });
-+      }
-+    },
-+    [username],
-+  );
-  // ...
-  return (
-    <main>
-+     <input
-+       value={username}
-+       onChange={handleChange}
-+       onKeyPress={handleKeyPress}
-+       placeholder="Enter GitHub username"
-+     />
-      {/* 3D Rendering */}
-    </main>
-  );
-};
-```
+  const vertices = useMemo(() => computeVertices(username.length), [username])
 
-```ts:service/userConnection.ts
-import { gql } from '@apollo/client';
-
-interface User {
-  id: string;
-  location: string | null;
-}
-
-interface Connection {
-  following: {
-    nodes: User[];
-  };
-  followers: {
-    nodes: User[];
-  };
-}
-
-export interface UserConnectionsQuery {
-  user: User & Connection;
-}
-
-export const USER_CONNECTIONS = gql`
-  query GetUserConnections($login: String!) {
-    user(login: $login) {
-      id
-      location
-      following(first: 100) {
-        nodes {
-          id
-          location
-        }
-      }
-      followers(first: 100) {
-        nodes {
-          id
-          location
-        }
-      }
-    }
+  const handleChange = (username: string) => {
+    setUsername(username)
   }
-`;
+
+  return (
+    <>
+      <FastSearchBar defaultValue={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </>
+  )
+}
 ```
 
-```tsx:pages/index.tsx
-import { useLazyQuery } from '@apollo/client';
-import {
-  UserConnectionsQuery,
-  USER_CONNECTIONS,
-} from '../services/userConnections';
+Because React will batch the state updates together in the same event for better performance, we need additional work to separate the renderings. Let's take a look at the typical approaches.
+
+### Approach #1: setTimeout
+
+We can simply defer the slower update by adding setTimeout to put the it in the event loop.
+
+```tsx
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = (value: string) => {
+    setValue(value)
+
+    setTimeout(() => {
+      onChange(value)
+    }, 0)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+```
+
+Now even with the 4x slowdown, the `SearchBar` looks more responsive. We also observed that the stars are getting rendered while we were typing.
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-timeout-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+If you take a look at the performance profile, you can see that we were able to separate the keypress events from the expensive tasks.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-timeout.webp"
+  alt="Performance profile for rendering with timeout"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+However, we noticed that the `Scene` is continuously rendered updated multipal times after we were done typing. That's because the renderings were still scheduled when the `setTimeout`s were fired.
+
+### Approach #2: Debouncing
+
+We can actually cancel the rendering schedule by using debouncing.
+
+```tsx
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+  const timeout = useRef<NodeJS.Timeout>()
+
+  const handleChange = (value: string) => {
+    // cancel the schedule if `value` changed within 100ms.
+    clearTimeout(timeout.current)
+
+    setValue(value)
+
+    // schedule a new update if input value hasn't changed for 100ms.
+    timeout.current = setTimeout(() => {
+      onChange(value)
+    }, 100)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
+```
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-debounce-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+The user experience looks better now. The `SearchBar` remains fairly responsive with 4x slowdown and the redundant updates on the `Scene` after typing is gone.
+
+However, the shortcoming of debouncing is that the `Scene` update will always be delayed by 100ms. With faster CPU, the delay is most likely redundant and it makes the page feel slow.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-debounce.webp"
+  alt="Performance profile for rendering with debouncing"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## React 18's Concurrent Rendering: startTransition
+
+The page feel more responsive with either adding setTimeout or debouncing, but they introduces different problems:
+
+- setTimeout: results in additional UI updates with outdated states
+- debouncing: results in artificial delay in UI updates
+
+Let's take a look at how React 18 solves the problems with concurrent rendering:
+
+```tsx
+import { startTransition } from 'react'
+
+type FastSearchBarProps = {
+  defaultValue: string
+  onChange: (value: string) => void
+}
+
+function FastSearchBar({ defaultValue, onChange }: FastSearchBarProps) {
+  const [value, setValue] = useState(defaultValue)
+
+  const handleChange = (value: string) => {
+    setValue(value)
+    onChange(value)
+  }
+
+  return <SearchBar value={value} onChange={handleChange} />
+}
 
 const Home: NextPage = () => {
-  // ...
-  const [fetchUserConnections, { data, loading }] = useLazyQuery<
-    UserConnectionsQuery
-  >(USER_CONNECTIONS)
+  const [username, setUsername] = useState<string>('')
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
+  const vertices = useMemo(
+    () => computeCoordinates(username.length),
+    [username]
+  )
 
-  const handleKeyPress = useCallback(
-    (e: KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter' && username !== '') {
-        fetchUserConnections({ variables: { login: username } });
-      }
-    },
-    [username],
-  );
-  // ...
-}
-```
-
-## Convert Cities to Coordinates
-
-```ts:pages/api/coordinates.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
-import cities from 'all-the-cities';
-
-interface ReqBody {
-  origin: string;
-  destinations: Record<'id' | 'location', string>[];
-}
-
-interface Data {
-  origin: number[];
-  destinations: {
-    id: string;
-    coordinates: number[];
-  }[];
-}
-
-type ArrayElement<ArrayType> = ArrayType extends readonly (infer ElementType)[]
-  ? ElementType
-  : never;
-
-const match = (location: string) => (city: ArrayElement<typeof cities>) => {
-  const token = location.split(/[,*\s+]+/).join('|');
-  const regex = new RegExp(token, 'ig');
-  return city.name.match(regex);
-};
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>,
-) {
-  if (req.method !== 'POST') {
-    res.status(405);
-    return;
-  }
-  const { origin, destinations }: ReqBody = req.body;
-
-  const org = cities
-    .filter(match(origin))
-    .filter((_, i) => i === 0)
-    .map((c) => [...c.loc.coordinates].reverse())
-    .flat();
-
-  const dst = destinations.reduce((acc, loc) => {
-    return [
-      ...acc,
-      ...cities
-        .filter(match(loc.location))
-        .filter((_, i) => i === 0) // take one
-        .map((c) => ({
-          id: loc.id,
-          coordinates: [...c.loc.coordinates].reverse(),
-        })),
-    ];
-  }, [] as Data['destinations']);
-
-  res.status(200).json({
-    origin: org.length === 0 ? [40.7128, 74.006] : org, // default to NYC
-    destinations: dst,
-  });
-}
-```
-
-```tsx:pages/index.tsx
-const [locs, setLocs] = useState<{
-    origin: number[];
-    destinations: { id: string; coordinates: number[] }[];
-  }>({ origin: [], destinations: [] });
-
-// fetch coordinates when user connection data is updated
-useEffect(() => {
-  if (data) {
-    const body = JSON.stringify(prepare(data));
-
-    fetch('/api/coordinates', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body,
+  const handleChange = (username: string) => {
+    // defer username update in a less urgent UI transition
+    startTransition(() => {
+      setUsername(username)
     })
-      .then((res) => res.json())
-      .then((result) => {
-        setLocs(result);
-      });
   }
-}, [data]);
-```
-
-## Use Coordinates to Render 3D Curves
-
-```tsx:components/Tube.tsx
-import { calculateSpline } from '../utils/geo';
-import { AdditiveBlending } from 'three';
-import { memo } from 'react';
-
-const CURVE_SEGMENTS = 32;
-const TUBE_RADIUS_SEGMENTS = 2;
-const DEFAULT_TUBE_RADIUS = 0.01;
-const DRAW_RANGE_DELTA = 16;
-const MAX_DRAW_RANGE = DRAW_RANGE_DELTA * CURVE_SEGMENTS;
-
-type TubeProps = {
-  coords: number[];
-};
-
-function Tube({ coords }: TubeProps) {
-  const { spline } = calculateSpline(coords);
 
   return (
-    <mesh>
-      <tubeBufferGeometry
-        args={[
-          spline,
-          CURVE_SEGMENTS,
-          DEFAULT_TUBE_RADIUS,
-          TUBE_RADIUS_SEGMENTS,
-          false,
-        ]}
-        drawRange={{ start: 0, count: MAX_DRAW_RANGE }}
-      />
-      <meshBasicMaterial
-        blending={AdditiveBlending}
-        opacity={0.6}
-        transparent
-        color="#e43c59"
-      />
-    </mesh>
-  );
-}
-
-export default memo(Tube);
-```
-
-To calculate spline, I followed [this formula](https://stackblitz.com/edit/webgl-globe-solutions?file=globe%2Futils.js) to create `CubicBezierCurve3`.
-
-```diff:pages/index.tsx
-return (
-+   <mesh>
-+     {locs.destinations.map((dest, i) => (
-+       <Tube
-+         key={dest.id}
-+         coords={[...locs.origin, ...dest.coordinates]}
-+       />
-+     ))}
-+   </mesh>
-  <Particle trigger={trigger} />
-)
-```
-
-## Measure Performance without Concurrent Features
-
-## Use `Suspense` and `startTransition` to Enter Concurrent Mode
-
-```diff:pages/index.tsx
-import {
-  useEffect,
-  useState,
-  ChangeEvent,
-  useCallback,
-  KeyboardEvent,
-+ Suspense,
-+ useTransition,
-} from 'react';
-
-const Home: NextPage = () => {
-  // ...
-+ const [, startTransition] = useTransition();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-+     startTransition(() => {
-        setTrigger(!trigger);
-+     });
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [trigger]);
-
-  return (
-    <Canvas>
-      <OrbitControls />
-      <hemisphereLight args={['#ffffff', '#ffffff', 3]} />
-      <Sphere position={[0, 0, 0]} />
-+     <Suspense fallback={null}>
-        <mesh>
-          {locs.destinations.map((dest, i) => (
-            <Tube
-              key={dest.id}
-              coords={[...locs.origin, ...dest.coordinates]}
-            />
-          ))}
-        </mesh>
-        <Particle trigger={trigger} />
-+     </Suspense>
-    </Canvas>
-  );
-};
-```
-
-```diff:components/Particles.tsx
-+ const [, startTransition] = useTransition();
-
-  useEffect(() => {
-+   startTransition(() => {
-      const vertices = [];
-
-      // ...
-
-      setColor(randomColor());
-+   });
-  }, [trigger]);
-```
-
-## Use `useDeferredValue` to Defer rendering Curves
-
-```diff:pages/index.tsx
-import {
-  useEffect,
-  useState,
-  ChangeEvent,
-  useCallback,
-  KeyboardEvent,
-  Suspense,
-  useTransition,
-  useDeferredValue
-} from 'react';
-
-const Home: NextPage = () =>
-  // ...
-
-  const [locs, setLocs] = useState<{
-    origin: number[];
-    destinations: { id: string; coordinates: number[] }[];
-  }>({ origin: [], destinations: [] });
-
-+ const deferredLocs = useDeferredValue(locs);
-
-  return (
-    <Canvas>
-      <OrbitControls />
-      <hemisphereLight args={['#ffffff', '#ffffff', 3]} />
-      <Sphere position={[0, 0, 0]} />
-      <Suspense fallback={null}>
-        <mesh>
--         {locs.destinations.map((dest, i) => (
-+         {deferredLocs.destinations.map((dest, i) => (
-            <Tube
-              key={dest.id}
--             coords={[...locs.origin, ...dest.coordinates]}
-+             coords={[...deferredLocs.origin, ...dest.coordinates]}
-            />
-          ))}
-        </mesh>
-        <Particle trigger={trigger} />
-      </Suspense>
-    </Canvas>
-  );
+    <Container>
+      <FastSearchBar defaultValue={username} onChange={handleChange} />
+      <Scene vertices={vertices} />
+    </Container>
+  )
 }
 ```
 
-## Measure Performance with Concurrent Features
+We call `setUsername` inside of the `startTransition` function. It tells React to defer `setUsername` to the other urgent updates.
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+As you can see, we are able to separate the rendering of `SearchBar` and `Scene` without any asynchronous functions. If we take a look at the performance profile, we can observe a few things:
+
+- The keypress events are separated from the long rendering function calls. It has a similar pattern as with setTimeout.
+- The keypress events are grouped. It aligns with the **yielding** behavior in concurrent rendering.
+- There's only one rendering call after the last group of keypress events. It aligns with the **skipping old results** behavior in concurrent rendering.
+
+The **interrupting** behavior is not so straight forward to observe but the fact that 5 rendering calls only resulted in 2 UI updates, I assume the transition updates did defer to the keypress events when they happens.
+
+<img
+  src="/optimized/articles/concurrent-react-18/perf-transition.webp"
+  alt="Performance profile for rendering with startTransition"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Let's remove the slowdown and see the final result:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+`SearchBar` is always responsive while `Scene` updates quickly. The user experience feels so much smoother.
 
 ## Final Thoughts
 
+In the past, adding debouncing was my go-to solution for rendering large UI updates while keeping pages responsive. Based on this experiment, concurrent rendering makes the UI more responsive without the shortcoming of debouncing. Even for the heavy computation with at least 100,000 3D objects, concurrent rendering still helped the page to be snappy.
+
+Here's the side-by-side comparisons:
+
+**UI Comparison with 4x CPU Throttling**
+
+Basic implementation without concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-sync-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+Optimized implementation with concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition-throttle-x4.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+**UI Comparison with No CPU Throttling**
+
+Basic implementation without concurrent rendering:
+
+<video controls>
+  <source src="/articles/concurrent-react-18/perf-sync.mp4" type="video/mp4" />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
+Optimized implementation with concurrent rendering:
+
+<video controls>
+  <source
+    src="/articles/concurrent-react-18/perf-transition.mp4"
+    type="video/mp4"
+  />
+  <p>Your browser doesn't support HTML5 video.</p>
+</video>
+
 ## References
 
-- [WebGL Globe](https://webgl-globe-solutions.stackblitz.io)
+- [Demo repository](https://github.com/DawChihLiou/six-degrees)
+- [Demo Site](https://sweaty-concurrent-react.netlify.app)
+- [New feature: startTransition](https://github.com/reactwg/react-18/discussions/41)
+- [Real world example: adding startTransition for slow renders](https://github.com/reactwg/react-18/discussions/65)
+- [WebGL Globe Solution](https://webgl-globe-solutions.stackblitz.io)
+- [three.js](https://github.com/mrdoob/three.js/)
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber)
 
 ---
 

@@ -184,3 +184,9 @@ body.dark svg rect {
   display: block;
   margin: 0 auto;
 }
+
+video {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem;
+}
