@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 23 Jun 2022 12:06:50 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 24 Jun 2022 07:43:43 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 23 Jun 2022 12:06:50 GMT</pubDate>
+        <pubDate>Fri, 24 Jun 2022 07:43:43 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[React Explained for Product Managers]]></title>
+            <description><![CDATA[Everything you need to know about the component-oriented library.]]></description>
+            <link>https://www.departmentofproduct.com/blog/react-explained-for-product-managers/</link>
+            <guid isPermaLink="true">https://www.departmentofproduct.com/blog/react-explained-for-product-managers/</guid>
+            <category><![CDATA[Frontend]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Wed, 22 Jun 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering]]></title>
             <description><![CDATA[React 18 released the highly anticipated concurrent features. In this article, we are diving into a 3D visualization and discuss how to optimize its performance step by step with React 18's concurrent rendering.]]></description>
