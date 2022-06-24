@@ -1,5 +1,19 @@
 [
   {
+    "date": "June 22, 2022",
+    "publisher": "Department of Product",
+    "title": "React Explained for Product Managers",
+    "description": "Everything you need to know about the component-oriented library.",
+    "url": "https://www.departmentofproduct.com/blog/react-explained-for-product-managers/",
+    "cover": "https://www.departmentofproduct.com/wp-content/uploads/2022/06/React-Components-Example.png",
+    "category": "Frontend",
+    "author": "Daw-Chih Liou",
+    "avatar": "/optimized/raw/portrait-sm.png",
+    "social": "https://twitter.com/dawchihliou",
+    "external": true,
+    "publisherUrl": "https://www.departmentofproduct.com"
+  },
+  {
     "date": "February 9, 2021",
     "publisher": "trivago tech blog",
     "title": "Rethinking the Next-gen Analytics Web App at trivago",
