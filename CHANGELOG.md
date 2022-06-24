@@ -1,5 +1,12 @@
 undefined
 
+# 3.2.0 (2022-06-24)
+
+
+### Features
+
+* rebuild wasm ([f015803](https://github.com/DawChihLiou/dawchihliou.github.io/commit/f0158036941170de122e10b0e66edc479716c956))undefined
+
 ## 3.1.12 (2022-06-24)undefined
 
 ## 3.1.11 (2022-06-23)undefined
