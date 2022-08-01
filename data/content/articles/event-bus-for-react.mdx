@@ -1,0 +1,279 @@
+---
+title: 'Event Bus for React'
+publishedAt: 'Aug 2, 2022'
+description: 'Building Event Bus from scratch'
+cover: '/optimized/articles/concurrent-react-18/hero.webp'
+category: 'Rust'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+- We'll write a lightweight Event Bus from scratch in just 60 lines!
+- We'll learn the use case to best utilize Event Bus in React.
+- We'll apply Event Bus in a demo with Google Maps API.
+
+---
+
+## Why Event Bus?
+
+Event Bus is a design pattern that allows PubSub-style communication between components while the components remains loosely coupled.
+
+## Event Bus from Scratch
+
+Our Event Bus will have the essential APIs:
+
+```ts
+type EventHandler = (payload: any) => void
+
+interface EventBus {
+  on(key: string, handler: EventHandler): () => void
+  off(key: string, handler: EventHandler): void
+  emit(key: string, ...payload: Parameters<EventHandler>): void
+  once(key: string, handler: EventHandler): void
+}
+```
+
+- `on`: to listen to an event and register its event handler.
+- `off`: to remove an event and its event handler.
+- `emit`: to signal an event to the event bus.
+- `once`: to register an one-time event and its event handler.
+
+To implement the `on` method.
+
+```ts
+type Bus = Record<string, EventHandler[]>
+
+export function eventbus(config?: {
+  onError: (...params: any[]) => void
+}): EventBus {
+  const bus: Bus = {}
+
+  const on: EventBus['on'] = (key, handler) => {
+    if (bus[key] === undefined) {
+      bus[key] = []
+    }
+    bus[key]?.push(handler)
+
+    return () => {
+      off(key, handler)
+    }
+  }
+
+  return { on }
+}
+```
+
+To implement `off`, we can simply remove the event handler from the `bus`.
+
+```ts
+const off: EventBus['off'] = (key, handler) => {
+  const index = bus[key]?.indexOf(handler) ?? -1
+  bus[key]?.splice(index >>> 0, 1)
+}
+```
+
+When `emit` is called, what we want to do is to fire all the event handlers that are associated with the event.
+
+```ts
+const emit: EventBus['emit'] = (key, payload) => {
+  bus[key]?.forEach((fn) => {
+    try {
+      fn(payload)
+    } catch (e) {
+      config?.onError(e)
+    }
+  })
+}
+```
+
+`once` is a special method. The event handlers that are registered with `once` will only be fired exactly once. So we can think of it as a method that register a handler that deregister itself. One way to do it is to create a higher order function `handleOnce`:
+
+```ts
+const once: EventBus['once'] = (key, handler) => {
+  const handleOnce = (payload: Parameters<typeof handler>) => {
+    handler(payload)
+    off(key, handleOnce as typeof handler)
+  }
+
+  on(key, handleOnce as typeof handler)
+}
+```
+
+Now we have all the Event Bus methods!
+
+### Improve TypeScript Typing
+
+The current typing for the Event Bus is quite general. The event key could be any string and the event handler could be any function. To make it safer to use, we can add type checking to see the event key and handler association when developing. Like this:
+
+<img
+  src="/optimized/articles/react-event-bus/type-checking.webp"
+  alt="Typing screenshot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+```ts
+type EventKey = string | symbol
+type EventHandler<T = any> = (payload: T) => void
+type EventMap = Record<EventKey, EventHandler>
+
+interface EventBus<T extends EventMap> {
+  on<Key extends keyof T>(key: Key, handler: T[Key]): () => void
+  off<Key extends keyof T>(key: Key, handler: T[Key]): void
+  emit<Key extends keyof T>(key: Key, ...payload: Parameters<T[Key]>): void
+  once<Key extends keyof T>(key: Key, handler: T[Key]): void
+}
+```
+
+```diff
+- type Bus = Record<string, EventHandler[]>
++ type Bus<E> = Record<keyof E, E[keyof E][]>
+
+
+- export function eventbus(config?: {
++ export function eventbus<E extends EventMap>(config?: {
+  onError: (...params: any[]) => void
+- }): EventBus {
++ }): EventBus<E> {
+- const bus: Bus = {}
++ const bus: Partial<Bus<E>> = {}
+
+- const on: EventBus['on'] = (key, handler) => {
++ const on: EventBus<E>['on'] = (key, handler) => {
+
+- const off: EventBus['off'] = (key, handler) => {
++ const off: EventBus<E>['off'] = (key, handler) => {
+
+- const emit: EventBus['emit'] = (key, payload) => {
++ const emit: EventBus<E>['emit'] = (key, payload) => {
+
+- const once: EventBus['once'] = (key, handler) => {
++ const once: EventBus<E>['once'] = (key, handler) => {
+
+  return { on, off, once, emit }
+}
+```
+
+<img
+  src="/optimized/articles/react-event-bus/dynamic-typing.webp"
+  alt="Typing screenshot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Event Bus in Action
+
+<img
+  src="/articles/react-event-bus/demo.gif"
+  alt="Typing screenshot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+```ts:app/eventChannels/map.ts
+import { eventbus } from 'eventbus'
+import { logUserInteraction } from '~/utils/logger'
+
+export const mapEventChannel = eventbus<{
+  onMapIdle: () => void
+  onMapClick: (payload: google.maps.MapMouseEvent) => void
+}>()
+
+mapEventChannel.on('onMapIdle', () => {
+  logUserInteraction('on map idle.')
+})
+
+mapEventChannel.on('onMapClick', (payload) => {
+  logUserInteraction('on map click.', payload)
+})
+```
+
+```ts:app/eventChannels/marker.ts
+import { eventbus } from 'eventbus'
+import type { MarkerData } from '~/data/markers'
+import { logUserInteraction } from '~/utils/logger'
+
+export const markerEventChannel = eventbus<{
+  onMarkerClick: (payload: MarkerData) => void
+}>()
+
+markerEventChannel.on('onMarkerClick', (payload) => {
+  logUserInteraction('on marker click.', payload)
+})
+
+```
+
+```tsx:app/routes/index.tsx
+import { markers } from '~/data/marker'
+import { mapEventChannel } from '~/eventChannels/map'
+import { markerEventChannel } from '~/eventChannels/marker'
+
+export async function loader() {
+  return json({
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+  })
+}
+
+export default function Index() {
+  const data = useLoaderData()
+  const portal = useRef<HTMLDivElement>(null)
+  const [selectedMarker, setSelectedMarker] = useState<MarkerData>()
+
+  const onIdle = (map: google.maps.Map) => {
+    mapEventChannel.emit('onMapIdle')
+
+    setZoom(map.getZoom()!)
+    const nextCenter = map.getCenter()
+    if (nextCenter) {
+      setCenter(nextCenter.toJSON())
+    }
+  }
+
+  const onClick = (e: google.maps.MapMouseEvent) => {
+    mapEventChannel.emit('onMapClick', e)
+  }
+
+  const onMarkerClick = (marker: MarkerData) => {
+    markerEventChannel.emit('onMarkerClick', marker)
+    setSelectedMarker(marker)
+  }
+
+  return (
+    <>
+      <GoogleMap
+        apiKey={data.GOOGLE_MAPS_API_KEY}
+        markers={markers}
+        onClick={onClick}
+        onIdle={onIdle}
+        onMarkerClick={onMarkerClick}
+      />
+
+      <Portal container={portal.current}>
+        {selectedMarker && <Card {...selectedMarker} />}
+      </Portal>
+
+      <div ref={portal} />
+    </>
+  )
+}
+```
+
+## Final Thoughts
+
+## References
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering**](/articles/stress-testing-concurrent-features-in-react-18)
+
+Happy coding!
