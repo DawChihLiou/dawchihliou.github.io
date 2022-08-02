@@ -1,5 +1,12 @@
 undefined
 
+## 3.2.4 (2022-08-02)
+
+
+### Bug Fixes
+
+* typo ([2d94fcd](https://github.com/DawChihLiou/dawchihliou.github.io/commit/2d94fcd693974c252139a76fbfebee757dc32a54))undefined
+
 ## 3.2.3 (2022-08-02)undefined
 
 ## 3.2.2 (2022-07-21)undefined
