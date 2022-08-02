@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 21 Jul 2022 14:59:45 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 02 Aug 2022 14:14:53 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 21 Jul 2022 14:59:45 GMT</pubDate>
+        <pubDate>Tue, 02 Aug 2022 14:14:53 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Event Bus for React]]></title>
+            <description><![CDATA[Event Bus is an interesting design pattern to build a lightweight event system. We will discover its use cases in React and build a type-safe Event Bus from scratch with TypeScript.]]></description>
+            <link>https://dawchihliou.github.io/articles/event-bus-for-react</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/event-bus-for-react</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Tue, 02 Aug 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[React Explained for Product Managers]]></title>
             <description><![CDATA[Everything you need to know about the component-oriented library.]]></description>
