@@ -1,0 +1,366 @@
+---
+title: 'Event Bus for React'
+publishedAt: 'Aug 2, 2022'
+description: 'Event Bus is an interesting design pattern to build a lightweight event system. We will discover its use cases in React and build a type-safe Event Bus from scratch with TypeScript.'
+cover: '/optimized/articles/react-event-bus/hero.webp'
+category: 'Rust'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+- 🚌 We'll write a lightweight Event Bus from scratch in just 60 lines!
+- 🌱 We'll learn the use case to best utilize Event Bus in React.
+- 🏋️‍♀️ We'll apply Event Bus in a demo with Google Maps API.
+
+---
+
+I recently came across an interesting use case of Event Bus at work. It's a very lean module to organize logging for analytics in a global-scale web application. It creates great clarity in a large code base so I want to share with you my case study of this useful design pattern.
+
+Let's go.
+
+## What Is An Event Bus?
+
+An Event Bus is a design pattern that allows PubSub-style communication between components while the components remain loosely coupled.
+
+A component can send a message to an Event Bus without knowing where the message is sent to. On the other hand, a component can listen to a message on an Event Bus and decide what to do with the message without knowing where the message comes from. With this design, independent components can communicate without knowing each other.
+
+The visualization looks like this:
+
+<img
+  src="/optimized/articles/react-event-bus/bus.webp"
+  alt="Event Bus illustration"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+- Event: The message being sent and received on an Event Bus.
+- Publisher: The sender that **emits** an event.
+- Subscriber: The receiver that **listens** to an event.
+
+Let's take a closer look at Event Bus.
+
+## Building An Event Bus from Scratch
+
+Inspired by [Vue's legacy Events API](https://v3-migration.vuejs.org/breaking-changes/events-api.html), we'll implement the following APIs for our Event Bus:
+
+```ts
+type EventHandler = (payload: any) => void
+
+interface EventBus {
+  on(key: string, handler: EventHandler): () => void
+  off(key: string, handler: EventHandler): void
+  emit(key: string, ...payload: Parameters<EventHandler>): void
+  once(key: string, handler: EventHandler): void
+}
+```
+
+- **on**: for a subscriber to listen (subscribe) to an event and register its event handler.
+- **off**: for a subscriber to remove (unsubscribe) an event and its event handler.
+- **once**: for a subscriber to listen to an event only once.
+- **emit**: for a publisher to send an event to the event bus.
+
+Now, the data structure for our Event Bus should be capable of two things:
+
+- For publishers: to be able to fire the registered event handlers associated with the event key when **emit** is called.
+- For subscribers: to be able to add or remove event handlers when **on**, **once**, or **off** is called
+
+We can use a key-value structure for it:
+
+```ts
+type Bus = Record<string, EventHandler[]>
+```
+
+To implement the **on** method, all we need to do is to add the event key to the bus and append the event handler to the handler array. We also want to return an unsubscribe function to remove the event handler.
+
+```ts
+export function eventbus(config?: {
+  // error handler for later
+  onError: (...params: any[]) => void
+}): EventBus {
+  const bus: Bus = {}
+
+  const on: EventBus['on'] = (key, handler) => {
+    if (bus[key] === undefined) {
+      bus[key] = []
+    }
+    bus[key]?.push(handler)
+
+    // unsubscribe function
+    return () => {
+      off(key, handler)
+    }
+  }
+
+  return { on }
+}
+```
+
+To implement **off**, we can simply remove the event handler from the bus.
+
+```ts
+const off: EventBus['off'] = (key, handler) => {
+  const index = bus[key]?.indexOf(handler) ?? -1
+  bus[key]?.splice(index >>> 0, 1)
+}
+```
+
+When **emit** is called, what we want to do is to fire all the event handlers that associate with the event. We'll add error handling here to make sure all the event handlers will be fired despite errors.
+
+```ts
+const emit: EventBus['emit'] = (key, payload) => {
+  bus[key]?.forEach((fn) => {
+    try {
+      fn(payload)
+    } catch (e) {
+      config?.onError(e)
+    }
+  })
+}
+```
+
+Since **once** will only listen to an event exactly once, we can think of it as a method that registers a handler that deregisters itself after firing. One way to do it is to create a higher order function **handleOnce**:
+
+```ts
+const once: EventBus['once'] = (key, handler) => {
+  const handleOnce = (payload: Parameters<typeof handler>) => {
+    handler(payload)
+    off(key, handleOnce as typeof handler)
+  }
+
+  on(key, handleOnce as typeof handler)
+}
+```
+
+Now we have all the methods in our Event Bus!
+
+### Improve TypeScript Typing
+
+The current typing for the Event Bus is quite open ended. The event key could be any string and the event handler could be any function. To make it safer to use, we can add type checking to add the event key and handler association to the **EventBus**.
+
+```ts
+type EventKey = string | symbol
+type EventHandler<T = any> = (payload: T) => void
+type EventMap = Record<EventKey, EventHandler>
+
+interface EventBus<T extends EventMap> {
+  on<Key extends keyof T>(key: Key, handler: T[Key]): () => void
+  off<Key extends keyof T>(key: Key, handler: T[Key]): void
+  emit<Key extends keyof T>(key: Key, ...payload: Parameters<T[Key]>): void
+  once<Key extends keyof T>(key: Key, handler: T[Key]): void
+}
+```
+
+```diff
+- type Bus = Record<string, EventHandler[]>
++ type Bus<E> = Record<keyof E, E[keyof E][]>
+
+
+- export function eventbus(config?: {
++ export function eventbus<E extends EventMap>(config?: {
+  onError: (...params: any[]) => void
+- }): EventBus {
++ }): EventBus<E> {
+- const bus: Bus = {}
++ const bus: Partial<Bus<E>> = {}
+
+- const on: EventBus['on'] = (key, handler) => {
++ const on: EventBus<E>['on'] = (key, handler) => {
+
+- const off: EventBus['off'] = (key, handler) => {
++ const off: EventBus<E>['off'] = (key, handler) => {
+
+- const emit: EventBus['emit'] = (key, payload) => {
++ const emit: EventBus<E>['emit'] = (key, payload) => {
+
+- const once: EventBus['once'] = (key, handler) => {
++ const once: EventBus<E>['once'] = (key, handler) => {
+
+  return { on, off, once, emit }
+}
+```
+
+Now we are instructing TypeScript that the **key** has to be one of the **keyof T** and the handler should have the corresponding handler type. For example:
+
+```ts
+interface MyBus {
+  'on-event-1': (payload: { data: string }) => void
+}
+
+const myBus = eventbus<MyBus>()
+```
+
+You should be able to see a clear type definition when developing.
+
+<img
+  src="/optimized/articles/react-event-bus/type-checking.webp"
+  alt="Typing screenshot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Use The Event Bus in React
+
+I created an [Remix](https://remix.run) application to demonstrate how to use the Event Bus we just built.
+
+<img
+  src="/articles/react-event-bus/demo.gif"
+  alt="Typing screenshot"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find the [GitHub repository for the demo here](https://github.com/DawChihLiou/eventbus-demo).
+
+The demo showcases how to organize logging with the Event Bus in an isomorphic React application. I picked three events to log:
+
+- **onMapIdle**: the event happens when the map finishes instantiating or a user finishes dragging or zooming the map.
+- **onMapClick**: the event happens when a user clicks on the map.
+- **onMarkerClick**: the event happens when a user clicks on a map marker.
+
+Let's create two **event channels**. One for the map, and one for the marker.
+
+```ts:app/eventChannels/map.ts
+import { eventbus } from 'eventbus'
+
+export const mapEventChannel = eventbus<{
+  onMapIdle: () => void
+  onMapClick: (payload: google.maps.MapMouseEvent) => void
+}>()
+```
+
+```ts:app/eventChannels/marker.ts
+import { eventbus } from 'eventbus'
+import type { MarkerData } from '~/data/markers'
+
+export const markerEventChannel = eventbus<{
+  onMarkerClick: (payload: MarkerData) => void
+}>()
+```
+
+The reason to separate event channels is to create a clear separation of concerns. This pattern can grow horizontally when your application grows.
+
+Now, let's use the event channels in React components.
+
+```tsx:app/routes/index.tsx
+import { markers } from '~/data/marker'
+import { logUserInteraction } from '~/utils/logger'
+import { mapEventChannel } from '~/eventChannels/map'
+import { markerEventChannel } from '~/eventChannels/marker'
+
+export async function loader() {
+  return json({
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+  })
+}
+
+export default function Index() {
+  const data = useLoaderData()
+  const portal = useRef<HTMLDivElement>(null)
+  const [selectedMarker, setSelectedMarker] = useState<MarkerData>()
+
+  useEffect(() => {
+    // subscribe to events when mounting
+    const unsubscribeOnMapIdle = mapEventChannel.on('onMapIdle', () => {
+      logUserInteraction('on map idle.')
+    })
+    const unsubscribeOnMapClick = mapEventChannel.on(
+      'onMapClick',
+      (payload) => {
+        logUserInteraction('on map click.', payload)
+      }
+    )
+    const unsubscribeOnMarkerClick = markerEventChannel.on(
+      'onMarkerClick',
+      (payload) => {
+        logUserInteraction('on marker click.', payload)
+      }
+    )
+
+    // unsubscribe events when unmounting
+    return () => {
+      unsubscribeOnMapIdle()
+      unsubscribeOnMapClick()
+      unsubscribeOnMarkerClick()
+    }
+  }, [])
+
+  const onMapIdle = (map: google.maps.Map) => {
+    mapEventChannel.emit('onMapIdle')
+
+    setZoom(map.getZoom()!)
+    const nextCenter = map.getCenter()
+    if (nextCenter) {
+      setCenter(nextCenter.toJSON())
+    }
+  }
+
+  const onMapClick = (e: google.maps.MapMouseEvent) => {
+    mapEventChannel.emit('onMapClick', e)
+  }
+
+  const onMarkerClick = (marker: MarkerData) => {
+    markerEventChannel.emit('onMarkerClick', marker)
+    setSelectedMarker(marker)
+  }
+
+  return (
+    <>
+      <GoogleMap
+        apiKey={data.GOOGLE_MAPS_API_KEY}
+        markers={markers}
+        onClick={onMapClick}
+        onIdle={onMapIdle}
+        onMarkerClick={onMarkerClick}
+      />
+
+      <Portal container={portal.current}>
+        {selectedMarker && <Card {...selectedMarker} />}
+      </Portal>
+
+      <div ref={portal} />
+    </>
+  )
+}
+```
+
+What we did was to subscribe to the events in the **Index** component and emit the events when the map and markers are interacted. Moreover, By subscribing and unsubscribing with the component's lifecycle, we are able to register only the necessary event handlers at the given moment of the user journey.
+
+## Final Thoughts
+
+If you are looking for an Event Bus library, there are a [couple of choices recommended by Vue.js](https://v3-migration.vuejs.org/breaking-changes/events-api.html#event-bus):
+
+- [Mitt](https://github.com/developit/mitt)
+- [tiny-emitter](https://github.com/scottcorgan/tiny-emitter)
+
+There's also an interesting [discussion on Reddit about using Redux as an Event Bus](https://www.reddit.com/r/javascript/comments/qrpvsq/askjs_thoughts_on_using_redux_actions_as_an_event/). One of the maintainer suggested a few Redux based tools to handle events:
+
+- [redux-toolkit's new Listener Middleware](https://github.com/reduxjs/redux-toolkit/releases/tag/v1.8.0)
+- [redux-observable](https://github.com/redux-observable/redux-observable/)
+- [Redux-Saga](https://github.com/redux-saga/redux-saga)
+
+## References
+
+- [GitHub: Mitt](https://github.com/developit/mitt)
+- [GitHub: tiny-emitter](https://github.com/scottcorgan/tiny-emitter)
+- [GitHub: redux-observable](https://github.com/redux-observable/redux-observable/)
+- [GitHub: Redux-Saga](https://github.com/redux-saga/redux-saga)
+- [GitHub: eventbus-demo](https://github.com/DawChihLiou/eventbus-demo)
+- [Documentation: Vue 3 Migration Guide - Events API](https://v3-migration.vuejs.org/breaking-changes/events-api.html)
+- [Documentation: redux-toolkit's new Listener Middleware](https://github.com/reduxjs/redux-toolkit/releases/tag/v1.8.0)
+- [Documentation: Remix](https://remix.run)
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Stress Testing Concurrent Features in React 18: A Case Study of startTransition & 3D Rendering**](/articles/stress-testing-concurrent-features-in-react-18)
+
+Happy coding!
