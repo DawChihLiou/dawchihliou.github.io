@@ -1,9 +1,9 @@
 ---
 title: 'Building A Custom Google Maps Marker React Component Like Airbnb in Next.js'
 publishedAt: 'Aug 23, 2022'
-description: ''
-cover: '/optimized/articles/react-event-bus/hero.webp'
-category: 'Rust'
+description: 'We will be building a proof of concept to create customer Google Maps markers using any React component in a Next.js project.'
+cover: '/optimized/articles/custom-google-maps-marker/hero.webp'
+category: 'React'
 coverWidth: '1400'
 coverHeight: '600'
 ---
@@ -30,7 +30,7 @@ These markers pack much more functionalities than the default markers from Googl
 
 I find it very fun and useful so let's unpack it together!
 
-We'll be building a proof of concept to create customer markers using any React components.
+We'll be building a proof of concept to create customer markers using any React component.
 
 <img
   src="/articles/custom-google-maps-marker/demo.gif"
@@ -46,9 +46,9 @@ Let's go.
 
 > The demo is [available on GitHub](https://github.com/DawChihLiou/react-google-maps-marker-demo). Feel free to fork it🚀
 
-I integrated the Google Maps API in a [Next.js](https://vercel.com/solutions/nextjs) project by following the [official tutorial](https://developers.google.com/maps/documentation/javascript/react-map). The tutorial explains in detail how to render Google Maps and markers in your React applications.
+I integrated the Google Maps API in a [Next.js](https://vercel.com/solutions/nextjs) project by following the [official tutorial](https://developers.google.com/maps/documentation/javascript/react-map). The tutorial explains in detail how to render Google Maps and markers in React applications.
 
-There are a couple more integrations included in the project:
+There are a few more integrations included in the project:
 
 - [RapidAPI - Priceline com Provider](https://rapidapi.com/tipsters/api/priceline-com-provider/): to fetch hotel listings as our dataset.
 - [Tailwind CSS](https://tailwindcss.com/): to provide css styles.
@@ -210,7 +210,7 @@ export default function CustomMarker({
 }
 ```
 
-## Resolving Error from Webpack
+## Resolving Error in Next.js
 
 If you've started your dev server or tried to build the project, you might see a **Reference Error** saying **"google is not defined"**:
 
@@ -308,7 +308,7 @@ Now we should be able to see our map again and our custom markers without error!
 
 Since our custom markers are React components, we can define the user experience and use the available tooling in the React ecosystem. Let's implement:
 
-- a soft animation to transition the marker's apparence,
+- a soft animation to transition the marker's appearance,
 - and a click event handler to toggle the button state and a card component that displays hotel details.
 
 ```tsx:CustomMarker.tsx
@@ -350,7 +350,7 @@ export default function CustomMarker({
           // when users select it, move the marker to the foreground
           zIndex={highlight ? 99 : 0}
         >
-          {/* apparance transition */}
+          {/* appearance transition */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -407,7 +407,7 @@ It looks like a lot of code to create a custom marker but the mental model is ac
 - We render a DOM element as the container in the map through an overlay instance.
 - In the overlay, we can position the container at the right place on the map.
 - The container is also the destination of a React portal.
-- When the React marker component is ready to render, we portal the component to the container in the map.
+- When a React marker component is ready to render, we portal the component to the container in the map.
 
 ## References
 
