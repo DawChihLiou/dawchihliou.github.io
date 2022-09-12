@@ -1,0 +1,268 @@
+---
+title: "Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery"
+publishedAt: 'Sep 12, 2022'
+description: 'How do the big tech companies and unicorn startups succeed in agile product development while maintaining code quality.'
+cover: '/optimized/articles/design-thinking-cd/hero.webp'
+category: 'Leadership'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+---
+
+Design thinking and continuous delivery are amazing approaches to product innovation. They are not widely known when we talk about agile methodologies, but the synergy between them is crucial to build products that people love.
+
+## What is Design Thinking
+
+Design thinking is about problem solving. Companies like [Airbnb, Netflix, and Uber](https://online.hbs.edu/blog/post/design-thinking-examples) used design thinking to form deep understanding of their users and built features to address the user needs.
+
+> "Design thinking is a human-centered approach to innovation that draws from the designer’s toolkit to integrate the needs of people, the possibilities of technology, and the requirements for business success." - [Tim Brown, Executive Chair of Ideo](https://designthinking.ideo.com)
+
+I like it a lot because it's inclusive in the innovation process. It starts with understanding the users. The goal is to solve a problem with a solution that's desirable from the human point of view and technically feasible while capturing market opportunities.
+
+<img
+  src="/optimized/articles/design-thinking-cd/functions.webp"
+  alt="Design thinking is a human-centered approach to innovation."
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+### How to Practice Design Thinking
+
+Design thinking follows the flow of **understand**, **explore**, and **materialize**. There are six phases:
+
+- **Empathize**: Conduct research and develop an understanding of your users.
+- **Define**: Combine the research and identify where problems exist.
+- **Ideate**: Brainstorm wild and creative ideas to address the problems and the business goals.
+- **Prototype**: Build lean solutions from a subset of the ideas.
+- **Test**: Return to your users and collect feedback.
+- **Implement**: Deliver your solution incrementally to your users.
+
+<img
+  src="/optimized/articles/design-thinking-cd/design-thinking.webp"
+  alt="Design thinking involves 6 phases."
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+As you can see, design thinking iterates through [product discovery](https://www.producttalk.org/2018/08/effective-product-discovery/), [testing](https://hbr.org/1975/05/when-where-and-how-to-test-market), and [building](https://www.mojotech.com/blog/building-the-right-product-vs-building-the-product-right/). You have the flexibility to run it as lean as in just one week with [the design sprint](https://www.thesprintbook.com/the-design-sprint), or you can iterate and repeat through the phases until you find your [product market fit](https://pmarchive.com/guide_to_startups_part4.html).
+
+You can read more about the design thinking process:
+
+- [Design Thinking 101](https://www.nngroup.com/articles/design-thinking/) by Nielsen Norman Group
+- [Design thinking, explained](https://mitsloan.mit.edu/ideas-made-to-matter/design-thinking-explained) by MIT SLOAN SCHOOL OF MANAGEMENT
+- [Why Design Thinking Works](https://hbr.org/2018/09/why-design-thinking-works) by Harvard Business Review
+- [Design thinking](https://designthinking.ideo.com) by IDEO
+
+Now, in engineering, what we want to achieve is to have the infrastructure and workflow to enable such rapid product iterations so that multiple teams can prototype, test, and implement in your product **with speed and at scale**. This is where continuous delivery can help us.
+
+## What is Continuous Delivery
+
+Continuous delivery puts **working software** first. It's a practice to release software [quickly, safely, and sustainably](https://cloud.google.com/architecture/devops/devops-tech-continuous-delivery).
+
+> "Continuous delivery (CD) is a software engineering approach in which teams produce software in short cycles, ensuring that the software can be reliably released at any time and, when releasing the software, without doing so manually. It aims at building, testing, and releasing software with greater speed and frequency. The approach helps reduce the cost, time, and risk of delivering changes by allowing for more incremental updates to applications in production." - [Wikipedia](https://en.wikipedia.org/wiki/Continuous_delivery)
+
+There are several benefits by integrating continuous delivery. From the [DORA State of DevOps research program](https://www.devops-research.com/research.html), which summarizes a 7 years of research on high performance technical delivery and organizational outcomes, we can see a clear benefit in performance and culture. Here's the screenshot:
+
+<img
+  src="/optimized/articles/design-thinking-cd/cd-research.webp"
+  alt="DORA DevOps Research & Assessment"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The idea is to have an automatic process that builds, tests, analyzes, integrates, and deploys continuously throughout your product cycle. In the case of any error occurring in the process, the process will stop your product changes being integrated in production so that it won't impact your users. It leads to a greater level of [psychological safety](https://rework.withgoogle.com/print/guides/5721312655835136/) that enables us to test our prototypes and collect feedback and data without worrying about breaking the product.
+
+### How to Practice Continuous Delivery
+
+According to the [Accelerate State of DevOps 2021](https://services.google.com/fh/files/misc/state-of-devops-2021.pdf), there are [several capability factors](https://cloud.google.com/architecture/devops) that serve as indications to software delivery and organizational performance. In this article, I want to highlight a few technical capabilities in the context of agile product development:
+
+- Trunk-based development: developers work in small batches and merge into the trunk frequently.
+- Continuous testing: QAs tests early and frequently throughout the delivery cycle.
+- Continuous integration: triggers a series of automated tests that provide early feedback.
+- Observability practices: monitor your system throughout the delivery cycle.
+- Deployment automation: decreases lead time and reduces deployment errors.
+
+You can read more about the concepts, best practices, and KPIs of continuous delivery:
+
+- [Accelerate: State of DevOps 2019 - DORA & Google Cloud](https://services.google.com/fh/files/misc/state-of-devops-2019.pdf)
+- [Accelerate: State of DevOps 2021 - DORA & Google Cloud](https://services.google.com/fh/files/misc/state-of-devops-2021.pdf)
+- [DevOps tech: Continuous delivery - Google Cloud](https://cloud.google.com/architecture/devops/devops-tech-continuous-delivery)
+- [Software Delivery Guide - Martin Fowler](https://martinfowler.com/delivery.html)
+- [School of SRE - LinkedIn](https://linkedin.github.io/school-of-sre/)
+
+Now that we have discussed both design thinking and continuous delivery, we are ready to see how they can work together to achieve higher speed and code quality.
+
+## Put Them Together in Product Development
+
+Continuous delivery comes into the picture in the **prototype, test, and implement** phase.
+
+<img
+  src="/optimized/articles/design-thinking-cd/cd-in-design-thinking.webp"
+  alt="Continuous delivery play a part in the prototype, test, and implement phase of design thinking."
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Let's look at the phases separately.
+
+### During Prototype & Test Phase
+
+The two most important focuses during the phases are **learning** and **speed**. You want to be able to put your prototype in front of your users as quickly as you can to test your ideas and hypotheses so you can design the next iterations based on your learning.
+
+To prioritize learning and speed, we can design the continuous delivery process like this:
+
+<img
+  src="/optimized/articles/design-thinking-cd/prototype-test.webp"
+  alt="Continuous delivery for the prototyping & testing phase prioritize speed and learning."
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+We are keeping most of the best practices with a few modifications:
+
+**Dirty Pull Requests**
+
+✅ Dos
+
+- Put together the prototype as fast as possible.
+- Modularize the code change.
+- Mark your prototype module with an obvious prefix. Like **UNSAFE_EXPERIMENT\_**.
+- Writing tests is not necessary.
+- Focus on functionality in code review.
+
+❌ Don'ts
+
+- Don't code to perfection.
+- Don't block releases with lengthy code reviews.
+- Don't break production.
+
+**Regression Testing & Continuous Integration**
+
+✅ Dos
+
+- Guard the main user journey. For example: Checkout flow in an E-Commerce site.
+- Run only the baseline regression tests in favor of speed.
+- Notify there are warnings in the continuous delivery process.
+
+❌ Don'ts
+
+- Don't let the prototypes that failed the tests go into production.
+- Don't lower the test coverage.
+
+**Analytics and Feature Toggles**
+
+When your prototypes are designed for [quantitative research](https://www.nngroup.com/articles/quant-vs-qual/), it requires code changes in the product so that you can analyze the data on a larger scale. This is where analytics and [feature toggles](https://www.martinfowler.com/articles/feature-toggles.html) are useful.
+
+Feature toggles gives you the flexibility to target the user segments for your tests and analytics provides you aggregated data to track your KPIs.
+
+The purpose of feature toggles in these phases is to collect data and learn from the intended user segments. Make sure you don't use toggles to hide prototypes or features from your users. It defeats the purpose of learning.
+
+### During Implement Phase
+
+When you are in the **implement** phase, it means that you have tested the prototypes and you are officially going with one of your ideas. Congratulations!
+
+Unlike in the prototype and test phase, we want to prioritize the best practices of continuous delivery over speed:
+
+<img
+  src="/optimized/articles/design-thinking-cd/implementation.webp"
+  alt="Continuous delivery for the implementation phase prioritize continuous integration."
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+**Stacked Pull Requests**
+
+✅ Dos
+
+- Commit small code change (< 400 lines).
+- Use a [series of pull requests](https://www.michaelagreiler.com/stacked-pull-requests/) instead of a large pull request to implement your product or feature.
+- Write good PR descriptions. [System or design diagram is a plus](https://engineering.atspotify.com/2022/07/software-visualization-challenge-accepted/).
+- Make sure you have a shared [code review standard](https://google.github.io/eng-practices/).
+- Write comprehensive tests.
+- Standardize and automate [coding style](https://en.wikipedia.org/wiki/Programming_style).
+
+❌ Don'ts
+
+- Don't commit large code changes. It makes code review harder and slower.
+- Don't lower code coverage.
+- Don't skip steps in continuous delivery automation.
+- Don't settle for slow automation. Lead time is crucial for product delivery and your business.
+
+You can find more about the best practices for pull request authors and reviewers:
+
+- [Best Practices for Code Review - SmartBear](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
+- [Good Code Reviews, Better Code Reviews - Gergely Orosz](https://blog.pragmaticengineer.com/good-code-reviews-better-code-reviews/)
+- [How Google Does Code Reviews – Quality Assurance Tips from Google's Documentation - Kealan Parr](https://www.freecodecamp.org/news/what-google-taught-me-about-code-reviews/)
+- [Respectful Code Reviews - Google Chrome](https://chromium.googlesource.com/chromium/src/+/master/docs/cr_respect.md)
+- [Aggressive Code Review - Bodi](https://blog.devgenius.io/aggressive-code-review-e5f8869f3967)
+- [Using research to make code review more equitable - Google](https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html)
+
+**Continuous Testing and Continuous Integration**
+
+✅ Dos
+
+- Set a high test coverage threshold.
+- Standardize and automate [coding style](https://en.wikipedia.org/wiki/Programming_style).
+- Write end-to-end tests to guard major user journeys.
+
+❌ Don'ts
+
+- Don't lower code coverage.
+- Don't skip steps in continuous delivery automation.
+- Don't settle for slow automation. Lead time is crucial for product delivery and your business.
+
+## Final Thoughts
+
+## References
+
+- Article: [Design Thinking 101 - Nielsen Norman Group](https://www.nngroup.com/articles/design-thinking/)
+- Article: [Design thinking, explained - MIT SLOAN SCHOOL OF MANAGEMENT](https://mitsloan.mit.edu/ideas-made-to-matter/design-thinking-explained)
+- Article: [Why Design Thinking Works - Harvard Business Review](https://hbr.org/2018/09/why-design-thinking-works)
+- Article: [Design thinking - IDEO](https://designthinking.ideo.com)
+- Article: [5 EXAMPLES OF DESIGN THINKING IN BUSINESS - Harvard Business School](https://online.hbs.edu/blog/post/design-thinking-examples)
+- Article: [Principles behind the Agile Manifesto - Manifesto for Agile Software Development](https://agilemanifesto.org/principles.html)
+- Article: [6 Guiding Principles for Effective Product Discovery](https://www.producttalk.org/2018/08/effective-product-discovery/)
+- Article: [When, Where, and How to Test Market - Harvard Business Review](https://hbr.org/1975/05/when-where-and-how-to-test-market)
+- Article: [Don’t “Validate” Designs; Test Them - Nielsen Norman Group](https://www.nngroup.com/articles/no-validate-in-ux/)
+- Article: [Building the Right Product vs. Building the Product Right - MojoTech](https://www.mojotech.com/blog/building-the-right-product-vs-building-the-product-right/)
+- Article: [The only thing that matters - Marc Andreessen](https://pmarchive.com/guide_to_startups_part4.html)
+- Book: [The Design Sprint - Jake Knapp & John Zeratsky](https://www.thesprintbook.com/the-design-sprint)
+- Book: [Inspired: How to Create Tech Products Customers Love - Marty Cagan](https://www.goodreads.com/book/show/35249663-inspired)
+- Article: [DevOps tech: Continuous delivery - Google Architecture Center](https://cloud.google.com/architecture/devops/devops-tech-continuous-delivery)
+- Wikipedia: [Continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery)
+- Article: [Accelerate State of DevOps 2019 - DORA & Google Cloud](https://services.google.com/fh/files/misc/state-of-devops-2019.pdf)
+- Article: [Accelerate State of DevOps 2021 - DORA & Google Cloud](https://services.google.com/fh/files/misc/state-of-devops-2021.pdf)
+- Article: [School of SRE - LinkedLn](https://linkedin.github.io/school-of-sre/)
+- Article: [Project Aristotle: Understand team effectiveness - re:Work](https://rework.withgoogle.com/print/guides/5721312655835136/)
+- Article: [Quantitative vs. Qualitative Usability Testing - Nielsen Norman Group](https://www.nngroup.com/articles/quant-vs-qual/)
+- Article: [Feature Toggles (aka Feature Flags) - Pete Hodgson](https://www.martinfowler.com/articles/feature-toggles.html)
+- Article: [Stacked pull requests: make code reviews faster, easier, and more effective - Dr. Michaela Greiler](https://www.michaelagreiler.com/stacked-pull-requests/)
+- Article: [Software Visualization — Challenge, Accepted - Spotify](https://engineering.atspotify.com/2022/07/software-visualization-challenge-accepted/)
+- Article: [Google Engineering Practices Documentation - Google](https://google.github.io/eng-practices/)
+- Wikipedia: [Programming style](https://en.wikipedia.org/wiki/Programming_style)
+- Article: [Good Code Reviews, Better Code Reviews - Gergely Orosz](https://blog.pragmaticengineer.com/good-code-reviews-better-code-reviews/)
+- Article: [How Google Does Code Reviews – Quality Assurance Tips from Google's Documentation - Kealan Parr](https://www.freecodecamp.org/news/what-google-taught-me-about-code-reviews/)
+- Article: [Respectful Code Reviews - Google Chrome](https://chromium.googlesource.com/chromium/src/+/master/docs/cr_respect.md)
+- Article: [Aggressive Code Review - Bodi](https://blog.devgenius.io/aggressive-code-review-e5f8869f3967)
+- Article: [Using research to make code review more equitable - Google](https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html)
+- Article: [Best Practices for Code Review - SmartBear](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Building A Custom Google Maps Marker React Component Like Airbnb in Next.js**](/building-custom-google-maps-marker-react-component-like-airbnb-in-nextjs)
+
+Happy coding!
