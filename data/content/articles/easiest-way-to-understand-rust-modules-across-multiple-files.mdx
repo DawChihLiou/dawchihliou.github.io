@@ -1,6 +1,6 @@
 ---
 title: 'Easiest Way to Understand Rust Modules Across Multiple Files'
-publishedAt: 'Nov 16, 2022'
+publishedAt: 'Nov 17, 2022'
 description: 'With a real-world example'
 cover: '/optimized/articles/rust-module/hero.webp'
 category: 'Rust'
@@ -151,8 +151,8 @@ _do_b_ is also accessible to the submodules of module "a". You can access it wit
 
 ```rust:src/a/c.rs
 pub fn do_c {
-    crate::a::do_b(); // absolute path
-    super::do_b(); // relative path
+    crate::a::b::do_b(); // absolute path
+    super::b::do_b(); // relative path
 }
 ```
 
@@ -178,22 +178,17 @@ pub mod b;
 
 ## The "use" Declaration
 
-The [**use**][2] declaration can help you shorten the path when accessing an item in another module. For example, we can refactor the module "a":
+The [**use**][2] declaration can help you shorten the path when accessing an item in another module. For example, we can refactor the submodule "c":
 
-```rust:src/a/mod.rs
-mod b;
-mod c;
+```rust:src/a/c.rs
+use crate::a::b::do_b;
 
-use b::do_b;
-use c::do_c;
-
-pub fn do_a {
+pub fn do_c {
     do_b();
-    do_c();
 }
 ```
 
-It creates a local name binding to its path for _do_b_ and _do_c_. **use** is very useful for long paths.
+It creates a local name binding to its path for _do_b_. **use** is very useful for long paths.
 
 ## A Real World Example
 
