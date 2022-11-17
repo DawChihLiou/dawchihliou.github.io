@@ -1,0 +1,403 @@
+---
+title: 'Easiest Way to Understand Rust Modules Across Multiple Files'
+publishedAt: 'Nov 16, 2022'
+description: 'With a real-world example'
+cover: '/optimized/articles/rust-module/hero.webp'
+category: 'Rust'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+- 💡 Easy and simple explanation of Rust's modules across different files.
+- 🤿 We'll deep dive into a real-word example to explore the module system.
+- 📈 Tons of diagrams to help you understand.
+
+---
+
+The module system in Rust can be confusing for developers coming from other languages. It took me a while to understand it so I want to share with you how it works and how to organize your program across multiple files with ease.
+
+Let's go.
+
+## Rust Modules Across Files
+
+Rust requires the developers to manually build module trees. The way to do it is by declaring modules with the **mod** keyword.
+
+The module tree starts with the crate root, usually _src/lib.rs_ for a library crate or _src/main.rs_ for a binary crate. The Rust compiler will first look in the crate root for modules to compile.
+
+Let's say you want to import a module "a" in a binary crate, you can declare the module like this:
+
+```rust:main.rs
+mod a;
+
+fn main() { /* do amazing things */ }
+```
+
+The compiler will look for the module in the _src_ directory in the following places:
+
+In _src/a.rs_
+
+```bash
+.
+├── Cargo.lock
+├── Cargo.toml
+└── src
+    ├── a.rs
+    └── main.rs
+```
+
+Or in _src/a/mod.rs_
+
+```bash
+.
+├── Cargo.lock
+├── Cargo.toml
+└── src
+    ├── a
+    │   └── mod.rs
+    └── main.rs
+```
+
+By declaring **mod a** in _main.rs_, you've built a module tree like this:
+
+<img
+  src="/optimized/articles/rust-module/tree-a.webp"
+  alt="Initial Rust module tree"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Rust Submodules Across Files
+
+Within a module, you can create submodules to further organize your code. Let's say you want to declare module "b" and "c" in module "a":
+
+```rust:/src/a/mod.rs
+mod b;
+mod c;
+```
+
+The compiler will look for the submodules in _src/a_ directory:
+
+```bash
+.
+├── Cargo.lock
+├── Cargo.toml
+└── src
+    ├── a
+    │   ├── b.rs
+    │   ├── c.rs
+    │   └── mod.rs
+    └── main.rs
+```
+
+Now you've build a tree like this:
+
+<img
+  src="/optimized/articles/rust-module/tree-abc.webp"
+  alt="Rust module tree with submodules"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Visibility with "pub"
+
+By default, all the [items][3] in a module are private. They are only visible by the items in the same module.
+
+```rust:src/a/mod.rs
+mod b;
+mod c;
+
+fn do_a() {} // only the other functions in module a can use it
+             // it's not visible to main.rs
+```
+
+In order for its parent modules to have access to the function _do_a_, we need to add the key word **pub**.
+
+```rust:src/a/mod.rs
+pub fn do_a() {} // now it's visible to main.rs
+```
+
+We can access _do_a_ using the [path qualifier _::_][5].
+
+```rust:src/main.rs
+mod a;
+
+fn main() {
+    a::do_a();
+}
+```
+
+We can use the same pattern for submodules.
+
+```rust:src/a/b.rs
+pub fn do_b() {} // visible to module "a" and all the submodules of module "a"
+```
+
+By adding **pub** to _do_b_, the function now is accessible to module "a".
+
+```rust:src/a/mod.rs
+mod b;
+mod c;
+
+pub fn do_a {
+    b::do_b();
+}
+```
+
+_do_b_ is also accessible to the submodules of module "a". You can access it with either the absolute or relative path.
+
+```rust:src/a/c.rs
+pub fn do_c {
+    crate::a::do_b(); // absolute path
+    super::do_b(); // relative path
+}
+```
+
+## Re-exporting Items
+
+An item of a submodule is not accessible to a non-parent module. For example, we can try to access _do_b_ in _main.rs_
+
+```rust:src/main.rs
+mod:a;
+
+fn main() {
+    a::b::do_b();
+    // ^^^^ function `do_b` is private
+}
+```
+
+You'll see an error message saying _do_b_ is private. That's because _do_b_ is only accessible within module "a" so far. To make it visible to the crate root, We need to re-export it by adding **pub** to the module "b" declaration from module "a".
+
+```rust:src/a/mod.rs
+pub mod b;
+// --snip--
+```
+
+## The "use" Declaration
+
+The [**use**][2] declaration can help you shorten the path when accessing an item in another module. For example, we can refactor the module "a":
+
+```rust:src/a/mod.rs
+mod b;
+mod c;
+
+use b::do_b;
+use c::do_c;
+
+pub fn do_a {
+    do_b();
+    do_c();
+}
+```
+
+It creates a local name binding to its path for _do_b_ and _do_c_. **use** is very useful for long paths.
+
+## A Real World Example
+
+To demonstrate the Rust's module system, I created a simple CLI called **affme**, short for "affirm me".
+
+<img
+  src="/articles/rust-module/demo.gif"
+  alt="affme demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+**affme** is an self-affirmation generator. The CLI takes in a name as a parameter and displays a randomized affirmation.
+
+> The demo is [available on GitHub][7]. Feel free to take a look at the repo and try it out✨
+
+The code design is straightforward:
+
+<img
+  src="/optimized/articles/rust-module/program-design.webp"
+  alt="affme code design"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+In the "format" block,
+
+- It takes a user input,
+- concatenates the input with a random affirmation and a random emoji,
+- applies a random font color to the concatenated affirmation,
+- and finally outputs the affirmation.
+
+To showcase the module system across files, I design the module tree as following:
+
+<img
+  src="/optimized/articles/rust-module/module-tree.webp"
+  alt="affme module tree design"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+A few things worth mentioning:
+
+- This package has two crates, one binary and one library. I use the library crate to encapsulate the implementation and the binary crate to execute the CLI.
+- In the library crate root _src/lib.rs_, it accesses functions from the _affirmation_ and _formatter_ module.
+- The _affirmation_ module and both of the submodules in the _formatter_ module are using the same function in the _random_ module to randomly pick an item. Because the _affirmation_ module and _formatter_ submodules are in different branches of the tree, we need to declare the _random_ module in the common ancestor of the module tree.
+
+In the file system, it looks like this:
+
+```bash
+.
+├── Cargo.lock
+├── Cargo.toml
+├── src
+│   ├── affirmation.rs
+│   ├── formatter
+│   │   ├── color.rs
+│   │   ├── emoji.rs
+│   │   └── mod.rs
+│   ├── lib.rs
+│   ├── main.rs
+│   └── random.rs
+└── target
+```
+
+Let's dive into the library crate root to see how the code is structured.
+
+```rust:src/lib.rs
+mod affirmation;
+mod formatter;
+mod random;
+
+use affirmation::Affirmation;
+use formatter::format;
+
+pub fn affirm(name: &str) -> String {
+    let affirmation = Affirmation::new().random();
+    format(affirmation, name)
+}
+```
+
+Here you can see the module declarations on the top. You can also find the _use_ declarations to create the local name binding for _Affirmation_ and _format_.
+
+The random module is straightforward:
+
+```rust:src/random.rs
+use rand::Rng;
+
+pub fn pick<'a, T: ?Sized>(items: &[&'a T]) -> &'a T {
+    let random_index: usize = rand::thread_rng().gen_range(0..items.len());
+    items.get(random_index).unwrap()
+}
+```
+
+It has a public _pick_ function that returns a random item from an array slice. I use the function to pick random affirmations, emojis, and colors. Let's take a look at _affirmation_ module as an example:
+
+```rust:src/affirmation.rs
+use crate::random;
+
+#[derive(Debug)]
+pub struct Affirmation<'a> {
+    affirmations: [&'a str; 6],
+}
+
+impl<'a> Affirmation<'a> {
+    pub fn new() -> Self {
+        let affirmations = [
+            "You're beautiful",
+            "You're awesome",
+            "You're wonderful",
+            "You've got this",
+            "You can do all things",
+            "Go get it",
+        ];
+        Affirmation { affirmations }
+    }
+
+    pub fn random(&self) -> &'a str {
+        random::pick(&self.affirmations)
+    }
+}
+```
+
+You can see the _use_ declaration for the _random_ module. The _affirmation_ module is able to access the _random_ module because the _random_ module was declared in the library crate root. I use the _pub_ keyword on the _Affirmation_ struct and its functions so that the crate root has visibility over them.
+
+You can find the same coding pattern in the _emoji_ and _color_ submodule.
+
+To bring it all together, let's take a look at the _format_ module.
+
+```rust:src/formatter/mod.rs
+mod color;
+mod emoji;
+
+use color::Color;
+use colored::*;
+use emoji::Emoji;
+
+pub fn format(affirmation: &str, name: &str) -> String {
+    let emoji = Emoji::new();
+    let color = Color::new();
+
+    let phrase = format!("{}, {} {}", affirmation, name, emoji.random())
+        .color(color.random())
+        .bold()
+        .to_string();
+
+    format!(
+        "{}\n{}\n{}\n{}\n{}",
+        "*".repeat(phrase.len() + 2).magenta(),
+        format!("*{}*", " ".repeat(phrase.len())).magenta(),
+        format!("    ✏️  ...{}  ", phrase,),
+        format!("*{}*", " ".repeat(phrase.len())).magenta(),
+        "*".repeat(phrase.len() + 2).magenta()
+    )
+}
+```
+
+It brings _color_ and _emoji_ submodules in scope so we can concatenate the full affirmation with random emoji and random font color.
+
+## Final Thoughts
+
+Rust Modules across multiple files is a little different from other languages but once you understand **mod**, **use**, and **pub**, the module design becomes easier and intentional.
+
+**Rust Module Cheat Sheet**
+
+- A module tree starts from the crate root.
+- Use **mod** to build your tree with modules and submodules.
+- Use **pub** to make module items visible to the parent module.
+- You can re-export with **pub mod** or **pub use**.
+
+**Special Thanks**
+
+Thanks [Liang Chun][8] for reviewing the example code in [affme][7].
+
+## References
+
+- [Book: Defining Modules to Control Scope and Privacy - The Rust Programming Language][1]
+- [Book: Use declarations - The Rust Reference][2]
+- [Book: Items - The Rust Reference][3]
+- [Book: Modules - The Rust Reference][4]
+- [Book: Paths - The Rust Reference][5]
+- [Article: How to Use Rust Modules Across Different Files - Casey Falkowski][6]
+- [GitHub: affme repository][7]
+- [GitHub: Liang Chun's profile][8]
+
+[1]: https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
+[2]: https://doc.rust-lang.org/reference/items/use-declarations.html
+[3]: https://doc.rust-lang.org/reference/items.html
+[4]: https://doc.rust-lang.org/reference/items/modules.html
+[5]: https://doc.rust-lang.org/reference/paths.html
+[6]: https://spin.atomicobject.com/2022/01/24/rust-module-system/
+[7]: https://github.com/DawChihLiou/affme
+[8]: https://github.com/liangchunn
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery**](/articles/ex-principal-engineers-guide-to-design-thinking-and-continous-delivery)
+
+Happy coding!
