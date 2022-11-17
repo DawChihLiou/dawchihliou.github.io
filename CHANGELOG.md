@@ -1,5 +1,12 @@
 undefined
 
+## 3.2.15 (2022-11-17)
+
+
+### Bug Fixes
+
+* hero image typo ([9bae55f](https://github.com/DawChihLiou/dawchihliou.github.io/commit/9bae55ff47216b97c4ed0100a86f5ce8ffdcc287))undefined
+
 ## 3.2.14 (2022-11-17)undefined
 
 ## 3.2.13 (2022-11-14)undefined
