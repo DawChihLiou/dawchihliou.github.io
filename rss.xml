@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 14 Nov 2022 15:27:29 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 17 Nov 2022 16:30:15 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 14 Nov 2022 15:27:29 GMT</pubDate>
+        <pubDate>Thu, 17 Nov 2022 16:30:15 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Easiest Way to Understand Rust Modules Across Multiple Files]]></title>
+            <description><![CDATA[With a real-world example]]></description>
+            <link>https://dawchihliou.github.io/articles/easiest-way-to-understand-rust-modules-across-multiple-files</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/easiest-way-to-understand-rust-modules-across-multiple-files</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Wed, 16 Nov 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery]]></title>
             <description><![CDATA[How do the big tech companies and unicorn startups succeed in agile product development while maintaining code quality.]]></description>
