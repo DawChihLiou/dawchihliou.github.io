@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 17 Nov 2022 17:12:17 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 17 Nov 2022 19:00:50 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 17 Nov 2022 17:12:17 GMT</pubDate>
+        <pubDate>Thu, 17 Nov 2022 19:00:50 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -43,7 +43,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/easiest-way-to-understand-rust-modules-across-multiple-files</guid>
             <category><![CDATA[Rust]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Wed, 16 Nov 2022 00:00:00 GMT</pubDate>
+            <pubDate>Thu, 17 Nov 2022 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery]]></title>
