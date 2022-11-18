@@ -1,5 +1,7 @@
 undefined
 
+## 3.2.19 (2022-11-18)undefined
+
 ## 3.2.18 (2022-11-17)undefined
 
 ## 3.2.17 (2022-11-17)undefined
