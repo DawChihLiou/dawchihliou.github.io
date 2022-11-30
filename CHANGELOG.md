@@ -1,5 +1,12 @@
 undefined
 
+## 3.2.22 (2022-11-30)
+
+
+### Bug Fixes
+
+* add missing content ([ba12762](https://github.com/DawChihLiou/dawchihliou.github.io/commit/ba12762e48e0c74458b0fae52ddc48c1477286ba))undefined
+
 ## 3.2.21 (2022-11-30)undefined
 
 ## 3.2.20 (2022-11-23)undefined
