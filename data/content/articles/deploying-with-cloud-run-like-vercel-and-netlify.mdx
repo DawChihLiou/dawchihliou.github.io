@@ -1,0 +1,495 @@
+---
+title: 'Deploying Like Vercel and Netlify with Cloud Run: Live, Preview, and Modern Workflow'
+publishedAt: 'Nov 30, 2022'
+description: "The modern workflow that unlocks your team's potential to ship faster."
+cover: '/optimized/articles/deploy-with-cloud-run/hero.webp'
+category: 'Site Reliability'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+---
+
+If you want to learn how to deploy like [Vercel][3] or [Netlify][4] with [Google Cloud][8], this is the right place for you.
+
+Vercel and Netlify both offer seamless transition from development to shipping your features and they make [continuous delivery][9] accessible out of the box. Today we'll be looking into how to design and re-create the live deployment and [Deploy Preview][3] with [Cloud Run][10] and [GitHub Actions][11].
+
+Let's go.
+
+## The Modern Workflow Design
+
+If you are familiar with [Vercel][5] or [Netlify][6], you'll notice the [trunk-based development][12] principle by default. Your code changes directly go **live** when pushing your commits or merging a pull request to the _main_ branch. Whenever you work on a pull request, both platforms create **Deploy Previews** so that you can collect feedback from your reviewers and stakeholders during development. This type of workflow enables us to collaborate early, mitigate errors, and ship fast.
+
+To design the workflow, we can break it down to two paths:
+
+- Production workflow: triggered by _push_ events in the _main_ branch.
+- Preview workflow: triggered by _push_ and _pull_request_ events in all branches except _main_.
+
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows.webp"
+  alt="workflows overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Let's look into the _prod workflow_ first.
+
+## Production Workflow
+
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows-main.webp"
+  alt="production workflow overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The production workflow does only one thing: live deployment. When a pull request merges into _main_, it triggers the workflow to deploy your production build to [Cloud Run][10].
+
+The workflow looks like this:
+
+Set up Google Cloud
+
+- Authenticate to Google Cloud
+- Setup Google [Cloud SDK][14]
+- Authorize to push docker containers to [Artifact Registry][13]
+
+Push Docker Image to Artifact Registry
+
+- Generate image tag
+- Build docker container
+- push docker container to registry
+
+Deploy
+
+- Deploy to Cloud Run
+
+### Set up Google Cloud
+
+> If you don't have a project on Google Cloud yet, follow [this guide][19] to create one. I'll name my project _awesome-project_.
+
+To authenticate the workflow to access Google Cloud, we can use the [_auth_][1] GitHub Action to create an access token:
+
+```yaml
+env:
+  PROJECT_ID: 'awesome-project'
+  SERVICE: 'homepage'
+  REGION: 'us-west1' # ☘️Low CO2
+  REGISTRY: '[YOUR_REGISTRY_ID]'
+  IMAGE_NAME: 'live'
+  WORKLOAD_IDENTITY_PROVIDER: '[YOUR_WORKLOAD_PROVIDER_ID]'
+  SERVICE_ACCOUNT: '[YOUR_SERVICE_ACCOUNT_ID]'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        id: 'auth'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+```
+
+Here we are authenticating via [Workload Identity Federation][15]. To make it work, we'll need
+
+- [a service account][16]
+- [a workload identity provider][17]
+- [to grand IAM roles to the Workload Identity Provider][2].
+
+Congratulations, you've done it! It's the most difficult part of the workflow.
+
+Now we can set up Cloud SDK and authorize the workflow to be able to push Docker containers to Artifact Registry:
+
+```yaml
+steps:
+  - name: Set up Cloud SDK
+    uses: google-github-actions/setup-gcloud@v0
+
+  - name: Authorize Docker push
+    run: gcloud auth configure-docker ${{ env.REGISTRY }}
+```
+
+You can follow [this guide][18] to set up Artifact Registry for storing Docker containers.
+
+### Push Docker Image to Artifact Registry
+
+We are now able to push containers so let's dockerize your project and tag your image:
+
+```yaml
+steps:
+  - name: Generate Image Tag
+    id: image-tag
+    run: |
+      image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/$IMAGE_NAME:${GITHUB_SHA::8}"
+      echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+  - name: Build Docker Container
+    run: |
+      docker build -t ${{ steps.image-tag.outputs.tag }}
+
+  - name: Push Docker Container
+    run: |
+      docker push ${{ steps.image-tag.outputs.tag }}
+```
+
+### Deploy
+
+Now you are ready to deploy to cloud run using the docker container:
+
+```yaml
+steps:
+  - name: Deploy to Cloud Run
+    run: |
+      gcloud run deploy ${{ env.SERVICE }} \
+        --platform "managed"
+        --region ${{ env.REGION }} \
+        --image ${{ steps.image-tag.outputs.tag }}
+```
+
+Cloud Run will assign 100% of the traffic to this deployment by default so all visitors will be directed to this revision.
+
+In the Cloud Console, you'll find a URL to your Cloud Run deployment. It looks like this: _https://homepage-12345abcde-ez.a.run.app_. We'll need it later for our preview workflow.
+
+### The Complete GitHub Actions Production Workflow:
+
+```yaml:prod-ci.yaml
+name: Production Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: 'awesome-project'
+  SERVICE: 'homepage'
+  REGION: 'us-west1' # ☘️Low CO2
+  REGISTRY: '[YOUR_REGISTRY_ID]'
+  IMAGE_NAME: 'live'
+  WORKLOAD_IDENTITY_PROVIDER: '[YOUR_WORKLOAD_PROVIDER_ID]'
+  SERVICE_ACCOUNT: '[YOUR_SERVICE_ACCOUNT_ID]'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        id: 'auth'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker ${{ env.REGISTRY }}
+
+      - name: Generate Image Tag
+        id: image-tag
+        run: |
+          image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/$IMAGE_NAME:${GITHUB_SHA::8}"
+          echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+      - name: Build Docker Container
+        run: |
+          docker build -t ${{ steps.image-tag.outputs.tag }}
+
+      - name: Push Docker Container
+        run: |
+          docker push ${{ steps.image-tag.outputs.tag }}
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE }} \
+            --platform "managed"
+            --region ${{ env.REGION }} \
+            --image ${{ steps.image-tag.outputs.tag }}
+```
+
+## Preview Workflow
+
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows-branch.webp"
+  alt="preview workflow overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The preview workflow is similar to production with a few modifications:
+
+Set up Google Cloud
+
+- Authenticate to Google Cloud
+- Setup Google [Cloud SDK][14]
+- Authorize to push docker containers to [Artifact Registry][13]
+
+Push Docker Image to Artifact Registry
+
+- **Get Task Id from Reference**
+- Generate image tag
+- Build docker container
+- push docker container to registry
+
+Deploy
+
+- **Deploy revision with tag**
+- **Comment preview URL in the pull request**
+
+Let's take a look at the differences.
+
+### Push Docker Image to Artifact Registry
+
+The first difference is tagging the Docker image. In the production workflow, we use a constant `$IMAGE_NAME` in environment variables to tag the production image. However, for previews, we want to use an identifier that represents the pull request. We are using the first 8 characters of the branch name as the identifier:
+
+```yaml
+steps:
+  - name: Get Task Id from Reference
+  id: task
+  run: |
+    name="${{ github.ref_name }}"
+    lowercase="${name,,}"
+    echo "id=${lowercase:0:8}" >> $GITHUB_OUTPUT
+```
+
+As an example I'll name the branch _TASK-123-awesome-workflow_. The _task_ step will extract the task ID _task-123_ from the branch name.
+
+> If you are curious about the shell script syntax, check out [Shell Parameter Expansion][7].
+
+The identifier is set to be in lowercase because we'll use it for tagging the Cloud Run revision later. The naming convention of [Cloud Run tags][20] is as follows:
+
+- it allows lowercase characters
+- it allows numbers
+- it allows "-"
+- it has a maximum length limit of 63 characters
+
+Next we can use the task id to tag the image, build a container, and push to the registry:
+
+```yaml
+steps:
+  - name: Generate Image Tag
+    id: image-tag
+    run: |
+      image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/${{ steps.task.outputs.id }}:${GITHUB_SHA::8}"
+      echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+  - name: Build Docker Container
+    run: |
+      docker build -t ${{ steps.image-tag.outputs.tag }}
+
+  - name: Push Docker Container
+    run: |
+      docker push ${{ steps.image-tag.outputs.tag }}
+```
+
+### Deploy
+
+Now we are ready to deploy the preview. The deployment is similar to live deployment with two differences:
+
+- Unlike live deployment, we want to assign 0% of the traffic to the preview revision.
+- We want to give the deployment a different URL other than the live URL.
+
+We can use _--tag_ and _--no-traffic_ parameters to achieve them:
+
+```yaml
+steps:
+  - name: Deploy Revision with Tag
+      run: |
+        gcloud run deploy ${{ env.SERVICE }} \
+          --platform "managed" \
+          --region ${{ env.REGION }} \
+          --image ${{ steps.image-tag.outputs.tag }} \
+          --tag pr-${{ steps.task.outputs.id }} \
+          --no-traffic
+```
+
+After running the step successfully, you'll get the preview URL like this: _https://pr-task-123---homepage-12345abcde-ez.a.run.app_.
+
+Finally, we can post a comment about the preview URL on the pull request:
+
+```yaml
+steps:
+  - name: Comment Preview URL in PR
+    uses: mshick/add-pr-comment@v2
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      message: |
+        🍿 Successfully deployed preview revision at https://pr-${{ steps.jira.outputs.id }}---homepage-12345abcde-ez.a.run.app
+      allow-repeats: false
+```
+
+### The Complete GitHub Actions Preview Workflow
+
+```yaml:preview.yaml
+name: Preview Workflow
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+  workflow_run:
+    workflows: ['Dev CI']
+    types: [completed]
+
+env:
+  PROJECT_ID: 'awesome-project'
+  SERVICE: 'homepage'
+  REGION: 'us-west1'
+  REGISTRY: '[YOUR_REGISTRY_ID]'
+  WORKLOAD_IDENTITY_PROVIDER: '[YOUR_WORKLOAD_PROVIDER_ID]'
+  SERVICE_ACCOUNT: '[YOUR_SERVICE_ACCOUNT_ID]'
+
+jobs:
+  preview:
+    runs-on: ubuntu-20.04
+
+    permissions:
+      pull-requests: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        id: 'auth'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker ${{ env.REGISTRY }}
+
+      # Get task id in lowercase from branch name for docker image naming convention
+      # More detail on base parameter expansion: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+      - name: Get Task Id from Reference
+        id: task
+        run: |
+          name="${{ github.ref_name }}"
+          lowercase="${name,,}"
+          echo "id=${lowercase:0:8}" >> $GITHUB_OUTPUT
+
+      - name: Generate Image Tag
+        id: image-tag
+        run: |
+          image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/${{ steps.task.outputs.id }}:${GITHUB_SHA::8}"
+          echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+      - name: Build Docker Container
+        run: |
+          docker build -t ${{ steps.image-tag.outputs.tag }}
+
+      - name: Push Docker Container
+        run: |
+          docker push ${{ steps.image-tag.outputs.tag }}
+
+      - name: Deploy Revision with Tag
+        run: |
+          gcloud run deploy ${{ env.SERVICE }} \
+            --platform "managed" \
+            --region ${{ env.REGION }} \
+            --image ${{ steps.image-tag.outputs.tag }} \
+            --tag pr-${{ steps.jira.outputs.id }} \
+            --no-traffic
+
+      - name: Comment Preview URL in PR
+        uses: mshick/add-pr-comment@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            🍿 Successfully deployed preview revision at https://pr-${{ steps.jira.outputs.id }}---homepage-12345abcde-ez.a.run.app
+          allow-repeats: false
+```
+
+## Final Thoughts
+
+We've just re-created the modern workflow from Vercel and Netlify! There are a few improvements to make the workflow more robust:
+
+- use a short hash as the identifier to tag preview image and Cloud Run revision
+- replace the hard coded live URL with a step output in the preview comment step
+- add a workflow that cleans up the unused Cloud Run revisions and Docker containers
+
+## References
+
+- [GitHub: auth GitHub Action][1]
+- [Article: Enabling keyless authentication from GitHub Actions - Google Cloud][2]
+- [Website: Vercel Previews][3]
+- [Website: Netlify Deploy Previews][4]
+- [Website: Vercel][5]
+- [Website: Netlify][6]
+- [Document: Shell Parameter Expansion - GNU][7]
+- [Google Cloud][8]
+- [Article: Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery - Daw-Chih Liou][9]
+- [Document: Cloud Run - Google Cloud][10]
+- [Website: GitHub Actions][11]
+- [Document: DevOps tech: Trunk-based development - Google Cloud][12]
+- [Website: Artifact Registry - Google Cloud][13]
+- [Website: Cloud SDK - Google Cloud][14]
+- [Document: Workload identity federation - Google Cloud][15]
+- [Document: Create and manage service account keys- Google Cloud][16]
+- [Document: Configure workforce identity federation - Google Cloud][17]
+- [Document: Store Docker container images in Artifact Registry - Google Cloud][18]
+- [Document: Creating and managing projects - Google Cloud][19]
+- [Document: Use tags for testing, traffic migration and rollbacks - Google Cloud][20]
+- [GitHub: add-pr-comment][21]
+- [Github: setup-gcloud GitHub Action][22]
+
+[1]: https://github.com/google-github-actions/auth
+[2]: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+[3]: https://vercel.com/features/previews
+[4]: https://www.netlify.com/products/deploy-previews/
+[5]: https://vercel.com/
+[6]: https://www.netlify.com/
+[7]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+[8]: https://cloud.google.com
+[9]: /articles/ex-principal-engineers-guide-to-design-thinking-and-continous-delivery#what-is-continuous-delivery
+[10]: https://cloud.google.com/run
+[11]: https://github.com/features/actions
+[12]: https://cloud.google.com/architecture/devops/devops-tech-trunk-based-development
+[13]: https://cloud.google.com/artifact-registry
+[14]: https://cloud.google.com/sdk
+[15]: https://cloud.google.com/iam/docs/workload-identity-federation
+[16]: https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+[17]: https://cloud.google.com/iam/docs/configuring-workforce-identity-federation
+[18]: https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images
+[19]: https://cloud.google.com/resource-manager/docs/creating-managing-projects
+[20]: https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration#tags
+[21]: https://github.com/mshick/add-pr-comment
+[22]: https://github.com/google-github-actions/setup-gcloud
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Easiest Way to Understand Rust Modules Across Multiple Files**](/articles/easiest-way-to-understand-rust-modules-across-multiple-files)
+
+Happy coding!
