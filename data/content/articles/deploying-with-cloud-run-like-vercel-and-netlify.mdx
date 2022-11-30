@@ -1,8 +1,8 @@
 ---
-title: 'Deploying with Cloud Run Like Vercel'
+title: 'Deploying with Cloud Run Like Vercel and Netlify'
 publishedAt: 'Dec 30, 2022'
-description: ''
-cover: '/optimized/articles/rust-module/hero.webp'
+description: 'A peek into the modern workflow of live deployment and Deploy Preview with GCP that allows teams to collect feedback and ship faster.'
+cover: '/optimized/articles/deploy-with-cloud-run/hero.webp'
 category: 'Site Reliability'
 coverWidth: '1400'
 coverHeight: '600'
@@ -12,33 +12,46 @@ coverHeight: '600'
 
 ---
 
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows.webp"
+  alt="workflows overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows-main.webp"
+  alt="production workflow overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
 ```yaml
-name: Prod CI
+name: Production Workflow
 
 on:
-  push:
-    branches:
-      - main
+push:
+branches: - main
 
 env:
-  PROJECT_ID: 'awesome-project'
-  SERVICE: 'homepage'
-  REGION: 'us-west1'
-  REGISTRY: 'us-west1-docker.pkg.dev'
-  IMAGE_NAME: 'live'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456abcdef/locations/global/workloadIdentityPools/github-actions/providers/homepage'
-  SERVICE_ACCOUNT: 'cloud-run-github-actions@awesome-project.iam.gserviceaccount.com'
+PROJECT_ID: 'awesome-project'
+SERVICE: 'homepage'
+REGION: 'us-west1'
+REGISTRY: '[YOUR_REGISTRY_ID]'
+IMAGE_NAME: 'live'
+WORKLOAD_IDENTITY_PROVIDER: '[YOUR_WORKLOAD_PROVIDER_ID]'
+SERVICE_ACCOUNT: '[YOUR_SERVICE_ACCOUNT_ID]'
 
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
+deploy:
+runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Configure Workload Identity Federation and generate an access token.
-      # Example: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         id: 'auth'
@@ -60,21 +73,33 @@ jobs:
           image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/$IMAGE_NAME:${GITHUB_SHA::8}"
           echo "tag=$image_tag" >> $GITHUB_OUTPUT
 
-      - name: Build and Push Container
-        run: |-
-          docker build -t ${{ steps.image-tag.outputs.tag }} .
+      - name: Build Docker Container
+        run: |
+          docker build -t ${{ steps.image-tag.outputs.tag }}
+
+      - name: Push Docker Container
+        run: |
           docker push ${{ steps.image-tag.outputs.tag }}
 
       - name: Deploy to Cloud Run
-        run: |-
+        run: |
           gcloud run deploy ${{ env.SERVICE }} \
-            --platform "managed" 
+            --platform "managed"
             --region ${{ env.REGION }} \
             --image ${{ steps.image-tag.outputs.tag }} \
+
 ```
 
+<img
+  src="/optimized/articles/deploy-with-cloud-run/workflows-branch.webp"
+  alt="preview workflow overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
 ```yaml
-name: Feature Preview
+name: Preview Workflow
 
 on:
   push:
@@ -91,9 +116,9 @@ env:
   PROJECT_ID: 'awesome-project'
   SERVICE: 'homepage'
   REGION: 'us-west1'
-  REGISTRY: 'us-west1-docker.pkg.dev'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456abcdef/locations/global/workloadIdentityPools/github-actions/providers/homepage'
-  SERVICE_ACCOUNT: 'cloud-run-github-actions@awesome-project.iam.gserviceaccount.com'
+  REGISTRY: '[YOUR_REGISTRY_ID]'
+  WORKLOAD_IDENTITY_PROVIDER: '[YOUR_WORKLOAD_PROVIDER_ID]'
+  SERVICE_ACCOUNT: '[YOUR_SERVICE_ACCOUNT_ID]'
 
 jobs:
   preview:
@@ -115,8 +140,6 @@ jobs:
           lowercase="${name,,}"
           echo "id=${lowercase:0:8}" >> $GITHUB_OUTPUT
 
-      # Configure Workload Identity Federation and generate an access token.
-      # Example: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         id: 'auth'
@@ -137,9 +160,12 @@ jobs:
           image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/${{ steps.jira.outputs.id }}:${GITHUB_SHA::8}"
           echo "tag=$image_tag" >> $GITHUB_OUTPUT
 
-      - name: Build and Push Container
+      - name: Build Docker Container
         run: |
-          docker build -t ${{ steps.image-tag.outputs.tag }} .
+          docker build -t ${{ steps.image-tag.outputs.tag }}
+
+      - name: Push Docker Container
+        run: |
           docker push ${{ steps.image-tag.outputs.tag }}
 
       - name: Deploy Revision with Tag
@@ -163,6 +189,12 @@ jobs:
 ```
 
 ## Final Thoughts
+
+[1]: https://github.com/google-github-actions/auth
+[2]: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+[3]: https://vercel.com/features/previews
+[4]: https://www.netlify.com/products/deploy-previews/
+[5]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 
 ## References
 
