@@ -1,0 +1,178 @@
+---
+title: 'Deploying with Cloud Run Like Vercel'
+publishedAt: 'Dec 30, 2022'
+description: ''
+cover: '/optimized/articles/rust-module/hero.webp'
+category: 'Site Reliability'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+---
+
+```yaml
+name: Prod CI
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: 'awesome-project'
+  SERVICE: 'homepage'
+  REGION: 'us-west1'
+  REGISTRY: 'us-west1-docker.pkg.dev'
+  IMAGE_NAME: 'live'
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456abcdef/locations/global/workloadIdentityPools/github-actions/providers/homepage'
+  SERVICE_ACCOUNT: 'cloud-run-github-actions@awesome-project.iam.gserviceaccount.com'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Configure Workload Identity Federation and generate an access token.
+      # Example: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        id: 'auth'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      # Setup gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker ${{ env.REGISTRY }}
+
+      - name: Generate Image Tag
+        id: image-tag
+        run: |
+          image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/$IMAGE_NAME:${GITHUB_SHA::8}"
+          echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+      - name: Build and Push Container
+        run: |-
+          docker build -t ${{ steps.image-tag.outputs.tag }} .
+          docker push ${{ steps.image-tag.outputs.tag }}
+
+      - name: Deploy to Cloud Run
+        run: |-
+          gcloud run deploy ${{ env.SERVICE }} \
+            --platform "managed" 
+            --region ${{ env.REGION }} \
+            --image ${{ steps.image-tag.outputs.tag }} \
+```
+
+```yaml
+name: Feature Preview
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+  workflow_run:
+    workflows: ['Dev CI']
+    types: [completed]
+
+env:
+  PROJECT_ID: 'awesome-project'
+  SERVICE: 'homepage'
+  REGION: 'us-west1'
+  REGISTRY: 'us-west1-docker.pkg.dev'
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456abcdef/locations/global/workloadIdentityPools/github-actions/providers/homepage'
+  SERVICE_ACCOUNT: 'cloud-run-github-actions@awesome-project.iam.gserviceaccount.com'
+
+jobs:
+  preview:
+    runs-on: ubuntu-20.04
+
+    permissions:
+      pull-requests: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Get jira id in lowercase for docker image naming convention
+      # More detail on base parameter expansion: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+      - name: Get Jira Id from Reference Name
+        id: jira
+        run: |
+          name="${{ github.ref_name }}"
+          lowercase="${name,,}"
+          echo "id=${lowercase:0:8}" >> $GITHUB_OUTPUT
+
+      # Configure Workload Identity Federation and generate an access token.
+      # Example: https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        id: 'auth'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker ${{ env.REGISTRY }}
+
+      - name: Generate Image Tag
+        id: image-tag
+        run: |
+          image_tag="$REGISTRY/$PROJECT_ID/$SERVICE/${{ steps.jira.outputs.id }}:${GITHUB_SHA::8}"
+          echo "tag=$image_tag" >> $GITHUB_OUTPUT
+
+      - name: Build and Push Container
+        run: |
+          docker build -t ${{ steps.image-tag.outputs.tag }} .
+          docker push ${{ steps.image-tag.outputs.tag }}
+
+      - name: Deploy Revision with Tag
+        run: |
+          gcloud run deploy ${{ env.SERVICE }} \
+            --platform "managed" \
+            --region ${{ env.REGION }} \
+            --image ${{ steps.image-tag.outputs.tag }} \
+            --tag pr-${{ steps.jira.outputs.id }} \
+            --no-traffic
+
+      # TODO: replace hardcode uri with production uri detection
+      - name: Comment Preview URL in PR
+        uses: mshick/add-pr-comment@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            🍿 Successfully deployed preview revision at https://pr-${{ steps.jira.outputs.id }}---homepage-12345abcde-ez.a.run.app
+          allow-repeats: false
+```
+
+## Final Thoughts
+
+## References
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Easiest Way to Understand Rust Modules Across Multiple Files**](/articles/easiest-way-to-understand-rust-modules-across-multiple-files)
+
+Happy coding!
