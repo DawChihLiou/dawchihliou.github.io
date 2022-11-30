@@ -164,7 +164,7 @@ Cloud Run will assign 100% of the traffic to this deployment by default so all v
 
 In the Cloud Console, you'll find a URL to your Cloud Run deployment. It looks like this: _https://homepage-12345abcde-ez.a.run.app_. We'll need it later for our preview workflow.
 
-### The Complete GitHub Actions Production Workflow:
+### The Complete Production Workflow
 
 ```yaml:prod-ci.yaml
 name: Production Workflow
@@ -340,7 +340,7 @@ steps:
       allow-repeats: false
 ```
 
-### The Complete GitHub Actions Preview Workflow
+### The Complete Preview Workflow
 
 ```yaml:preview.yaml
 name: Preview Workflow
