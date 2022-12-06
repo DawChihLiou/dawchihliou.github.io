@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 03 Dec 2022 07:00:20 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 06 Dec 2022 15:29:25 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Sat, 03 Dec 2022 07:00:20 GMT</pubDate>
+        <pubDate>Tue, 06 Dec 2022 15:29:25 GMT</pubDate>
         <copyright><![CDATA[© 2022 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Tired of Slow Code Reviews? Read this]]></title>
+            <description><![CDATA[An ex-tech lead's guide to create a healthy code review culture that helps you ship your code faster.]]></description>
+            <link>https://dawchihliou.github.io/articles/tired-of-slow-code-reviews</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/tired-of-slow-code-reviews</guid>
+            <category><![CDATA[Site Reliability]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Tue, 06 Dec 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Deploying Like Vercel and Netlify with Cloud Run: Live, Preview, and Modern Workflow]]></title>
             <description><![CDATA[The modern workflow that unlocks your team's potential to ship faster.]]></description>
