@@ -1,5 +1,12 @@
 undefined
 
+## 3.2.28 (2022-12-06)
+
+
+### Bug Fixes
+
+* update category ([4faeca0](https://github.com/DawChihLiou/dawchihliou.github.io/commit/4faeca029d81f22ce9717c0a020374434376f9b1))undefined
+
 ## 3.2.27 (2022-12-06)undefined
 
 ## 3.2.26 (2022-12-03)undefined
