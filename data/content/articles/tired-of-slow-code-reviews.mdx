@@ -1,0 +1,151 @@
+---
+title: 'Tired of Slow Code Reviews? Read this'
+publishedAt: 'Dec 6, 2022'
+description: "An ex-tech lead's guide to create a healthy code review culture that helps you ship your code faster."
+cover: '/optimized/articles/slow-code-review/hero.webp'
+category: 'Site Reliability'
+coverWidth: '1400'
+coverHeight: '600'
+---
+
+## TL;DR
+
+- 🏎 Learn how to accelerate the code review process to maximize your productivity
+- 🔬 Learn the best practices I came across for code reviewers
+- ✏️ Learn the best practices I came across for pull request authors
+
+---
+
+Imagine this.
+
+You just implemented a feature and wrote all the test cases. You felt great about the code so you opened a pull request and let your coworkers know. After days passing by, your pull request looked exactly the same as before. Seemingly untouched. No comment. No change request. You asked your coworkers again for code review and they agreed. Another week went by and nothing happened. You asked again and they told you that they needed more time because it wasn't a small PR and there was a lot to take into consideration.
+
+Finally, you saw a notification about a change request and you jumped on it right away. After resolving merge conflicts and fixing the edge cases, you requested a review again, and waited. Another change request appeared after a few days and you repeated the process again. You got an approval after another revision and the PR was finally merged to the trunk.
+
+**After 4 weeks since you opened the PR.**
+
+If you can relate to it, you're not alone. Many teams experienced such a slow code review process. In fact, it's [one of the major blockers][6] in the development cycle. So I want to share with you the best practices of code review I learned to speed up the development and help you ship code faster.
+
+Let's go.
+
+## For Pull Request Authors
+
+The number one thing I've learned to boost code review productivity is to be thoughtful as an author. Other than producing clean code, there are many small things you can do to help your reviewers understand your pull requests proactively.
+
+### Be The Driver
+
+You, the author, are the driver of the pace. Knowing that you rely on your coworkers during the code review process, you can clearly communicate the **when** and **what** upfront to align expectations.
+
+The **when** is the most important to communicate because it tells your reviewers how urgent it is. The reviewers can plan their work accordingly. It's a great way to set a [timebox][8] for the review process, and it's also a great way to show respect to your coworkers' time.
+
+To communicate the **what**, make sure you include a PR description that focuses on helping your reviewers understand the purpose and code design of your changes. Instead of listing functionalities, start with an opening paragraph explaining the background and why this PR is needed helps the reviewers to build their [mental models][9]. Other descriptions I find very useful are:
+
+- **Code design diagrams**: a [screenshot of your high-level code structure][10] helps the reviewers to [review the overall design][11] and react quickly to your pull request.
+- **Acceptance Criteria**: a list of simple sentences like ["An acknowledgment email is sent to the user after submitting the form."][12] helps the reviews look for missing functionalities and test cases.
+
+### Keep It Concise
+
+Small, laser-focused pull requests are the easiest to read. How small? Google Engineering Practices say ["can't make it small enough"][4]. [A study][3] has shown that the code review quality decreases as the code change increases. The longer your reviewers review at a time, the less defects they catch. So it's important to keep your pull request small and focus on one thing. If the feature you're developing is too large, you can consider splitting it into multiple pull requests using the ["stacked pull request"][5] technique.
+
+<img
+  src="/optimized/articles/slow-code-review/stacked-pr.webp"
+  alt="stacked pull request visualization"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+It replaces a large pull request with a sequence of small pull requests. It helps the reviewers to focus on one thing at the time and aligns brilliantly with the principal of [continuous integration and continuous delivery][13].
+
+## For Code Reviewers
+
+### Be Mindful about Biases
+
+A [study published by Google in 2022][2] found that pull request authors faced different levels of pushback that varied depending on the authors' demographics. According to data, they [found][1] that
+
+> - Women faced 21% higher odds of pushback than men
+> - Black+ developers faced 54% higher odds than White+ developers
+> - Latinx+ developers faced 15% higher odds than White+ developers
+> - Asian+ developers faced 42% higher odds than White+ developers
+> - Older developers faced higher odds of pushback than younger developers
+
+We should be more mindful about the unintentional biases, especially in a diverse workplace. By being aware of it, we can avoid unnecessary pushback in code reviews and help accelerate the process.
+
+### It's A Great Place for Learning, Not Snob
+
+Regardless of your level of experience, working as a developer is about constant learning. Pull request is an invaluable "marketplace" for developers to communicate and exchange feedback. So make sure it's a place of respect and always [aim for knowledge sharing](https://github.com/google/eng-practices/blob/master/review/reviewer/standard.md#mentoring).
+
+For me it has always been an amazing occasion to learn about domain knowledge. Take my PR in [Airbnb JavaScript Style Guide][14], I learned so much about [ECMAScript Language Specification][15] from a [Ecma TC39][16] member. If he was to dismiss my request [without constructive feedback][17], the teaching moment would have never exist.
+
+### Inaction Is Bad
+
+I read about a blog post titled ["Aggressive Code Review"][18] by a tech lead at Instagram a year ago. He claimed that an effective code review consist of
+
+- decisive action ASAP
+- aiming to reduce the cost of mistakes
+- demanding small pull request and move fast
+
+What I found refreshing in his approach is that **not acting on a pull request is not an option**. It minimizes the lead time to review and it has been very beneficial to me and my team. We are able to ship fast because we take proactive actions to code review. We don't let pending pull requests linger and we review with our business cases in mind.
+
+## Final Thoughts
+
+To recap the best practices of pull request and code review to accelerate your development cycle
+
+- establish clear communication about the **when** and **what** of a pull request
+- create small and self-contained pull request that focus on one thing
+- be mindful about biases
+- be respectful to the author and fellow reviewers
+- take decisive review action as soon as possible
+
+## References
+
+- [The Pushback Effects of Race, Ethnicity, Gender, and Age in Code Review](https://cacm.acm.org/magazines/2022/3/258909-the-pushback-effects-of-race-ethnicity-gender-and-age-in-code-review/fulltext) - Emerson Murphy-Hill, Ciera Jaspan, Carolyn Egelman, Lan Cheng
+- [Using research to make code review more equitable](https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html) - Emerson Murphy-Hill, Research Scientist, Central Product Inclusion, Equity, and Accessibility
+- [Best Practices for Code Review](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) - SMARTBEAR
+- [Small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md) - Google
+- [Stacked pull requests: make code reviews faster, easier, and more effective](https://www.michaelagreiler.com/stacked-pull-requests/) - Dr. Michaela Greiler
+- [Code reviews becoming a blocker](https://www.reddit.com/r/ExperiencedDevs/comments/oo4ds0/code_reviews_becoming_a_blocker/) - Reddit
+- [Code review bottleneck](https://www.reddit.com/r/agile/comments/e6gffn/code_review_bottleneck/) - Reddit
+- [Timeboxing](https://en.wikipedia.org/wiki/Timeboxing) - Wikipedia
+- [Mental Models: Learn How to Think Better and Gain a Mental Edge](https://jamesclear.com/mental-models) - James Clear
+- [AppLand extension for VSCode](https://github.com/getappmap/vscode-appland) - GitHub
+- [What to look for in a code review](https://github.com/google/eng-practices/blob/master/review/reviewer/looking-for.md#design) - Google
+- [https://www.boost.co.nz/blog/2010/09/acceptance-criteria](https://www.boost.co.nz/blog/2010/09/acceptance-criteria) - Nathan Donaldson
+- [Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery](/articles/ex-principal-engineers-guide-to-design-thinking-and-continous-delivery#what-is-continuous-deliver) - Daw-Chih Liou
+- [Add Class Private Identifier](https://github.com/airbnb/javascript/pull/2535) - GitHub
+- [ECMAScript® 2023 Language Specification](https://tc39.es/ecma262) - Ecma International
+- [Ecma TC39](https://github.com/tc39) - GitHub
+- [Getting ripped apart in code reviews, is this normal?](https://www.reddit.com/r/cscareerquestions/comments/9hakaz/getting_ripped_apart_in_code_reviews_is_this/) - Reddit
+- [Aggressive Code Review](https://blog.devgenius.io/aggressive-code-review-e5f8869f3967) - Bobi
+- [Modern Code Review: A Case Study at Google](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/80735342aebcbfc8af4878373f842c25323cb985.pdf) - Caitlin Sadowski, Emma Söderberg, Luke Church, Michal Sipko. Google, Inc.
+
+[1]: https://cacm.acm.org/magazines/2022/3/258909-the-pushback-effects-of-race-ethnicity-gender-and-age-in-code-review/fulltext
+[2]: https://developers.googleblog.com/2022/06/Using-research-to-make-code-review-more-equitable.html
+[3]: https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/
+[4]: https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md
+[5]: https://www.michaelagreiler.com/stacked-pull-requests/
+[6]: https://www.reddit.com/r/ExperiencedDevs/comments/oo4ds0/code_reviews_becoming_a_blocker/
+[7]: https://www.reddit.com/r/agile/comments/e6gffn/code_review_bottleneck/
+[8]: https://en.wikipedia.org/wiki/Timeboxing
+[9]: https://jamesclear.com/mental-models
+[10]: https://github.com/getappmap/vscode-appland
+[11]: https://github.com/google/eng-practices/blob/master/review/reviewer/looking-for.md#design
+[12]: https://www.boost.co.nz/blog/2010/09/acceptance-criteria
+[13]: /articles/ex-principal-engineers-guide-to-design-thinking-and-continous-delivery#what-is-continuous-deliver
+[14]: https://github.com/airbnb/javascript/pull/2535
+[15]: https://tc39.es/ecma262
+[16]: https://github.com/tc39
+[17]: https://www.reddit.com/r/cscareerquestions/comments/9hakaz/getting_ripped_apart_in_code_reviews_is_this/
+[18]: https://blog.devgenius.io/aggressive-code-review-e5f8869f3967
+[19]: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/80735342aebcbfc8af4878373f842c25323cb985.pdf
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Deploying Like Vercel and Netlify with Cloud Run: Live, Preview, and Modern Workflow**](/articles/deploying-with-cloud-run-like-vercel-and-netlify)
+
+Happy coding!
