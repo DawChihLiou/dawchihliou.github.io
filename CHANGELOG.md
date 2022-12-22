@@ -1,5 +1,12 @@
 
 
+## 3.2.32 (2022-12-22)
+
+
+### Bug Fixes
+
+* fix live reload ([9d53cb1](https://github.com/DawChihLiou/dawchihliou.github.io/commit/9d53cb146e2780396b224029d6e0790cbf97a913))
+
 ## 3.2.31 (2022-12-22)
 
 undefined
