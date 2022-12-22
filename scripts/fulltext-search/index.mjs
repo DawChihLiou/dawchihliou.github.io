@@ -2,7 +2,7 @@ import prettier from 'prettier'
 import { writeFileSync, mkdirSync, rmSync, existsSync } from 'fs'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
-import { allArticles } from '.contentlayer/data'
+import { allArticles } from '../../.contentlayer/data/index.mjs'
 import externalArticles from '../../.generated/meta/externalArticles.mjs'
 
 const outdir = '.generated/fulltext-search'
