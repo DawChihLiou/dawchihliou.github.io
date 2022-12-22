@@ -1,5 +1,5 @@
 import socials from '../.generated/meta/socialsTs'
-import { allArticles } from '.contentlayer/data'
+import { allArticles } from 'contentlayer/generated'
 import externalArticles from '../.generated/meta/externalArticlesTs'
 
 type Writing = {

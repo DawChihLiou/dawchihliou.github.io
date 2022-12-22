@@ -3,7 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-module.exports = withContentlayer()(
+module.exports = withContentlayer(
   withBundleAnalyzer({
     // for deployment to github pages
     assetPrefix: '',

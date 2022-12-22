@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { allOtherPages } from '.contentlayer/data'
-import type { OtherPage } from '.contentlayer/types'
+import { allOtherPages } from 'contentlayer/generated'
+import type { OtherPage } from 'contentlayer/generated'
 import components from '../components/MDXComponents'
 import SeoContainer from '../components/SeoContainer'
 import socials from '../.generated/meta/socialsTs'
@@ -14,7 +14,7 @@ type NowProps = {
 }
 
 export default function Now({ meta }: NowProps) {
-  const Component = useMDXComponent(meta.body.code)
+  const MDXContent = useMDXComponent(meta.body.code)
 
   return (
     <SeoContainer
@@ -33,7 +33,7 @@ export default function Now({ meta }: NowProps) {
               Inspired by{' '}
               <Link href="https://nownownow.com/about">nownownow.com</Link>
             </h2>
-            <Component components={components} />
+            <MDXContent components={components} />
           </article>
         </Section>
       </main>
