@@ -1,4 +1,9 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react'
 
 export type ColorScheme = 'auto' | 'light' | 'dark'
 
@@ -9,7 +14,7 @@ type SchemeContextType = {
 
 export const SchemeContext = createContext<SchemeContextType>(null)
 
-const SchemeProvider: React.FC = ({ children }) => {
+const SchemeProvider = ({ children }: PropsWithChildren) => {
   /**
    * Register event handler. Update body's class name based on media query
    * only when local storage is empty (user select "darkmode: auto").

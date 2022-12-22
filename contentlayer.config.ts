@@ -26,7 +26,7 @@ export const computedFields: ComputedFields = {
 export const Article = defineDocumentType(() => ({
   name: 'Article',
   filePathPattern: 'articles/*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
@@ -42,7 +42,7 @@ export const Article = defineDocumentType(() => ({
 export const OtherPage = defineDocumentType(() => ({
   name: 'OtherPage',
   filePathPattern: '*.mdx',
-  bodyType: 'mdx',
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
