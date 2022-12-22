@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import { allOtherPages } from 'contentlayer/generated'
 import type { OtherPage } from 'contentlayer/generated'
 import components from '../components/MDXComponents'
@@ -15,6 +15,7 @@ type NowProps = {
 
 export default function Now({ meta }: NowProps) {
   const MDXContent = useMDXComponent(meta.body.code)
+  useLiveReload()
 
   return (
     <SeoContainer

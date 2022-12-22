@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent, useLiveReload } from 'next-contentlayer/hooks'
 import components from '../../components/MDXComponents'
 import Article from '../../components/Article'
 import { allArticles } from 'contentlayer/generated'
@@ -11,6 +11,7 @@ type PostProps = {
 
 export default function Post({ post }: PostProps) {
   const MDXContent = useMDXComponent(post.body.code)
+  useLiveReload()
 
   return (
     <Article {...post}>
