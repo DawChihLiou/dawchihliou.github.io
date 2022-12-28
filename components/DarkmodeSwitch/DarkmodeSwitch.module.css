@@ -15,25 +15,6 @@
 }
 
 .button {
-  position: absolute;
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.button-enter {
-  opacity: 0;
-  transform: translateY(1rem);
-}
-.button-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 250ms ease, transform 250ms ease;
-}
-.button-exit {
-  opacity: 1;
-}
-.button-exit-active {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0, transform 0;
 }

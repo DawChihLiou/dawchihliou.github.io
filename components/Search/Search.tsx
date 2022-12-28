@@ -1,8 +1,18 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useState,
+  useTransition,
+} from 'react'
 import dynamic from 'next/dynamic'
 import { FiExternalLink, FiFileText } from 'react-icons/fi'
 import Link from '../Link'
 import styles from './Search.module.css'
+
+type Title = string
+type ImgUrl = string
+type SearchResult = [Title, ImgUrl][]
 
 const isSameSite = (url: string) => url.startsWith('/')
 
@@ -10,22 +20,23 @@ const Search = dynamic({
   loader: async () => {
     const wasm = await import('../../wasm/fulltext-search/pkg')
 
+    const search = (term: string): SearchResult => {
+      return wasm.search(term, 5)
+    }
+
     return function SearchComponent() {
       const [term, setTerm] = useState('')
-      const [results, setResults] = useState<[string, string][]>([])
+      const [results, setResults] = useState<SearchResult>([])
+      const [, startTransition] = useTransition()
 
       const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTerm(e.target.value)
-      }, [])
 
-      const search = useCallback((term: string): [string, string][] => {
-        return wasm.search(term, 5)
+        startTransition(() => {
+          const pending = search(e.target.value)
+          setResults(pending)
+        })
       }, [])
-
-      useEffect(() => {
-        const pending = search(term)
-        setResults(pending)
-      }, [search, term])
 
       return (
         <div className={styles.wrapper}>
@@ -38,6 +49,11 @@ const Search = dynamic({
           />
 
           <div className={styles.result}>
+            {!term && (
+              <p className={styles.resultPlaceholder}>
+                Search result will display here 📝
+              </p>
+            )}
             {term && (
               <p
                 className={styles.resultTitle}

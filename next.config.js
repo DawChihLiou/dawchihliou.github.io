@@ -5,11 +5,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withContentlayer(
   withBundleAnalyzer({
-    // for deployment to github pages
-    assetPrefix: '',
-
     // opt-in to SWC's JavaScript minification instead of Terser
     swcMinify: true,
+    reactStrictMode: true,
 
     webpack: function (config, { isServer }) {
       config.module.rules.push({
