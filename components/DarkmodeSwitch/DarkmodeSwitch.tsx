@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
 import { FiMoon, FiSun, FiToggleLeft } from 'react-icons/fi'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import styles from './DarkmodeSwitch.module.css'
 import { SchemeContext } from '../SchemeProvider'
+import styles from './DarkmodeSwitch.module.css'
 
 type DarkmodeSwitchProps = {
   showLabel?: boolean
@@ -36,51 +35,13 @@ const DarkmodeSwitch: React.FC<DarkmodeSwitchProps> = ({
     <div
       className={styles.container}
       onClick={switchScheme}
-      onKeyPress={keypress}
+      onKeyUp={keypress}
       tabIndex={tabIndex}
     >
       <div className={styles.wrap}>
-        <TransitionGroup component={null}>
-          {scheme === 'auto' && (
-            <CSSTransition
-              timeout={250}
-              classNames={{
-                enter: styles['button-enter'],
-                enterActive: styles['button-enter-active'],
-                exit: styles['button-exit'],
-                exitActive: styles['button-exit-active'],
-              }}
-            >
-              <FiToggleLeft className={styles.button} />
-            </CSSTransition>
-          )}
-          {scheme === 'light' && (
-            <CSSTransition
-              timeout={250}
-              classNames={{
-                enter: styles['button-enter'],
-                enterActive: styles['button-enter-active'],
-                exit: styles['button-exit'],
-                exitActive: styles['button-exit-active'],
-              }}
-            >
-              <FiSun className={styles.button} />
-            </CSSTransition>
-          )}
-          {scheme === 'dark' && (
-            <CSSTransition
-              timeout={250}
-              classNames={{
-                enter: styles['button-enter'],
-                enterActive: styles['button-enter-active'],
-                exit: styles['button-exit'],
-                exitActive: styles['button-exit-active'],
-              }}
-            >
-              <FiMoon className={styles.button} />
-            </CSSTransition>
-          )}
-        </TransitionGroup>
+        {scheme === 'auto' && <FiToggleLeft className={styles.button} />}
+        {scheme === 'light' && <FiSun className={styles.button} />}
+        {scheme === 'dark' && <FiMoon className={styles.button} />}
       </div>
       {showLabel && scheme === 'light' && <span>Light scheme</span>}
       {showLabel && scheme === 'dark' && <span>Dark scheme</span>}

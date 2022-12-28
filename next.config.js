@@ -7,6 +7,7 @@ module.exports = withContentlayer(
   withBundleAnalyzer({
     // opt-in to SWC's JavaScript minification instead of Terser
     swcMinify: true,
+    reactStrictMode: true,
 
     webpack: function (config, { isServer }) {
       config.module.rules.push({
