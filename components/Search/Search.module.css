@@ -53,3 +53,8 @@
 .resultTitle {
   margin-top: 0.5rem;
 }
+
+.resultPlaceholder {
+  margin-top: 0.5rem;
+  color: var(--text-secondary-color);
+}
