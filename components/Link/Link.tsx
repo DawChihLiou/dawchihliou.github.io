@@ -7,7 +7,7 @@ type LinkProps = DetailedHTMLProps<
   HTMLAnchorElement
 > & {
   // TODO: remove the override of outdated ClassAttributes in @types/react
-  ref: Ref<HTMLAnchorElement>
+  ref?: Ref<HTMLAnchorElement>
 }
 
 export default function Link({
