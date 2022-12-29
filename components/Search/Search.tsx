@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useState,
-  useTransition,
-} from 'react'
+import React, { ChangeEvent, useCallback, useState, useTransition } from 'react'
 import dynamic from 'next/dynamic'
 import { FiExternalLink, FiFileText } from 'react-icons/fi'
 import Link from '../Link'
@@ -51,7 +45,10 @@ const Search = dynamic({
           <div className={styles.result}>
             {!term && (
               <p className={styles.resultPlaceholder}>
-                Search result will display here 📝
+                Search result will display here{' '}
+                <span role="img" aria-label="Memo">
+                  📝
+                </span>
               </p>
             )}
             {term && (
