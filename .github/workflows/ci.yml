@@ -1,9 +1,6 @@
 name: Production Release Workflow
 
-on:
-  push:
-    branch:
-      - main
+on: push
 
 env:
   GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
