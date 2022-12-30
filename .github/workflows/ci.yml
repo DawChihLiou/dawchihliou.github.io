@@ -113,7 +113,7 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Install binaryen
-        run: apt-get -y install binaryen
+        run: sudo apt-get -y install binaryen
 
       - name: Install twiggy
         run: cargo install twiggy
