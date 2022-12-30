@@ -1,4 +1,4 @@
-name: Production Release Workflow
+name: CI
 
 on: push
 
@@ -111,6 +111,12 @@ jobs:
 
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Install binaryen
+        run: brew install binaryen
+
+      - name: Install twiggy
+        run: cargo install twiggy
 
       - name: Build full-text search WASM
         run: yarn fulltext-search
