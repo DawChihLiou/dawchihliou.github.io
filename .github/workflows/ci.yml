@@ -148,15 +148,6 @@ jobs:
       - name: Generate content layer
         run: npx contentlayer build
 
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - name: Install binaryen
-        run: sudo apt-get -y install binaryen
-
-      - name: Install twiggy
-        run: cargo install twiggy
-
       - name: Build full-text search WASM
         run: yarn fulltext-search
 
