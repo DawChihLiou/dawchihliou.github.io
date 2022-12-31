@@ -79,7 +79,20 @@ jobs:
       - name: Run prepare scripts
         run: yarn prepare
 
+      - uses: actions/cache@v3
+        id: nextjs-cache
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Build project
+        if: steps.nextjs-cache.outputs.cache-hit != 'true'
         run: yarn build
 
   deploy:
@@ -103,6 +116,10 @@ jobs:
       - name: Remove node modules cache
         run: rm -rf node_modules/.cache
 
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - name: Run prepare scripts
         run: yarn prepare
 
@@ -117,11 +134,24 @@ jobs:
 
       - name: Install twiggy
         run: cargo install twiggy
-        
+
       - name: Build full-text search WASM
         run: yarn fulltext-search
 
+      - uses: actions/cache@v3
+        id: nextjs-cache
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Build project
+        if: steps.nextjs-cache.outputs.cache-hit != 'true'
         run: yarn build
 
       - name: Export Static Assets
