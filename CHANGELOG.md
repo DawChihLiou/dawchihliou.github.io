@@ -1,5 +1,12 @@
 
 
+## 3.2.38 (2022-12-31)
+
+
+### Bug Fixes
+
+* hotfix release-it configuration ([aef9ebd](https://github.com/DawChihLiou/dawchihliou.github.io/commit/aef9ebdbc8d8a799dc9b5576856aadb477d29ee8)), closes [#82](https://github.com/DawChihLiou/dawchihliou.github.io/issues/82)
+
 ## 3.2.37 (2022-12-31)
 
 ## 3.2.36 (2022-12-30)
