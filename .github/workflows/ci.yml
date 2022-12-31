@@ -79,51 +79,25 @@ jobs:
       - name: Run prepare scripts
         run: yarn prepare
 
-      - name: Build project
-        run: yarn build
-
-  build-wasm:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-
       - uses: actions/cache@v3
-        id: yarn-cache
+        id: nextjs-cache
         with:
-          path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - name: Generate meta data
-        run: yarn meta
-
-      - name: Generate content layer
-        run: npx contentlayer build
-
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - name: Install binaryen
-        run: sudo apt-get -y install binaryen
-
-      - name: Install twiggy
-        run: cargo install twiggy
-
-      - name: Build full-text search WASM
-        run: yarn fulltext-search
+      - name: Build project
+        if: steps.nextjs-cache.outputs.cache-hit != 'true'
+        run: yarn build
 
   deploy:
     runs-on: ubuntu-20.04
-    needs: ['lint', 'test', 'build', 'build-wasm']
+    needs: ['lint', 'test', 'build']
     steps:
       - uses: actions/checkout@v3
 
@@ -142,6 +116,10 @@ jobs:
       - name: Remove node modules cache
         run: rm -rf node_modules/.cache
 
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
       - name: Run prepare scripts
         run: yarn prepare
 
@@ -159,6 +137,18 @@ jobs:
 
       - name: Build full-text search WASM
         run: yarn fulltext-search
+
+      - uses: actions/cache@v3
+        id: nextjs-cache
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Build project
         run: yarn build
