@@ -151,7 +151,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Build project
-        if: steps.nextjs-cache.outputs.cache-hit != 'true'
         run: yarn build
 
       - name: Export Static Assets
