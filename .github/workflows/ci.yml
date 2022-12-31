@@ -204,3 +204,5 @@ jobs:
       - name: Release
         if: ${{ github.ref == 'refs/heads/main' }}
         run: yarn release --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
