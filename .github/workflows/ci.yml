@@ -82,48 +82,9 @@ jobs:
       - name: Build project
         run: yarn build
 
-  build-wasm:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - name: Generate meta data
-        run: yarn meta
-
-      - name: Generate content layer
-        run: npx contentlayer build
-
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - name: Install binaryen
-        run: sudo apt-get -y install binaryen
-
-      - name: Install twiggy
-        run: cargo install twiggy
-
-      - name: Build full-text search WASM
-        run: yarn fulltext-search
-
   deploy:
     runs-on: ubuntu-20.04
-    needs: ['lint', 'test', 'build', 'build-wasm']
+    needs: ['lint', 'test', 'build']
     steps:
       - uses: actions/checkout@v3
 
@@ -148,6 +109,15 @@ jobs:
       - name: Generate content layer
         run: npx contentlayer build
 
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Install binaryen
+        run: sudo apt-get -y install binaryen
+
+      - name: Install twiggy
+        run: cargo install twiggy
+        
       - name: Build full-text search WASM
         run: yarn fulltext-search
 
