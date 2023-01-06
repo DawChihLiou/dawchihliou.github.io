@@ -20,7 +20,7 @@ export default function Intro() {
         />
         <div className={styles.greeting}>
           <h1>Daw-Chih Liou</h1>
-          <h2>engage your core💎</h2>
+          <h2>engage your core<span role="img" aria-label="Gem Stone">💎</span></h2>
           <p>
             Helping developers and organizations around the world build an
             outstanding web. With human-centered design principle at the core,
