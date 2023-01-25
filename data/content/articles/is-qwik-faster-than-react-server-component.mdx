@@ -1,7 +1,7 @@
 ---
 title: 'Is Qwik Faster than React Server Component?'
 publishedAt: 'Jan 26, 2023'
-description: 'A benchmark comparison and analysis between Qwik and Next.js 13.'
+description: 'A benchmark comparison and analysis between Qwik and Next.js 13 + React Server Component.'
 cover: '/optimized/articles/qwik-vs-next/hero.webp'
 category: 'Leadership'
 coverWidth: '1400'
@@ -12,6 +12,16 @@ coverHeight: '600'
 
 ---
 
+## How The Experiment Is Set Up
+
+- qwik v0.16
+- Next.js v13
+- React v18
+
+## Let's Peek The Result
+
+I built an application with Qwik and Next.js and measure the performances. The demo look like this:
+
 <img
   src="/articles/qwik-vs-next/demo.gif"
   alt="DALL-E web app demo"
@@ -19,6 +29,42 @@ coverHeight: '600'
   className="rounded centered"
   loading="lazy"
 />
+
+> You can find [the demo on GitHub][18]. Feel free to take a look at the repo and try it out✨
+
+The application lets users enter prompts for [DALL·E][0], an AI image generator, and displays the generated images in the page. It aslo displays the latest tweets about DALL·E.
+
+The key features are:
+
+- Server Side rendering the application.
+- Client side fetching for image results with [DALL·E's REST API][1].
+- Server side fetching for Twitter feed with [Twitter's REST API][20].
+
+Here's the core Web Vitals by Lighthouse for Qwik:
+
+<img
+  src="/optimized/articles/qwik-vs-next/qwik-lighthouse.webp"
+  alt="Qwik Lighthouse score"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Comparing to Next.js's Web Vitals:
+
+<img
+  src="/optimized/articles/qwik-vs-next/sc-lighthouse.webp"
+  alt="Next with server component Lighthouse score"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+We can observe the following:
+
+- Qwik's [speed index][22] is 31% faster than Next.js.
+- Qwik's [time to interactive][24] is ~19% faster than Next.js.
+- Next.js has a 0 ms [total blocking time][23], comparing to Qwik's 160 ms.
 
 ## The problem
 
@@ -33,22 +79,6 @@ coverHeight: '600'
 ### React Server Component
 
 ## Demo
-
-<img
-  src="/optimized/articles/qwik-vs-next/qwik-lighthouse.webp"
-  alt="Qwik Lighthouse score"
-  width="100%"
-  className="rounded centered"
-  loading="lazy"
-/>
-
-<img
-  src="/optimized/articles/qwik-vs-next/sc-lighthouse.webp"
-  alt="Next with server component Lighthouse score"
-  width="100%"
-  className="rounded centered"
-  loading="lazy"
-/>
 
 <img
   src="/optimized/articles/qwik-vs-next/qwik-perf.webp"
@@ -122,6 +152,11 @@ coverHeight: '600'
 - [Server and Client Components][13] - Next.js
 - [The "why" of web performance][15] - MDN
 - [Think Qwik][5] - Builder.io
+- [Twitter API v2][20] - Twitter Developer Aplatform
+- [Web Vitals][21] - web.dev
+- [Speed Index][22] - Chrome Developers
+- [Total Blocking Time][23] - Chrome Developers
+- [Time to Interfactive][24] - Chrome Developers
 
 [0]: https://openai.com/dall-e-2/
 [1]: https://beta.openai.com/docs/api-reference/images/create
@@ -143,6 +178,11 @@ coverHeight: '600'
 [17]: https://beta.nextjs.org/docs/data-fetching/fundamentals#fetching-data-with-server-components
 [18]: https://github.com/DawChihLiou/qwik-vs-next
 [19]: https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#seamless-integration-with-javascript-ecosystem
+[20]: https://developer.twitter.com/en/docs/twitter-api
+[21]: https://web.dev/vitals/
+[22]: https://developer.chrome.com/en/docs/lighthouse/performance/speed-index/
+[23]: https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/
+[24]: https://developer.chrome.com/docs/lighthouse/performance/interactive/
 
 ---
 
