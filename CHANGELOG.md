@@ -1,5 +1,12 @@
 
 
+## 3.2.43 (2023-01-26)
+
+
+### Bug Fixes
+
+* fix broken layout ([21e8956](https://github.com/DawChihLiou/dawchihliou.github.io/commit/21e89565ad3c0340023e0bae7d642dcec60937db))
+
 ## 3.2.42 (2023-01-26)
 
 ## 3.2.41 (2023-01-06)
