@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 06 Jan 2023 12:35:12 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 26 Jan 2023 15:16:13 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 06 Jan 2023 12:35:12 GMT</pubDate>
+        <pubDate>Thu, 26 Jan 2023 15:16:13 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Is Qwik Faster than React Server Component?]]></title>
+            <description><![CDATA[A benchmark comparison and analysis between Qwik and Next.js 13.]]></description>
+            <link>https://dawchihliou.github.io/articles/is-qwik-faster-than-react-server-component</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/is-qwik-faster-than-react-server-component</guid>
+            <category><![CDATA[Frontend]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Thu, 26 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Tired of Slow Code Reviews? Read this]]></title>
             <description><![CDATA[An ex-tech lead's guide to create a healthy code review culture that helps you ship your code faster.]]></description>
