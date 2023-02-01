@@ -12,6 +12,72 @@ coverHeight: '700'
 
 ---
 
+```Dockerfile:Dockerfile.local
+FROM node:18-alpine
+WORKDIR /app
+
+COPY . ./
+
+# building the app
+RUN yarn --frozen-lockfile
+
+RUN yarn build
+
+# Running the app
+CMD [ "yarn", "start" ]
+```
+
+```Dockerfile:Dockerfile
+ARG NODE=node:18-alpine
+
+# Stage 1: Install dependencies
+FROM ${NODE} AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json yarn.lock* ./
+RUN yarn --frozen-lockfile
+
+# Stage 2: Rebuild the source code only when needed
+FROM ${NODE} AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN yarn build
+
+
+# Stage 3: Production image
+FROM ${NODE} AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# copy assets and the generated standalone server
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+```
+
+<img
+  src="/articles/qwik-vs-next/demo.gif"
+  alt="DALL-E web app demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
 <img
   src="/optimized/articles/next-docker-image/unopt.webp"
   alt="Next with server component performance"
@@ -19,6 +85,7 @@ coverHeight: '700'
   className="rounded centered"
   loading="lazy"
 />
+
 <img
   src="/optimized/articles/next-docker-image/opt.webp"
   alt="Next with server component performance"
@@ -26,6 +93,15 @@ coverHeight: '700'
   className="rounded centered"
   loading="lazy"
 />
+
+<img
+  src="/optimized/articles/next-docker-image/files.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
 <img
   src="/optimized/articles/next-docker-image/sizes.webp"
   alt="Next with server component performance"
