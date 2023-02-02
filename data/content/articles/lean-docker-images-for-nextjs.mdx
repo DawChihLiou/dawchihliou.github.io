@@ -1,0 +1,273 @@
+---
+title: 'Lean Docker Images for Next.JS'
+publishedAt: 'Feb 2, 2023'
+description: 'Using multi-stage builds to optimize production Docker image for faster deployment.'
+cover: '/optimized/articles/next-docker-image/hero.webp'
+category: 'Cloud'
+coverWidth: '1400'
+coverHeight: '700'
+---
+
+## In this article
+
+- 🧑‍🔬 We'll discuss why and where optimizing docker image can be meaningful.
+- 🙈 We'll explore how to dockerize Next.js project with a hidden feature.
+- 🪄 We'll dive into the magic behind the docker image optimization.
+
+---
+
+## The Problem
+
+At work, I noticed our deployment pipeline was significantly slower than I expected. The simplified pipeline consist of the following jobs:
+
+<img
+  src="/optimized/articles/next-docker-image/workflow.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+After some investigation, we were able to identify the performance bottleneck. The task that consistently took the longest to complete was uploading production images to the [Google Cloud Artifact Registry][11]. It was because we were uploading large, un-optimized Docker images to the registry.
+
+[Image size][12] isn't an urgent concern like security or throughput in general. The storage and cost on the cloud are usually generous. However, it becomes problematic when it slows down the pipeline. It increases the [time to market][13] and affects our ability to [continuously deliver][14].
+
+## What's The Impact of Optimizing Docker Image?
+
+We'll use the DALL-E demo I built for my [previous article][6] as an example. The demo looks like this:
+
+<img
+  src="/articles/qwik-vs-next/demo.gif"
+  alt="DALL-E web app demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find [the demo on GitHub][5]. Feel free to take a look at the repo and try it out✨
+
+We'll create two docker files
+
+- **Dockerfile.local**: basic image without optimization
+- **Dockerfile**: optimized image
+
+Let's build the images based on each docker file. The results are:
+
+<img
+  src="/optimized/articles/next-docker-image/sizes.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+- Un-optimized image: **2.85GB**
+- Optimized image: **202MB**
+
+It's a **92%** reduction in size. We can roughly interpret it as a 92% reduction in uploading time because the file transfer over HTTPS is linear. Now let's dive into how you can achieve the same result.
+
+Let's go.
+
+## Before Optimizing The Image
+
+We can start off by creating a straightforward Dockerfile like this:
+
+```Dockerfile:Dockerfile.local
+FROM node:18-alpine
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY . ./
+
+# Build the app
+RUN yarn --frozen-lockfile
+RUN yarn build
+
+# Serve the app
+CMD [ "yarn", "start" ]
+```
+
+In this image, we use [Alpine Linux Node 18][3] as the base image because of its much smaller size compared to other base images. We also follow the recommendation and add [libc6-compat][10] to support the use of "process.dlopen". The rest is just like how we build and serve the project locally:
+
+- First, we install the dependencies based on yarn.lock file,
+- we generate the production build,
+- and lastly, we start the server with the "yarn start" script.
+
+Let's build the image using this docker file and this is generally what you can see in the command line:
+
+<img
+  src="/optimized/articles/next-docker-image/unopt.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The build was completed in **52.9s**.
+
+## The Optimized Docker Image
+
+The optimization is based on two features from Docker and Next.js:
+
+- [Docker Multi-stage builds][1]
+- [Next.js Output File Tracing][2]
+
+The idea is to use a multi-stage build to [select only what we need in production, stage by stage][7]. Let's take a look at the docker file.
+
+```Dockerfile:Dockerfile
+ARG NODE=node:18-alpine
+
+# Stage 1: Install dependencies
+FROM ${NODE} AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json yarn.lock* ./
+RUN yarn --frozen-lockfile
+
+# Stage 2: Build the app
+FROM ${NODE} AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN yarn build
+
+# Stage 3: Run the production
+FROM ${NODE} AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# copy assets and the generated standalone server
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+# Serve the app
+CMD ["node", "server.js"]
+```
+
+We used the same "node:18-alpine" as the base image.
+
+#### Stage 1: Install dependencies
+
+Instead of copying everything to the image, we were only copying the "package.json" and "yarn.lock" for the installation.
+
+#### Stage 2: Build the app
+
+In order to build the project, we needed the installed dependencies, source code, and all the project configurations in the project root. So we copied the dependencies **from the previous stage** and everything from the project root.
+
+#### Stage 3: Run the production
+
+[Output file tracing][2] is a Next.js feature that is designed to help us reduce deployment size by tracing all the files that are needed for production in build time.
+
+Once we enable the "standalone" output, Next.js will build and output a standalone Node server in ".next/standalone" directory.
+
+```js:next.config.js
+module.exports = {
+  output: 'standalone',
+}
+```
+
+The build result looks like this:
+
+<img
+  src="/optimized/articles/next-docker-image/files.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+In this stage, all we did was to copy the standalone server, the assets in the "./public" folder, the JavaScript and CSS chunks from the ".next/static" folder to the working directory and start the server with port 3000.
+
+The magic behind the output file tracing is [@vercel/nft][9]. It statically analyzes the dependency graph and outputs the list of modules in the graph. To illustrate, let's log the dependencies for our page, API, and the Node server:
+
+```js:file-tracing.mjs
+import { nodeFileTrace } from "@vercel/nft";
+
+const files = [
+  "./.next/server/app/sc/page.js",
+  "./.next/server/pages/api/images.js",
+  "node_modules/next/dist/server/next-server.js",
+];
+const { fileList } = await nodeFileTrace(files);
+console.log(fileList);
+```
+
+The output looks like this:
+
+<img
+  src="/optimized/articles/next-docker-image/file-tracing.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Final Thoughts
+
+Now that we explored the stages and the standalone server, let's build the image and observe the result:
+
+<img
+  src="/optimized/articles/next-docker-image/opt.webp"
+  alt="Next with server component performance"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+The build was completed in 41.3s. Compared to the un-optimized build, we didn't compromise the build time. It's a big win considering that we significantly reduced the build size by 92%.
+
+## References
+
+- [Multi-stage builds][1] - Docker docs
+- [Output File Tracing][2] - Next.js
+- [nodejs/docker-node][3] - Node.js
+- [Docker run reference][4] - Docker docs
+- [DawChihLiou/qwik-vs-next][5] - Daw-Chih Liou
+- [Is Qwik Faster than React Server Component?][6] - Daw-Chih Liou
+- [With Docker][7] - Next.js
+- [Deployment][8] - Next.js
+- [vercel/nft][9] - Vercel
+- [libc6-compat][10] - alpine Linux
+- [Artifact Registry][11] - Google Cloud
+- [Super small Docker image based on Alpine Linux][12] - Hacker News
+- [Time to market][13] - Wikipedia
+- [Ex-Principal Engineer's Guide to Design Thinking and Continuous Delivery][14] - Daw-Chih Liou
+
+[1]: https://docs.docker.com/build/building/multi-stage/
+[2]: https://nextjs.org/docs/advanced-features/output-file-tracing
+[3]: https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine
+[4]: https://docs.docker.com/engine/reference/run/
+[5]: https://github.com/DawChihLiou/qwik-vs-next
+[6]: https://dawchihliou.github.io/articles/is-qwik-faster-than-react-server-component
+[7]: https://github.com/vercel/next.js/tree/canary/examples/with-docker
+[8]: https://nextjs.org/docs/deployment
+[9]: https://github.com/vercel/nft
+[10]: https://pkgs.alpinelinux.org/package/edge/main/x86/libc6-compat
+[11]: https://cloud.google.com/artifact-registry
+[12]: https://news.ycombinator.com/item?id=10782897
+[13]: https://en.wikipedia.org/wiki/Time_to_market
+[14]: https://dawchihliou.github.io/articles/ex-principal-engineers-guide-to-design-thinking-and-continous-delivery
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭ Ready for the next article? 👉 [**Is Qwik Faster than React Server Component?**](/articles/is-qwik-faster-than-react-server-component)
+
+Happy coding!
