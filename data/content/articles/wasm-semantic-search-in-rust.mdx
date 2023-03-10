@@ -1,0 +1,257 @@
+---
+title: 'WASM Semantic Search in Rust'
+publishedAt: 'March 10, 2023'
+description: 'Introducing Voy, a portable WebAssembly semantic search engine with vector similarity search in Rust.'
+cover: '/optimized/articles/wasm-semantic-search/hero.webp'
+category: 'Cloud'
+coverWidth: '1400'
+coverHeight: '700'
+---
+
+## In this article
+
+- 🔍 We'll learn what semantic search is.
+- 🎉 We'll discuss how semantic search impacts the user experience
+- 🦀 We'll see the use case of a new npm library called Voy, a WASM vector similarity search engine written in Rust.
+
+Let's go.
+
+---
+
+## What Is Semantic Search?
+
+Semantic search is a type of search that focuses on meanings. You can search with human language or vague concepts, and the search result will give you similar data points in the database based on the semantics of your search query.
+
+It almost feels like semantic search engines "understand" the meaning of your questions. You can ask any question in your natural language like "Which Marvel movie to watch after Shang-Chi?". The engines understand the meaning and why you ask that question and it returns the most relevant results back to you.
+
+In fact, semantic search engines commonly use pre-trained [Neural Networks][8] models to understand the [search intent and contextual meanings][3], and generate a computational representation of the search queries and database. We often refer to the representation as "vector embeddings" or "embeddings". The engine will then classify the embeddings and find the nearest neighbors of the search query embeddings. The nearest neighbors are the data points that are the most relevant to what you're looking for.
+
+To illustrate how semantic search works:
+
+<img
+  src="https://1.bp.blogspot.com/-Rsymb9XvPOE/Xx8rfRnmTHI/AAAAAAAAGRQ/U2n_bBNXS4IBstYrx2IalrFXufLUvmn2gCLcBGAsYHQ/s1600/ScaNN%2Btom%2Bexport.gif"
+  alt="See https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> The image originated from Google Research's blog "[Announcing ScaNN: Efficient Vector Similarity Search][10]".
+
+## Who Uses Semantic Search?
+
+Semantic search is everywhere. It's so valuable because it has a big impact on user experience:
+
+- Users are able to search and access digital content in a more human way.
+- Search engines are able to provide more relevant and helpful content to the users and make [SEO strategy][2] around keywords irrelevant.
+- Search can be [blazingly fast][5] for big data.
+- Search isn't limited to text anymore. We can create embeddings from different types of digital content, like images and videos.
+
+Some examples of the major companies that integrated semantic search:
+
+- Google: [Hummingbird][1]
+- Amazon: [Semantic product search][15]
+- Spotify: [Natural Language Search][19]
+- Meta: [Facebook AI Similarity Search][11]
+- Redis: [Redis Vector Similarity Search][4]
+
+## Introducing Voy
+
+[Voy][13] is an open source semantic search engine in [WebAssembly][20] (WASM). I created it to empower more projects to build semantic features and create better user experience for people around the world. Voy follows several design principles:
+
+- 🤏 **Tiny**: Reduce overhead for limited devices, such as mobile browsers with slow network or IoT.
+- ⚡️ **Fast**: Create the best search experience for the users.
+- 🌳 **Tree Shackable**: Optimize bundle size and enable asynchronous capabilities for modern Web API, such as [Web Workers][22].
+- 🔋 **Resumable**: Generate portable embeddings index anywhere, anytime.
+- ☁️ **Edgy**: Run semantic search on CDN edge servers.
+
+It's available on npm. You can simply install it with your favorite package manager and start using it.
+
+```bash
+# with npm
+npm i voy-search
+
+# with Yarn
+yarn add voy-search
+
+# with pnpm
+pnpm add voy-search
+```
+
+To demonstrate what it looks like:
+
+<img
+  src="/articles/wasm-semantic-search/voy.gif"
+  alt="PNG and WebP comparison"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find the [Voy's repository on GitHub][13]! Feel free to try it out.
+>
+> The repository includes an [example](https://github.com/tantaraio/voy/tree/main/example) where you can see how to load the WASM module with [Webpack 5][21].
+
+Let's break it down a bit to see what it did. First, the demo was loading the WASM module asynchronously. After loading, it started indexing the following phrases:
+
+- "This is a very happy Person"
+- "That is a Happy Dog"
+- "Today is a sunny day"
+
+Indexing is where we transforms the phrases into embeddings and organize them in a embedding space. Once the index was ready, the demo performed a similarity search with the phrase "That is a happy Person". Finally we saw the search result returns "This is a very happy Person" as the top result.
+
+We can reason about the credibility of the result because "This is a happy Person" does have the highest semantic similarity to "This is a very happy Person".
+
+## How does Voy Work?
+
+Voy takes care of two things:
+
+- Indexing resources.
+- Retrieving nearest neighbors from the index.
+
+### Index Resources
+
+> To demonstrate, we'll use "text" as our resource.
+
+The embeddings are organized and stored in a [k-d tree][18] under the hood. k-d tree is a data structure for organizing data in a k-dimensional space. It is very useful for our vector embeddings index because the embeddings are fixed floating arrays.
+
+As of now, packaging an embeddings transformers into WASM is still under development. So Voy relies on other libraries like [Web AI][23] to generate embeddings.
+
+```ts
+// Dynamically import Voy
+const voy = await import('voy')
+
+const phrases = [
+  'That is a very happy Person',
+  'That is a Happy Dog',
+  'Today is a sunny day',
+]
+
+// Use web-ai to create text embeddings
+const model = await(await TextModel.create('gtr-t5-quant')).model
+const processed = await Promise.all(phrases.map((q) => model.process(q)))
+
+// Index embeddings with Voy
+const data = processed.map(({ result }, i) => ({
+  id: String(i),
+  title: phrases[i],
+  url: `/path/${i}`, // link to your resource for the search result
+  embeddings: result,
+}))
+const index = voy.index({ embeddings: data }) // index is a serialized k-d tree
+```
+
+As you can see, after executing **voy.index()**, it returns a serialized index. It allows Voy to deserialize the index when executing searches without being in the same environment. For example, the index can be created in build time and ship the serialized index to the client to perform searches. It is referred as the **resumability**.
+
+### Retrieve Nearest Neighbors
+
+```ts
+// Create query embeddings
+const query = await model.process('That is a happy Person')
+
+// Search with Voy and return the 1 result
+const nearests = voy.search(index, query.result, 1)
+
+// Display vector similarity search result
+nearests.forEach(
+  (result) => log(`🕸️ voy similarity search result 👉 "${result.title}"`) // That is a very happy Person
+)
+```
+
+Internally, Voy uses Squared [Euclidean distance][9] to calculate the nearest neighbors. There're a few ways to calculate the distance between points. Here the points are the nodes of the embeddings object in the k-d tree. The common formulas are:
+
+- [Euclidean distance][9]
+- [Manhattan distance][16]
+- [Cosine similarity][17]
+
+<img
+  src="/optimized/articles/wasm-semantic-search/distance-matrics.webp"
+  alt="Common distance metrics: Euclidean distance, Manhattan distance, and Cosine similarity"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+## Final Thoughts
+
+Voy is created to make semantic accessible for developers to build, ship, and create user value. It still has a few more steps to be a self-sufficient semantic search engine. If you're interested, you can follow Voy's [public roadmap][24].
+
+If you believe in Voy's mission and would like to support the project, please check out the [sponsor section][13] on the GitHub repository.
+
+If you are interested in some of the open source embeddings transformers, here are some of the projects I experimented with:
+
+- [spotify/annoy][12]
+- [facebookresearch/faiss][26]
+- [google-research/bert][25]
+- [UKPLab/sentence-transformers][27] with the [all-MiniLM-L12-v2][28] model
+
+## References
+
+- [Announcing ScaNN: Efficient Vector Similarity Search][10] - Google Research
+- [Build Intelligent Apps with New Redis Vector Similarity Search][4] - Redis
+- [Cosine similarity][17] - Wikipedia
+- [Euclidean distance][9] - Wikipedia
+- [facebookresearch/faiss][26] - GitHub
+- [Faiss: A library for efficient similarity search][11] - Engineering at Meta
+- [Find anything blazingly fast with Google's vector search technology][5] - Google Cloud
+- [Google Hummingbird][1] - Wikipedia
+- [google-research/bert][25] - GitHub
+- [I Built A Snappy Static Full-text Search with WebAssembly, Rust, Next.js, and Xor Filters][14] - Daw-Chih Liou
+- [Introducing Natural Language Search for Podcast Episodes][19] - Spotify
+- [k-d tree][18] - Wikipedia
+- [Manhattan distance][16] - Wikipedia
+- [Nearest neighbor search][7] - Wikipedia
+- [Neural network][8] - Wikipedia
+- [Semantic product search][15] - Amazon Science
+- [Semantic search][3] - Wikipedia
+- [sentence-transformers/all-MiniLM-L12-v2][28] - Hugging Face
+- [Similarity search][6] - Wikipedia
+- [spotify/annoy][12] - GitHub
+- [tantaraio/voy][13] - GitHub
+- [UKPLab/sentence-transformers] - GitHub
+- [visheratin/web-ai][23] - GitHub
+- [Voy Roadmap][14] - GitHub Projects
+- [What is semantic search: A deep dive into entity-based search][2] - Search Engine Land
+- [WebAssembly][20] - W3C Community Group
+- [Web Workers API][22] - mdn web docs
+- [Webpack][21] - OpenJS Foundation
+
+[1]: https://en.wikipedia.org/wiki/Google_Hummingbird
+[2]: https://searchengineland.com/semantic-search-entity-based-search-388221
+[3]: https://en.wikipedia.org/wiki/Semantic_search
+[4]: https://redis.com/blog/build-intelligent-apps-redis-vector-similarity-search/
+[5]: https://cloud.google.com/blog/topics/developers-practitioners/find-anything-blazingly-fast-googles-vector-search-technology
+[6]: https://en.wikipedia.org/wiki/Similarity_search
+[7]: https://en.wikipedia.org/wiki/Nearest_neighbor_search
+[8]: https://en.wikipedia.org/wiki/Neural_network
+[9]: https://en.wikipedia.org/wiki/Euclidean_distance
+[10]: https://ai.googleblog.com/2020/07/announcing-scann-efficient-vector.html
+[11]: https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/
+[12]: https://github.com/spotify/annoy
+[13]: https://github.com/tantaraio/voy
+[14]: /articles/i-built-a-snappy-full-text-search-with-webassembly-rust-nextjs-and-xor-filters
+[15]: https://www.amazon.science/publications/semantic-product-search
+[16]: https://en.wikipedia.org/wiki/Taxicab_geometry
+[17]: https://en.wikipedia.org/wiki/Cosine_similarity
+[18]: https://en.wikipedia.org/wiki/K-d_tree
+[19]: https://engineering.atspotify.com/2022/03/introducing-natural-language-search-for-podcast-episodes/
+[20]: https://webassembly.org
+[21]: https://webpack.js.org
+[22]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+[23]: https://github.com/visheratin/web-ai
+[24]: https://github.com/orgs/tantaraio/projects/2/views/1
+[25]: https://github.com/google-research/bert
+[26]: https://github.com/facebookresearch/faiss
+[27]: https://github.com/UKPLab/sentence-transformers
+[28]: https://huggingface.co/sentence-transformers/all-MiniLM-L12-v2
+
+---
+
+Here you have it! Thanks for reading through🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭️ Ready for the next article? 👉 [**Lean Docker Images for Next.JS**](/articles/lean-docker-images-for-nextjs)
+
+Happy coding!
