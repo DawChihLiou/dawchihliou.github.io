@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 13 Feb 2023 16:23:40 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 10 Mar 2023 15:11:59 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 13 Feb 2023 16:23:40 GMT</pubDate>
+        <pubDate>Fri, 10 Mar 2023 15:11:59 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[WASM Semantic Search in Rust]]></title>
+            <description><![CDATA[Introducing Voy, a portable WebAssembly semantic search engine with vector similarity search in Rust.]]></description>
+            <link>https://dawchihliou.github.io/articles/wasm-semantic-search-in-rust</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/wasm-semantic-search-in-rust</guid>
+            <category><![CDATA[Cloud]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Fri, 10 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Lean Docker Images for Next.JS]]></title>
             <description><![CDATA[Using multi-stage builds to optimize production Docker image for faster deployment.]]></description>
