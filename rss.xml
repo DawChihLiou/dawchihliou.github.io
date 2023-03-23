@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 13 Mar 2023 16:54:29 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 Mar 2023 10:41:55 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 13 Mar 2023 16:54:29 GMT</pubDate>
+        <pubDate>Thu, 23 Mar 2023 10:41:55 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[How to Run A Tech Community in Your Company: An Ex-Principal Engineer’s Guide]]></title>
+            <description><![CDATA[5 easy steps to create a sustainable tech community in your company that everyone loves.]]></description>
+            <link>https://dawchihliou.github.io/articles/how-to-run-a-tech-community-in-your-company</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/how-to-run-a-tech-community-in-your-company</guid>
+            <category><![CDATA[Leadership]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Thu, 23 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[WASM Semantic Search in Rust]]></title>
             <description><![CDATA[Introducing Voy, a portable WebAssembly semantic search engine with vector similarity search in Rust.]]></description>
