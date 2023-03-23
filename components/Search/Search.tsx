@@ -12,7 +12,7 @@ const isSameSite = (url: string) => url.startsWith('/')
 
 const Search = dynamic({
   loader: async () => {
-    const wasm = await import('../../wasm/fulltext-search/pkg')
+    const wasm = await import('wasm/fulltext-search/pkg')
 
     const search = (term: string): SearchResult => {
       return wasm.search(term, 5)
