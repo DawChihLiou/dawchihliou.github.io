@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.1",
+    "@next/eslint-plugin-next": "^13.2.4",
     "@octokit/core": "^3.5.1",
     "@playwright/test": "^1.21.0",
     "@release-it/conventional-changelog": "^5.1.1",
