@@ -5,7 +5,6 @@ import Link from '../../components/Link'
 import { FiRss } from 'react-icons/fi'
 import SeoContainer from '../../components/SeoContainer'
 import socials from '../../.generated/meta/socialsTs'
-import Search from '../../components/Search'
 
 export default function Articles() {
   return (
@@ -38,7 +37,6 @@ export default function Articles() {
               <Link href={socials.medium}>Better Programming</Link> and{' '}
               <Link href={socials.hackernoon}>Hacker Noon</Link>.
             </p>
-            <Search />
           </div>
           <div>
             {articles.map((article) => (

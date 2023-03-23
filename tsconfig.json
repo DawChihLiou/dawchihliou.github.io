@@ -25,6 +25,5 @@
     "**/*.tsx",
     ".contentlayer/generated"
   ],
-  // TODO: remove search component from exclude
-  "exclude": ["node_modules", "**/*.mjs", "components/Search/*.tsx"]
+  "exclude": ["node_modules", "**/*.mjs"]
 }
