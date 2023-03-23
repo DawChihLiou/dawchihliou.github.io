@@ -12,7 +12,8 @@ const isSameSite = (url: string) => url.startsWith('/')
 
 const Search = dynamic({
   loader: async () => {
-    const wasm = await import('wasm/fulltext-search/pkg')
+    // @ts-ignore TODO: diagnose the cause of the ci failure https://github.com/DawChihLiou/dawchihliou.github.io/actions/runs/4498850953/jobs/7916000271?pr=113
+    const wasm = await import('../../wasm/fulltext-search/pkg')
 
     const search = (term: string): SearchResult => {
       return wasm.search(term, 5)
