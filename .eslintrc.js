@@ -5,6 +5,8 @@ module.exports = {
 
   plugins: ['import', 'jsx-a11y', 'react', 'react-hooks'],
 
+  extends: ['plugin:@next/next/recommended'],
+
   env: {
     browser: true,
     commonjs: true,
@@ -42,6 +44,7 @@ module.exports = {
       },
       plugins: ['@typescript-eslint'],
       rules: {
+        '@next/next/no-img-element': 'off',
         'default-case': 'off',
         'no-dupe-class-members': 'off',
         'no-undef': 'off',
