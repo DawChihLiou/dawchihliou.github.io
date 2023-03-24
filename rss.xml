@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 23 Mar 2023 18:33:26 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 24 Mar 2023 06:50:02 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 23 Mar 2023 18:33:26 GMT</pubDate>
+        <pubDate>Fri, 24 Mar 2023 06:50:02 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -50,7 +50,7 @@
             <description><![CDATA[Introducing Voy, a portable WebAssembly semantic search engine with vector similarity search in Rust.]]></description>
             <link>https://dawchihliou.github.io/articles/wasm-semantic-search-in-rust</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/wasm-semantic-search-in-rust</guid>
-            <category><![CDATA[Cloud]]></category>
+            <category><![CDATA[Rust]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Fri, 10 Mar 2023 00:00:00 GMT</pubDate>
         </item>
@@ -86,7 +86,7 @@
             <description><![CDATA[The modern workflow that unlocks your team's potential to ship faster.]]></description>
             <link>https://dawchihliou.github.io/articles/deploying-with-cloud-run-like-vercel-and-netlify</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/deploying-with-cloud-run-like-vercel-and-netlify</guid>
-            <category><![CDATA[Site Reliability]]></category>
+            <category><![CDATA[Cloud]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Wed, 30 Nov 2022 00:00:00 GMT</pubDate>
         </item>
@@ -113,7 +113,7 @@
             <description><![CDATA[We will be building a proof of concept to create customer Google Maps markers using any React component in a Next.js project.]]></description>
             <link>https://dawchihliou.github.io/articles/building-custom-google-maps-marker-react-component-like-airbnb-in-nextjs</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/building-custom-google-maps-marker-react-component-like-airbnb-in-nextjs</guid>
-            <category><![CDATA[React]]></category>
+            <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate>
         </item>
@@ -122,7 +122,7 @@
             <description><![CDATA[Event Bus is an interesting design pattern to build a lightweight event system. We will discover its use cases in React and build a type-safe Event Bus from scratch with TypeScript.]]></description>
             <link>https://dawchihliou.github.io/articles/event-bus-for-react</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/event-bus-for-react</guid>
-            <category><![CDATA[React]]></category>
+            <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Tue, 02 Aug 2022 00:00:00 GMT</pubDate>
         </item>
@@ -140,7 +140,7 @@
             <description><![CDATA[React 18 released the highly anticipated concurrent features. In this article, we are diving into a 3D visualization and discuss how to optimize its performance step by step with React 18's concurrent rendering.]]></description>
             <link>https://dawchihliou.github.io/articles/stress-testing-concurrent-features-in-react-18</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/stress-testing-concurrent-features-in-react-18</guid>
-            <category><![CDATA[Rust]]></category>
+            <category><![CDATA[Frontend]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Mon, 30 May 2022 00:00:00 GMT</pubDate>
         </item>
@@ -248,7 +248,7 @@
             <description><![CDATA[A recap of the 5-day JavaScript journey. It has been a couple of months since Kyle, author of the “You Don’t Know JS” series, visited our trivago headquarters and gave us a wonderful JavaScript workshop. It was such an enjoyable week, being able to meet Kyle in person and walk through his thinking behind the materials.]]></description>
             <link>https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/</link>
             <guid isPermaLink="true">https://tech.trivago.com/post/2018-10-15-javascript-workshop-with-kyle-simpson/</guid>
-            <category><![CDATA[Engineering Culture]]></category>
+            <category><![CDATA[Leadership]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
             <pubDate>Mon, 15 Oct 2018 00:00:00 GMT</pubDate>
         </item>
