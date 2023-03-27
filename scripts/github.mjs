@@ -58,6 +58,7 @@ async function fetchUserRepos(username, numberOfRepos) {
     topics: repo.topics,
     createdAt: repo.created_at,
     updatedAt: repo.updated_at,
+    owner: repo.owner.login,
   }))
 }
 
@@ -92,10 +93,15 @@ async function writeFiles(data) {
  * Generate a list of Starred GitHub Repos and output in ".generate/github" directory.
  */
 async function generate() {
-  const profile = await fetchUser('DawChihLiou')
-  const repos = await fetchUserRepos('DawChihLiou', profile.public_repos)
+  const users = await Promise.all([
+    fetchUser('DawChihLiou'),
+    fetchUser('tantaraio'),
+  ])
+  const repos = await Promise.all(
+    users.map((user) => fetchUserRepos(user.login, user.public_repos))
+  )
 
-  await writeFiles(repos)
+  await writeFiles(repos.flat())
 }
 
 generate()

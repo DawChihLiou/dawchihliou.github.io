@@ -6,6 +6,14 @@ import repos from '../.generated/github/githubReposTs'
 import Repo from '../components/Repo'
 import Link from '../components/Link'
 
+type ArrayElement<ArrayType extends readonly unknown[]> =
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never
+
+const score = (r: ArrayElement<typeof repos>) =>
+  r.stargazersCount * 0.75 + r.forksCount * 0.25
+
+repos.sort((a, b) => score(b) - score(a))
+
 export default function Work() {
   return (
     <SeoContainer

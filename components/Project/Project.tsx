@@ -12,6 +12,8 @@ const regex = pinnedRepos.join('|')
 const filteredRepos = repos
   .filter((repo) => repo.name !== 'dawchihliou.github.io')
   .filter((repo) => repo.name.match(new RegExp(regex)))
+  .sort((a, b) => b.stargazersCount - a.stargazersCount)
+  .slice(0, 4)
 
 export default function Project() {
   return (
