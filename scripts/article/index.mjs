@@ -55,16 +55,21 @@ async function main() {
     .description('Bootstrap a new article.')
     .argument('<title>', 'article title')
     .option('-p, --publishedat', 'publishing date', formatDate(now))
-    .option('-d --description', 'description', '✍️ Enter description here')
-    .option('-t --tag', 'tag', '✍️ Enter tag here')
+    .option(
+      '-d, --description <string>',
+      'description',
+      '✍️ Enter description here'
+    )
+    .option('-t, --tag <string>', 'tag', '✍️ Enter tag here')
     .parse()
 
   const [rawTitle] = program.args
   const options = program.opts()
 
   const title = titlize(rawTitle)
-  const filename = rawTitle.toLocaleLowerCase().replace(/\W+/g, '-')
+  const tag = titlize(options.tag)
 
+  const filename = rawTitle.toLocaleLowerCase().replace(/\W+/g, '-')
   const imageOutputPath = await makeDir(`public/articles/${filename}`)
 
   createReadStream(`${templatePath}/hero.png`).pipe(
@@ -75,7 +80,7 @@ async function main() {
     .pipe(replaceStream('[TITLE]', title))
     .pipe(replaceStream('[PUBLISHED_AT]', options.publishedat))
     .pipe(replaceStream('[DESCRIPTION]', options.description))
-    .pipe(replaceStream('[TAG]', options.tag))
+    .pipe(replaceStream('[TAG]', tag))
     .pipe(replaceStream('[COVER]', `/optimized/articles/${filename}/hero.webp`))
     .pipe(write.stream(`${articlePath}/${filename}.mdx`))
 }

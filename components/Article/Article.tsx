@@ -58,7 +58,13 @@ export default function Article({
                 {readingTime ? ` · ${readingTime.text}` : ''}
               </p>
             </div>
-            <img alt={title} src={cover} width="100%" loading="lazy" />
+            <img
+              alt={title}
+              src={cover}
+              width="100%"
+              className="rounded centered"
+              loading="lazy"
+            />
             <div className="article-content">{children}</div>
             {!hideAuthor && <Author />}
           </div>
