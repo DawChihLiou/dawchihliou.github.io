@@ -1,4 +1,11 @@
 import { program } from 'commander'
+import makeDir from 'make-dir'
+import write from 'write'
+import { createReadStream } from 'fs'
+import replaceStream from 'replacestream'
+
+const templatePath = 'scripts/article/templates'
+const articlePath = 'data/content/articles'
 
 const articles = ['a', 'an', 'the']
 const conjunctions = ['and', 'but', 'for', 'nor', 'or', 'so', 'yet']
@@ -31,17 +38,46 @@ function titlize(str) {
   )
 }
 
+function formatDate(date) {
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  }
+  return new Intl.DateTimeFormat('en-US', options).format(date)
+}
+
 async function main() {
+  const now = new Date()
+
   program
     .name('yarn new:article')
     .description('Bootstrap a new article.')
     .argument('<title>', 'article title')
-    .action((title) => console.log(title))
+    .option('-p, --publishedat', 'publishing date', formatDate(now))
+    .option('-d --description', 'description', '✍️ Enter description here')
+    .option('-t --tag', 'tag', '✍️ Enter tag here')
     .parse()
 
-  const [title] = program.args
-  const formattedTitle = titlize(title)
-  const imagePath = title.toLocaleLowerCase().replace(/\W+/g, '-')
+  const [rawTitle] = program.args
+  const options = program.opts()
+
+  const title = titlize(rawTitle)
+  const filename = rawTitle.toLocaleLowerCase().replace(/\W+/g, '-')
+
+  const imageOutputPath = await makeDir(`public/articles/${filename}`)
+
+  createReadStream(`${templatePath}/hero.png`).pipe(
+    write.stream(`${imageOutputPath}/hero.png`)
+  )
+
+  createReadStream(`${templatePath}/article.mdx`)
+    .pipe(replaceStream('[TITLE]', title))
+    .pipe(replaceStream('[PUBLISHED_AT]', options.publishedat))
+    .pipe(replaceStream('[DESCRIPTION]', options.description))
+    .pipe(replaceStream('[TAG]', options.tag))
+    .pipe(replaceStream('[COVER]', `/optimized/articles/${filename}/hero.webp`))
+    .pipe(write.stream(`${articlePath}/${filename}.mdx`))
 }
 
 main()
