@@ -26,7 +26,8 @@
     "lighthouse:prod": "dx-scripts lighthouse https://dawchihliou.github.io/",
     "deploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll && git add out/ && git commit -m \"chore: deploy to gh-pages\" && git subtree push --prefix out origin gh-pages",
     "release": "release-it",
-    "analyze": "cross-env ANALYZE=true yarn build"
+    "analyze": "cross-env ANALYZE=true yarn build",
+    "new:article": "node scripts/article/index.mjs"
   },
   "husky": {
     "hooks": {
@@ -69,6 +70,7 @@
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "babel-eslint": "^10.1.0",
+    "commander": "^10.0.0",
     "contentlayer": "^0.2.9",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog-with-jiraid-detection": "^1.0.3",
@@ -84,6 +86,7 @@
     "jest": "^27.5.1",
     "jest-next-dynamic": "^1.0.1",
     "lint-staged": "^10.4.0",
+    "make-dir": "^3.1.0",
     "next-contentlayer": "^0.2.9",
     "prettier": "^2.1.2",
     "raw-loader": "^4.0.1",
@@ -96,11 +99,13 @@
     "release-it": "^15.6.0",
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
+    "replacestream": "^4.0.3",
     "rss": "^1.2.2",
     "sharp": "^0.30.5",
     "strip-markdown": "^5.0.0",
     "terser": "^5.14.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "write": "^2.0.0"
   },
   "config": {
     "commitizen": {
