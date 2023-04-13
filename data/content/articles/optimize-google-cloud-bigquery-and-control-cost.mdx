@@ -16,6 +16,75 @@ Let's go.
 
 ---
 
+## How did it Happen?
+
+I was developing a script to prepare data samples for customers that reached out for consultations. The samples have 100 rows each file and they are partitioned by 55 locales. My query looks like this
+
+```sql
+SELECT *
+FROM `project.dataset.table`
+WHERE
+  timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+  AND locale = "US"
+LIMIT 100;
+```
+
+The data was stored in "europe-west-4" and the [pricing for querying is $6/1TB][2]. So by running the script, I processed
+
+- 500TB of data in total
+- 9TB of data per country
+- $54 per data sample file
+
+## The script
+
+```js:bq-samples.mjs
+import { BigQuery } from "@google-cloud/bigquery";
+import { Parser } from "@json2csv/plainjs";
+import makeDir from "make-dir";
+import { write } from "./write.mjs";
+import { locales } from "./locales.mjs";
+import { perf } from "./performance.mjs";
+
+const q = (locale, start, end, limit) => `SELECT *
+  FROM \`project.dataset.table\`
+  WHERE
+    timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+    AND user_country = "${locale}"
+  LIMIT ${limit}`
+
+async function main() {
+  const timer = perf()
+
+  const dir = await makeDir(OUT_DIR)
+  const bigquery = new BigQuery()
+  const csvParser = new Parser({})
+
+  try {
+    const jobs = locales.map((locale) => async () => {
+      // get query result from BigQuery
+      const [job] = await bigquery.createQueryJob({
+        query: q(locale, "2022-12-01", "2023-02-28", 100),
+      })
+      const [rows] = await job.getQueryResults()
+
+      // parse rows into csv format
+      const csv = parse(csvParser, rows)
+
+      // write data into csv files and store in the file system
+      await write(csv, dir, locale, "2022-12-01", "2023-02-28", 100)
+    })
+
+    await Promise.all(jobs.map((job) => job()))
+
+    console.log(`✨ Done in ${timer.stop()} seconds.`)
+  } catch (error) {
+    console.error('❌ Failed to create sample file', error)
+  }
+}
+
+await main()
+```
+
 <img
   src="/optimized/articles/optimize-google-cloud-bigquery-and-control-cost/hero.webp"
   alt="image from the template"
@@ -27,6 +96,11 @@ Let's go.
 ## Final Thoughts
 
 ## References
+
+- [BigQuery][1] - Google Cloud
+
+[1]: https://cloud.google.com/bigquery
+[2]: https://cloud.google.com/bigquery/pricing
 
 ---
 
