@@ -3,6 +3,7 @@ import makeDir from 'make-dir'
 import write from 'write'
 import { createReadStream } from 'fs'
 import replaceStream from 'replacestream'
+import allArticles from './articles.mjs'
 
 const templatePath = 'scripts/article/templates'
 const articlePath = 'data/content/articles'
@@ -76,12 +77,18 @@ async function main() {
     write.stream(`${imageOutputPath}/hero.png`)
   )
 
+  const latestArticle = allArticles[0]
+
   createReadStream(`${templatePath}/article.mdx`)
     .pipe(replaceStream('[TITLE]', title))
     .pipe(replaceStream('[PUBLISHED_AT]', options.publishedat))
     .pipe(replaceStream('[DESCRIPTION]', options.description))
     .pipe(replaceStream('[TAG]', tag))
     .pipe(replaceStream('[COVER]', `/optimized/articles/${filename}/hero.webp`))
+    .pipe(replaceStream('[PREV_ARTICLE]', latestArticle.title))
+    .pipe(
+      replaceStream('[PREV_ARTICLE_URL]', `/articles/${latestArticle.slug}`)
+    )
     .pipe(write.stream(`${articlePath}/${filename}.mdx`))
 }
 
