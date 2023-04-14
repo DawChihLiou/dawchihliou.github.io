@@ -26,7 +26,7 @@ I was developing a script to prepare data samples for customers that reached out
 SELECT *
 FROM `project.dataset.table`
 WHERE
-  timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+  ts BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
   AND locale = "US"
 LIMIT 100;
 ```
@@ -54,7 +54,7 @@ import { perf } from "./performance.mjs";
 const q = (locale, start, end, limit) => `SELECT *
   FROM \`project.dataset.table\`
   WHERE
-    timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+    ts BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
     AND locale = "${locale}"
   LIMIT ${limit}`
 
@@ -135,10 +135,11 @@ SELECT
   query_info_3,
   impression_info_1,
   impression_info_2,
-  impression_info_3
+  impression_info_3,
+  ts
 FROM `project.dataset.table`
 WHERE
-  timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+  ts BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
   AND locale = "US"
 LIMIT 100;
 ```
@@ -165,10 +166,10 @@ SELECT
   impression_info_1,
   impression_info_2,
   impression_info_3,
-  timestamp
+  ts
 FROM `project.dataset.table`
 WHERE
-  timestamp = TIMESTAMP("2022-12-01")
+  ts = TIMESTAMP("2022-12-01")
   AND locale = "US"
 LIMIT 100;
 ```
