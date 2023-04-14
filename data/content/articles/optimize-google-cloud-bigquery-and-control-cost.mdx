@@ -150,7 +150,7 @@ Just by selecting all the columns explicitly, I was able to reduce the processed
 
 Google Cloud recommends us to [partition tables by date][15]. It lets us query only a subset of data.
 
-To optimize the query further, we can narrow down the date range in the where statement because the table is partitioned by the "timestamp" column.
+To optimize the query further, we can narrow down the date range in the where statement because the table is partitioned by the "ts" column.
 
 ```sql
 SELECT
