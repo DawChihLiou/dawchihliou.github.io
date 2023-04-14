@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 14 Apr 2023 10:35:31 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Apr 2023 14:59:21 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 14 Apr 2023 10:35:31 GMT</pubDate>
+        <pubDate>Fri, 14 Apr 2023 14:59:21 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -43,7 +43,7 @@
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/optimize-google-cloud-bigquery-and-control-cost</guid>
             <category><![CDATA[Cloud]]></category>
             <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
-            <pubDate>Thu, 13 Apr 2023 00:00:00 GMT</pubDate>
+            <pubDate>Fri, 14 Apr 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How to Run A Tech Community in Your Company: An Ex-Principal Engineer’s Guide]]></title>
