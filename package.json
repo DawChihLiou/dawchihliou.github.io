@@ -1,6 +1,6 @@
 {
   "name": "dawchihliou.github.io",
-  "version": "3.2.60",
+  "version": "3.2.61",
   "private": true,
   "scripts": {
     "dev": "next dev",
