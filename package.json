@@ -27,7 +27,7 @@
     "deploy": "rm -rf node_modules/.cache && yarn build && yarn export && touch out/.nojekyll && git add out/ && git commit -m \"chore: deploy to gh-pages\" && git subtree push --prefix out origin gh-pages",
     "release": "release-it",
     "analyze": "cross-env ANALYZE=true yarn build",
-    "new:article": "node scripts/article/index.mjs"
+    "new:article": "node --experimental-json-modules scripts/article/index.mjs && yarn image"
   },
   "husky": {
     "hooks": {
