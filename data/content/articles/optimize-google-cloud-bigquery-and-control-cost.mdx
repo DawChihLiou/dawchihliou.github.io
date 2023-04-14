@@ -1,7 +1,7 @@
 ---
 title: Optimize Google Cloud BigQuery and Control Cost
 publishedAt: Apr 13, 2023
-description: I unknowingly blew $3,000 in 6 hours on one query in Google Cloud BigQuery. Here's why and how to optimize the cost.
+description: I unknowingly blew $3,000 in 6 hours on one query in Google Cloud BigQuery. Here's why and 3 easy steps to optimize the cost.
 cover: /optimized/articles/optimize-google-cloud-bigquery-and-control-cost/hero.webp
 category: Cloud
 coverWidth: '1400'
@@ -10,13 +10,15 @@ coverHeight: '700'
 
 ## In this article
 
--
+- 🙈 You'll learn what contributes to BigQuery's costs.
+- 🏛️ We'll dive into BigQuery's architecture.
+- 💰 You'll learn 3 easy steps to save 99.97% on your next Google Cloud bill.
 
 Let's go.
 
 ---
 
-## How did It Happen?
+## How Did It Happen?
 
 I was developing a script to prepare data samples for customers that reached out for consultations. The samples have 100 rows in each file and they are split in 55 locales. My query looks like this
 
@@ -89,11 +91,11 @@ async function main() {
 await main()
 ```
 
-It generates one sample file in the [CSV][4] format per locale. The process is straightforward:
+It generates one sample file in [CSV][4] format per locale. The process is straightforward:
 
 - Querying the BigQuery table with a local, start date, end date, and limit.
-- Parsing the query result in CSV.
-- Writing the CSV into the file system.
+- Transforming the query result into CSV format.
+- Writing the CSV in the file system.
 - Repeating the process for all locales.
 
 ## What's The Problem?
@@ -102,33 +104,130 @@ It turns out that I did several things wrong in my query. If you look at the pri
 
 ## Don't Select \*
 
-## Use Partitioned Table and Query Only Subsets of Data
+It's a little counter intuitive. Why does my select statement have anything to do with how much data it processes? Regardless of the columns I select, I should be reading from the same resources and data, right?
 
-## Use Materialized Query Results in Stages
+It's only true for row-oriented databases.
 
-## Cache, Batch Query, and Dry Run
+BigQuery is actually a [columnar database][6]. It's column-oriented, meaning the data are structured in columns. BigQuery uses [Dremel][10] as its underlying computing engine. When the data is moved from the cold storage to the active storage in Dremel, it stores the data in a tree structure. Each leaf node is a column-oriented "record" in [Protobuf][14] format.
 
 <img
-  src="/optimized/articles/optimize-google-cloud-bigquery-and-control-cost/hero.webp"
+  src="/optimized/articles/optimize-google-cloud-bigquery-and-control-cost/columnar.webp"
   alt="image from the template"
   width="100%"
   className="rounded centered"
   loading="lazy"
 />
 
+In BigQuery, each node is a VM. A query execution propagates from the root server (node) through intermediate servers to the leaf servers to retrieve the selected columns.
+
+We can modify the query to select individual columns:
+
+```sql
+SELECT
+  session_info_1,
+  session_info_2,
+  session_info_3,
+  user_info_1,
+  user_info_2,
+  user_info_3,
+  query_info_1,
+  query_info_2,
+  query_info_3,
+  impression_info_1,
+  impression_info_2,
+  impression_info_3
+FROM `project.dataset.table`
+WHERE
+  timestamp BETWEEN TIMESTAMP("2022-12-01") AND TIMESTAMP("2023-02-28")
+  AND locale = "US"
+LIMIT 100;
+```
+
+Just by selecting all the columns explicitly, I was able to reduce the processed data from 3.08 TB to 2.94TB. That's a **100 GB reduction**.
+
+## Use Partitioned Table and Query Only Subsets of Data
+
+Google Cloud recommends us to [partition tables by date][15]. It lets us query only a subset of data.
+
+To optimize the query further, we can narrow down the date range in the where statement because the table is partitioned by the "timestamp" column.
+
+```sql
+SELECT
+  session_info_1,
+  session_info_2,
+  session_info_3,
+  user_info_1,
+  user_info_2,
+  user_info_3,
+  query_info_1,
+  query_info_2,
+  query_info_3,
+  impression_info_1,
+  impression_info_2,
+  impression_info_3,
+  timestamp
+FROM `project.dataset.table`
+WHERE
+  timestamp = TIMESTAMP("2022-12-01")
+  AND locale = "US"
+LIMIT 100;
+```
+
+I narrowed down the date range to one day instead of three months. I was able to cut down the processed data to **37.43 GB**. It's just a fraction of the original query.
+
+## Use Materialized Query Results in Stages
+
+Another way to reduce costs is to reduce the dataset you're querying from. BigQuery offers [destination tables][11] to store query results as smaller datasets. Destination tables come with two forms: temporary and permanent. Because temporary tables has a lifetime and it's not designed to be shared and queried, I created a permanent destination table to materialize the query result:
+
+```js:bq-samples.mjs
+const dataset = bigquery.dataset('materialized_dataset')
+const materialzedTable = dataset.table('materialized_table')
+
+// ...
+
+const [job] = await bigquery.createQueryJob({
+  query: q(locale, '2022-12-01', '2023-02-28', 100),
+  destination: materialzedTable,
+})
+```
+
+The query results will be stored in the destination table. It'll serve as a reference for future queries. Whenever it's possible to query from the destination table, BigQuery will process the data from the table. It'll greatly reduce the data size we look up.
+
 ## Final Thoughts
+
+It's a very interesting study to reduce the cost in BigQuery. With only three easy steps:
+
+- Don't use \*
+- Use Partitioned Table and Query Only Subsets of Data
+- Use Materialized Query Results in Stages
+
+I was able to reduce the processed data size **from 3 TB to 37.5 GB**. It reduces the total cost significantly from $3,000 to $30.
+
+If you're interested in learning more about the BigQuery architecture, here're the references that helped me:
+
+- [BigQuery explained: An overview of BigQuery's architecture][9]
+- [A Look at Dremel][10]
+- [Colossus under the hood: a peek into Google’s scalable storage system][7]
+- [Jupiter evolving: Reflecting on Google’s data center network transformation][8]
+
+You can read more about [BigQuery cost optimizations][17] in the Google Cloud documentation.
+
+> Special thanks to [Abu Nashir][16] for collaborating with me on the case study and providing valuable insights that helped me understand BigQuery's architecture.
 
 ## References
 
+- [Abu Nashir][16] - LinkedIn
 - [A Look at Dremel][10] - Peter Goldsborough
 - [BigQuery][1] - Google Cloud
 - [BigQuery explained: An overview of BigQuery's architecture][9] - Google Cloud
 - [Colossus under the hood: a peek into Google’s scalable storage system][7] - Google Cloud
 - [Column-oriented DBMS][6] - Wikipedia
 - [Comma-separated values][4] - Wikipedia
+- [Creating partitioned tables][15] - Google Cloud
 - [JavaScript modules][3] - MDN
 - [Jupiter evolving: Reflecting on Google’s data center network transformation][8] - Google Cloud
 - [Method: jobs.query][13] - Google Cloud
+- [Protocol_Buffers][14] - Wikipedia
 - [Run interactive and batch query jobs][12] - Google Cloud
 - [Using cached query results][5] - Google Cloud
 - [Writing query results][11] - Google Cloud
@@ -146,6 +245,10 @@ It turns out that I did several things wrong in my query. If you look at the pri
 [11]: https://cloud.google.com/bigquery/docs/writing-results#node.js
 [12]: https://cloud.google.com/bigquery/docs/running-queries#permanent-table
 [13]: https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#QueryRequest
+[14]: https://en.wikipedia.org/wiki/Protocol_Buffers
+[15]: https://cloud.google.com/bigquery/docs/creating-partitioned-tables
+[16]: https://www.linkedin.com/in/abunashir/
+[17]: https://cloud.google.com/bigquery/docs/best-practices-costs
 
 ---
 
