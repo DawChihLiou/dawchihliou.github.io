@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 13 Apr 2023 13:08:08 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Apr 2023 10:35:31 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 13 Apr 2023 13:08:08 GMT</pubDate>
+        <pubDate>Fri, 14 Apr 2023 10:35:31 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Optimize Google Cloud BigQuery and Control Cost]]></title>
+            <description><![CDATA[I unknowingly blew $3,000 in 6 hours on one query in Google Cloud BigQuery. Here's why and 3 easy steps to optimize the cost.]]></description>
+            <link>https://dawchihliou.github.io/articles/optimize-google-cloud-bigquery-and-control-cost</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/optimize-google-cloud-bigquery-and-control-cost</guid>
+            <category><![CDATA[Cloud]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Thu, 13 Apr 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Run A Tech Community in Your Company: An Ex-Principal Engineer’s Guide]]></title>
             <description><![CDATA[5 easy steps to create a sustainable tech community in your company that everyone loves.]]></description>
