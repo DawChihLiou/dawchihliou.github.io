@@ -1,6 +1,12 @@
 name: CI
 
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 env:
   GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
