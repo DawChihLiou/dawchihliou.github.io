@@ -47,11 +47,11 @@
 
 .thumbnail {
   width: 9rem;
-  border-radius: 0.25rem;
 }
 
 .thumbnail img {
   width: 100%;
+  border-radius: 0.25rem;
 }
 
 @media (max-width: 768px) {

@@ -39,12 +39,20 @@ export default function Articles() {
             </p>
           </div>
           <div>
-            {articles.map((article) => (
+            {articles.map((article, i) => (
               <section className={styles.grid} key={article.url}>
-                <div className={styles.date}>
+                <div className={`${styles.date}`}>
                   <p>{article.date}</p>
                 </div>
                 <article className={styles.description}>
+                  {i === 0 && (
+                    <img
+                      src={article.cover}
+                      alt={article.title}
+                      loading="lazy"
+                      className={styles.thumbnail}
+                    />
+                  )}
                   <p className={styles.category}>{article.category}</p>
                   {article.external && (
                     <Link href={article.url}>{article.title}</Link>
