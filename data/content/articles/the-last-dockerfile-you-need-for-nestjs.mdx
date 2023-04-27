@@ -1,0 +1,337 @@
+---
+title: The Last Dockerfile You Need for NestJS
+publishedAt: Apr 27, 2023
+description: An ultimate NestJS Dockfile for optimized production image and local development.
+cover: /optimized/articles/the-last-dockerfile-you-need-for-nestjs/hero.webp
+category: Cloud
+coverWidth: '1400'
+coverHeight: '700'
+---
+
+## In this article
+
+- 🚢 We'll write a docker multi-stage build together.
+- 🎉 We'll discover how to use the docker file in development and production.
+- ✨ We'll apply some of the best practices recommended by the Docker team.
+
+Let's go.
+
+---
+
+First, let's think about the use cases to design the docker build:
+
+- To install all the dependencies to support the local dev server.
+- To run a production server with an optimized bundle.
+
+In order to cover both of the use cases, we'll use Docker's [multi-stage builds][1] and split the build into 3 stages:
+
+<img
+  src="/optimized/articles/the-last-dockerfile-you-need-for-nestjs/stages.webp"
+  alt="Docker multi-stage build overview"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+- **dev**: to simply install all the dependencies.
+- **build**: to compile a production build with optimized bundle size.
+- **prod**: to serve the production build.
+
+## The Docker Multi-stage Build
+
+### The "dev" Stage
+
+It's fairly straightforward. All we need to do is to install npm dependencies and apply some of the [best practices][2]:
+
+- We'll use "[node:alpine][3]" as the based image to produce minimal image size.
+- We'll install [missing shared libraries][4] from node:alpine.
+- We'll assign a [non-root user][5] to Docker to limit its privileges
+- We'll set the environment to "development".
+- We'll install the dependencies based on [yarn lock file][6] to achieve consistent installation across machines.
+
+```dockerfile:Dockerfile
+#
+# 🧑‍💻 Development
+#
+FROM node:18-alpine as dev
+# add the missing shared libraries from alpine base image
+RUN apk add --no-cache libc6-compat
+# Create app folder
+WORKDIR /app
+
+# Set to dev environment
+ENV NODE_ENV development
+
+# Create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# Copy source code into app folder
+COPY --chown=node:node . .
+
+# Install dependencies
+RUN yarn --frozen-lockfile
+
+# Set Docker as a non-root user
+USER node
+```
+
+### The "build" Stage
+
+The build stage is the most interesting stage. The purpose is to compile the source code and generate the least amount of assets.
+
+- We'll use the same base image and best practices [as the dev stage](#the-dev-stage).
+- We'll set the environment to "production".
+- We'll copy the dependencies we installed in the dev stage to run the [Nest CLI build script][7].
+- Once the build is completed, we'll install the production-only dependencies and clean the [yarn cache][8]. This will minimize the bundle size.
+
+```dockerfile:Dockerfile
+#
+# 🏡 Production Build
+#
+FROM node:18-alpine as build
+
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+
+# Set to production environment
+ENV NODE_ENV production
+
+# Re-create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# In order to run `yarn build` we need access to the Nest CLI.
+# Nest CLI is a dev dependency.
+COPY --chown=node:node --from=dev /app/node_modules ./node_modules
+# Copy source code
+COPY --chown=node:node . .
+
+# Generate the production build. The build script runs "nest build" to compile the application.
+RUN yarn build
+
+# Install only the production dependencies and clean cache to optimize image size.
+RUN yarn --frozen-lockfile --production && yarn cache clean
+
+# Set Docker as a non-root user
+USER node
+```
+
+### The "prod" Stage
+
+Now that we have the optimized production build, we can complete the docker build by serving the NestJS server.
+
+- We'll use the same base image and best practices as [the build stage](#the-build-stage).
+- We'll copy the compiled output and the production-only node_modules from the build stage. These are the necessary files we need to run the server.
+- Finally, start the server with Node. "nest start" command is not available at this stage because the Nest CLI is a dev dependency.
+
+```dockerfile:Dockerfile
+#
+# 🚀 Production Server
+#
+FROM node:18-alpine as prod
+
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+
+# Set to production environment
+ENV NODE_ENV production
+
+# Re-create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# Copy only the necessary files
+COPY --chown=node:node --from=build /app/dist dist
+COPY --chown=node:node --from=build /app/node_modules node_modules
+
+# Set Docker as non-root user
+USER node
+
+CMD ["node", "dist/main.js"]
+```
+
+### The Complete Multi-stage Dockerfile
+
+```dockerfile:Dockerfile
+#
+# 🧑‍💻 Development
+#
+FROM node:18-alpine as dev
+# add the missing shared libraries from alpine base image
+RUN apk add --no-cache libc6-compat
+# Create app folder
+WORKDIR /app
+
+# Set to dev environment
+ENV NODE_ENV dev
+
+# Create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# Copy source code into app folder
+COPY --chown=node:node . .
+
+# Install dependencies
+RUN yarn --frozen-lockfile
+
+# Set Docker as a non-root user
+USER node
+
+#
+# 🏡 Production Build
+#
+FROM node:18-alpine as build
+
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+
+# Set to production environment
+ENV NODE_ENV production
+
+# Re-create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# In order to run `yarn build` we need access to the Nest CLI.
+# Nest CLI is a dev dependency.
+COPY --chown=node:node --from=dev /app/node_modules ./node_modules
+# Copy source code
+COPY --chown=node:node . .
+
+# Generate the production build. The build script runs "nest build" to compile the application.
+RUN yarn build
+
+# Install only the production dependencies and clean cache to optimize image size.
+RUN yarn --frozen-lockfile --production && yarn cache clean
+
+# Set Docker as a non-root user
+USER node
+
+#
+# 🚀 Production Server
+#
+FROM node:18-alpine as prod
+
+WORKDIR /app
+RUN apk add --no-cache libc6-compat
+
+# Set to production environment
+ENV NODE_ENV production
+
+# Re-create non-root user for Docker
+RUN addgroup --system --gid 1001 node
+RUN adduser --system --uid 1001 node
+
+# Copy only the necessary files
+COPY --chown=node:node --from=build /app/dist dist
+COPY --chown=node:node --from=build /app/node_modules node_modules
+
+# Set Docker as non-root user
+USER node
+
+CMD ["node", "dist/main.js"]
+```
+
+## How to Use It in Local Development
+
+We are done with the hard part!
+
+To use the docker file for local development, all we need to do is to [build the docker image with the dev stage][9]. For example, we can build and run the NestJS server with watch mode in a docker compose file:
+
+```yaml:docker-compose.yml
+services:
+  api:
+    container_name: nestjs
+    image: nestjs-dev
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # ✨ Target the dev stage
+      target: dev
+    # Mount host directory to docker container to support watch mode
+    volumes:
+      - .:/app
+      # This ensures that the NestJS container manages the node_modules folder
+      # rather than synchronizes it with the host machine
+      - /app/node_modules
+    env_file:
+      - docker.env
+    ports:
+      - 8082:8082
+    networks:
+      - nest
+    depends_on:
+      - postgres
+    command: npx nest start --watch
+
+  # ...other services
+```
+
+## How to Use It in Production
+
+You can simply build the production image by building all 3 stages. For example, we can run "docker build" in GitHub Actions as part of the deployment workflow.
+
+```yaml:.github/workflows/ci.yml
+jobs
+  deploy:
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Build NestJS image
+        env:
+          REGISTRY: nestjs-regiestry
+          REPOSITORY: nestjs-example
+          IMAGE_TAG: example
+        # ✨ target the production stage
+        run: docker build . -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --target prod
+
+      # ...rest of the steps
+```
+
+Since the "prod" is the last stage, we don't need to specify the target for the build command. Running
+
+```bash
+docker build . -t $REGISTRY/$REPOSITORY:$IMAGE_TAG
+```
+
+will build the same image.
+
+## References
+
+- [Compose file version 3 reference][9] - Docker Docs
+- [Develop with Docker][2] - Docker docs
+- [Multi-stage builds][1] - Docker docs
+- [Node][3] - Docker Hub
+- [node:alpine][4] - GitHub
+- [NestCLI and scripts][7] - NestJS
+- [USER][5] - Docker Docs
+- [yarn.lock][6] - Yarn
+- [yarn cache][8] - Yarn
+
+[1]: https://docs.docker.com/build/building/multi-stage/
+[2]: https://docs.docker.com/develop/
+[3]: https://hub.docker.com/_/node
+[4]: https://github.com/nodejs/docker-node#nodealpine
+[5]: https://docs.docker.com/engine/reference/builder/#user
+[6]: https://classic.yarnpkg.com/lang/en/docs/yarn-lock/
+[7]: https://docs.nestjs.com/cli/scripts
+[8]: https://classic.yarnpkg.com/lang/en/docs/cli/cache/
+[9]: https://docs.docker.com/compose/compose-file/compose-file-v3/
+
+---
+
+Here you have it! Thanks for reading through 🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭️ Ready for the next article? 👉 [the Last Dockerfile You Need for NestJS](/articles/the-last-dockerfile-you-need-for-nestjs)
+
+Happy coding!
