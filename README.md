@@ -120,3 +120,26 @@ to run unit testing with [Jest](https://jestjs.io). To run unit tests in CI, run
 #### `yarn test:e2e`
 
 to run end-to-end testing with [Playwright](https://playwright.dev). To run unit tests in CI, run `yarn test:e2e:ci`.
+
+#### `yarn image`
+
+to generate optimized web images.
+
+#### `yarn new:article`
+
+```
+Usage: yarn new:article [options] <title>
+
+Bootstrap a new article.
+
+Arguments:
+  title                       article title
+
+Options:
+  -p, --publishedat <string>  publishing date (default: "Apr 27, 2023")
+  -d, --description <string>  description (default: "✍️ Enter description here")
+  -t, --tag <string>          tag (default: "✍️ Enter tag here")
+  -h, --help                  display help for command
+```
+
+Make sure to run `yarn image` afterward to generate optimized hero image.

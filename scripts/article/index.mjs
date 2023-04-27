@@ -55,7 +55,7 @@ async function main() {
     .name('yarn new:article')
     .description('Bootstrap a new article.')
     .argument('<title>', 'article title')
-    .option('-p, --publishedat', 'publishing date', formatDate(now))
+    .option('-p, --publishedat <string>', 'publishing date', formatDate(now))
     .option(
       '-d, --description <string>',
       'description',
