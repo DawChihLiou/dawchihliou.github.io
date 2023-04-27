@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 27 Apr 2023 11:52:23 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 27 Apr 2023 12:11:22 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 27 Apr 2023 11:52:23 GMT</pubDate>
+        <pubDate>Thu, 27 Apr 2023 12:11:22 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -38,7 +38,7 @@
         <category><![CDATA[Database]]></category>
         <item>
             <title><![CDATA[The Last Dockerfile You Need for NestJS]]></title>
-            <description><![CDATA[An ultimate NestJS Dockfile for optimized production image and local development.]]></description>
+            <description><![CDATA[The ultimate NestJS Dockfile for optimized production image and local development.]]></description>
             <link>https://dawchihliou.github.io/articles/the-last-dockerfile-you-need-for-nestjs</link>
             <guid isPermaLink="true">https://dawchihliou.github.io/articles/the-last-dockerfile-you-need-for-nestjs</guid>
             <category><![CDATA[Cloud]]></category>
