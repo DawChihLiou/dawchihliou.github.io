@@ -81,13 +81,13 @@ export default function SkillSet() {
             color="linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(249, 203, 40, 1))"
           />
           <BarChart
-            title="GCP"
-            score={40}
+            title="Google Cloud"
+            score={60}
             color="linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(249, 203, 40, 1))"
           />
           <BarChart
             title="Docker"
-            score={20}
+            score={60}
             color="linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(249, 203, 40, 1))"
           />
         </article>
@@ -110,12 +110,12 @@ export default function SkillSet() {
           />
           <BarChart
             title="Rust"
-            score={40}
+            score={60}
             color="linear-gradient(90deg, #5665f6, #d8b4fe)"
           />
           <BarChart
             title="Wasm"
-            score={20}
+            score={60}
             color="linear-gradient(90deg, #5665f6, #d8b4fe)"
           />
         </article>
