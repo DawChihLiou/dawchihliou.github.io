@@ -81,7 +81,7 @@ export default function SkillSet() {
             color="linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(249, 203, 40, 1))"
           />
           <BarChart
-            title="Google Cloud"
+            title="GCP"
             score={60}
             color="linear-gradient(90deg, rgba(255, 77, 77, 1), rgba(249, 203, 40, 1))"
           />
