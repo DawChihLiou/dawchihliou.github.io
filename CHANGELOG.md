@@ -1,5 +1,12 @@
 
 
+## 3.2.75 (2023-05-28)
+
+
+### Bug Fixes
+
+* next article link ([5aefe8c](https://github.com/DawChihLiou/dawchihliou.github.io/commit/5aefe8c9a1d8313be48c270595ee93993c6ff758))
+
 ## 3.2.74 (2023-05-16)
 
 ## 3.2.73 (2023-05-06)
