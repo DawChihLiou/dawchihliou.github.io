@@ -1,0 +1,296 @@
+---
+title: Share Rust Types With TypeScript for WebAssembly in 30 Seconds
+publishedAt: May 29, 2023
+description: Discover the most seamless developer experience with Rust and WebAssembly. This is the fastest way to auto-generate TypeScript definitions from your Rust code.
+cover: /optimized/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds/hero.webp
+category: Rust
+coverWidth: '1400'
+coverHeight: '700'
+---
+
+## In this article
+
+- 💡 We'll learn why the official Rust and WebAssembly toolchain is not sufficient for TypeScript.
+- 🤹 I'll show you how to auto-generate TypeScript definition with minimum change in your Rust code.
+- 🧪 We'll refactor a real world WebAssembly library on npm together.
+
+Let's go.
+
+---
+
+## The Typing Problem with wasm-bindgen
+
+Generating TypeScript types for WebAssembly(Wasm) modules in Rust is not straightforward.
+
+I ran into the problem when I was working on a vector similarity search engine in Wasm called [Voy][8]. I built the Wasm engine in Rust to provide JavaScript and TypeScript engineers with a swiss knife for semantic search. Here's a demo for web:
+
+<img
+  src="/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds/voy.gif"
+  alt="Voy demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find the [Voy's repository on GitHub][7]! Feel free to try it out.
+>
+> The repository includes [examples](https://github.com/tantaraio/voy/tree/main/examples) that you can see how to use Voy in different frameworks.
+
+I used [wasm-pack][9] and [wasm-bindgen][10] to build and compile the Rust code to Wasm. The generated TypeScript definitions looks like this:
+
+```ts:pkg/voy_search.d.ts
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * @param {any} input
+ * @returns {string}
+ */
+export function index(resource: any): string
+/**
+ * @param {string} index
+ * @param {any} query
+ * @param {number} k
+ * @returns {any}
+ */
+export function search(index: string, query: any, k: number): any
+```
+
+As you can see, there're a lot of "any" type, which is not very helpful for the developer experience. Let's look into the Rust code to find out what happened.
+
+```rust:src/lib.rs
+type NumberOfResult = usize;
+type Embeddings = Vec<f32>;
+type SerializedIndex = String;
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct EmbeddedResource {
+    id: String,
+    title: String,
+    url: String,
+    embeddings: Embeddings,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Resource {
+    pub embeddings: Vec<EmbeddedResource>,
+}
+
+#[wasm_bindgen]
+pub fn index(resource: JsValue) -> SerializedIndex { /* snip */ }
+
+#[wasm_bindgen]
+pub fn search(index: &str, query: JsValue, k: NumberOfResult) -> JsValue {
+    // snip
+}
+```
+
+The string, slice, and unsigned integer generated the correct types in TypeScript, but the "[wasm_bindgen::JsValue][11]" didn't. JsValue is wasm-bindgen's representation of a JavaScript object. We [serialize and deserialize][12] the JsValue to pass it back and forth between JavaScript and Rust through Wasm.
+
+```rust
+#[wasm_bindgen]
+pub fn index(resource: JsValue) -> String {
+    // 💡 Deserialize JsValue in to Resource struct in Rust
+    let resource: Resource = serde_wasm_bindgen:from_value(input).unwrap();
+    // snip
+}
+
+#[wasm_bindgen]
+pub fn search(index: &str, query: JsValue, k: usize) -> JsValue {
+    // snip
+    // 💡 Serialize search result into JsValue and pass it to WebAssembly
+    let result = engine::search(&index, &query, k).unwrap();
+    serde_wasm_bindgen:to_value(&result).unwrap()
+}
+```
+
+It's the official approach to convert data types, but evidently we need to go the extra mile to support TypeScript.
+
+## Auto-Generate TypeScript Binding with Tsify
+
+Converting data types from one language to another is actually a common pattern called [Foreign function interface][13](FFI). I explored FFI tools like [Typeshare][4] to auto-generate TypeScript definitions from Rust structs but it was only half of the solution. What we need is a way to tap into the Wasm compilation and generate the type definition for the API of the Wasm module. Like this:
+
+```rust
+#[wasm_bindgen]
+pub fn index(resource: Resource) -> SerializedIndex { /* snip */ }
+
+#[wasm_bindgen]
+pub fn search(index: SerializedIndex, query: Embeddings, k: NumberOfResult) -> SearchResult {
+    // snip
+}
+```
+
+Luckily, [Tsify][2] is an amazing open source library for the use case. All we need to do is to derive from the "Tsify" trait and add a #\[tsify\] macro to the structs:
+
+```rust:src/lib.rs
+type NumberOfResult = usize;
+type Embeddings = Vec<f32>;
+type SerializedIndex = String;
+
+#[derive(Serialize, Deserialize, Debug, Clone, Tsify)]
+#[tsify(from_wasm_abi)]
+pub struct EmbeddedResource {
+    pub id: String,
+    pub title: String,
+    pub url: String,
+    pub embeddings: Embeddings,
+}
+
+#[derive(Serialize, Deserialize, Debug, Tsify)]
+#[tsify(from_wasm_abi)]
+pub struct Resource {
+    pub embeddings: Vec<EmbeddedResource>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, Tsify)]
+#[tsify(into_wasm_abi)]
+pub struct Neighbor {
+    pub id: String,
+    pub title: String,
+    pub url: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, Tsify)]
+#[tsify(into_wasm_abi)]
+pub struct SearchResult {
+    neighbors: Vec<Neighbor>,
+}
+
+#[wasm_bindgen]
+pub fn index(resource: Resource) -> SerializedIndex { /* snip */ }
+
+#[wasm_bindgen]
+pub fn search(index: SerializedIndex, query: Embeddings, k: NumberOfResult) -> SearchResult {
+    // snip
+}
+```
+
+That's it! Let's take a look at the attributes "from_wasm_abi" and "into_wasm_abi".
+
+<img
+  src="/optimized/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds/wasm-abi.webp"
+  alt="Wasm ABI illustration"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+Both of the attributes convert Rust data type to TypeScript definition. What they do differently is the direction of the data flow with Wasm's Application Binary Interface(ABI).
+
+- **into_wasm_abi**: The data flows from Rust to JavaScript. Used for return type.
+- **from_wasm_abi**: The data flows from JavaScript to Rust. Used for parameters.
+
+Both of the attributes use serde-wasm-bindgen to implement the data conversion between Rust and JavaScript.
+
+We're ready to build the Wasm module. Once you run "wasm-pack build", the auto-generated TypeScript definition:
+
+```ts:pkg/voy_search.d.ts
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * @param {Resource} resource
+ * @returns {string}
+ */
+export function index(resource: Resource): string
+/**
+ * @param {string} index
+ * @param {Float32Array} query
+ * @param {number} k
+ * @returns {SearchResult}
+ */
+export function search(
+  index: string,
+  query: Float32Array,
+  k: number
+): SearchResult
+
+export interface EmbeddedResource {
+  id: string
+  title: string
+  url: string
+  embeddings: number[]
+}
+
+export interface Resource {
+  embeddings: EmbeddedResource[]
+}
+
+export interface Neighbor {
+  id: string
+  title: string
+  url: string
+}
+
+export interface SearchResult {
+  neighbors: Neighbor[]
+}
+```
+
+All the "any" types are replaced with the interfaces that we defined in the Rust code✨
+
+## Final Thoughts
+
+The generated types look good but there's some inconsistencies. If you look closely, you'll notice the query parameter in the search function is defined as a Float32Array. The query parameter is defined as the same type as "embeddings" in EmbeddedResource so I expect them to have the same type in TypeScript. If you know why they're converted to different types please don't hesitate to reach out or open a pull request in [Voy on GitHub][7].
+
+[Voy][7] is an open source semantic search engine in WebAssembly. I created it to empower more projects to build semantic features and create better user experiences for people around the world. Voy follows several design principles:
+
+- 🤏 **Tiny**: Reduce overhead for limited devices, such as mobile browsers with slow network or IoT.
+- 🚀 **Fast**: Create the best search experience for the users.
+- 🌳 **Tree Shakable**: Optimize bundle size and enable asynchronous capabilities for modern Web API, such as Web Workers.
+- 🔋 **Resumable**: Generate portable embeddings index anywhere, anytime.
+- ☁️ **Worldwide**: Run semantic search on CDN edge servers.
+
+It's available on npm. You can simply install it with your favorite package manager and you're ready to go.
+
+```bash
+# with npm
+npm i voy-search
+
+# with Yarn
+yarn add voy-search
+
+# with pnpm
+pnpm add voy-search
+```
+
+Give it a try and I'm happy to hear from you!
+
+## References
+
+- [Foreign function interface][13] - Wikipedia
+- [serde-wasm-bindgen][12] - GitHub
+- [Specta][3] - GitHub
+- [Struct wasm_bindgen::JsValue][11] - wasm-bindgen
+- [The Rust and WebAssembly Book][6] - Rust and WebAssembly
+- [ts-rs][5] - GitHub
+- [Tsify][2] - GitHub
+- [Typeshare][4] - GitHub
+- [Voy][7] - GitHub
+- [wasm-bindgen][10] - Rust and WebAssembly
+- [wasm-pack][9] - Rust and WebAssembly
+- [WASM Semantic Search in Rust][8] - Daw-Chih Liou
+- [WebAssembly][1] - WebAssembly.org
+
+[1]: https://webassembly.org
+[2]: https://github.com/madonoharu/tsify
+[3]: https://github.com/oscartbeaumont/specta
+[4]: https://github.com/1Password/typeshare
+[5]: https://github.com/Aleph-Alpha/ts-rs
+[6]: https://rustwasm.github.io/docs/book/introduction.html
+[7]: https://github.com/tantaraio/voy
+[8]: https://dawchihliou.github.io/articles/wasm-semantic-search-in-rust
+[9]: https://rustwasm.github.io/wasm-pack/
+[10]: https://rustwasm.github.io/wasm-bindgen/
+[11]: https://rustwasm.github.io/wasm-bindgen/api/wasm_bindgen/struct.JsValue.html
+[12]: https://github.com/cloudflare/serde-wasm-bindgen
+[13]: https://en.wikipedia.org/wiki/Foreign_function_interface
+
+---
+
+Here you have it! Thanks for reading through 🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭️ Ready for the next article? 👉 [The Last Dockerfile You Need for NestJS](/articles/the-last-dockerfile-you-need-for-nestjs)
+
+Happy coding!
