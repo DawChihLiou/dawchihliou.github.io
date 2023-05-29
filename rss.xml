@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 28 May 2023 15:50:55 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 29 May 2023 18:50:12 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Sun, 28 May 2023 15:50:55 GMT</pubDate>
+        <pubDate>Mon, 29 May 2023 18:50:12 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Share Rust Types With TypeScript for WebAssembly in 30 Seconds]]></title>
+            <description><![CDATA[Discover the most seamless developer experience with Rust and WebAssembly. This is the fastest way to auto-generate TypeScript definitions from your Rust code.]]></description>
+            <link>https://dawchihliou.github.io/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Mon, 29 May 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[The Last Dockerfile You Need for NestJS]]></title>
             <description><![CDATA[The ultimate NestJS Dockfile for optimized production image and local development.]]></description>
