@@ -227,6 +227,9 @@ export interface SearchResult {
 
 All the "any" types are replaced with the interfaces that we defined in the Rust code✨
 
+> Special thanks to [Alberto Schiabel][14] for sharing valuable insights that helped me research type generation.
+
+
 ## Final Thoughts
 
 The generated types look good but there's some inconsistencies. If you look closely, you'll notice the query parameter in the search function is defined as a Float32Array. The query parameter is defined as the same type as "embeddings" in EmbeddedResource so I expect them to have the same type in TypeScript. If you know why they're converted to different types please don't hesitate to reach out or open a pull request in [Voy on GitHub][7].
@@ -283,6 +286,7 @@ Give it a try and I'm happy to hear from you!
 [11]: https://rustwasm.github.io/wasm-bindgen/api/wasm_bindgen/struct.JsValue.html
 [12]: https://github.com/cloudflare/serde-wasm-bindgen
 [13]: https://en.wikipedia.org/wiki/Foreign_function_interface
+[14]: https://twitter.com/jkomyno
 
 ---
 
