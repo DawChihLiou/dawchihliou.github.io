@@ -9,9 +9,9 @@
             <link>https://dawchihliou.github.io/</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Thu, 01 Jun 2023 11:45:42 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Jun 2023 12:04:44 GMT</lastBuildDate>
         <atom:link href="https://dawchihliou.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Thu, 01 Jun 2023 11:45:42 GMT</pubDate>
+        <pubDate>Fri, 23 Jun 2023 12:04:44 GMT</pubDate>
         <copyright><![CDATA[© 2023 Daw-Chih Liou]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Daw-Chih Liou]]></managingEditor>
@@ -36,6 +36,15 @@
         <category><![CDATA[Unit Test]]></category>
         <category><![CDATA[Release Pipeline]]></category>
         <category><![CDATA[Database]]></category>
+        <item>
+            <title><![CDATA[Testing With Fixtures in Rust]]></title>
+            <description><![CDATA[✍️ Enter description here]]></description>
+            <link>https://dawchihliou.github.io/articles/testing-with-fixtures-in-rust</link>
+            <guid isPermaLink="true">https://dawchihliou.github.io/articles/testing-with-fixtures-in-rust</guid>
+            <category><![CDATA[Rust]]></category>
+            <dc:creator><![CDATA[Daw-Chih Liou]]></dc:creator>
+            <pubDate>Fri, 23 Jun 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Share Rust Types With TypeScript for WebAssembly in 30 Seconds]]></title>
             <description><![CDATA[Discover the most seamless developer experience with Rust and WebAssembly. This is the fastest way to auto-generate TypeScript definitions from your Rust code.]]></description>
