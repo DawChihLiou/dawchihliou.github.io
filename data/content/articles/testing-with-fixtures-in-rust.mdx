@@ -1,0 +1,280 @@
+---
+title: Testing With Fixtures in Rust
+publishedAt: Jun 23, 2023
+description: ✍️ Enter description here
+cover: /optimized/articles/testing-with-fixtures-in-rust/hero.webp
+category: Rust
+coverWidth: '1400'
+coverHeight: '700'
+---
+
+## In this article
+
+- 🔬 We'll learn the limitations of #[test] in Rust.
+- 🪄 We'll explore an alternative to write cleaner unit tests with fixtures.
+- 🏗 We'll refactor the unit tests in one of my open source projects!
+
+Let's go.
+
+---
+
+## The Fixture Problem
+
+[Test fixtures][2] are very effective in producing repeatable tests. A test fixture can be a constant or function that encapsulates a test's dependency.
+
+I wanted to create a few test fixtures for my unit tests in one of my open source projects called [Voy][7]. It's a Webassembly semantic engine written in Rust. What it does is to [extract features][4] using machine learning models, build an index, and provide a query function that enables users to search the index based on meaning and semantics. Here's a quick demo:
+
+<img
+  src="/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds/voy.gif"
+  alt="Voy demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find the [Voy's repository on GitHub][7]! Feel free to try it out. The repository includes [examples](https://github.com/tantaraio/voy/tree/main/examples) that you can see how to use Voy in different frameworks.
+
+While I was still working on the feature extraction, I needed pre-generated [embeddings][6] to test the index and query part of the engine. The fixture for embeddings looks like this:
+
+```rust
+pub static EMBEDDING: [[f32; 768]; 6] = [
+    [
+        0.01960003957247733,
+        -0.03651725347725505,
+        0.03361894761373059,
+        // ...
+    ]
+```
+
+I created a static variable for 6 embeddings in an array. Each item is a 768 dimensional vector that represents a sentence.
+
+To use the fixture, I simply imported it in my test module. My unit test looks like this:
+
+```rust
+use super::engine_fixtures::{EMBEDDING, CONTENT, QUESTION};
+use crate::engine::{add, index, remove, search, Query};
+use crate::{EmbeddedResource, Resource};
+
+fn get_resource(k: usize) -> Resource {
+     let embeddings = EMBEDDING
+         .iter()
+         .take(k)
+         .enumerate()
+         .map(|(i, x)| EmbeddedResource {
+             id: i.to_string(),
+             title: CONTENT.get(i).unwrap().to_string(),
+             url: "".to_owned(),
+             embeddings: x.to_vec(),
+         })
+         .collect();
+     Resource { embeddings }
+ }
+
+#[test]
+ fn it_returns_vector_search_result() {
+     let resource: Resource = get_resource(6);
+     let index = index(resource).unwrap();
+
+     let query = Query::Embeddings(QUESTION.to_vec());
+     let result = search(&index, &query, 1).unwrap();
+
+     assert_eq!(result.get(0).unwrap().title, CONTENT[0]);
+     assert_eq!(result.get(1).unwrap().title, CONTENT[1]);
+     assert_eq!(result.get(2).unwrap().title, CONTENT[2]);
+     assert_eq!(result.get(3).unwrap().title, CONTENT[4]);
+     assert_eq!(result.get(4).unwrap().title, CONTENT[5]);
+     assert_eq!(result.get(5).unwrap().title, CONTENT[3]);
+ }
+```
+
+I created another 2 fixtures for the sentences the generated the embeddings and a question embedding to perform the query.
+
+The test case worked. The fixture produced repeatable results. However, it seems a little off. It's not very clean:
+
+- I needed a helper function to "get_resource" in the test case to initiate the fixture.
+- The fixtures were not encapsulated in the unit test and the usages were scattered.
+
+So I started looking for a better way to write the test.
+
+## Introducing The rstest Crate
+
+[rstest][1] makes it very easy to write unit tests with fixtures. All you need to do is:
+
+#### Defining fixtures
+
+```rust
+#[fixture]
+pub fn fixture() -> u32 { 42 }
+```
+
+#### Replacing #[test] with #[rstest] macro.
+
+```rust
+#[rstest]
+fn should_success(fixture: u32) {
+    assert_eq!(fixture, 42);
+}
+```
+
+You can check out [rstest's repository][1] to find more ways to write test fixtures.
+
+Now let's use rstest to refactor the fixtures above. I'll simply create a function to return the static variable. Like this:
+
+```rust:src/engine/tests/fixtures.rs
+use rstest::fixture;
+
+#[fixture]
+pub fn embedding_fixture() -> [[f32; 768]; 6] {
+    EMBEDDING
+}
+```
+
+We can refactor the "get_resource" helper function as a fixture too:
+
+```rust:src/engine/tests/fixtures.rs
+#[fixture]
+pub fn resource_fixture() -> Resource {
+    let content = content_fixture();
+    let embeddings = embedding_fixture()
+        .iter()
+        .enumerate()
+        .map(|(i, x)| EmbeddedResource {
+            id: i.to_string(),
+            title: content.get(i).unwrap().to_string(),
+            url: "".to_owned(),
+            embeddings: x.to_vec(),
+        })
+        .collect();
+    Resource { embeddings }
+}
+```
+
+Since each fixture functions are just functions, we can use them inside another fixture function like we see in the "resource_fixture" function above.
+
+To use the fixtures in a test case, we'll need to import the fixtures and inject them as parameters:
+
+```rust:src/engine/tests/mod.rs
+use fixtures::*;
+use rstest::*;
+
+#[rstest]
+fn it_returns_vector_search_result(
+    resource_fixture: Resource,
+    question_fixture: [f32; 768],
+    content_fixture: [&'static str; 6],
+) {
+    let index = index(resource_fixture).unwrap();
+    let query = Query::Embeddings(question_fixture.to_vec());
+    let result = search(&index, &query, 6).unwrap();
+
+    assert_eq!(result.get(0).unwrap().title, content_fixture[0]);
+    assert_eq!(result.get(1).unwrap().title, content_fixture[1]);
+    assert_eq!(result.get(2).unwrap().title, content_fixture[2]);
+    assert_eq!(result.get(3).unwrap().title, content_fixture[4]);
+    assert_eq!(result.get(4).unwrap().title, content_fixture[5]);
+    assert_eq!(result.get(5).unwrap().title, content_fixture[3]);
+}
+```
+
+Make sure the parameters have the same names as the fixtures. rstest uses the names to inject and initiate the fixtures in the test functions.
+
+Let's run "cargo test" to see if it works.
+
+<img
+  src="/optimized/articles/testing-with-fixtures-in-rust/terminal.webp"
+  alt="Unit result with fixtures"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+It does!
+
+## Final Thoughts
+
+[rstest][1] has more convenient features. For example, you can write multiple test cases with #[case]:
+
+```rust
+use rstest::rstest;
+
+#[rstest]
+#[case(0, 0)]
+#[case(1, 1)]
+#[case(2, 1)]
+#[case(3, 2)]
+#[case(4, 3)]
+fn fibonacci_test(#[case] input: u32, #[case] expected: u32) {
+    assert_eq!(expected, fibonacci(input))
+}
+```
+
+You can also test [Future][8]!
+
+```rust
+use rstest::*;
+#[fixture]
+async fn base() -> u32 { 42 }
+
+#[rstest]
+#[case(21, async { 2 })]
+#[case(6, async { 7 })]
+async fn my_async_test(#[future] base: u32, #[case] expected: u32, #[future] #[case] div: u32) {
+    assert_eq!(expected, base.await / div.await);
+}
+```
+
+These are just a few examples I took from rstest. It has more fixture-based features that help us to structure cleaner unit tests with test fixtures. I really enjoyed it.
+
+[Voy][7] is an open source semantic search engine in WebAssembly. I created it to empower more projects to build semantic features and create better user experiences for people around the world. Voy follows several design principles:
+
+- 🤏 **Tiny**: Reduce overhead for limited devices, such as mobile browsers with slow network or IoT.
+- 🚀 **Fast**: Create the best search experience for the users.
+- 🌳 **Tree Shakable**: Optimize bundle size and enable asynchronous capabilities for modern Web API, such as Web Workers.
+- 🔋 **Resumable**: Generate portable embeddings index anywhere, anytime.
+- ☁️ **Worldwide**: Run semantic search on CDN edge servers.
+
+It's available on npm. You can simply install it with your favorite package manager and you're ready to go.
+
+```bash
+# with npm
+npm i voy-search
+
+# with Yarn
+yarn add voy-search
+
+# with pnpm
+pnpm add voy-search
+```
+
+Give it a try and I'm happy to hear from you!
+
+## References
+
+- [Feature extraction][4] - Wikipedia
+- [Future][8] - Rust Doc
+- [Rust][3] - Rust Team
+- [rstest][1] - GitHub
+- [Test fixture][2] - Wikipedia
+- [Voy][7] - GitHub
+- [WebAssembly][5] - WebAssembly.org
+- [Embeddings][6] - Google for Developers
+
+[1]: https://docs.rs/rstest/latest/rstest/
+[2]: https://en.wikipedia.org/wiki/Test_fixture
+[3]: https://www.rust-lang.org
+[4]: https://en.wikipedia.org/wiki/Feature_extraction
+[5]: https://webassembly.org
+[6]: https://developers.google.com/machine-learning/crash-course/embeddings/video-lecture
+[7]: https://github.com/tantaraio/voy
+[8]: https://doc.rust-lang.org/std/future/index.html
+
+---
+
+Here you have it! Thanks for reading through 🙌
+If you find this article useful, please share it to help more people in their engineering journey.
+
+🐦 Feel free to connect with me on [twitter](https://twitter.com/dawchihliou)!
+
+⏭️ Ready for the next article? 👉 [Share Rust Types With TypeScript for WebAssembly in 30 Seconds](/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds)
+
+Happy coding!
