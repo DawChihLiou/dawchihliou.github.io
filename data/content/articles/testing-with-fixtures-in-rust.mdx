@@ -16,9 +16,116 @@ Let's go.
 
 ---
 
+Here's a demo for web:
+
 <img
-  src="/optimized/articles/testing-with-fixtures-in-rust/hero.webp"
-  alt="image from the template"
+  src="/articles/share-rust-types-with-typescript-for-webassembly-in-30-seconds/voy.gif"
+  alt="Voy demo"
+  width="100%"
+  className="rounded centered"
+  loading="lazy"
+/>
+
+> You can find the [Voy's repository on GitHub][7]! Feel free to try it out.
+>
+> The repository includes [examples](https://github.com/tantaraio/voy/tree/main/examples) that you can see how to use Voy in different frameworks.
+
+```rust
+use super::engine_fixtures::{CONTENT, CONTENT_RAW, QUESTION};
+use crate::engine::{add, index, remove, search, Query};
+use crate::{EmbeddedResource, Resource};
+
+fn get_resource(k: usize) -> Resource {
+     let embeddings = CONTENT
+         .iter()
+         .take(k)
+         .enumerate()
+         .map(|(i, x)| EmbeddedResource {
+             id: i.to_string(),
+             title: CONTENT_RAW.get(i).unwrap().to_string(),
+             url: "".to_owned(),
+             embeddings: x.to_vec(),
+         })
+         .collect();
+     Resource { embeddings }
+ }
+
+#[test]
+ fn it_returns_vector_search_result() {
+     let resource: Resource = get_resource(6);
+     let index = index(resource).unwrap();
+
+     let query = Query::Embeddings(QUESTION.to_vec());
+     let result = search(&index, &query, 1).unwrap();
+
+     assert_eq!(result.get(0).unwrap().title, CONTENT_RAW[0]);
+     assert_eq!(result.get(1).unwrap().title, CONTENT_RAW[1]);
+     assert_eq!(result.get(2).unwrap().title, CONTENT_RAW[2]);
+     assert_eq!(result.get(3).unwrap().title, CONTENT_RAW[4]);
+     assert_eq!(result.get(4).unwrap().title, CONTENT_RAW[5]);
+     assert_eq!(result.get(5).unwrap().title, CONTENT_RAW[3]);
+ }
+```
+
+```rust
+pub static EMBEDDING: [[f32; 768]; 6] = [
+    [
+        0.01960003957247733,
+        -0.03651725347725505,
+        0.03361894761373059,
+        // ...
+    ]
+```
+
+```rust
+#[fixture]
+pub fn embedding_fixture() -> [[f32; 768]; 6] {
+    EMBEDDING
+}
+```
+
+```rust
+#[fixture]
+pub fn resource_fixture() -> Resource {
+    let content = content_fixture();
+    let embeddings = embedding_fixture()
+        .iter()
+        .enumerate()
+        .map(|(i, x)| EmbeddedResource {
+            id: i.to_string(),
+            title: content.get(i).unwrap().to_string(),
+            url: "".to_owned(),
+            embeddings: x.to_vec(),
+        })
+        .collect();
+    Resource { embeddings }
+}
+```
+
+```rust
+#[rstest]
+fn it_returns_vector_search_result(
+    resource_fixture: Resource,
+    question_fixture: [f32; 768],
+    content_fixture: [&'static str; 6],
+) {
+    let index = index(resource_fixture).unwrap();
+    let query = Query::Embeddings(question_fixture.to_vec());
+    let result = search(&index, &query, 6).unwrap();
+
+    assert_eq!(result.get(0).unwrap().title, content_fixture[0]);
+    assert_eq!(result.get(1).unwrap().title, content_fixture[1]);
+    assert_eq!(result.get(2).unwrap().title, content_fixture[2]);
+    assert_eq!(result.get(3).unwrap().title, content_fixture[4]);
+    assert_eq!(result.get(4).unwrap().title, content_fixture[5]);
+    assert_eq!(result.get(5).unwrap().title, content_fixture[3]);
+}
+
+```
+
+<img
+  src="/optimized/articles/testing-with-fixtures-in-rust/terminal.webp"
+  alt="Unit result with fixtures"
   width="100%"
   className="rounded centered"
   loading="lazy"
@@ -26,7 +133,38 @@ Let's go.
 
 ## Final Thoughts
 
+[Voy][7] is an open source semantic search engine in WebAssembly. I created it to empower more projects to build semantic features and create better user experiences for people around the world. Voy follows several design principles:
+
+- 🤏 **Tiny**: Reduce overhead for limited devices, such as mobile browsers with slow network or IoT.
+- 🚀 **Fast**: Create the best search experience for the users.
+- 🌳 **Tree Shakable**: Optimize bundle size and enable asynchronous capabilities for modern Web API, such as Web Workers.
+- 🔋 **Resumable**: Generate portable embeddings index anywhere, anytime.
+- ☁️ **Worldwide**: Run semantic search on CDN edge servers.
+
+It's available on npm. You can simply install it with your favorite package manager and you're ready to go.
+
+```bash
+# with npm
+npm i voy-search
+
+# with Yarn
+yarn add voy-search
+
+# with pnpm
+pnpm add voy-search
+```
+
+Give it a try and I'm happy to hear from you!
+
 ## References
+
+- [rstest][1] - GitHub
+- [Test fixture][2] - Wikipedia
+- [Voy][7] - GitHub
+
+[1]: https://docs.rs/rstest/latest/rstest/
+[2]: https://en.wikipedia.org/wiki/Test_fixture
+[7]: https://github.com/tantaraio/voy
 
 ---
 
